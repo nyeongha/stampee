@@ -1,6 +1,6 @@
 ---
 name: Feature request
-about: pr 템플릿
+about: issue 템플릿
 title: ''
 labels: ''
 assignees: ''
