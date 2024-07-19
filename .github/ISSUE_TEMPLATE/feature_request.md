@@ -1,15 +1,20 @@
 ---
-name: Feature request
+name: 기능 요청 이슈
 about: issue 템플릿
 title: ''
 labels: ''
 assignees: ''
 
 ---
+## 어떤 기능인가요?
 
-## 변경사항
+> 추가하려는 기능에 대해 간결하게 설명해주세요
 
-## 구현사항
+## 작업 상세 내용
 
+- [ ] TODO
+- [ ] TODO
+- [ ] TODO
 
-## 고민사항
+## 참고할만한 자료(선택)
+
