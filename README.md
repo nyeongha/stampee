@@ -2,7 +2,7 @@
 |황서정|하민영|양소은|진광환|최성연|
 |:--:|:--:|:--:|:--:|:--:|
 |[6dreamhigh](https://github.com/6dreamhigh)|[nyeongha](https://github.com/nyeongha)|[Yang-soeun](https://github.com/Yang-soeun)|[ioannes486](https://github.com/ioannes486)|[Sohottoday](https://github.com/Sohottoday)|
-|<img src="https://github.com/user-attachments/assets/48c4cb39-9d53-44f9-87b3-d0bfabddc322" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/bfe6343f-b605-496c-bdf1-cf2dd7b5fbc1" width="300" height="200"/>|<img src="https://github.com/user-attachments/assets/5e83e279-95fa-45bd-a307-25a73e2a8da9" width="200" height="200"/> | <img src="https://github.com/user-attachments/assets/ea39b3f3-ff1a-4c4a-91a0-d0d4b9ebde03" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/58fc8f1b-cc2f-4576-9ede-b9bcf0484b6a" width="200" height="200"/>|
+|<img src="https://github.com/user-attachments/assets/48c4cb39-9d53-44f9-87b3-d0bfabddc322" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/bfe6343f-b605-496c-bdf1-cf2dd7b5fbc1" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/5e83e279-95fa-45bd-a307-25a73e2a8da9" width="200" height="200"/> | <img src="https://github.com/user-attachments/assets/ea39b3f3-ff1a-4c4a-91a0-d0d4b9ebde03" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/58fc8f1b-cc2f-4576-9ede-b9bcf0484b6a" width="200" height="200"/>|
 
 ## ⛳Ground Rule
 - 10시 스크럼 회의
