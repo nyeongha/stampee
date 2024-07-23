@@ -12,6 +12,9 @@
 - 기능 단위 커밋 올리기
 - 주말 오후 2시까지 출석
 
+## ERD
+![Stampee2](https://github.com/user-attachments/assets/c962d788-92cc-4437-b560-e48d4674a615)
+
 
 ## 🖥️Developer Rule
 - IDE는 인텔리제이로
