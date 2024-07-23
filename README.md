@@ -15,6 +15,9 @@
 ## ERD
 ![Stampee2](https://github.com/user-attachments/assets/c962d788-92cc-4437-b560-e48d4674a615)
 
+## 화면 구상
+<img width="560" alt="image" src="https://github.com/user-attachments/assets/eb71f19e-1c14-4386-a1bc-61e3e08ae6f3">
+
 
 ## 🖥️Developer Rule
 - IDE는 인텔리제이로
