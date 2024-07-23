@@ -16,7 +16,14 @@
 ![Stampee2](https://github.com/user-attachments/assets/c962d788-92cc-4437-b560-e48d4674a615)
 
 ## 화면 구상
-<img width="560" alt="image" src="https://github.com/user-attachments/assets/eb71f19e-1c14-4386-a1bc-61e3e08ae6f3">
+### 로그인
+<img width="383" alt="image" src="https://github.com/user-attachments/assets/7d8c106c-8cf7-4f34-9683-5930bc7ca160">
+
+### 회원가입
+<img width="544" alt="image" src="https://github.com/user-attachments/assets/d2f8a5cc-fc00-44bb-a02c-a1899cc35170">
+
+### 회원가입 후 관리화면
+<img width="546" alt="image" src="https://github.com/user-attachments/assets/bd13e500-a264-45a5-88c0-2d21be74a4a4">
 
 
 ## 🖥️Developer Rule
