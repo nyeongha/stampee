@@ -16,4 +16,16 @@ public class Member {
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
 }
