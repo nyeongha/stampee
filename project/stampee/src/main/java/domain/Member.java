@@ -10,6 +10,13 @@ public class Member {
 		return memberId;
 	}
 
+	public Member(long memberId, String password, String email, String phoneNumber) {
+		this.memberId = memberId;
+		this.password = password;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+	}
+
 	public String getPassword() {
 		return password;
 	}
@@ -21,5 +28,4 @@ public class Member {
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
-
 }
