@@ -1,4 +1,8 @@
 # stampee
+|황서정|하민영|양소은|진광환|최성연|
+|:--:|:--:|:--:|:--:|:--:|
+|[6dreamhigh](https://github.com/6dreamhigh)|[nyeongha](https://github.com/nyeongha)|[Yang-soeun](https://github.com/Yang-soeun)|[ioannes486](https://github.com/ioannes486)|[Sohottoday](https://github.com/Sohottoday)|
+|<img src="https://github.com/user-attachments/assets/48c4cb39-9d53-44f9-87b3-d0bfabddc322" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/bfe6343f-b605-496c-bdf1-cf2dd7b5fbc1" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/5e83e279-95fa-45bd-a307-25a73e2a8da9" width="200" height="200"/> | <img src="https://github.com/user-attachments/assets/ea39b3f3-ff1a-4c4a-91a0-d0d4b9ebde03" width="200" height="200"/>|<img src="https://github.com/user-attachments/assets/58fc8f1b-cc2f-4576-9ede-b9bcf0484b6a" width="200" height="200"/>|
 
 ## ⛳Ground Rule
 - 10시 스크럼 회의
@@ -7,6 +11,19 @@
 - 카톡보면 체크표시 or 답장 무조건하기
 - 기능 단위 커밋 올리기
 - 주말 오후 2시까지 출석
+
+## ERD
+![Stampee2](https://github.com/user-attachments/assets/c962d788-92cc-4437-b560-e48d4674a615)
+
+## 화면 구상
+### 로그인
+<img width="383" alt="image" src="https://github.com/user-attachments/assets/7d8c106c-8cf7-4f34-9683-5930bc7ca160">
+
+### 회원가입
+<img width="544" alt="image" src="https://github.com/user-attachments/assets/d2f8a5cc-fc00-44bb-a02c-a1899cc35170">
+
+### 회원가입 후 관리화면
+<img width="546" alt="image" src="https://github.com/user-attachments/assets/bd13e500-a264-45a5-88c0-2d21be74a4a4">
 
 
 ## 🖥️Developer Rule
