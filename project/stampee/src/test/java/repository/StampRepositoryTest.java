@@ -12,13 +12,13 @@ import domain.Member;
 import domain.Stamp;
 
 class StampRepositoryTest {
-	private final StampRepository stampRepository = new StampRepository();
+	StampRepository stampRepository = new StampRepository();
 
 	@Test
 	@DisplayName("Stamp를 저장할 수 있다.")
 	void save(){
 		//given
-		Member member = new Member(1L, "1234", "test@naver.com", "010-1234-1234");
+		Member member = new Member(2L, "1234", "test@naver.com", "010-1234-1234", "hello");
 		Cafe cafe = new Cafe(1L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com","010-1234-1234");
 		Stamp stamp = new Stamp(3, LocalDate.now(), member,  cafe);
 

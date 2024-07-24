@@ -1,5 +1,6 @@
 package repository;
 
+import static Template.ConnectionClose.*;
 import static config.DBConnectionUtil.*;
 
 import java.sql.Connection;
@@ -39,22 +40,7 @@ public class CafeRepository {
 			}
 			throw new RuntimeException(e);
 		} finally {
-			// Close PreparedStatement
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
-			// Close Connection
-			if (conn != null) {
-				try {
-					conn.close();
-				} catch (SQLException e) {
-					throw new RuntimeException(e);
-				}
-			}
+			close(conn, pstmt);
 		}
 	}
 }

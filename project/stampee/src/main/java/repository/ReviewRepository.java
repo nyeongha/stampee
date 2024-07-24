@@ -3,15 +3,13 @@ package repository;
 import static config.DBConnectionUtil.*;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import Template.ConnectionClose;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
@@ -44,25 +42,21 @@ public class ReviewRepository {
 					rs.getLong("member_id"),
 					rs.getString("password"),
 					rs.getString("email"),
-					rs.getString("phone_number")
-											);
-
+					rs.getString("phone_number"),
+					rs.getString("username"));
 
 				Cafe cafe = new Cafe(rs.getLong("cafe_id"),
 					rs.getString("name"),
 					rs.getString("address"),
 					rs.getString("password_1"),
 					rs.getString("email_1"),
-					rs.getString("contact")
-				);
+					rs.getString("contact"));
 
 				Review review = new Review(rs.getLong("review_id"),
 											rs.getInt("rating"),
 											rs.getString("contents"),
 											rs.getDate("createTime"),
-											member,
-											cafe);
-
+											member, cafe);
 
 				reviews.add(review);
 			}
@@ -152,7 +146,8 @@ public class ReviewRepository {
 				Member member = new Member(rs.getLong("member_id"),
 					rs.getString("phone_number"),
 					rs.getString("email"),
-					rs.getString("password"));
+					rs.getString("password"),
+					rs.getString("username"));
 
 
 				Cafe cafe = new Cafe(rs.getLong("cafe_id"),
@@ -175,21 +170,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		}finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-			try {
-				rs.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			ConnectionClose.close(conn, ps, rs);
 		}
 		return reviews;
 	}

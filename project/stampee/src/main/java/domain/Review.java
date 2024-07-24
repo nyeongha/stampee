@@ -1,7 +1,6 @@
 package domain;
 
 import java.sql.Date;
-import java.time.LocalDateTime;
 
 public class Review {
 
