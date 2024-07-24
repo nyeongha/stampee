@@ -14,8 +14,13 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
+
     implementation 'com.sun.mail:javax.mail:1.6.2'
     //implementation 'com.sun.mail:jakarta.mail:2.0.1'
+    
+    //lombok
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+
 }
 
 test {
