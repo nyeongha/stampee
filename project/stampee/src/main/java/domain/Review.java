@@ -15,18 +15,22 @@ public class Review {
 	public Review(long reviewId,
 					int rating,
 					String contents,
-					Date createTime
+					Date createTime,
+					Member author,
+					Cafe cafe
 					) {
 		this.reviewId = reviewId;
 		this.rating = rating;
 		this.contents = contents;
 		this.createTime = createTime;
-	}
-	public void getMember(Member author) {
+		this.cafe = cafe;
 		this.author = author;
 	}
-	public void getCafe(Cafe cafe) {
-		this.cafe = cafe;
+	public Member getMember(Member author) {
+		return author;
+	}
+	public Cafe getCafe(Cafe cafe) {
+		return cafe;
 	}
 
 }
