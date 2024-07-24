@@ -40,10 +40,12 @@ public class ReviewRepository {
 			while (rs.next()) {
 
 
-				Member member = new Member(rs.getLong("member_id"),
-					rs.getString("phone_number"),
+				Member member = new Member(
+					rs.getLong("member_id"),
+					rs.getString("password"),
 					rs.getString("email"),
-					rs.getString("password"));
+					rs.getString("phone_number")
+											);
 
 
 				Cafe cafe = new Cafe(rs.getLong("cafe_id"),
