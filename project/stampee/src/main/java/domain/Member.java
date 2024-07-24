@@ -6,7 +6,6 @@ public class Member {
 	private String email;
 	private String phoneNumber;
 
-
 	public long getMemberId() {
 		return memberId;
 	}
@@ -22,13 +21,15 @@ public class Member {
 		return password;
 	}
 
-
 	public String getEmail() {
 		return email;
 	}
 
-
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+
+	public long getId() {
+		return memberId;
 	}
 }

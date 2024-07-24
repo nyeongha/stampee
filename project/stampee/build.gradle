@@ -16,6 +16,7 @@ dependencies {
 
     implementation 'ch.qos.logback:logback-classic:1.2.11'
 
+
     // AssertJ 의존성 추가
     testImplementation 'org.assertj:assertj-core:3.24.2'
 
@@ -24,6 +25,10 @@ dependencies {
     
     //lombok
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+
+    // Mockito 의존성
+    testImplementation 'org.mockito:mockito-core:4.6.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.6.1'
 }
 
 test {
