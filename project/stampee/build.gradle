@@ -14,8 +14,10 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
-    //lombok
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+
+    // AssertJ 의존성 추가
+    testImplementation 'org.assertj:assertj-core:3.24.2'
 }
 
 test {

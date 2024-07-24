@@ -18,15 +18,14 @@ public class StampRepository {
 	private static final Logger log = LoggerFactory.getLogger(StampRepository.class);
 
 	public Stamp save(Stamp stamp){
-		String sql = "insert into stamp(count, create_time, member_id, cafe_id) "
-			+ "values(?, ?, ?, ?)";
+		String sql = "insert into stamp(stamp_id, count, create_time, member_id, cafe_id) "
+			+ "values(STAMP_SEQ.NEXTVAL, ?, ?, ?, ?)";
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			con = getConnection();
-
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, stamp.getCount());
 			pstmt.setDate(2, Date.valueOf(stamp.getCreateTime()));
@@ -34,6 +33,7 @@ public class StampRepository {
 			pstmt.setLong(4, stamp.getCafe().getCafeId());
 
 			pstmt.executeUpdate();
+
 			return stamp;
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -57,7 +57,6 @@ public class StampRepository {
 				log.info("pstmt close error", e);
 			}
 		}
-
 		if (con != null) {
 			try {
 				con.close();
