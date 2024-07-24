@@ -18,18 +18,18 @@ public class MemberRepository {
 	private static final Logger log = LoggerFactory.getLogger(MemberRepository.class);
 
 	public void userSignUp(Member member) {
-		Connection connection = getConnection();
+		String sql = "insert into member(member_id, password, email, phone_number, username) "
+			+ "values(MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?)";
+
+		Connection connection = null;
 		PreparedStatement pstmt = null;
 		try {
-			String sql = new StringBuilder()
-				.append("INSERT INTO member(member_id, password, email, phone_number)")
-				.append("values(MEMBER_SEQ.NEXTVAL,?,?,?)")
-				.toString();
-
+			connection = getConnection();
 			pstmt = connection.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
 			pstmt.setString(2, member.getEmail());
 			pstmt.setString(3, member.getPhoneNumber());
+			pstmt.setString(4, member.getUsername());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -51,13 +51,15 @@ public class MemberRepository {
 			con = getConnection();
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, phoneNum);
+
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				Member member = new Member(rs.getLong("memberId"),
+				Member member = new Member(rs.getLong("member_id"),
 					rs.getString("password"),
 					rs.getString("email"),
-					rs.getString("phoneNum"));
+					rs.getString("phone_number"),
+					rs.getString("username"));
 
 				return member;
 			} else {
@@ -68,6 +70,27 @@ public class MemberRepository {
 			throw new RuntimeException(e);
 		} finally {
 			close(con, pstmt, rs);
+		}
+	}
+
+	public void deleteUser(String phoneNum) {
+		String sql = "delete from member "
+			+ "where phone_number = ?";
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			con = getConnection();
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, phoneNum);
+			pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			log.info("db error", e);
+			throw new RuntimeException(e);
+		} finally {
+			close(con, pstmt);
 		}
 	}
 }

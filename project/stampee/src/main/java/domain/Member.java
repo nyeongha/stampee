@@ -5,17 +5,19 @@ public class Member {
 	private String password;
 	private String email;
 	private String phoneNumber;
+	private String username;
 
 
 	public long getMemberId() {
 		return memberId;
 	}
 
-	public Member(long memberId, String password, String email, String phoneNumber) {
+	public Member(long memberId, String password, String email, String phoneNumber, String username) {
 		this.memberId = memberId;
 		this.password = password;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
+		this.username = username;
 	}
 
 	public String getPassword() {
@@ -30,5 +32,9 @@ public class Member {
 
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+
+	public String getUsername() {
+		return username;
 	}
 }
