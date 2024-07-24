@@ -23,7 +23,7 @@ public abstract class ConnectionClose {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// log.info("pstmt close error", e);
+				log.info("pstmt close error", e);
 			}
 		}
 		if (con != null) {
@@ -40,7 +40,7 @@ public abstract class ConnectionClose {
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
-				// log.info("pstmt close error", e);
+				log.info("pstmt close error", e);
 			}
 		}
 		if (con != null) {
