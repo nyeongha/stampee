@@ -12,7 +12,7 @@ import domain.Member;
 import domain.Stamp;
 
 class StampRepositoryTest {
-	StampRepository stampRepository = new StampRepository();
+	private final StampRepository stampRepository = new StampRepository();
 
 	@Test
 	@DisplayName("Stamp를 저장할 수 있다.")
