@@ -12,5 +12,12 @@ public class Cafe {
         return cafeId;
     }
 
-
+    public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
+        this.cafeId = cafeId;
+        this.name = name;
+        this.address = address;
+        this.password = password;
+        this.email = email;
+        this.contact = contact;
+    }
 }
