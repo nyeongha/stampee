@@ -1,4 +1,8 @@
+
 import repository.CafeRepository;
+import javax.mail.MessagingException;
+
+import service.MailService;
 
 public class Main {
 	public static void main(String[] args) {
@@ -18,5 +22,6 @@ public class Main {
 		cafeRepository.userSignUp(cafeId, name, address, password, email, contact);
 
 		System.out.println("User signed up successfully!");
+
 	}
 }
