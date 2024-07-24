@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import domain.Member;
 
 public class MemberRepository {
-	private static final Logger log = LoggerFactory.getLogger(StampRepository.class);
+	private static final Logger log = LoggerFactory.getLogger(MemberRepository.class);
 
 	public void userSignUp(Member member) {
 		// connection 영역
@@ -21,11 +21,10 @@ public class MemberRepository {
 		try {
 			String sql = new StringBuilder()
 				.append("INSERT INTO member(member_id, password, email, phone_number, role)")
-				.append("values(?,?,?,?)")
+				.append("values(MEMBER_SEQ.NEXTVAL,?,?,?)")
 				.toString();
 
 			pstmt = connection.prepareStatement(sql);
-			pstmt.setLong(1, member.getMemberId());
 			pstmt.setString(2, member.getPassword());
 			pstmt.setString(3, member.getEmail());
 			pstmt.setString(4, member.getPhoneNumber());
@@ -50,10 +49,8 @@ public class MemberRepository {
 		if (pstmt != null) {
 			try {
 				pstmt.close();
-
 			} catch (SQLException e) {
 				log.info("pstmt close error");
-
 			}
 		}
 	}
