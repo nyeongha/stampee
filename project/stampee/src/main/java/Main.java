@@ -1,9 +1,7 @@
-import javax.mail.MessagingException;
-
-import service.MailService;
+import repository.CafeRepository;
 
 public class Main {
 	public static void main(String[] args) {
-
+		System.out.println("Hello world!");
 	}
 }
