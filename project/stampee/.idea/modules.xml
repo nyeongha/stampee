@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/stampee.iml" filepath="$PROJECT_DIR$/stampee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stampee.iml" filepath="$PROJECT_DIR$/.idea/modules/stampee.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stampee.main.iml" filepath="$PROJECT_DIR$/.idea/modules/stampee.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/stampee.test.iml" filepath="$PROJECT_DIR$/.idea/modules/stampee.test.iml" />
     </modules>
   </component>
 </project>
