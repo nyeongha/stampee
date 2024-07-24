@@ -22,5 +22,11 @@ public class Review {
 		this.contents = contents;
 		this.createTime = createTime;
 	}
+	public void getMember(Member author) {
+		this.author = author;
+	}
+	public void getCafe(Cafe cafe) {
+		this.cafe = cafe;
+	}
 
 }

@@ -43,6 +43,7 @@ public class ReviewRepository {
 											 rs.getString("phone_number"),
 											 rs.getString("email"),
 											 rs.getString("password"));
+					review.getMember(member);
 
 					Cafe cafe=new Cafe(rs.getLong("cafe_id"),
 										rs.getString("name"),
@@ -51,15 +52,37 @@ public class ReviewRepository {
 										rs.getString("email_1"),
 										rs.getString("contact")
 										);
+					review.getCafe(cafe);
 
-
+					reviews.add(review);
 				}
+
 				ps.close();
 			} catch (SQLException e) {
 				throw new RuntimeException(e);
 			}
 
 			return reviews;
+		}
+
+		public int insertReview(Review review){
+			return 0;
+		}
+		public int updateReview(Review review){
+
+			return 0;
+		}
+		public int deleteReview(Review review){
+			return 0;
+		}
+
+		public Review findReviewByPhoneNumber(String phone_number){
+			return null;
+		}
+		public int countAllReviews(){
+			List<Review> reviews=findAllReviews();
+			int cnt=reviews.size();
+			return cnt;
 		}
 
 
