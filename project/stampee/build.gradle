@@ -14,12 +14,26 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
 
+<<<<<<< HEAD
     implementation 'ch.qos.logback:logback-classic:1.2.11'
 
     // AssertJ 의존성 추가
     testImplementation 'org.assertj:assertj-core:3.24.2'
+=======
+
+    implementation 'com.sun.mail:javax.mail:1.6.2'
+    //implementation 'com.sun.mail:jakarta.mail:2.0.1'
+    
+    //lombok
+    implementation 'ch.qos.logback:logback-classic:1.2.11'
+
+>>>>>>> aab23f1de846776a30bcbdaa775a4572d05c440d
 }
 
 test {
     useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
 }
