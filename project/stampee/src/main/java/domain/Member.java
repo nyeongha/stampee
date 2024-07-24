@@ -5,5 +5,8 @@ public class Member {
 	private String password;
 	private String email;
 	private String phoneNumber;
-	private int role;
+
+	public long getMemberId() {
+		return memberId;
+	}
 }

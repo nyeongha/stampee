@@ -1,12 +1,27 @@
 package domain;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Stamp {
 	private long stampId;
 	private int count;
 	private LocalDate createTime;
-	private List<Member> members;
-	private List<Cafe> cafes;
+	private Member member;
+	private Cafe cafe;
+
+	public int getCount() {
+		return count;
+	}
+
+	public LocalDate getCreateTime() {
+		return createTime;
+	}
+
+	public Member getMember() {
+		return member;
+	}
+
+	public Cafe getCafe() {
+		return cafe;
+	}
 }
