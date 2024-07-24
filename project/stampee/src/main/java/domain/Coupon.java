@@ -1,12 +1,10 @@
 package domain;
 
-import java.time.LocalDateTime;
-import java.util.List;
-
+import java.time.LocalDate;
 public class Coupon {
 	private long couponId;
-	private LocalDateTime createTime;
-	private LocalDateTime endTime;
-	private List<Member> members;
-	private List<Cafe> cafes;
+	private LocalDate createTime;
+	private LocalDate endTime;
+	private Member member;
+	private Cafe cafe;
 }
