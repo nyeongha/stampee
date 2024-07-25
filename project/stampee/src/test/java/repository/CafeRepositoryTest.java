@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 import util.Encrypt;
 
 class EncryptTest {
+	@Test
+	void testSignup(){
+
+	}
 
 	@Test
 	void testGetSalt() {
