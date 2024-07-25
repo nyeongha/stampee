@@ -3,37 +3,91 @@ package repository;
 import static Template.ConnectionClose.*;
 import static config.DBConnectionUtil.*;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import domain.Cafe;
+import domain.Member;
 import domain.Stamp;
 
-
 public class StampRepository {
-	public Stamp save(Stamp stamp){
-		String sql = "insert into stamp(stamp_id, count, create_time, member_id, cafe_id) "
-			+ "values(STAMP_SEQ.NEXTVAL, ?, ?, ?, ?)";
+	private static final Logger log = LoggerFactory.getLogger(StampRepository.class);
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
+	public void save(long memberId, long cafeId, int count){
+		String sql = "{ call add_stamp(?, ?, ?)}";
+		Connection conn = null;
+		CallableStatement cstmt = null;
 
 		try {
-			con = getConnection();
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, stamp.getCount());
-			pstmt.setDate(2, Date.valueOf(stamp.getCreateTime()));
-			pstmt.setLong(3, stamp.getMember().getMemberId());
-			pstmt.setLong(4, stamp.getCafe().getCafeId());
-
-			pstmt.executeUpdate();
-
-			return stamp;
+			conn = getConnection();
+			cstmt = conn.prepareCall(sql);
+			cstmt.setLong(1, memberId);
+			cstmt.setLong(2, cafeId);
+			cstmt.setInt(3, count);
+			cstmt.execute();
 		} catch (SQLException e) {
+			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(con, pstmt);
+			close(conn, cstmt);
 		}
+	}
+
+	public Stamp findStamp(long memberId, long cafeId) {
+		String sql = "select * "
+			+ "from stamp s join member m "
+			+ "on s.member_id = m.member_id "
+			+ "join cafe c on s.cafe_id = c.cafe_id "
+			+ "where s.member_id = ? "
+			+ "and s.cafe_id = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Stamp stamp = null;
+
+		try{
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
+			pstmt.setLong(2, cafeId);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				stamp = new Stamp(rs.getLong("stamp_id"),
+					rs.getInt("count"),
+					rs.getDate("create_time"),
+					getMember(rs), getCafe(rs));
+			}
+		}  catch (SQLException e) {
+			log.info("db error", e);
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		return stamp;
+	}
+
+	private static Cafe getCafe(ResultSet rs) throws SQLException {
+		return new Cafe(rs.getLong("cafe_id"),
+			rs.getString("name"),
+			rs.getString("address"),
+			rs.getString("password"),
+			rs.getString("email"),
+			rs.getString("contact"));
+	}
+
+	private static Member getMember(ResultSet rs) throws SQLException {
+		return new Member(rs.getLong("member_id"),
+			rs.getString("password"),
+			rs.getString("email"),
+			rs.getString("phone_number"),
+			rs.getString("username"));
 	}
 }
