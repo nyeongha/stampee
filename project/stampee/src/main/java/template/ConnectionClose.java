@@ -1,9 +1,9 @@
-package Template;
+package template;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,7 +11,7 @@ import org.slf4j.LoggerFactory;
 public abstract class ConnectionClose {
 	private static final Logger log = LoggerFactory.getLogger(ConnectionClose.class);
 
-	public static void close(Connection con, PreparedStatement pstmt, ResultSet rs) {
+	public static void close(Connection con, Statement stmt, ResultSet rs) {
 		if (rs != null) {
 			try {
 				rs.close();
@@ -19,9 +19,9 @@ public abstract class ConnectionClose {
 				log.info("rs close error", e);
 			}
 		}
-		if (pstmt != null) {
+		if (stmt != null) {
 			try {
-				pstmt.close();
+				stmt.close();
 			} catch (SQLException e) {
 				log.info("pstmt close error", e);
 			}
@@ -35,10 +35,10 @@ public abstract class ConnectionClose {
 		}
 	}
 
-	public static void close(Connection con, PreparedStatement pstmt) {
-		if (pstmt != null) {
+	public static void close(Connection con, Statement stmt) {
+		if (stmt != null) {
 			try {
-				pstmt.close();
+				stmt.close();
 			} catch (SQLException e) {
 				log.info("pstmt close error", e);
 			}
