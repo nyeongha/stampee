@@ -37,7 +37,7 @@ public class ReviewRepository {
 
 			while (rs.next()) {
 
-				Member member = Member.creaateMember(
+				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("password"),
 					rs.getString("userName"),
@@ -166,7 +166,7 @@ public class ReviewRepository {
 			rs = ps.executeQuery();
 
 			while (rs.next()) {
-				Member member = Member.creaateMember(
+				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("userName"),
 					rs.getString("password"),
@@ -226,7 +226,7 @@ public class ReviewRepository {
 			rs = ps.executeQuery();
 
 			if (rs.next()) {
-				Member member = Member.creaateMember(
+				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("userName"),
 					rs.getString("password"),
