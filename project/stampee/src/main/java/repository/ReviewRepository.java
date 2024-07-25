@@ -39,6 +39,7 @@ public class ReviewRepository {
 				Member member = new Member(
 					rs.getLong("member_id"),
 					rs.getString("password"),
+					rs.getString("userName"),
 					rs.getString("email"),
 					rs.getString("phone_number")
 				);
@@ -172,6 +173,7 @@ public class ReviewRepository {
 			if (rs.next()) {
 				Member member = new Member(
 					rs.getLong("member_id"),
+					rs.getString("userName"),
 					rs.getString("password"),
 					rs.getString("email"),
 					rs.getString("phone_number")
