@@ -42,13 +42,13 @@ public class MemberRepository {
 		String sql = "select * from member "
 			+ "where phone_number = ?";
 
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
-			con = getConnection();
-			pstmt = con.prepareStatement(sql);
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, phoneNum);
 
 			rs = pstmt.executeQuery();
@@ -68,7 +68,7 @@ public class MemberRepository {
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(con, pstmt, rs);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -76,19 +76,19 @@ public class MemberRepository {
 		String sql = "delete from member "
 			+ "where phone_number = ?";
 
-		Connection con = null;
+		Connection conn = null;
 		PreparedStatement pstmt = null;
 
 		try {
-			con = getConnection();
-			pstmt = con.prepareStatement(sql);
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, phoneNum);
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(con, pstmt);
+			close(conn, pstmt);
 		}
 	}
 }
