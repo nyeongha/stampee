@@ -25,6 +25,29 @@ public class Review {
 		this.cafe = cafe;
 		this.author = author;
 	}
+	public Review(
+		int rating,
+		String contents,
+		Date createTime,
+		Member author,
+		Cafe cafe
+	) {
+
+		this.rating = rating;
+		this.contents = contents;
+		this.createTime = createTime;
+		this.cafe = cafe;
+		this.author = author;
+	}
+	public Review(
+		long reviewId,
+		int rating,
+		String contents) {
+		this.reviewId=reviewId;
+		this.rating=rating;
+		this.contents=contents;
+
+	}
 
 	public long getId() {
 		return reviewId;
