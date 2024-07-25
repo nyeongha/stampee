@@ -1,5 +1,6 @@
 package repository;
 
+import static Template.ConnectionClose.*;
 import static config.DBConnectionUtil.*;
 
 import java.sql.Connection;
@@ -37,22 +38,6 @@ public class MemberRepository {
 		}
 	}
 
-	private void close(Connection connection, PreparedStatement pstmt) {
-		if (connection != null) {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				log.info("connection close error");
-			}
 
-		}
-		if (pstmt != null) {
-			try {
-				pstmt.close();
-			} catch (SQLException e) {
-				log.info("pstmt close error");
-			}
-		}
-	}
 }
 
