@@ -45,6 +45,14 @@ public class ReviewService {
 
 	}
 
+	public List<Review> findReviewsByMemberId(long memberId){
+		return reviewRepository.findReviewsByMemberId(memberId);
+
+	}
+
+	public List<Review> findReviewsByCafeId(long cafeId) {
+		return reviewRepository.findReviewsByCafeId(cafeId);
+	}
 
 
 
@@ -53,4 +61,6 @@ public class ReviewService {
 
 
 
-}
+
+
+	}

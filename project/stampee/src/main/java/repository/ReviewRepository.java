@@ -124,7 +124,7 @@ public class ReviewRepository {
 		}
 	}
 
-	public void deleteReviewByReviewId(long memberId, long reviewId) {
+	public void deleteReviewByReviewId(long memberId, long reviewId) {		//리뷰삭제,서비스 반영
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -157,7 +157,7 @@ public class ReviewRepository {
 		}
 	}
 
-	public List<Review> findReviewsBymemberId(long memberId) {        //멤버별 리뷰 조회
+	public List<Review> findReviewsByMemberId(long memberId) {        //멤버별 리뷰 조회,서비스 반영
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -217,7 +217,7 @@ public class ReviewRepository {
 		return reviews;
 	}
 
-	public List<Review> findReviewsByCafeId(long cafeId) {            //카페리뷰조회
+	public List<Review> findReviewsByCafeId(long cafeId) {            //카페리뷰조회,서비스 반영
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -235,7 +235,7 @@ public class ReviewRepository {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, cafeId); // ID를 설정하여 조회
+			pstmt.setLong(1, cafeId);
 
 			rs = pstmt.executeQuery();
 
