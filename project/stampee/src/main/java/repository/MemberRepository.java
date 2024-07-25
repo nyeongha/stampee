@@ -21,13 +21,14 @@ public class MemberRepository {
 		PreparedStatement pstmt = null;
 		try {
 			String sql =
-				"INSERT INTO member(member_id, password, email, phone_number)" +
-					"values(MEMBER_SEQ.NEXTVAL,?,?,?)";
+				"INSERT INTO member(member_id, user_name, email, password, phone_number)" +
+					"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getEmail());
-			pstmt.setString(3, member.getPhoneNumber());
+			pstmt.setString(2, member.getUserName());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getPhoneNumber());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
