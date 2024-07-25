@@ -1,6 +1,6 @@
 package repository;
 
-import static Template.ConnectionClose.*;
+import static template.ConnectionClose.*;
 import static config.DBConnectionUtil.*;
 
 import java.sql.Connection;
