@@ -21,7 +21,7 @@ public class MailService {
 	 */
 
 	// 받는 사람 to , 보내는 사람 from
-	public static void sendMail(String to, String from, String notice) throws MessagingException {
+	public void sendMail(String to, String from, String notice) throws MessagingException {
 		Properties prop = new Properties();
 
 		prop.put("mail.smtp.host", "smtp.gmail.com");		// Gmail SMTP 서버 주소
@@ -32,7 +32,7 @@ public class MailService {
 		Session session = Session.getInstance(prop, new Authenticator() {
 			// @Override
 			protected PasswordAuthentication getPasswordAuthentication() {			// Gmail 계정 및 앱 비밀번호
-				return new PasswordAuthentication("human9062@gmail.com", "") ;
+				return new PasswordAuthentication("human9062@gmail.com", "nofw axcy nasr vmou") ;
 			}
 		}) ;
 

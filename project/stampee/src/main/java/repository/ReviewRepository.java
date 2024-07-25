@@ -9,7 +9,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import domain.Cafe;
 import domain.Member;
@@ -119,13 +122,13 @@ public class ReviewRepository {
 	public int updateReview(Review review) {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		String sql = "update review "
+		String sql="update review "
 			+ "set rating=?, contents=?, "
 			+ "where review_id=?";
 
 		try {
-			conn = ps.getConnection();
-			ps = conn.prepareStatement(sql);
+			conn=ps.getConnection();
+			ps=conn.prepareStatement(sql);
 
 			ps.setLong(1, review.getId());
 			ps.setInt(2, review.getRating());
@@ -134,8 +137,8 @@ public class ReviewRepository {
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		} finally {
-			close(conn, ps);
+		}finally {
+			close(conn,ps);
 		}
 
 		return 0;
@@ -151,15 +154,16 @@ public class ReviewRepository {
 			ps.setLong(1, id);
 			ps.executeUpdate();
 
+
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, ps);
+			close(conn,ps);
 
 		}
 	}
 
-	public List<Review> findReviewBymemberId(long memberId) {            //
+	public List<Review> findReviewBymemberId(long memberId) {			//
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -173,6 +177,7 @@ public class ReviewRepository {
 			"WHERE m.memberId = ?";
 
 		List<Review> reviews = new ArrayList<Review>();
+
 
 		try {
 			conn = getConnection();
@@ -212,7 +217,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, ps, rs);
+			close(conn,ps,rs);
 		}
 
 		return reviews;
