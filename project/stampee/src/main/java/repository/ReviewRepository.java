@@ -7,8 +7,6 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,8 +14,7 @@ import domain.Cafe;
 import domain.Member;
 import domain.Review;
 
-public abstract class ReviewRepository {
-
+public class ReviewRepository {
 	public List<Review> findAllReviews() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -88,8 +85,6 @@ public abstract class ReviewRepository {
 		return reviews;
 	}
 
-
-
 	public void insertReview(Review review) {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -159,12 +154,12 @@ public abstract class ReviewRepository {
 		ResultSet rs = null;
 
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.createTime, " +
-							"m.member_id, m.password, m.email, m.phone_number, " +
-							"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
-					"FROM review r " +
-					"JOIN member m ON r.member_id = m.member_id " +
-					"JOIN cafe c ON r.cafe_id = c.cafe_id " +
-					"WHERE r.review_id = ?";
+			"m.member_id, m.password, m.email, m.phone_number, " +
+			"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
+			"FROM review r " +
+			"JOIN member m ON r.member_id = m.member_id " +
+			"JOIN cafe c ON r.cafe_id = c.cafe_id " +
+			"WHERE r.review_id = ?";
 
 		Review review = null;
 
@@ -217,13 +212,4 @@ public abstract class ReviewRepository {
 
 		return review;
 	}
-
-
-	public int countAllReviews() {
-		List<Review> reviews = findAllReviews();
-		int cnt = reviews.size();
-		return cnt;
-	}
-
-	protected abstract Connection getConnection();
 }

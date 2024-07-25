@@ -19,10 +19,6 @@ public class Member {
 		return memberId;
 	}
 
-	public String getUserName() {
-		return userName;
-	}
-
 	public String getEmail() {
 		return email;
 	}
@@ -35,4 +31,7 @@ public class Member {
 		return phoneNumber;
 	}
 
+	public String getUserName() {
+		return userName;
+	}
 }

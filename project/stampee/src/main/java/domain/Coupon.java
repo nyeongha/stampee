@@ -1,10 +1,11 @@
 package domain;
 
-import java.time.LocalDate;
+import java.sql.Date;
+
 public class Coupon {
 	private long couponId;
-	private LocalDate createTime;
-	private LocalDate endTime;
+	private Date createTime;
+	private Date endTime;
 	private Member member;
 	private Cafe cafe;
 }

@@ -20,8 +20,11 @@ dependencies {
     // AssertJ 의존성 추가
     testImplementation 'org.assertj:assertj-core:3.24.2'
 
+    // Mockito 의존성 추가
+    testImplementation 'org.mockito:mockito-core:3.6.28'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.6.28'
+
     implementation 'com.sun.mail:javax.mail:1.6.2'
-    //implementation 'com.sun.mail:jakarta.mail:2.0.1'
     
     //lombok
     implementation 'ch.qos.logback:logback-classic:1.2.11'
