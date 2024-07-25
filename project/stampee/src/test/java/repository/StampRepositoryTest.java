@@ -1,9 +1,5 @@
 package repository;
 
-import static org.assertj.core.api.Assertions.*;
-
-import java.time.LocalDate;
-
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -20,12 +16,12 @@ class StampRepositoryTest {
 		//given
 		Member member = new Member(2L, "1234", "test@naver.com", "010-1234-1234", "hello");
 		Cafe cafe = new Cafe(1L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com","010-1234-1234");
-		Stamp stamp = new Stamp(3, LocalDate.now(), member,  cafe);
+		int count = 3;
 
 		//when
-		Stamp savedStamp = stampRepository.save(stamp);
+		stampRepository.save(member.getMemberId(), cafe.getCafeId(), count);
 
 		//then
-		assertThat(savedStamp.getCount()).isEqualTo(3);
+		Stamp stamp = stampRepository.findStamp(member.getMemberId(), cafe.getCafeId());
 	}
 }

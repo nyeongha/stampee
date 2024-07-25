@@ -7,7 +7,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.NoSuchElementException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,7 +62,7 @@ public class MemberRepository {
 
 				return member;
 			} else {
-				throw new NoSuchElementException("해당 전화번호로 가입된 회원이 없습니다.");
+				return null;
 			}
 		} catch (SQLException e) {
 			log.info("db error", e);
@@ -85,7 +84,6 @@ public class MemberRepository {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, phoneNum);
 			pstmt.executeUpdate();
-
 		} catch (SQLException e) {
 			log.info("db error", e);
 			throw new RuntimeException(e);

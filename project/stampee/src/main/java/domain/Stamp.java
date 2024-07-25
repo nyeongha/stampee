@@ -1,15 +1,16 @@
 package domain;
 
-import java.time.LocalDate;
+import java.sql.Date;
 
 public class Stamp {
 	private long stampId;
 	private int count;
-	private LocalDate createTime;
+	private Date createTime;
 	private Member member;
 	private Cafe cafe;
 
-	public Stamp(int count, LocalDate createTime, Member member, Cafe cafe) {
+	public Stamp(long stampId, int count, Date createTime, Member member, Cafe cafe) {
+		this.stampId = stampId;
 		this.count = count;
 		this.createTime = createTime;
 		this.member = member;
@@ -20,7 +21,7 @@ public class Stamp {
 		return count;
 	}
 
-	public LocalDate getCreateTime() {
+	public Date getCreateTime() {
 		return createTime;
 	}
 
