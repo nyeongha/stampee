@@ -25,6 +25,7 @@ public class StampRepository {
 		CallableStatement cstmt = null;
 
 		try {
+			conn = getConnection();
 			cstmt = conn.prepareCall(sql);
 			cstmt.setLong(1, memberId);
 			cstmt.setLong(2, cafeId);
@@ -43,8 +44,8 @@ public class StampRepository {
 			+ "from stamp s join member m "
 			+ "on s.member_id = m.member_id "
 			+ "join cafe c on s.cafe_id = c.cafe_id "
-			+ "where member_id = ? "
-			+ "and cafe_id = ?";
+			+ "where s.member_id = ? "
+			+ "and s.cafe_id = ?";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -59,13 +60,10 @@ public class StampRepository {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				Member member = getMember(rs);
-				Cafe cafe = getCafe(rs);
-
 				stamp = new Stamp(rs.getLong("stamp_id"),
 					rs.getInt("count"),
 					rs.getDate("create_time"),
-					member, cafe);
+					getMember(rs), getCafe(rs));
 			}
 		}  catch (SQLException e) {
 			log.info("db error", e);
