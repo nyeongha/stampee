@@ -21,10 +21,6 @@ public class Stamp {
 		return count;
 	}
 
-	public Date getCreateTime() {
-		return createTime;
-	}
-
 	public Member getMember() {
 		return member;
 	}

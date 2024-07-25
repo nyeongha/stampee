@@ -50,7 +50,6 @@ public class StampRepository {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		Stamp stamp = null;
 
 		try{
 			conn = getConnection();
@@ -60,10 +59,12 @@ public class StampRepository {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				stamp = new Stamp(rs.getLong("stamp_id"),
+				return new Stamp(rs.getLong("stamp_id"),
 					rs.getInt("count"),
 					rs.getDate("create_time"),
 					getMember(rs), getCafe(rs));
+			} else{
+				return null;
 			}
 		}  catch (SQLException e) {
 			log.info("db error", e);
@@ -71,8 +72,13 @@ public class StampRepository {
 		} finally {
 			close(conn, pstmt, rs);
 		}
-		return stamp;
 	}
+
+	// public void updateStamp(long cafeId, long toMemberId, long fromMemberId, int count){
+	// 	String sql = "{ call share_stamp(?, ?, ?)}";
+	// 	Connection conn = null;
+	// 	CallableStatement cstmt = null;
+	// }
 
 	private static Cafe getCafe(ResultSet rs) throws SQLException {
 		return new Cafe(rs.getLong("cafe_id"),

@@ -20,10 +20,10 @@ class StampRepositoryTest {
 		int count = 3;
 
 		//when
-		stampRepository.save(member.getMemberId(), cafe.getCafeId(), count);
+		stampRepository.save(member.getId(), cafe.getId(), count);
 
 		//then
-		Stamp stamp = stampRepository.findStamp(member.getMemberId(), cafe.getCafeId());
+		Stamp stamp = stampRepository.findStamp(member.getId(), cafe.getId());
 		Assertions.assertThat(stamp.getCount()).isEqualTo(count);
 	}
 }
