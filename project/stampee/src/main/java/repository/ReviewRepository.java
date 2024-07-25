@@ -4,7 +4,6 @@ import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +18,7 @@ public class ReviewRepository {
 
 	public List<Review> findAllReviews() {		//전체 리뷰 조회
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		String sql = "select * "
@@ -33,8 +32,8 @@ public class ReviewRepository {
 
 		try {
 			conn = getConnection();
-			ps = conn.prepareStatement(sql);
-			rs = ps.executeQuery();
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 
@@ -67,7 +66,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, ps, rs);
+			close(conn, pstmt, rs);
 		}
 
 		return reviews;
@@ -75,25 +74,25 @@ public class ReviewRepository {
 
 	public void insertReview(Review review) {		//리뷰 생성,서비스 반영
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
 
 		String sql = "insert into review (review_id, rating, contents, createTime, member_id, cafe_id) values (review_seq.nextval, ?, ?, ?, ?, ?)";
 
 		try {
 			conn = getConnection();
-			ps = conn.prepareStatement(sql);
-			ps.setInt(1, review.getRating());
-			ps.setString(2, review.getContents());
-			ps.setDate(3, review.getCreateTime());
-			ps.setLong(4, review.getMember().getId());
-			ps.setLong(5, review.getCafe().getId());
-			ps.executeUpdate();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, review.getRating());
+			pstmt.setString(2, review.getContents());
+			pstmt.setDate(3, review.getCreateTime());
+			pstmt.setLong(4, review.getMember().getId());
+			pstmt.setLong(5, review.getCafe().getId());
+			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			try {
-				if (ps != null)
-					ps.close();
+				if (pstmt != null)
+					pstmt.close();
 				if (conn != null)
 					conn.close();
 			} catch (SQLException e) {
@@ -104,30 +103,30 @@ public class ReviewRepository {
 
 	public void updateReview(Review review) {		//리뷰 수정,서비스 반영
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
 		String sql = "update review "
 			+ "set rating=?, contents=?, "
 			+ "where review_id=?";
 
 		try {
-			conn = ps.getConnection();
-			ps = conn.prepareStatement(sql);
+			conn = pstmt.getConnection();
+			pstmt = conn.prepareStatement(sql);
 
-			ps.setLong(1, review.getId());
-			ps.setInt(2, review.getRating());
-			ps.setString(3, review.getContents());
-			ps.executeUpdate();
+			pstmt.setLong(1, review.getId());
+			pstmt.setInt(2, review.getRating());
+			pstmt.setString(3, review.getContents());
+			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, ps);
+			close(conn, pstmt);
 		}
 	}
 
 	public void deleteReviewByReviewId(long memberId, long reviewId) {
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		try {
@@ -135,9 +134,9 @@ public class ReviewRepository {
 
 			// 첫 번째 쿼리: reviewId에 해당하는 member_id를 가져오기
 			String sql1 = "select member_id from review where review_id=?";
-			ps = conn.prepareStatement(sql1);
-			ps.setLong(1, reviewId);
-			rs = ps.executeQuery();
+			pstmt = conn.prepareStatement(sql1);
+			pstmt.setLong(1, reviewId);
+			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				long reviewMemberId = rs.getLong("member_id");
@@ -145,22 +144,22 @@ public class ReviewRepository {
 				// memberId가 일치하면 삭제 쿼리 실행
 				if (reviewMemberId == memberId) {
 					String sql2 = "delete from review where review_id=?";
-					ps = conn.prepareStatement(sql2);
-					ps.setLong(1, reviewId);
-					ps.executeUpdate();
+					pstmt = conn.prepareStatement(sql2);
+					pstmt.setLong(1, reviewId);
+					pstmt.executeUpdate();
 				}
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			// 리소스 정리
-			close(conn,ps,rs);
+			close(conn, pstmt,rs);
 		}
 	}
 
 	public List<Review> findReviewsBymemberId(long memberId) {        //멤버별 리뷰 조회
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.createTime, " +
@@ -175,10 +174,10 @@ public class ReviewRepository {
 
 		try {
 			conn = getConnection();
-			ps = conn.prepareStatement(sql);
-			ps.setLong(1, memberId);
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
 
-			rs = ps.executeQuery();
+			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				Member member = Member.createMember(
@@ -212,7 +211,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, ps, rs);
+			close(conn, pstmt, rs);
 		}
 
 		return reviews;
@@ -220,7 +219,7 @@ public class ReviewRepository {
 
 	public List<Review> findReviewsByCafeId(long cafeId) {            //카페리뷰조회
 		Connection conn = null;
-		PreparedStatement ps = null;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.createTime, " +
@@ -235,10 +234,10 @@ public class ReviewRepository {
 
 		try {
 			conn = getConnection();
-			ps = conn.prepareStatement(sql);
-			ps.setLong(1, cafeId); // ID를 설정하여 조회
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, cafeId); // ID를 설정하여 조회
 
-			rs = ps.executeQuery();
+			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				Member member = Member.createMember(
@@ -271,7 +270,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, ps, rs);
+			close(conn, pstmt, rs);
 		}
 
 		return reviews;
