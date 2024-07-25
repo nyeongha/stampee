@@ -8,9 +8,6 @@ public class Cafe {
 	private String email;
 	private String contact;
 
-	public long getCafeId() {
-		return cafeId;
-	}
 
 	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
 		this.cafeId = cafeId;
