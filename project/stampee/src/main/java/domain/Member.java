@@ -2,39 +2,36 @@ package domain;
 
 public class Member {
 	private long memberId;
-	private String password;
+	private String userName;
 	private String email;
+	private String password;
 	private String phoneNumber;
-	private String username;
 
+	public Member(long memberId, String userName, String email, String password, String phoneNumber) {
+		this.memberId = memberId;
+		this.userName = userName;
+		this.email = email;
+		this.password = password;
+		this.phoneNumber = phoneNumber;
+	}
 
-	public long getMemberId() {
+	public long getId() {
 		return memberId;
 	}
 
-	public Member(long memberId, String password, String email, String phoneNumber, String username) {
-		this.memberId = memberId;
-		this.password = password;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.username = username;
+	public String getEmail() {
+		return email;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-
-	public String getEmail() {
-		return email;
-	}
-
-
 	public String getPhoneNumber() {
 		return phoneNumber;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
 }

@@ -16,26 +16,28 @@ import domain.Member;
 public class MemberRepository {
 	private static final Logger log = LoggerFactory.getLogger(MemberRepository.class);
 
-	public void userSignUp(Member member) {
-		String sql = "insert into member(member_id, password, email, phone_number, username) "
-			+ "values(MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?)";
-
-		Connection connection = null;
+	public Member userSignUp(Member member) {
+		// connection 영역
+		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		try {
-			connection = getConnection();
-			pstmt = connection.prepareStatement(sql);
+			String sql =
+				"INSERT INTO member(member_id, user_name, email, password, phone_number)" +
+					"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
+
+			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getEmail());
-			pstmt.setString(3, member.getPhoneNumber());
-			pstmt.setString(4, member.getUsername());
+			pstmt.setString(2, member.getUserName());
+			pstmt.setString(3, member.getEmail());
+			pstmt.setString(4, member.getPhoneNumber());
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(connection, pstmt);
+			close(conn, pstmt);
 		}
+		return member;
 	}
 
 	public Member findUserByPhoneNum(String phoneNum) {

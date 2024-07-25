@@ -25,11 +25,28 @@ public class Review {
 		this.cafe = cafe;
 		this.author = author;
 	}
-	public Member getMember(Member author) {
-		return author;
-	}
-	public Cafe getCafe(Cafe cafe) {
-		return cafe;
+
+	public long getId() {
+		return reviewId;
 	}
 
+	public int getRating() {
+		return rating;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public Member getMember() {
+		return author;
+	}
+
+	public Cafe getCafe() {
+		return cafe;
+	}
 }
