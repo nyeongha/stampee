@@ -24,7 +24,7 @@ public class StampRepository {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, stamp.getCount());
 			pstmt.setDate(2, Date.valueOf(stamp.getCreateTime()));
-			pstmt.setLong(3, stamp.getMember().getMemberId());
+			pstmt.setLong(3, stamp.getMember().getId());
 			pstmt.setLong(4, stamp.getCafe().getCafeId());
 
 			pstmt.executeUpdate();

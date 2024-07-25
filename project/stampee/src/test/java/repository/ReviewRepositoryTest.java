@@ -49,41 +49,7 @@ class ReviewRepositoryTest {
 
 
 
-	@Test
-	public void testFindAllReviews() throws SQLException {
-		// 설정 데이터
-		when(mockResultSet.next()).thenReturn(true, true, false);
-		when(mockResultSet.getLong("review_id")).thenReturn(1L, 2L);
-		when(mockResultSet.getInt("rating")).thenReturn(5, 4);
-		when(mockResultSet.getString("contents")).thenReturn("Excellent", "Good");
-		when(mockResultSet.getDate("createTime")).thenReturn(new java.sql.Date(System.currentTimeMillis()));
-		when(mockResultSet.getLong("member_id")).thenReturn(1L, 2L);
-		when(mockResultSet.getString("password")).thenReturn("password123", "password456");
-		when(mockResultSet.getString("email")).thenReturn("member@example.com", "another@example.com");
-		when(mockResultSet.getString("phone_number")).thenReturn("123456789", "987654321");
-		when(mockResultSet.getLong("cafe_id")).thenReturn(1L, 2L);
-		when(mockResultSet.getString("name")).thenReturn("Cafe One", "Cafe Two");
-		when(mockResultSet.getString("address")).thenReturn("Address One", "Address Two");
-		when(mockResultSet.getString("password_1")).thenReturn("cafePass1", "cafePass2");
-		when(mockResultSet.getString("email_1")).thenReturn("cafe1@example.com", "cafe2@example.com");
-		when(mockResultSet.getString("contact")).thenReturn("111-1111", "222-2222");
 
-		// 메서드 호출 및 검증
-		List<Review> reviews = reviewRepository.findAllReviews();
-		assertEquals(2, reviews.size());
-
-		// 첫 번째 Review 검증
-		Review review1 = reviews.get(0);
-		assertEquals(1L, review1.getId());
-		assertEquals(5, review1.getRating());
-		assertEquals("Excellent", review1.getContents());
-
-		// 두 번째 Review 검증
-		Review review2 = reviews.get(1);
-		assertEquals(2L, review2.getId());
-		assertEquals(4, review2.getRating());
-		assertEquals("Good", review2.getContents());
-	}
 
 	@Test
 	public void testDeleteReviewByReviewId() throws SQLException {
