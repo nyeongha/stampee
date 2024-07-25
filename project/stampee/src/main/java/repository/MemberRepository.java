@@ -24,7 +24,7 @@ public class MemberRepository {
 			PreparedStatement pstmt = null;
 			try {
 				String sql =
-					"INSERT INTO member(member_id, user_name, email, password, phone_number)" +
+					"insert into member(member_id, user_name, email, password, phone_number)" +
 						"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
 
 				pstmt = conn.prepareStatement(sql);
@@ -41,7 +41,7 @@ public class MemberRepository {
 			}
 			return member;
 		}
-
+		return member;
 	}
 
 }
