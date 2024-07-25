@@ -12,7 +12,7 @@ public class MapService extends Application {
 	public void start(Stage stage) {
 		String javaVersion = System.getProperty("java.version");
 		String javafxVersion = System.getProperty("javafx.version");
-		Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ".");
+		Label l = new Label("Hello, JavaFX " + javafxVersion + ", running on Java " + javaVersion + ". 와 된다!!");
 		Scene scene = new Scene(new StackPane(l), 640, 480);
 		stage.setScene(scene);
 		stage.show();
