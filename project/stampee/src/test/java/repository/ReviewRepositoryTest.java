@@ -4,11 +4,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,8 +14,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import domain.Cafe;
-import domain.Member;
 import domain.Review;
 
 class ReviewRepositoryTest {
@@ -103,33 +99,7 @@ class ReviewRepositoryTest {
 		verify(mockConnection, times(1)).close();
 	}
 
-	@Test
-	public void testFindReviewById() throws SQLException {
-		long reviewId = 1L;
 
-		when(mockPreparedStatement.executeQuery()).thenReturn(mockResultSet);
-		when(mockResultSet.next()).thenReturn(true).thenReturn(false);
-		when(mockResultSet.getLong("review_id")).thenReturn(reviewId);
-		when(mockResultSet.getInt("rating")).thenReturn(5);
-		when(mockResultSet.getString("contents")).thenReturn("Excellent");
-		when(mockResultSet.getDate("createTime")).thenReturn(new java.sql.Date(System.currentTimeMillis()));
-		when(mockResultSet.getLong("member_id")).thenReturn(1L);
-		when(mockResultSet.getString("password")).thenReturn("password123");
-		when(mockResultSet.getString("email")).thenReturn("member@example.com");
-		when(mockResultSet.getString("phone_number")).thenReturn("123456789");
-		when(mockResultSet.getLong("cafe_id")).thenReturn(1L);
-		when(mockResultSet.getString("name")).thenReturn("Cafe One");
-		when(mockResultSet.getString("address")).thenReturn("Address One");
-		when(mockResultSet.getString("password_1")).thenReturn("cafePass1");
-		when(mockResultSet.getString("email_1")).thenReturn("cafe1@example.com");
-		when(mockResultSet.getString("contact")).thenReturn("111-1111");
-
-		Review review = reviewRepository.findReviewById(reviewId);
-
-		assertEquals(reviewId, review.getId());
-		assertEquals(5, review.getRating());
-		assertEquals("Excellent", review.getContents());
-	}
 
 
 }

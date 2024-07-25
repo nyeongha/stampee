@@ -1,6 +1,5 @@
 package repository;
 
-import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
 import java.sql.Connection;
@@ -9,16 +8,13 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
 
-public class ReviewRepository {
+public abstract class ReviewRepository {
 	public List<Review> findAllReviews() {
 		Connection conn = null;
 		PreparedStatement ps = null;
@@ -222,4 +218,6 @@ public class ReviewRepository {
 
 		return reviews;
 	}
+
+	protected abstract Connection getConnection();
 }

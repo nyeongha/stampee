@@ -34,5 +34,18 @@ public class Encrypt {
 
 	}
 
+	// public static String getEncrypt(String password){
+	// 	String result = "";
+	// 	try {
+	// 		MessageDigest md = MessageDigest.getInstance("SHA-256");
+	// 		System.out.println("before apply password+salt : "+ password + getSalt() );
+	// 		md.update((password + getSalt()).getBytes());
+	//
+	// 	} catch (NoSuchAlgorithmException e) {
+	// 		throw new RuntimeException(e);
+	// 	}
+	//
+	// }
+
 
 }
