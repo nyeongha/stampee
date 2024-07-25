@@ -1,11 +1,52 @@
 package domain;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 
 public class Review {
+
 	private long reviewId;
 	private int rating;
 	private String contents;
-	private LocalDateTime createTime;
-	private Member member;
+	private Date createTime;
+	private Member author;
+	private Cafe cafe;
+
+	public Review(long reviewId,
+					int rating,
+					String contents,
+					Date createTime,
+					Member author,
+					Cafe cafe
+					) {
+		this.reviewId = reviewId;
+		this.rating = rating;
+		this.contents = contents;
+		this.createTime = createTime;
+		this.cafe = cafe;
+		this.author = author;
+	}
+
+	public long getId() {
+		return reviewId;
+	}
+
+	public int getRating() {
+		return rating;
+	}
+
+	public String getContents() {
+		return contents;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public Member getMember() {
+		return author;
+	}
+
+	public Cafe getCafe() {
+		return cafe;
+	}
 }
