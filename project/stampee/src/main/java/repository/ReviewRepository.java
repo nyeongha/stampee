@@ -1,6 +1,7 @@
 package repository;
 
 import static config.DBConnectionUtil.*;
+import static template.ConnectionClose.*;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -116,6 +117,26 @@ public class ReviewRepository {
 	}
 
 	public int updateReview(Review review) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		String sql="update review "
+			+ "set rating=?, contents=?, "
+			+ "where review_id=?";
+
+		try {
+			conn=ps.getConnection();
+			ps=conn.prepareStatement(sql);
+
+			ps.setLong(1, review.getId());
+			ps.setInt(2, review.getRating());
+			ps.setString(3, review.getContents());
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			close(conn,ps);
+		}
 
 		return 0;
 	}
@@ -134,16 +155,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			close(conn,ps);
 
 		}
 	}
@@ -201,13 +213,8 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			try {
-				if (rs != null) rs.close();
-				if (ps != null) ps.close();
-				if (conn != null) conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			close(conn,ps,rs);
+
 		}
 
 		return review;
