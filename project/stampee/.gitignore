@@ -161,10 +161,8 @@ fabric.properties
 ### Java ###
 # Compiled class file
 *.class
-
 # Log file
 *.log
-!important.log
 
 # BlueJ files
 *.ctxt
