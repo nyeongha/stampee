@@ -39,10 +39,13 @@ dependencies {
     testImplementation 'org.mockito:mockito-core:3.6.28'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.6.28'
 
-    implementation 'com.sun.mail:javax.mail:1.6.2'
     
     //lombok
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+
+    // 지오코딩
+    implementation 'com.google.code.geocoder-java:geocoder-java:0.16'
+    implementation 'com.google.maps:google-maps-services:2.1.2'
 
 
 }
