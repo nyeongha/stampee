@@ -5,47 +5,34 @@ import com.google.maps.GeocodingApi;
 import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 
-import javafx.application.Application;
-import javafx.scene.Scene;
+import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
-import javafx.stage.Stage;
 
 import javafx.scene.web.WebEngine;
+import javafx.scene.control.Label;
 
+public class MapService {
 
-public class MapService extends Application {
+	@FXML private WebView webView;
+	@FXML private Label storeNameLabel;
+	@FXML private Label addressLabel;
+	@FXML private Label phoneLabel;
+	@FXML private Label hoursLabel;
 
-	private WebView webView;
 	private WebEngine webEngine;
 	private static final String API_KEY = "AIzaSyBDzyQVcNJVv9m0b_9MDX03bWav-T_yYrk";
 
-	@Override
-	public void start(Stage stage) {
-		initializeWebView();
-		setupWebViewSettings();
-
-		// location에 주소 입력 필요(동적으로 작업할 시 변수 활용)
+	@FXML
+	public void initialize() {
+		webEngine = webView.getEngine();
 		String location = "서울 종로구 성균관로3길 15";
 		Float[] coords = findGeoPoint(location);
 		if (coords != null) {
 			loadMap(coords[0], coords[1], location);
+			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
 		} else {
-			System.out.println("Failed to find coordinates for the given location.");
+			System.out.println("Failed");
 		}
-
-		Scene scene = new Scene(webView, 800, 600);
-		stage.setScene(scene);
-		stage.setTitle("Stampee Cafe 위치 정보");
-		stage.show();
-	}
-
-	private void initializeWebView() {
-		webView = new WebView();
-		webEngine = webView.getEngine();
-	}
-
-	private void setupWebViewSettings() {
-		webEngine.setJavaScriptEnabled(true);
 	}
 
 	private static Float[] findGeoPoint(String location) {
@@ -98,8 +85,10 @@ public class MapService extends Application {
 		webEngine.loadContent(mapContent);
 	}
 
-
-	public static void launchApp(String[] args){
-		launch(args);
+	private void updateStoreInfo(String name, String address, String phone, String hours) {
+		storeNameLabel.setText(name);
+		addressLabel.setText(address);
+		phoneLabel.setText(phone);
+		hoursLabel.setText(hours);
 	}
 }
