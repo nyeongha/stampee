@@ -13,10 +13,10 @@ class StampRepositoryTest {
 
 	@Test
 	@DisplayName("Stamp를 저장할 수 있다.")
-	void save(){
+	void save() {
 		//given
-		Member member = new Member(35L, "1234", "test@naver.com", "010-1234-1234", "hello");
-		Cafe cafe = new Cafe(5L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com","010-1234-1234");
+		Member member = Member.createMember(35L, "1234", "test@naver.com", "010-1234-1234", "hello");
+		Cafe cafe = new Cafe(5L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com", "010-1234-1234");
 		int count = 3;
 
 		//when
