@@ -10,6 +10,7 @@ import javafx.scene.web.WebView;
 
 import javafx.scene.web.WebEngine;
 import javafx.scene.control.Label;
+import util.ConfigLoader;
 
 public class MapService {
 
@@ -20,7 +21,18 @@ public class MapService {
 	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
-	private static final String API_KEY = "AIzaSyBDzyQVcNJVv9m0b_9MDX03bWav-T_yYrk";
+	private static final String API_KEY;
+
+	static {
+		String key;
+		try {
+			key = ConfigLoader.getApiKey();
+		} catch (IllegalStateException e) {
+			System.err.println("Error API key: " + e.getMessage());
+			key = "DUMMY_KEY"; // 또는 다른 적절한 기본값
+		}
+		API_KEY = key;
+	}
 
 	@FXML
 	public void initialize() {
