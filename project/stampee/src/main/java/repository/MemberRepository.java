@@ -56,7 +56,7 @@ public class MemberRepository {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				Member member = new Member(rs.getLong("member_id"),
+				Member member = Member.createMember(rs.getLong("member_id"),
 					rs.getString("password"),
 					rs.getString("email"),
 					rs.getString("phone_number"),
