@@ -47,6 +47,12 @@ dependencies {
     implementation 'com.google.code.geocoder-java:geocoder-java:0.16'
     implementation 'com.google.maps:google-maps-services:2.1.2'
 
+    // 로깅 프레임워크 의존성 추가
+    implementation 'org.apache.logging.log4j:log4j-core:2.17.2'
+    implementation 'org.apache.logging.log4j:log4j-api:2.17.2'
+
+    // slf4j 로깅 프레임워크 버전 업그레이드
+    implementation 'org.slf4j:slf4j-api:1.7.36'
 
 }
 
@@ -60,4 +66,20 @@ tasks.withType(JavaCompile) {
 
 application {
     mainClassName = 'Main'
+}
+
+// slf4j 로깅 프레임워크 에러메세지 제거를 위한 logback.xml 적용 코드
+sourceSets {
+    main {
+        resources {
+            srcDirs = ['src/main/resources']
+        }
+    }
+}
+
+// slf4j 로깅 프레임워크 버전 강제 조정
+configurations.all {
+    resolutionStrategy {
+        force 'org.slf4j:slf4j-api:1.7.36'
+    }
 }

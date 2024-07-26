@@ -5,9 +5,9 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-
+/*
 public class KakaoService {
-	private static final String ACCESS_TOKEN = "2657e91f331964de41167fd5ef1033cd";
+	private static final String ACCESS_TOKEN = "";
 
 	public static void SendKakaotalk(String temID, String uuID) throws Exception{
 		String url = "https://kapi.kakao.com/v1/api/talk/friends/message/scrap/send" ;
@@ -61,6 +61,5 @@ public class KakaoService {
 
 		return response.toString();
 	}
-
-
 }
+*/
