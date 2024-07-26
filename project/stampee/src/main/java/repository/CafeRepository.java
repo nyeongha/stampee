@@ -7,11 +7,19 @@ import static util.PasswordUtil.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
+import domain.Member;
 
 public class CafeRepository {
+	public static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
 
 	public void cafeSignUp(Cafe cafe) {
 		// SQL
@@ -23,7 +31,8 @@ public class CafeRepository {
 
 		try {
 			// check input data is null
-			if (cafe.getName() == null || cafe.getAddress() == null || cafe.getPassword() == null || cafe.getEmail() == null || cafe.getContact() == null) {
+			if (cafe.getName() == null || cafe.getAddress() == null || cafe.getPassword() == null
+				|| cafe.getEmail() == null || cafe.getContact() == null) {
 				throw new IllegalArgumentException("Name and address and password and email and contact can't be null");
 			}
 			// check email format
@@ -52,11 +61,47 @@ public class CafeRepository {
 			close(conn, pstmt);
 		}
 	}
-	
 
-
-	public void login(String email, String password){
+	public void login(String email, String password) {
 
 	}
 
+	public List<Member> findCafeMembersById(int memberId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * "
+			+ "from member "
+			+ "where member_id in (select member_id "
+			+ "                      from stamp "
+			+ "                     where cafe_id = ?)";
+
+		List<Member> members = new ArrayList<>();
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, memberId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Member member = Member.createMember(
+					rs.getInt("member_id"),
+					rs.getString("username"),
+					rs.getString("email"),
+					rs.getString("password"),
+					rs.getString("phone_number")
+				);
+				members.add(member);
+			}
+			return members;
+		} catch (SQLException e) {
+			log.info("db error", e);
+			throw new RuntimeException();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+
+	}
 }

@@ -1,7 +1,7 @@
 package repository;
 
-import static template.ConnectionClose.*;
 import static config.DBConnectionUtil.*;
+import static template.ConnectionClose.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -56,7 +56,7 @@ public class MemberRepository {
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
-				Member member = Member.createMember(rs.getLong("member_id"),
+				Member member = new Member(rs.getLong("member_id"),
 					rs.getString("password"),
 					rs.getString("email"),
 					rs.getString("phone_number"),
