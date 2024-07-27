@@ -14,7 +14,8 @@ import domain.Cafe;
 import domain.Member;
 import domain.Review;
 
-public class ReviewRepository {
+public abstract class ReviewRepository {
+
 
 	public List<Review> findAllReviews() {		//전체 리뷰 조회
 		Connection conn = null;
@@ -56,7 +57,7 @@ public class ReviewRepository {
 				Review review = new Review(rs.getLong("review_id"),
 					rs.getInt("rating"),
 					rs.getString("contents"),
-					rs.getDate("createTime"),
+					rs.getDate("create_time"),
 					member,
 					cafe);
 
@@ -76,7 +77,8 @@ public class ReviewRepository {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into review (review_id, rating, contents, createTime, member_id, cafe_id) values (review_seq.nextval, ?, ?, ?, ?, ?)";
+		String sql = "insert into review (review_id, rating, contents, create_time, member_id, cafe_id) "
+			+ "values (review_seq.nextval, ?, ?, ?, ?, ?)";
 
 		try {
 			conn = getConnection();
@@ -90,31 +92,29 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			try {
-				if (pstmt != null)
-					pstmt.close();
-				if (conn != null)
-					conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
+			close(conn,pstmt);
 		}
 	}
+
+
+
+
 
 	public void updateReview(Review review) {		//리뷰 수정,서비스 반영
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "update review "
-			+ "set rating=?, contents=?, "
+			+ "set rating=?, contents=? "
 			+ "where review_id=?";
 
 		try {
-			conn = pstmt.getConnection();
+			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setLong(1, review.getId());
-			pstmt.setInt(2, review.getRating());
-			pstmt.setString(3, review.getContents());
+			pstmt.setInt(1, review.getRating());
+			pstmt.setString(2, review.getContents());
+			pstmt.setLong(3,review.getId());
+
 			pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -162,7 +162,7 @@ public class ReviewRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT r.review_id, r.rating, r.contents, r.createTime, " +
+		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, " +
 			"m.member_id, m.password, m.email, m.phone_number, " +
 			"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
 			"FROM review r " +
@@ -201,7 +201,7 @@ public class ReviewRepository {
 					rs.getLong("review_id"),
 					rs.getInt("rating"),
 					rs.getString("contents"),
-					rs.getDate("createTime"),
+					rs.getDate("create_time"),
 					member,
 					cafe
 				);
@@ -222,7 +222,7 @@ public class ReviewRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT r.review_id, r.rating, r.contents, r.createTime, " +
+		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, " +
 			"m.member_id, m.password, m.email, m.phone_number, " +
 			"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
 			"FROM review r " +
@@ -261,7 +261,7 @@ public class ReviewRepository {
 					rs.getLong("review_id"),
 					rs.getInt("rating"),
 					rs.getString("contents"),
-					rs.getDate("createTime"),
+					rs.getDate("create_time"),
 					member,
 					cafe
 				);
@@ -276,4 +276,5 @@ public class ReviewRepository {
 		return reviews;
 	}
 
+	protected abstract Connection getConnection();
 }

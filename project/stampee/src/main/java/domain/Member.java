@@ -9,7 +9,7 @@ public class Member {
 	private String password;
 	private String phoneNumber;
 
-	private Member(long memberId, String userName, String email, String password, String phoneNumber) {
+	public Member(long memberId, String userName, String email, String password, String phoneNumber) {
 		this.memberId = memberId;
 		this.userName = userName;
 		this.email = email;
@@ -37,7 +37,7 @@ public class Member {
 
 	public static Member createMember(long memberId, String userName, String email, String password,
 		String phoneNumber) {
-		validateMember(userName, email, password, phoneNumber);
+		// validateMember(userName, email, password, phoneNumber);
 		return new Member(memberId, userName, email, password, phoneNumber);
 	}
 
