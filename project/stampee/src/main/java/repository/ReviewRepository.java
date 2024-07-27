@@ -168,7 +168,7 @@ public abstract class ReviewRepository {
 			"FROM review r " +
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON r.cafe_id = c.cafe_id " +
-			"WHERE m.memberId = ?";
+			"WHERE m.member_id = ?";
 
 		List<Review> reviews = new ArrayList<Review>();
 
@@ -182,7 +182,7 @@ public abstract class ReviewRepository {
 			while (rs.next()) {
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
-					rs.getString("userName"),
+					rs.getString("username"),
 					rs.getString("password"),
 					rs.getString("email"),
 					rs.getString("phone_number")
@@ -209,6 +209,7 @@ public abstract class ReviewRepository {
 			}
 
 		} catch (SQLException e) {
+			System.err.println("SQL Exception: " + e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, rs);
@@ -239,7 +240,7 @@ public abstract class ReviewRepository {
 
 			rs = pstmt.executeQuery();
 
-			if (rs.next()) {
+			while (rs.next()) {
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("userName"),
@@ -265,6 +266,7 @@ public abstract class ReviewRepository {
 					member,
 					cafe
 				);
+				reviews.add(review);
 			}
 
 		} catch (SQLException e) {
