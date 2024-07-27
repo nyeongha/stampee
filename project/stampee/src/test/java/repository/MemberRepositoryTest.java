@@ -1,6 +1,8 @@
 package repository;
 import static org.assertj.core.api.Assertions.*;
 
+import java.sql.SQLException;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -12,7 +14,7 @@ class MemberRepositoryTest {
 	public static final String TESTNUM = "010-1234-1234";
 
 	@AfterEach
-	void tearDown() {
+	void tearDown() throws SQLException {
 		memberRepository.deleteUser(TESTNUM);
 	}
 
@@ -21,7 +23,7 @@ class MemberRepositoryTest {
 	void findUserByPhoneNum(){
 		//given
 		String phoneNum = TESTNUM;
-		Member member = new Member(0L, "1234", "test@test.com", "010-1234-1234", TESTNUM);
+		Member member = new Member(0L, "hello", "test@test.com", "1234", TESTNUM);
 		memberRepository.userSignUp(member);
 
 		//when
