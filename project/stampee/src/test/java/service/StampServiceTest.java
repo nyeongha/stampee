@@ -46,8 +46,8 @@ class StampServiceTest {
 	@DisplayName("친구에게 스탬프를 공유할 수 있다.")
 	void shareStamp() throws MessagingException, SQLException {
 		//given
-		Member fromMember = new Member(38L, "1234", "soeun8636@naver.com", "010-9984-8636", "hello");
-		Member toMember = new Member(39L, "5678", "friend@example.com", "010-1234-8636", "friend");
+		Member fromMember = Member.createMember(38L, "hello", "soeun8636@naver.com", "1234", "010-9984-8636");
+		Member toMember = Member.createMember(39L, "friend", "friend@example.com", "5678","010-1234-8636");
 		Cafe cafe = new Cafe(1L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com", "010-1234-1234");
 
 		//when
@@ -63,8 +63,8 @@ class StampServiceTest {
 	@DisplayName("스탬프 개수가 부족하거나 해당 카페 회원이 아닌경우 스탬프를 공유할 수 없다.")
 	void failShareStamp() throws MessagingException, SQLException {
 		//given
-		Member fromMember = new Member(38L, "1234", "soeun8636@naver.com", "010-9984-8636", "hello");
-		Member toMember = new Member(39L, "5678", "friend@example.com", "010-1234-8636", "friend");
+		Member fromMember = Member.createMember(38L, "hello", "soeun8636@naver.com", "1234", "010-9984-8636");
+		Member toMember = Member.createMember(39L, "friend", "friend@example.com", "5678","010-1234-8636");
 		Cafe cafe = new Cafe(1L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com", "010-1234-1234");
 
 		//when

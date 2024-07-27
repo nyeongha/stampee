@@ -110,9 +110,9 @@ public class StampRepository {
 
 	private static Member getMember(ResultSet rs) throws SQLException {
 		return Member.createMember(rs.getLong("member_id"),
-			rs.getString("password"),
+			rs.getString("username"),
 			rs.getString("email"),
-			rs.getString("phone_number"),
-			rs.getString("username"));
+			rs.getString("password"),
+			rs.getString("phone_number"));
 	}
 }
