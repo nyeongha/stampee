@@ -21,7 +21,7 @@ public class MailService {
 	 */
 
 	// 받는 사람 to , 보내는 사람 from
-	public void sendMail(String to, String from, String notice) throws MessagingException {
+	public void sendMail(String to, String from, String notice, String subject) throws MessagingException {
 		Properties prop = new Properties();
 
 		prop.put("mail.smtp.host", "smtp.gmail.com");		// Gmail SMTP 서버 주소
@@ -30,7 +30,7 @@ public class MailService {
 		prop.put("mail.smtp.starttls.enable", "true");		// TLS 사용
 
 		Session session = Session.getInstance(prop, new Authenticator() {
-			// @Override
+			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {			// Gmail 계정 및 앱 비밀번호
 				return new PasswordAuthentication("human9062@gmail.com", "nofw axcy nasr vmou") ;
 			}
@@ -39,7 +39,7 @@ public class MailService {
 		Message msg = new MimeMessage(session) ;
 		msg.setFrom(new InternetAddress(from));				// 발신자 설정
 		msg.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));		// 수신자 설정
-		msg.setSubject("카페 쿠폰 만료 예정 안내");				// 제목 설정
+		msg.setSubject(subject);				// 제목 설정
 		msg.setText(notice);
 
 		Transport.send(msg);
