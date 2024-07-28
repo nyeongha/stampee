@@ -18,7 +18,37 @@ public class Cafe {
 		this.contact = contact;
 	}
 
+	public Cafe() {
+		
+	}
+
 	public long getId() {
 		return cafeId;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getContact() {
+		return contact;
+	}
+
+	public void setEmail(String email) {
+	}
+
+	public void setPassword(String password){
 	}
 }

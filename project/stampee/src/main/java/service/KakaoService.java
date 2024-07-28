@@ -5,7 +5,7 @@ import java.io.DataOutputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-/*
+
 public class KakaoService {
 	private static final String ACCESS_TOKEN = "";
 
@@ -62,4 +62,3 @@ public class KakaoService {
 		return response.toString();
 	}
 }
-*/

@@ -16,9 +16,8 @@ public class ConfigLoader {
 				properties.load(input);
 				isInitialized = true;
 			}
-		} catch (IOException ex) {
-			System.err.println("config.properties: " + ex.getMessage());
-			ex.printStackTrace();
+		} catch (IOException e) {
+			e.getMessage();
 		}
 	}
 
@@ -32,4 +31,8 @@ public class ConfigLoader {
 		}
 		return apiKey;
 	}
+
+	// public static String getDBURL(){
+	//
+	// }
 }

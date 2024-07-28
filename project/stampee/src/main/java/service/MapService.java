@@ -28,7 +28,7 @@ public class MapService {
 		try {
 			key = ConfigLoader.getApiKey();
 		} catch (IllegalStateException e) {
-			System.err.println("Error API key: " + e.getMessage());
+			e.getMessage();
 			key = "DUMMY_KEY"; // 또는 다른 적절한 기본값
 		}
 		API_KEY = key;
