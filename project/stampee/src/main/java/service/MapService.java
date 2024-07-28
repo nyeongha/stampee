@@ -10,7 +10,7 @@ import javafx.scene.web.WebView;
 
 import javafx.scene.web.WebEngine;
 import javafx.scene.control.Label;
-import util.ConfigLoader;
+import util.GoogleAPIConfigLoader;
 
 public class MapService {
 
@@ -21,18 +21,7 @@ public class MapService {
 	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
-	private static final String API_KEY;
-
-	static {
-		String key;
-		try {
-			key = ConfigLoader.getApiKey();
-		} catch (IllegalStateException e) {
-			e.getMessage();
-			key = "DUMMY_KEY"; // 또는 다른 적절한 기본값
-		}
-		API_KEY = key;
-	}
+	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();;
 
 	@FXML
 	public void initialize() {
@@ -42,8 +31,6 @@ public class MapService {
 		if (coords != null) {
 			loadMap(coords[0], coords[1], location);
 			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
-		} else {
-			System.out.println("Failed");
 		}
 	}
 
@@ -55,10 +42,7 @@ public class MapService {
 			GeocodingResult[] results = GeocodingApi.geocode(context, location).await();
 			if (results.length > 0) {
 				LatLng latLng = results[0].geometry.location;
-				System.out.println("Found: " + latLng.lat + ", " + latLng.lng);
 				return new Float[]{(float) latLng.lat, (float) latLng.lng};
-			} else {
-				System.out.println("no result : " + location);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
