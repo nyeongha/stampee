@@ -4,26 +4,12 @@ import java.util.Properties;
 import javax.mail.* ;
 import javax.mail.internet.* ;
 
-import util.ConfigLoader;
+import util.MailAPIConfigLoader;
 
 public class MailService {
-	private static final String EMAIL;
-	private static final String APP_PASSWORD;
+	private static final String EMAIL = MailAPIConfigLoader.getEmail();
+	private static final String APP_PASSWORD = MailAPIConfigLoader.getAPP_PASSWORD();
 
-	static {
-		String mail_address;
-		String password;
-		try {
-			mail_address = ConfigLoader.getEmail();
-			password = ConfigLoader.getAPP_PASSWORD();
-		} catch (IllegalStateException e) {
-			e.getMessage();
-			mail_address = "DUMMY_EMAIL"; // 또는 다른 적절한 기본값
-			password = "DUMMY_APPPASSWORD";
-		}
-		EMAIL = mail_address;
-		APP_PASSWORD = password;
-	}
 	/** TODO 사용 예제
 		try{
 			MailService.sendMail(
