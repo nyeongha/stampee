@@ -4,12 +4,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import util.ConfigLoader;
+import util.DBConfigLoader;
 
 public class DBConnectionUtil {
-	private static final String URL;
-	private static final String USERNAME;
-	private static final String PASSWORD;
+	private static final String URL = DBConfigLoader.getURL();;
+	private static final String USERNAME = DBConfigLoader.getUsername();
+	private static final String PASSWORD = DBConfigLoader.getPasswordD();
 
 
 	public static Connection getConnection() {
@@ -20,24 +20,5 @@ public class DBConnectionUtil {
 		} catch (SQLException e) {
 			throw new IllegalStateException(e);
 		}
-	}
-
-	static {
-		String dbURL;
-		String dbUsername;
-		String dbPassword;
-		try {
-			dbURL = ConfigLoader.getURL();
-			dbUsername = ConfigLoader.getUsername();
-			dbPassword = ConfigLoader.getPasswordD();
-		} catch (IllegalStateException e) {
-			e.getMessage();
-			dbURL = "DUMMY_URL"; // 또는 다른 적절한 기본값
-			dbUsername = "DUMMY_USERNAME";
-			dbPassword = "DUMMY_PASSWORD";
-		}
-		URL = dbURL;
-		USERNAME = dbUsername;
-		PASSWORD = dbPassword;
 	}
 }
