@@ -61,7 +61,7 @@ public class ReviewRepositoryTest {
 			5, // rating
 			"Test contents", // contents
 			new Date(System.currentTimeMillis()), // create_time
-			new Member(1L, "Test User", "testpassword", "test@example.com", "010-1234-5678"),
+			Member.createMember(1L, "Test User", "testpassword", "test@example.com", "010-1234-5678"),
 			new Cafe(1L, "Test Cafe", "Test Address", "testpass", "testcafe@example.com", "010-9876-5432")
 		);
 

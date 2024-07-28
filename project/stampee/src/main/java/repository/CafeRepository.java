@@ -81,7 +81,6 @@ public class CafeRepository {
 			if(rs.next()){
 				String storedPassword = rs.getString("password");
 				return verifyPassword(cafe.getPassword(), storedPassword);
-
 			}
 			else{
 				System.out.println("email not found : "+cafe.getEmail());
