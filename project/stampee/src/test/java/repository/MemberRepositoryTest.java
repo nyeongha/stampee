@@ -67,12 +67,12 @@ class MemberRepositoryTest {
 
 	@DisplayName("멤버 유효성검사 테스트2")
 	@Test
-	void ifInvalidArgumentsTest() throws IllegalArgumentException {
+	void ifInvalidUserNameTest() throws IllegalArgumentException {
 		long invalidMemberId = 100;
 		String invalidUserName = "진광환뿌슝빠슝";
 		String invalidEmail = "rhkdghks21@naver.com.ac.kr";
 		String invalidPassword = "wlsldjt";
-		String invalidPhoneNumber = "010-343-8220";
+		String invalidPhoneNumber = "010-343333-8220";
 
 		long validMemberId = 100;
 		String validUserName = "진광환";
@@ -80,19 +80,67 @@ class MemberRepositoryTest {
 		String validPassword = "Wlsldjtm21*";
 		String validPhoneNumber = "010-3493-8220";
 
-		//then
-		assertThrows(IllegalArgumentException.class, () ->
-			Member.createMember(invalidMemberId, validUserName, validEmail, validPassword, validPhoneNumber)
-		);
+
 		assertThrows(IllegalArgumentException.class, () ->
 			Member.createMember(validMemberId, invalidUserName, validEmail, validPassword, validPhoneNumber)
 		);
+	}
+	@Test
+	void ifInvalidEmailTest() throws IllegalArgumentException {
+		long invalidMemberId = 100;
+		String invalidUserName = "진광환뿌슝빠슝";
+		String invalidEmail = "rhkdghks21@naver.com.ac.kr";
+		String invalidPassword = "wlsldjt";
+		String invalidPhoneNumber = "010-343333-8220";
+
+		long validMemberId = 100;
+		String validUserName = "진광환";
+		String validEmail = "rhkdghks21@naver.com";
+		String validPassword = "Wlsldjtm21*";
+		String validPhoneNumber = "010-3493-8220";
+
+
+
 		assertThrows(IllegalArgumentException.class, () ->
 			Member.createMember(validMemberId, validUserName, invalidEmail, validPassword, validPhoneNumber)
 		);
+
+	}
+	@Test
+	void ifInvalidPasswordTest() throws IllegalArgumentException {
+		long invalidMemberId = 100;
+		String invalidUserName = "진광환뿌슝빠슝";
+		String invalidEmail = "rhkdghks21@naver.com.ac.kr";
+		String invalidPassword = "wlsldjt";
+		String invalidPhoneNumber = "010-343333-8220";
+
+		long validMemberId = 100;
+		String validUserName = "진광환";
+		String validEmail = "rhkdghks21@naver.com";
+		String validPassword = "Wlsldjtm21*";
+		String validPhoneNumber = "010-3493-8220";
+
+
+
 		assertThrows(IllegalArgumentException.class, () ->
 			Member.createMember(validMemberId, validUserName, validEmail, invalidPassword, validPhoneNumber)
 		);
+	}
+	@Test
+	void ifInvalidPhoneNumberTest() throws IllegalArgumentException {
+		long invalidMemberId = 100;
+		String invalidUserName = "진광환뿌슝빠슝";
+		String invalidEmail = "rhkdghks21@naver.com.ac.kr";
+		String invalidPassword = "wlsldjt";
+		String invalidPhoneNumber = "010-343333-8220";
+
+		long validMemberId = 100;
+		String validUserName = "진광환";
+		String validEmail = "rhkdghks21@naver.com";
+		String validPassword = "Wlsldjtm21*";
+		String validPhoneNumber = "010-3493-8220";
+
+
 		assertThrows(IllegalArgumentException.class, () ->
 			Member.createMember(validMemberId, validUserName, validEmail, validPassword, invalidPhoneNumber)
 		);
