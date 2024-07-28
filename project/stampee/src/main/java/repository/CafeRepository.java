@@ -7,6 +7,7 @@ import static util.PasswordUtil.*;
 import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import domain.Cafe;
@@ -52,10 +53,38 @@ public class CafeRepository {
 			close(conn, pstmt);
 		}
 	}
-	
 
+	public boolean login(Cafe cafe){
+		//sql
+		String sql = "select password from cafe where email = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
-	public void login(String email, String password){
+		//db connection
+		conn = getConnection();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cafe.getEmail());
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				String storedPassword = rs.getString("password");
+				return verifyPassword(cafe.getPassword(), storedPassword);
+
+			}
+			else{
+				System.out.println("email not found : "+cafe.getEmail());
+				return false;
+			}
+
+		} catch (SQLException | NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt);
+		}
+
 
 	}
 

@@ -18,6 +18,10 @@ public class Cafe {
 		this.contact = contact;
 	}
 
+	public Cafe() {
+		
+	}
+
 	public long getId() {
 		return cafeId;
 	}
@@ -40,5 +44,11 @@ public class Cafe {
 
 	public String getContact() {
 		return contact;
+	}
+
+	public void setEmail(String email) {
+	}
+
+	public void setPassword(String password){
 	}
 }
