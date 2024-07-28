@@ -97,8 +97,6 @@ public class ReviewRepositoryTest {
 				return conn;
 			}
 		});
-
-
 	}
 
 	@Test
