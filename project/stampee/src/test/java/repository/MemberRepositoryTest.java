@@ -1,3 +1,4 @@
+
 package repository;
 import static org.assertj.core.api.Assertions.*;
 
@@ -33,3 +34,4 @@ class MemberRepositoryTest {
 			.containsExactly("1234", "test@test.com", phoneNum);
 	}
 }
+
