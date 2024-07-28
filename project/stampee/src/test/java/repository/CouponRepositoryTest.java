@@ -21,8 +21,9 @@ class CouponRepositoryTest {
 		//when
 		List<ExpiredCouponDto> expiringCoupons = couponRepository.findExpiringCoupons(now);
 		//then
-		assertThat(expiringCoupons).hasSize(1)
-			.extracting("username", "memberEmail", "cafeName")
-			.containsExactly(tuple("성연", "human9062@gmail.com", "카페 아로마"));
+		assertThat(expiringCoupons).hasSize(2)
+			.extracting("username", "memberEmail", "cafeName", "remainDate")
+			.containsExactly(tuple("성연", "human9062@gmail.com", "카페 아로마", 1),
+				tuple("소은", "soeun8636@naver.com", "카페 아로마", 3));
 	}
 }

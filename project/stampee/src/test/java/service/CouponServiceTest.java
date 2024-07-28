@@ -30,8 +30,8 @@ class CouponServiceTest {
 		//given
 		LocalDate now = LocalDate.of(2024, 7, 28);
 		List<ExpiredCouponDto> expiredCouponDtos = new ArrayList<>();
-		expiredCouponDtos.add(new ExpiredCouponDto("test1", "test1@naver.com", "테스트 카페1"));
-		expiredCouponDtos.add(new ExpiredCouponDto("test2", "test2@naver.com", "테스트 카페2"));
+		expiredCouponDtos.add(new ExpiredCouponDto("test1", "test1@naver.com", "테스트 카페1", 1));
+		expiredCouponDtos.add(new ExpiredCouponDto("test2", "test2@naver.com", "테스트 카페2", 3));
 
 		//when
 		when(couponRepository.findExpiringCoupons(now)).thenReturn(expiredCouponDtos);
