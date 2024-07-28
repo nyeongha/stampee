@@ -62,7 +62,37 @@ public class CafeRepository {
 		}
 	}
 
-	public void login(String email, String password) {
+
+	public boolean login(Cafe cafe){
+		//sql
+		String sql = "select password from cafe where email = ?";
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		//db connection
+		conn = getConnection();
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cafe.getEmail());
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				String storedPassword = rs.getString("password");
+				return verifyPassword(cafe.getPassword(), storedPassword);
+
+			}
+			else{
+				System.out.println("email not found : "+cafe.getEmail());
+				return false;
+			}
+
+		} catch (SQLException | NoSuchAlgorithmException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt);
+		}
 
 	}
 
