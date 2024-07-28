@@ -18,7 +18,7 @@ class StampRepositoryTest {
 	void save() throws SQLException {
 		//given
 		Member member = Member.createMember(39L, "hello", "test@naver.com", "1234", "010-1234-1234");
-		Cafe cafe = new Cafe(1L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com", "010-1234-1234");
+		Cafe cafe = new Cafe(1L, "테스트 카페", "서울시 종로구", "1234", "cafe@naver.com","010-1234-1234");
 		int count = 3;
 
 		//when
