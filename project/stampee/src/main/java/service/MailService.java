@@ -6,7 +6,7 @@ import javax.mail.internet.* ;
 
 public class MailService {
 
-	/* 사용 예제
+	/** TODO 사용 예제
 		try{
 			MailService.sendMail(
 				"thdms1313@gmail.com",
@@ -18,7 +18,7 @@ public class MailService {
 		} catch(MessagingException e) {
 			System.out.println("send fail");
 		}
-	 */
+	 **/
 
 	// 받는 사람 to , 보내는 사람 from
 	public void sendMail(String to, String from, String notice) throws MessagingException {
