@@ -84,8 +84,6 @@ public class CafeRepository {
 		} finally {
 			close(conn, pstmt);
 		}
-
-
 	}
 
 }
