@@ -1,7 +1,6 @@
 package service;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import domain.Cafe;
@@ -45,6 +44,14 @@ public class ReviewService {
 
 	}
 
+	public List<Review> findReviewsByMemberId(long memberId){
+		return reviewRepository.findReviewsByMemberId(memberId);
+
+	}
+
+	public List<Review> findReviewsByCafeId(long cafeId) {
+		return reviewRepository.findReviewsByCafeId(cafeId);
+	}
 
 
 
@@ -53,4 +60,6 @@ public class ReviewService {
 
 
 
-}
+
+
+	}

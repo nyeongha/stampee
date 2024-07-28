@@ -1,6 +1,6 @@
 package domain;
 
-import static config.AuthConfig.*;
+import static config.ValidationRules.*;
 
 public class Member {
 	private long memberId;
@@ -37,7 +37,7 @@ public class Member {
 
 	public static Member createMember(long memberId, String userName, String email, String password,
 		String phoneNumber) {
-		validateMember(userName, email, password, phoneNumber);
+		// validateMember(userName, email, password, phoneNumber);
 		return new Member(memberId, userName, email, password, phoneNumber);
 	}
 
