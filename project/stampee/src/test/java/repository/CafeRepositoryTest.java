@@ -1,15 +1,67 @@
 package repository;
 
+import static config.DBConnectionUtil.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.security.NoSuchAlgorithmException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Base64;
 
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import domain.Cafe;
 import util.PasswordUtil;
 
 class EncryptTest {
+	private CafeRepository cafeRepository;
+	private Connection conn;
+
+	@BeforeEach
+	void setUp() throws SQLException {
+		cafeRepository = new CafeRepository();
+		conn = getConnection();
+		conn.setAutoCommit(false);
+
+	}
+
+	@Test
+	void testCafeSignUpAndLogin(){
+		//given
+		// 새로운 Cafe 객체 생성 (로그인용)
+		Cafe loginCafe = new Cafe(11,"Test Cafe", "Test Streat"
+			,"123411", "s11ys@example.com", "123-456-71199");
+		//when
+		cafeRepository.cafeSignUp(loginCafe);
+
+		loginCafe.setEmail(loginCafe.getEmail());
+		loginCafe.setPassword(loginCafe.getPassword());
+
+		boolean loginResult = cafeRepository.login(loginCafe);
+		System.out.println(loginCafe.getPassword());
+
+		//then
+		assertThat(loginResult).isTrue();
+	}
+
+	@AfterEach
+	void tearDown() {
+		// 객체 초기화
+		if (conn != null) {
+			try {
+				conn.rollback();  // 롤백 수행
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+			try {
+				conn.close();
+			} catch (SQLException e) {
+				throw new RuntimeException(e);
+			}
+		}
+	}
 
 	@Test
 	void testSignup() throws NoSuchAlgorithmException {

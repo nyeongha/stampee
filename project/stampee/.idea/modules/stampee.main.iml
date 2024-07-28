@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<module version="4">
+<module external.linked.project.id="stampee:main" external.linked.project.path="$MODULE_DIR$/../.." external.root.project.path="$MODULE_DIR$/../.." external.system.id="GRADLE" external.system.module.group="org.example" external.system.module.type="sourceSet" external.system.module.version="1.0-SNAPSHOT" type="JAVA_MODULE" version="4">
   <component name="CheckStyle-IDEA-Module" serialisationVersion="2">
     <option name="activeLocationsIds" />
+  </component>
+  <component name="NewModuleRootManager">
+    <output url="file://$MODULE_DIR$/../../build/classes/java/main" />
+    <exclude-output />
+    <content url="file://$MODULE_DIR$/../../src/main">
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../src/main/resources" type="java-resource" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.jdbc:ojdbc6:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: ch.qos.logback:logback-classic:1.2.11" level="project" />
+    <orderEntry type="library" name="Gradle: com.sun.mail:javax.mail:1.6.2" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.geocoder-java:geocoder-java:0.16" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.maps:google-maps-services:2.1.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-core:2.17.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.apache.logging.log4j:log4j-api:2.17.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.slf4j:slf4j-api:1.7.36" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-fxml:win:22" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-web:win:22" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-controls:win:22" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.jdbc:ucp:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.security:oraclepki:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.security:osdt_cert:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.security:osdt_core:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.ha:simplefan:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: com.oracle.database.ha:ons:11.2.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: ch.qos.logback:logback-core:1.2.11" level="project" />
+    <orderEntry type="library" name="Gradle: javax.activation:activation:1.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.10" level="project" />
+    <orderEntry type="library" name="Gradle: commons-httpclient:commons-httpclient:3.1" level="project" />
+    <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:4.10.0" level="project" />
+    <orderEntry type="library" name="Gradle: io.opencensus:opencensus-api:0.31.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-media:win:22" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-graphics:win:22" level="project" />
+    <orderEntry type="library" name="Gradle: commons-logging:commons-logging:1.0.4" level="project" />
+    <orderEntry type="library" name="Gradle: commons-codec:commons-codec:1.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib:1.6.20" level="project" />
+    <orderEntry type="library" name="Gradle: io.grpc:grpc-context:1.27.2" level="project" />
+    <orderEntry type="library" name="Gradle: org.openjfx:javafx-base:win:22" level="project" />
+    <orderEntry type="library" name="Gradle: com.squareup.okio:okio-jvm:3.0.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-common:1.6.20" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains:annotations:13.0" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.5.31" level="project" />
+    <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.5.31" level="project" />
   </component>
 </module>
