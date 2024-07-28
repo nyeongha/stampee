@@ -82,7 +82,7 @@ public class ConfigLoader {
 		}
 		String APP_PASSWORD = properties.getProperty("email.APP_PASSWORD");
 		if (APP_PASSWORD == null || APP_PASSWORD.trim().isEmpty()) {
-			throw new IllegalStateException("EMAIL not found in configuration");
+			throw new IllegalStateException("APP_PASSWORD not found in configuration");
 		}
 		return APP_PASSWORD;
 	}
