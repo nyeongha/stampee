@@ -38,11 +38,11 @@ public class MailAPIConfigLoader {
 
 	public static String getAPP_PASSWORD(){
 		if (!isInitialized) {
-			throw new IllegalStateException("Configuration not properly initialized");
+			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
 		String APP_PASSWORD = properties.getProperty("mail.APP_PASSWORD");
 		if (APP_PASSWORD == null || APP_PASSWORD.trim().isEmpty()) {
-			throw new IllegalStateException("APP_PASSWORD not found in configuration");
+			throw new IllegalStateException(NOT_FOUND_PROPERTIES.getErrorMessage());
 		}
 		return APP_PASSWORD;
 	}

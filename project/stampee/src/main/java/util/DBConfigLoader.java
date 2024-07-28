@@ -37,22 +37,22 @@ public class DBConfigLoader {
 
 	public static String getUsername(){
 		if (!isInitialized) {
-			throw new IllegalStateException("Configuration not properly initialized");
+			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
 		String username = properties.getProperty("db.USERNAME");
 		if (username == null || username.trim().isEmpty()) {
-			throw new IllegalStateException("USERNAME not found in configuration");
+			throw new IllegalStateException(NOT_FOUND_PROPERTIES.getErrorMessage());
 		}
 		return username;
 	}
 
 	public static String getPasswordD(){
 		if (!isInitialized) {
-			throw new IllegalStateException("Configuration not properly initialized");
+			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
 		String password = properties.getProperty("db.PASSWORD");
 		if (password == null || password.trim().isEmpty()) {
-			throw new IllegalStateException("PASSWORD not found in configuration");
+			throw new IllegalStateException(NOT_FOUND_PROPERTIES.getErrorMessage());
 		}
 		return password;
 	}
