@@ -51,11 +51,18 @@ class MemberRepositoryTest {
 			validPhoneNumber);
 
 		// 유효한 경우 객체가 생성되고, 필드 값이 올바르게 설정되었는지 확인
-		assertThat(member1).isNotNull();
-		assertThat(member1.getUserName()).isEqualTo(validUserName);
-		assertThat(member1.getEmail()).isEqualTo(validEmail);
-		assertThat(member1.getPassword()).isEqualTo(validPassword);
-		assertThat(member1.getPhoneNumber()).isEqualTo(validPhoneNumber);
+		assertThat(member1).extracting(Member::getId,
+			Member::getUserName,
+			Member::getEmail,
+			Member::getPassword,
+			Member::getPhoneNumber)
+			.containsExactly(
+				100L,
+				"진광환",
+				"rhkdghks21@naver.com",
+				"Wlsldjtm21*",
+				"010-3493-8220"
+			);
 	}
 
 	@DisplayName("멤버 유효성검사 테스트2")
