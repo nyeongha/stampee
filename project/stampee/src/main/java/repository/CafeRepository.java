@@ -19,7 +19,7 @@ import domain.Cafe;
 import domain.Member;
 
 public class CafeRepository {
-	public static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
+	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
 
 	public void cafeSignUp(Cafe cafe) {
 		// SQL
@@ -66,7 +66,7 @@ public class CafeRepository {
 
 	}
 
-	public List<Member> findCafeMembersById(int memberId) {
+	public List<Member> findCafeMembersById(int cafeId) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -82,7 +82,7 @@ public class CafeRepository {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, memberId);
+			pstmt.setInt(1, cafeId);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
