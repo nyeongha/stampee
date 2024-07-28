@@ -3,7 +3,6 @@
   <component name="CheckStyle-IDEA-Module" serialisationVersion="2">
     <option name="activeLocationsIds" />
   </component>
-<<<<<<< HEAD
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <content url="file://$MODULE_DIR$/../..">
@@ -14,6 +13,4 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="lib" level="project" />
   </component>
-=======
->>>>>>> 28717c5de8eae3689a035914f5c44e99dd84790a
 </module>
