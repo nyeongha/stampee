@@ -9,7 +9,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -97,8 +96,6 @@ public class ReviewRepositoryTest {
 				return conn;
 			}
 		});
-
-
 	}
 
 	@Test
@@ -151,7 +148,6 @@ public class ReviewRepositoryTest {
 	@Test
 	@DisplayName("testFindReviewsByCafeId")
 	public void testFindReviewsByCafeId(){
-
 		//Given
 		long cafeId=1L;
 
@@ -163,9 +159,6 @@ public class ReviewRepositoryTest {
 		for (Review review : reviews) {
 			assertEquals(cafeId, review.getCafe().getId(), "리뷰의 memberId가 예상과 일치해야 합니다.");
 		}
-
-
-
 	}
 
 	@Test
@@ -180,11 +173,5 @@ public class ReviewRepositoryTest {
 
 		// then
 		assertEquals(2, reviews.size(), "리뷰 개수가 일치해야 합니다.");
-
 	}
-
-
-
-
-
 }

@@ -18,10 +18,6 @@ public class Cafe {
 		this.contact = contact;
 	}
 
-	public Cafe() {
-		
-	}
-
 	public long getId() {
 		return cafeId;
 	}

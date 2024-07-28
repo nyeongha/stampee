@@ -31,8 +31,4 @@ public class ConfigLoader {
 		}
 		return apiKey;
 	}
-
-	// public static String getDBURL(){
-	//
-	// }
 }
