@@ -4,8 +4,26 @@ import java.util.Properties;
 import javax.mail.* ;
 import javax.mail.internet.* ;
 
-public class MailService {
+import util.ConfigLoader;
 
+public class MailService {
+	private static final String EMAIL;
+	private static final String APP_PASSWORD;
+
+	static {
+		String mail_address;
+		String password;
+		try {
+			mail_address = ConfigLoader.getEmail();
+			password = ConfigLoader.getAPP_PASSWORD();
+		} catch (IllegalStateException e) {
+			e.getMessage();
+			mail_address = "DUMMY_EMAIL"; // 또는 다른 적절한 기본값
+			password = "DUMMY_APPPASSWORD";
+		}
+		EMAIL = mail_address;
+		APP_PASSWORD = password;
+	}
 	/** TODO 사용 예제
 		try{
 			MailService.sendMail(
@@ -32,7 +50,7 @@ public class MailService {
 		Session session = Session.getInstance(prop, new Authenticator() {
 			// @Override
 			protected PasswordAuthentication getPasswordAuthentication() {			// Gmail 계정 및 앱 비밀번호
-				return new PasswordAuthentication("human9062@gmail.com", "nofw axcy nasr vmou") ;
+				return new PasswordAuthentication(EMAIL, APP_PASSWORD) ;
 			}
 		}) ;
 
