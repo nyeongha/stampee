@@ -3,6 +3,7 @@ package repository;
 import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,8 +17,7 @@ import domain.Review;
 
 public abstract class ReviewRepository {
 
-
-	public List<Review> findAllReviews() {		//전체 리뷰 조회
+	public List<Review> findAllReviews() {        //전체 리뷰 조회,서비스 반영완,테스트 완
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -73,7 +73,7 @@ public abstract class ReviewRepository {
 		return reviews;
 	}
 
-	public void insertReview(Review review) {		//리뷰 생성,서비스 반영
+	public void insertReview(Review review) {        //리뷰 생성,서비스 반영,테스트 완
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -92,15 +92,11 @@ public abstract class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn,pstmt);
+			close(conn, pstmt);
 		}
 	}
 
-
-
-
-
-	public void updateReview(Review review) {		//리뷰 수정,서비스 반영
+	public void updateReview(Review review) {        //리뷰 수정,서비스 반영,테스트 완
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "update review "
@@ -113,7 +109,7 @@ public abstract class ReviewRepository {
 
 			pstmt.setInt(1, review.getRating());
 			pstmt.setString(2, review.getContents());
-			pstmt.setLong(3,review.getId());
+			pstmt.setLong(3, review.getId());
 
 			pstmt.executeUpdate();
 
@@ -124,40 +120,25 @@ public abstract class ReviewRepository {
 		}
 	}
 
-	public void deleteReviewByReviewId(long memberId, long reviewId) {		//리뷰삭제,서비스 반영
+	public void deleteReviewByReviewId(long memberId, long reviewId) {        //리뷰삭제,서비스 반영,테스트 완
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+		CallableStatement cstmt = null;
 
 		try {
 			conn = getConnection();
-
-			// 첫 번째 쿼리: reviewId에 해당하는 member_id를 가져오기
-			String sql1 = "select member_id from review where review_id=?";
-			pstmt = conn.prepareStatement(sql1);
-			pstmt.setLong(1, reviewId);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				long reviewMemberId = rs.getLong("member_id");
-
-				// memberId가 일치하면 삭제 쿼리 실행
-				if (reviewMemberId == memberId) {
-					String sql2 = "delete from review where review_id=?";
-					pstmt = conn.prepareStatement(sql2);
-					pstmt.setLong(1, reviewId);
-					pstmt.executeUpdate();
-				}
-			}
+			cstmt = conn.prepareCall("{call delete_review_by_review_id(?, ?)}");
+			cstmt.setLong(1, memberId);
+			cstmt.setLong(2, reviewId);
+			cstmt.execute();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			// 리소스 정리
-			close(conn, pstmt,rs);
+			close(conn, cstmt);
 		}
 	}
 
-	public List<Review> findReviewsByMemberId(long memberId) {        //멤버별 리뷰 조회,서비스 반영
+	public List<Review> findReviewsByMemberId(long memberId) {        //멤버별 리뷰 조회,서비스 반영,테스트 완
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

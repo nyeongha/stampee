@@ -3,6 +3,7 @@ package repository;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,6 +37,9 @@ public class ReviewRepositoryTest {
 	private PreparedStatement pstmt;
 
 	@Mock
+	private CallableStatement cstmt;
+
+	@Mock
 	private ReviewRepository reviewRepository;
 
 	@Mock
@@ -50,6 +54,7 @@ public class ReviewRepositoryTest {
 		MockitoAnnotations.openMocks(this);
 
 		when(conn.prepareStatement(anyString())).thenReturn(pstmt);
+		when(conn.prepareCall(anyString())).thenReturn(cstmt);
 
 		// Example Review object for testing
 		review = new Review(
@@ -165,16 +170,15 @@ public class ReviewRepositoryTest {
 
 	@Test
 	public void testDeleteByReviewId(){
-		//given
-		long reviewId=3L;
-		long memberId=5L;
+		// given
+		long reviewId = 3L;
+		long memberId = 5L;
 
-		//when
-		reviewRepository.deleteReviewByReviewId(memberId,reviewId);
+		// when
+		reviewRepository.deleteReviewByReviewId(memberId, reviewId);
 		List<Review> reviews = reviewRepository.findAllReviews();
 
-
-		// Then
+		// then
 		assertEquals(2, reviews.size(), "리뷰 개수가 일치해야 합니다.");
 
 	}
