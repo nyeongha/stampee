@@ -1,6 +1,6 @@
 package domain;
 
-import static config.AuthConfig.*;
+import static config.ValidationRules.*;
 
 public class Member {
 	private long memberId;
