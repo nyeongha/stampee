@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+
+    <HBox id="Header" styleClass="header">
+        <children>
+            <ImageView fitHeight="40" fitWidth="40" styleClass="logo" />
+            <HBox spacing="10" styleClass="menu-items">
+                <children>
+                    <Label text="My Review" />
+                    <Label text="Reviews" />
+                    <Label text="Coupon" />
+                    <Label text="Contacts" />
+                    <Label text="Edit" />
+                    <Region HBox.hgrow="ALWAYS" />
+                </children>
+            </HBox>
+        </children>
+    </HBox>
