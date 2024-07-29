@@ -1,5 +1,6 @@
 package repository;
 
+import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
 import java.sql.CallableStatement;
@@ -14,28 +15,29 @@ import domain.Cafe;
 import domain.Member;
 import domain.Review;
 
-public abstract class ReviewRepository {
-
+public class ReviewRepository {
 	public List<Review> findAllReviews() {        //전체 리뷰 조회,서비스 반영완,테스트 완
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select * "
+		String sql = "select r.review_id "
 			+ "from review r "
 			+ "join member m "
 			+ "on r.member_id = m.member_id "
-			+ "join cafe c2 "
-			+ "on r.cafe_id = c2.cafe_id";
+			+ "join cafe c "
+			+ "on r.cafe_id = c.cafe_id";
 
 		List<Review> reviews = new ArrayList<>();
-
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
+			int count = 0;
 
 			while (rs.next()) {
+				System.out.println("들어옴");
+				count ++;
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("password"),
@@ -60,8 +62,9 @@ public abstract class ReviewRepository {
 					cafe);
 
 				reviews.add(review);
+				System.out.println(reviews.size() + " size");
+				System.out.println(count + "count");
 			}
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -70,6 +73,7 @@ public abstract class ReviewRepository {
 
 		return reviews;
 	}
+
 
 	public void insertReview(Review review) {        //리뷰 생성,서비스 반영,테스트 완
 		Connection conn = null;
@@ -252,6 +256,4 @@ public abstract class ReviewRepository {
 		}
 		return reviews;
 	}
-
-	protected abstract Connection getConnection();
 }

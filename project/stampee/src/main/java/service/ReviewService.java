@@ -10,7 +10,7 @@ import repository.ReviewRepository;
 
 public class ReviewService {
 
-	private ReviewRepository reviewRepository;
+	private static ReviewRepository reviewRepository;
 
 	public ReviewService(ReviewRepository reviewRepository) {
 		this.reviewRepository = reviewRepository;

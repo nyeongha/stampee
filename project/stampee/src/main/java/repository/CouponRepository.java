@@ -1,6 +1,7 @@
 package repository;
 
 import static config.DBConnectionUtil.*;
+import static java.time.LocalDate.*;
 import static template.ConnectionClose.*;
 
 import java.sql.Connection;
@@ -12,11 +13,46 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import dto.ExpiredCouponDto;
+import dto.response.MyCouponDto;
 
 public class CouponRepository {
 	private final static int NO_COUPON = 0;
 
-	public int findCouponByMemberId(long memberId, long cafe_id){
+	public List<MyCouponDto> findCouponByMemberId(long memberId){
+		String sql = "select c.cafe_id, c.name, c.address, a.count "
+			+ " from (select cafe_id, count(*) as count "
+			+ "			from coupon"
+			+ "			where member_id = ?"
+			+ "			group by cafe_id) a join cafe c "
+			+ "on a.cafe_id = c.cafe_id";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
+			rs = pstmt.executeQuery();
+
+			List<MyCouponDto> myCouponDtos = new ArrayList<>();
+			while(rs.next()){
+				myCouponDtos.add(MyCouponDto.createMyCouponDto(
+					rs.getLong("cafe_id"),
+					rs.getString("name"),
+					rs.getString("address"),
+					rs.getInt("count")));
+			}
+			return myCouponDtos;
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
+	public int findCouponByMemberIdAndCafeId(long memberId, long cafeId){
 		String sql = "select count(*) as count "
 			+ "from coupon "
 			+ "where member_id = ? "
@@ -30,7 +66,38 @@ public class CouponRepository {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, memberId);
-			pstmt.setLong(2, cafe_id);
+			pstmt.setLong(2, cafeId);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				return rs.getInt("count");
+			}else{
+				return NO_COUPON;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
+	public int findExpiringCouponCount(long memberId, long cafeId){
+		String sql = "select count(*) as count "
+			+ "from coupon "
+			+ "where member_id = ? "
+			+ "and cafe_id = ? "
+			+ "and endtime - trunc(?) <= 7";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
+			pstmt.setLong(2, cafeId);
+			pstmt.setDate(3, Date.valueOf(now()));
 			rs = pstmt.executeQuery();
 
 			if(rs.next()){

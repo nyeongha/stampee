@@ -44,11 +44,11 @@
 }
 
 .stamp.filled {
-    -fx-image: url('/github_logo.png');
+    -fx-image: url('/image/github_logo.png');
 }
 
 .stamp.empty {
-    -fx-image: url('/java_logo.png');
+    -fx-image: url('/image/java_logo.png');
 }
 
 #mapView {

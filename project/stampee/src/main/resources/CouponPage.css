@@ -1,0 +1,35 @@
+.cafe-item {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-alignment: center-left;
+}
+
+.cafe-name {
+    -fx-font-size: 16;
+    -fx-font-weight: bold;
+}
+
+.cafe-address {
+    -fx-font-size: 12;
+    -fx-text-fill: #666;
+}
+
+.stamp-grid {
+    -fx-background-color: #f8f8f8;
+    -fx-padding: 5;
+    -fx-alignment: center-left;
+}
+
+.share-button {
+    -fx-background-color: #333;
+    -fx-text-fill: white;
+    -fx-font-size: 12;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+    -fx-min-width: 60;
+    -fx-max-width: 60;
+}

@@ -27,8 +27,8 @@ public class StampService {
 		this.mailService = mailService;
 	}
 
-	public MyStampDto findMyStamp(long member_id, long cafe_id) {
-		Stamp stamp = stampRepository.findStamp(member_id, cafe_id);
+	public MyStampDto findMyStamp(long memberId, long cafeId) {
+		Stamp stamp = stampRepository.findStamp(memberId, cafeId);
 		return MyStampDto.createMyStampDto(stamp);
 	}
 
