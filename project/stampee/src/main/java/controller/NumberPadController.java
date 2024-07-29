@@ -26,17 +26,15 @@ public class NumberPadController {
 
 	@FXML
 	private void handleOK() {
-		String input = inputBuilder.toString();
-		System.out.println("Entered number: " + input);
 		closePopup();
 	}
 
-	// 지 재능기부님이 팝업창의 동작 관리를 위해 메서드로 따로 관리한다네요
+	// 팝업창의 동작 관리를 위해 메서드로 따로 관리한다네요
 	private void closePopup() {
 		inputField.getScene().getWindow().hide();
 	}
 
-	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해 한다네요
+	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
 	public TextField getInputField() {
 		return inputField;
 	}

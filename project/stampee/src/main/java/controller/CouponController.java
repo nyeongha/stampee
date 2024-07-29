@@ -7,6 +7,7 @@ import javax.mail.MessagingException;
 
 import domain.Member;
 import dto.response.MyCouponDto;
+import formatter.PhoneNumberFormatter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -56,10 +57,10 @@ public class CouponController {
 
 	@FXML
 	public void handleShareButtonPress(long memberId, long cafeId) {
-		String toPhoneNumber = showNumberPadPopup();
 		Member fromMember = userService.findMemberById(memberId);
+		String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(showNumberPadPopup());
 		try {
-			stampService.shareStamp(fromMember, cafeId, "010-998-8636", 1);
+			stampService.shareStamp(fromMember, cafeId, toPhoneNumber, 1);
 		} catch (MessagingException e) {
 			throw new RuntimeException(e);
 		} catch (SQLException e) {
