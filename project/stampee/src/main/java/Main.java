@@ -8,7 +8,7 @@ public class Main extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(getClass().getResource("/MapOutput.fxml"));
+		Parent root = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
 		primaryStage.setTitle("카페 위치 정보");
 		primaryStage.setScene(new Scene(root, 600, 800));
 		primaryStage.show();
