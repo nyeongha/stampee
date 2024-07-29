@@ -1,3 +1,4 @@
+
 import controller.StampController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

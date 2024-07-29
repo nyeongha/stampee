@@ -25,4 +25,8 @@ public class CouponService {
 			mailService.sendMail(expiringCoupon.getMemberEmail(), "human9062@gmail.com", expiringCoupon.toString(), EXPIRED_COUPON.getMessage());
 		}
 	}
+
+	public int getMyCount(long memberId, long cafeId){
+		return couponRepository.findCouponByMemberId(memberId, cafeId);
+	}
 }
