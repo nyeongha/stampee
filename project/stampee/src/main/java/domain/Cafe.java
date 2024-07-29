@@ -12,7 +12,6 @@ public class Cafe {
 	private final String contact;
 	private List<Signature> signatures;
 
-
 	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
 		this.cafeId = cafeId;
 		this.name = name;
@@ -62,5 +61,13 @@ public class Cafe {
 
 	public void setCafeId(long cafeId) {
 		this.cafeId = cafeId;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }

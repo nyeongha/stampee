@@ -6,23 +6,20 @@ import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
-import javafx.scene.image.Image;
 import javafx.scene.web.WebEngine;
 import javafx.scene.control.Label;
 import util.GoogleAPIConfigLoader;
 
 public class MapService {
 
+	@FXML private VBox stampContainer;
 	@FXML private WebView webView;
 	@FXML private Label storeNameLabel;
 	@FXML private Label addressLabel;
 	@FXML private Label phoneLabel;
 	@FXML private Label hoursLabel;
-
-	@FXML
-	private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
 
 	private WebEngine webEngine;
 	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();;
@@ -36,21 +33,6 @@ public class MapService {
 			loadMap(coords[0], coords[1], location);
 			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
 		}
-
-		Image filledStamp = new Image(getClass().getResourceAsStream("/github_logo.png"));
-		Image emptyStamp = new Image(getClass().getResourceAsStream("/java_logo.png"));
-
-		stamp1.setImage(filledStamp);
-		stamp2.setImage(filledStamp);
-		stamp3.setImage(filledStamp);
-		stamp4.setImage(emptyStamp);
-		stamp5.setImage(emptyStamp);
-
-		stamp6.setImage(emptyStamp);
-		stamp7.setImage(emptyStamp);
-		stamp8.setImage(emptyStamp);
-		stamp9.setImage(emptyStamp);
-		stamp10.setImage(emptyStamp);
 	}
 
 	private static Float[] findGeoPoint(String location) {
@@ -80,7 +62,8 @@ public class MapService {
 				"    <link rel=\"stylesheet\" href=\"https://unpkg.com/leaflet@1.7.1/dist/leaflet.css\" />" +
 				"    <script src=\"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js\"></script>" +
 				"    <style>" +
-				"        html, body, #map { height: 100%; width: 100%; margin: 0; padding: 0; }" +
+				"        html, body { height: 100%; width: 100%; margin: 0; padding: 0; }" +
+				"#map { height: 300px; width: 80%; margin: 0; padding: 0; }" +
 				"    </style>" +
 				"</head>" +
 				"<body>" +
