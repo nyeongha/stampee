@@ -14,6 +14,37 @@ import java.util.List;
 import dto.ExpiredCouponDto;
 
 public class CouponRepository {
+	private final static int NO_COUPON = 0;
+
+	public int findCouponByMemberId(long memberId, long cafe_id){
+		String sql = "select count(*) as count "
+			+ "from coupon "
+			+ "where member_id = ? "
+			+ "and cafe_id = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
+			pstmt.setLong(2, cafe_id);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				return rs.getInt("count");
+			}else{
+				return NO_COUPON;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
 	public List<ExpiredCouponDto> findExpiringCoupons(LocalDate localDate){
 		String sql = "select m.email, ca.name, m.username, co.endtime - trunc(?) as remain_date "
 			+ "from member m join coupon co "
