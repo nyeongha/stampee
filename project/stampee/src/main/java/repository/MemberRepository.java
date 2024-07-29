@@ -1,7 +1,6 @@
 package repository;
-
-import static template.ConnectionClose.*;
 import static config.DBConnectionUtil.*;
+import static template.ConnectionClose.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,13 +21,13 @@ public class MemberRepository {
 		PreparedStatement pstmt = null;
 		try {
 			String sql =
-				"INSERT INTO member(member_id, user_name, email, password, phone_number)" +
+				"insert into member(member_id, username, email, password, phone_number)" +
 					"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
 
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getPassword());
-			pstmt.setString(2, member.getUserName());
-			pstmt.setString(3, member.getEmail());
+			pstmt.setString(1, member.getUserName());
+			pstmt.setString(2, member.getEmail());
+			pstmt.setString(3, member.getPassword());
 			pstmt.setString(4, member.getPhoneNumber());
 			pstmt.executeUpdate();
 
@@ -59,8 +58,8 @@ public class MemberRepository {
 				Member member = Member.createMember(rs.getLong("member_id"),
 					rs.getString("password"),
 					rs.getString("email"),
-					rs.getString("phone_number"),
-					rs.getString("username"));
+					rs.getString("password"),
+					rs.getString("phone_number"));
 
 				return member;
 			} else {
@@ -74,7 +73,7 @@ public class MemberRepository {
 		}
 	}
 
-	public void deleteUser(String phoneNum) {
+	public void deleteUser(String phoneNum) throws SQLException {
 		String sql = "delete from member "
 			+ "where phone_number = ?";
 
@@ -86,7 +85,9 @@ public class MemberRepository {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, phoneNum);
 			pstmt.executeUpdate();
+			conn.commit();
 		} catch (SQLException e) {
+			conn.rollback();
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {

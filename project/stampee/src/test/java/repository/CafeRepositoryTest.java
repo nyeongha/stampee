@@ -1,67 +1,100 @@
 package repository;
 
-import static config.DBConnectionUtil.*;
 import static org.assertj.core.api.Assertions.*;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Base64;
+import java.util.Random;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.MockitoAnnotations;
 
 import domain.Cafe;
+import domain.Signature;
+import repository.CafeRepository;
+import service.CafeService;
 import util.PasswordUtil;
 
-class EncryptTest {
+class CafeRepositoryTest {
+
 	private CafeRepository cafeRepository;
-	private Connection conn;
+	private Random random;
+	private CafeService cafeService;
 
 	@BeforeEach
 	void setUp() throws SQLException {
+		MockitoAnnotations.openMocks(this);
 		cafeRepository = new CafeRepository();
-		conn = getConnection();
-		conn.setAutoCommit(false);
+		random = new Random();
+		cafeService = new CafeService(cafeRepository);
+	}
 
+	private String generateRandomEmail() {
+		return "user" + random.nextInt(10000) + "@example.com";
+	}
+
+	private String generateRandomPhone() {
+		return String.format("%03d-%03d-%04d",
+			random.nextInt(1000),
+			random.nextInt(1000),
+			random.nextInt(10000));
 	}
 
 	@Test
-	void testCafeSignUpAndLogin(){
-		//given
-		// 새로운 Cafe 객체 생성 (로그인용)
-		Cafe loginCafe = new Cafe(11,"Test Cafe", "Test Streat"
-			,"123411", "s11ys@example.com", "123-456-71199");
-		//when
-		cafeRepository.cafeSignUp(loginCafe);
+	void testCafeSignUpAndLogin() throws SQLException, NoSuchAlgorithmException {
+		// given
+		String randomEmail = generateRandomEmail();
+		String randomPhone = generateRandomPhone();
+		Cafe loginCafe = new Cafe(2, "Test Cafe", "Test Street", "123411", randomEmail, randomPhone);
+		Signature signature = new Signature(0, "Test Menu", 2);
 
-		loginCafe.setEmail(loginCafe.getEmail());
-		loginCafe.setPassword(loginCafe.getPassword());
-
+		// when
+		cafeRepository.cafeSignUp(loginCafe, signature);
 		boolean loginResult = cafeRepository.login(loginCafe);
-		System.out.println(loginCafe.getPassword());
 
-		//then
+		// then
 		assertThat(loginResult).isTrue();
 	}
 
-	@AfterEach
-	void tearDown() {
-		// 객체 초기화
-		if (conn != null) {
-			try {
-				conn.rollback();  // 롤백 수행
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-			try {
-				conn.close();
-			} catch (SQLException e) {
-				throw new RuntimeException(e);
-			}
-		}
+	@Test
+	void testCafeServiceSignUpAndLogin() {
+		// given
+		String randomEmail = generateRandomEmail();
+		String randomPhone = generateRandomPhone();
+		Cafe cafe = new Cafe(2, "ServiceTest Cafe", "Test Street", "123411", randomEmail, randomPhone);
+		Signature signature = new Signature(0, "ServiceTest Menu", 2);
+
+		// when
+		cafeService.signUp(cafe, signature);
+		boolean loginResult = cafeService.login(cafe);
+
+		// then
+		assertThat(loginResult).isTrue();
 	}
+
+	@Test
+	void testCafeServiceLoginWithWrongPassword() {
+		// given
+		String randomEmail = generateRandomEmail();
+		String randomPhone = generateRandomPhone();
+		Cafe cafe = new Cafe(2, "Wrong Password Cafe", "Wrong Password Street", "correctpass", randomEmail, randomPhone);
+		Signature signature = new Signature(0, "Wrong Password Menu", 2);
+
+		// when
+		cafeService.signUp(cafe, signature);
+
+		cafe.setPassword("correctpass1");
+		boolean loginResult = cafeService.login(cafe);
+
+		// then
+		assertThat(loginResult).isFalse();
+	}
+}
+
+class PasswordUtilTest {
 
 	@Test
 	void testSignup() throws NoSuchAlgorithmException {

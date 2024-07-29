@@ -9,48 +9,79 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 
 import domain.Cafe;
+import domain.Member;
+import domain.Signature;
 
 public class CafeRepository {
+	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
 
-	public void cafeSignUp(Cafe cafe) {
-		// SQL
-		String sql = "insert into cafe(cafe_Id, name, address, password, email, contact) "
+	public long cafeSignUp(Cafe cafe, Signature signature) {
+		String insertCafeSql = "insert into cafe(cafe_Id, name, address, password, email, contact) "
 			+ "values(CAFE_SEQ.NEXTVAL,?,?,?,?,?)";
+		String insertSignatureSql = "insert into signature(menu_id, menu_name, cafe_id)"
+			+ "values(SIGNATURE_SEQ.NEXTVAL, ?, ?)";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 
 		try {
-			// check input data is null
-			if (cafe.getName() == null || cafe.getAddress() == null || cafe.getPassword() == null || cafe.getEmail() == null || cafe.getContact() == null) {
-				throw new IllegalArgumentException("Name and address and password and email and contact can't be null");
-			}
-			// check email format
-			if (!cafe.getEmail().matches("[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$")) {
-				throw new IllegalArgumentException("Invalid email format");
-			}
-
-			// Generate salt and hash password
-			String encryptedPassword = hashPassword(cafe.getPassword());
-
-			// DB connection
 			conn = getConnection();
-			conn.setAutoCommit(false);
+			conn.setAutoCommit(false);  // 트랜잭션 시작
 
-			pstmt = conn.prepareStatement(sql);
+			// 카페 정보 삽입
+			pstmt = conn.prepareStatement(insertCafeSql, new String[]{"cafe_id"});
 			pstmt.setString(1, cafe.getName());
 			pstmt.setString(2, cafe.getAddress());
-			pstmt.setString(3, encryptedPassword);
+			pstmt.setString(3, hashPassword(cafe.getPassword()));
 			pstmt.setString(4, cafe.getEmail());
 			pstmt.setString(5, cafe.getContact());
+
+			int affectedRows = pstmt.executeUpdate();
+
+			if (affectedRows == 0) {
+				throw new SQLException("Creating cafe failed, no rows affected.");
+			}
+
+			// 생성된 cafe_id 가져오기
+			rs = pstmt.getGeneratedKeys();
+			long cafeId;
+			if (rs.next()) {
+				cafeId = rs.getLong(1);
+			} else {
+				throw new SQLException("Creating cafe failed, no ID obtained.");
+			}
+
+			// 시그니처 메뉴 삽입을 위해 pstmt 재설정
+			pstmt.close(); // 기존 pstmt 닫기
+			pstmt = conn.prepareStatement(insertSignatureSql);
+			pstmt.setString(1, signature.getMenuName());
+			pstmt.setLong(2, cafeId);
 			pstmt.executeUpdate();
-			conn.commit();
+
+			conn.commit();  // 트랜잭션 커밋
+			return cafeId;
 		} catch (SQLException | NoSuchAlgorithmException e) {
-			throw new RuntimeException(e);
+			if (conn != null) {
+				try {
+					conn.rollback();  // 예외 발생 시 롤백
+				} catch (SQLException ex) {
+					log.error("Rollback failed", ex);
+				}
+			}
+			log.error("Error during cafe sign up", e);
+			throw new RuntimeException("Failed to sign up cafe", e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -72,7 +103,6 @@ public class CafeRepository {
 			if(rs.next()){
 				String storedPassword = rs.getString("password");
 				return verifyPassword(cafe.getPassword(), storedPassword);
-
 			}
 			else{
 				System.out.println("email not found : "+cafe.getEmail());
@@ -85,7 +115,43 @@ public class CafeRepository {
 			close(conn, pstmt);
 		}
 
-
 	}
 
+	public List<Member> findCafeMembersById(int cafeId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * "
+			+ "from member "
+			+ "where member_id in (select member_id "
+			+ "                      from stamp "
+			+ "                     where cafe_id = ?)";
+
+		List<Member> members = new ArrayList<>();
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cafeId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				Member member = Member.createMember(
+					rs.getInt("member_id"),
+					rs.getString("username"),
+					rs.getString("email"),
+					rs.getString("password"),
+					rs.getString("phone_number")
+				);
+				members.add(member);
+			}
+			return members;
+		} catch (SQLException e) {
+			log.info("db error", e);
+			throw new RuntimeException();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+	}
 }

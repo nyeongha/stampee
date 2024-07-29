@@ -9,17 +9,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import domain.Cafe;
 import domain.Member;
 import domain.Stamp;
 
 public class StampRepository {
-	private static final Logger log = LoggerFactory.getLogger(StampRepository.class);
-
-	public void save(long memberId, long cafeId, int count){
+	public void save(long memberId, long cafeId, int count) throws SQLException {
 		String sql = "{ call add_stamp(?, ?, ?)}";
 		Connection conn = null;
 		CallableStatement cstmt = null;
@@ -31,8 +26,9 @@ public class StampRepository {
 			cstmt.setLong(2, cafeId);
 			cstmt.setInt(3, count);
 			cstmt.execute();
+			conn.commit();
 		} catch (SQLException e) {
-			log.info("db error", e);
+			conn.rollback();
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, cstmt);
@@ -67,18 +63,34 @@ public class StampRepository {
 				return null;
 			}
 		}  catch (SQLException e) {
-			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, rs);
 		}
 	}
 
-	// public void updateStamp(long cafeId, long toMemberId, long fromMemberId, int count){
-	// 	String sql = "{ call share_stamp(?, ?, ?)}";
-	// 	Connection conn = null;
-	// 	CallableStatement cstmt = null;
-	// }
+	public boolean updateStamp(long cafeId, long fromMemberId, long toMemberId, int count) throws SQLException {
+		String sql = "{ call share_stamp(?, ?, ?, ?)}";
+		Connection conn = null;
+		CallableStatement cstmt = null;
+
+		try {
+			conn = getConnection();
+			cstmt = conn.prepareCall(sql);
+			cstmt.setLong(1, cafeId);
+			cstmt.setLong(2, fromMemberId);
+			cstmt.setLong(3, toMemberId);
+			cstmt.setInt(4, count);
+			cstmt.execute();
+			conn.commit();
+		} catch (SQLException e) {
+			conn.rollback();
+			return false;
+		} finally {
+			close(conn, cstmt);
+		}
+		return true;
+	}
 
 	private static Cafe getCafe(ResultSet rs) throws SQLException {
 		return new Cafe(rs.getLong("cafe_id"),
@@ -91,9 +103,9 @@ public class StampRepository {
 
 	private static Member getMember(ResultSet rs) throws SQLException {
 		return Member.createMember(rs.getLong("member_id"),
-			rs.getString("password"),
+			rs.getString("username"),
 			rs.getString("email"),
-			rs.getString("phone_number"),
-			rs.getString("username"));
+			rs.getString("password"),
+			rs.getString("phone_number"));
 	}
 }

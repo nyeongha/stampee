@@ -1,12 +1,16 @@
 package domain;
 
+import java.util.List;
+
+
 public class Cafe {
 	private long cafeId;
 	private String name;
 	private String address;
 	private String password;
 	private String email;
-	private String contact;
+	private final String contact;
+	private List<Signature> signatures;
 
 
 	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
@@ -18,11 +22,7 @@ public class Cafe {
 		this.contact = contact;
 	}
 
-	public Cafe() {
-		
-	}
-
-	public long getId() {
+	public long getCafeId() {
 		return cafeId;
 	}
 
@@ -34,21 +34,29 @@ public class Cafe {
 		return address;
 	}
 
+
 	public String getPassword() {
 		return password;
-	}
-
-	public String getEmail() {
-		return email;
 	}
 
 	public String getContact() {
 		return contact;
 	}
 
-	public void setEmail(String email) {
+	public String getEmail() {
+		return email;
 	}
 
-	public void setPassword(String password){
+
+	public List<Signature> getSignatures() {
+		return signatures;
+	}
+
+	public long getId() {
+		return cafeId;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 }

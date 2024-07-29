@@ -1,0 +1,68 @@
+.main-container {
+    -fx-background-color: white;
+    -fx-spacing: 10;
+    -fx-padding: 0 20 0 20;
+}
+
+.header {
+    -fx-padding: 10;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 0 0 1 0;
+}
+
+.logo {
+    -fx-image: url('/image/stampee_logo.png');
+}
+
+.menu-items {
+    -fx-alignment: center-right;
+}
+
+.menu-items Label {
+    -fx-padding: 5 10;
+    -fx-cursor: hand;
+}
+
+.stamp-container {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 20;
+    -fx-alignment: center;
+}
+
+.stamp-row {
+    -fx-spacing: 20;
+    -fx-alignment: center;
+}
+
+.stamp {
+    -fx-fit-width: 50px;
+    -fx-fit-height: 50px;
+    -fx-preserve-ratio: true;
+    -fx-background-size: contain;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: center;
+}
+
+.stamp.filled {
+    -fx-image: url('/image/github_logo.png');
+}
+
+.stamp.empty {
+    -fx-image: url('/image/java_logo.png');
+}
+
+#mapView {
+    -fx-pref-height: 300;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+}
+
+.info-container {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+.info-container Label {
+    -fx-font-size: 14;
+}

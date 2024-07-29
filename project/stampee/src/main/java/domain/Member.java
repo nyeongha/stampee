@@ -1,6 +1,6 @@
 package domain;
 
-import static config.AuthConfig.*;
+import static config.ValidationRules.*;
 
 public class Member {
 	private long memberId;
@@ -9,7 +9,7 @@ public class Member {
 	private String password;
 	private String phoneNumber;
 
-	public Member(long memberId, String userName, String email, String password, String phoneNumber) {
+	private Member(long memberId, String userName, String email, String password, String phoneNumber) {
 		this.memberId = memberId;
 		this.userName = userName;
 		this.email = email;
