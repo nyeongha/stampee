@@ -1,12 +1,17 @@
 package config;
 
-import static config.DBConfig.*;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import util.DBConfigLoader;
+
 public class DBConnectionUtil {
+	private static final String URL = DBConfigLoader.getURL();;
+	private static final String USERNAME = DBConfigLoader.getUsername();
+	private static final String PASSWORD = DBConfigLoader.getPasswordD();
+
+
 	public static Connection getConnection() {
 		try {
 			//라이브러리에 있는 driver를 알아서 찾음

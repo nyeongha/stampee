@@ -6,11 +6,12 @@ import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 
 import javafx.fxml.FXML;
+import javafx.scene.image.ImageView;
 import javafx.scene.web.WebView;
-
+import javafx.scene.image.Image;
 import javafx.scene.web.WebEngine;
 import javafx.scene.control.Label;
-import util.ConfigLoader;
+import util.GoogleAPIConfigLoader;
 
 public class MapService {
 
@@ -20,19 +21,11 @@ public class MapService {
 	@FXML private Label phoneLabel;
 	@FXML private Label hoursLabel;
 
-	private WebEngine webEngine;
-	private static final String API_KEY;
+	@FXML
+	private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
 
-	static {
-		String key;
-		try {
-			key = ConfigLoader.getApiKey();
-		} catch (IllegalStateException e) {
-			e.getMessage();
-			key = "DUMMY_KEY"; // 또는 다른 적절한 기본값
-		}
-		API_KEY = key;
-	}
+	private WebEngine webEngine;
+	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();;
 
 	@FXML
 	public void initialize() {
@@ -42,9 +35,22 @@ public class MapService {
 		if (coords != null) {
 			loadMap(coords[0], coords[1], location);
 			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
-		} else {
-			System.out.println("Failed");
 		}
+
+		Image filledStamp = new Image(getClass().getResourceAsStream("/github_logo.png"));
+		Image emptyStamp = new Image(getClass().getResourceAsStream("/java_logo.png"));
+
+		stamp1.setImage(filledStamp);
+		stamp2.setImage(filledStamp);
+		stamp3.setImage(filledStamp);
+		stamp4.setImage(emptyStamp);
+		stamp5.setImage(emptyStamp);
+
+		stamp6.setImage(emptyStamp);
+		stamp7.setImage(emptyStamp);
+		stamp8.setImage(emptyStamp);
+		stamp9.setImage(emptyStamp);
+		stamp10.setImage(emptyStamp);
 	}
 
 	private static Float[] findGeoPoint(String location) {
@@ -55,10 +61,7 @@ public class MapService {
 			GeocodingResult[] results = GeocodingApi.geocode(context, location).await();
 			if (results.length > 0) {
 				LatLng latLng = results[0].geometry.location;
-				System.out.println("Found: " + latLng.lat + ", " + latLng.lng);
 				return new Float[]{(float) latLng.lat, (float) latLng.lng};
-			} else {
-				System.out.println("no result : " + location);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

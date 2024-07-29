@@ -1,9 +1,9 @@
 
 package repository;
-
 import static org.assertj.core.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.*;
 
+import java.sql.SQLException;
+import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,20 +11,21 @@ import org.junit.jupiter.api.Test;
 import domain.Member;
 
 class MemberRepositoryTest {
-	public static final String TESTNUM = "010-1234-1234";
+
 	MemberRepository memberRepository = new MemberRepository();
+	public static final String TESTNUM = "010-1234-1234";
 
 	@AfterEach
-	void tearDown() {
+	void tearDown() throws SQLException {
 		memberRepository.deleteUser(TESTNUM);
 	}
 
 	@Test
 	@DisplayName("전화번호로 회원을 찾을 수 있다.")
-	void findUserByPhoneNum() {
+	void findUserByPhoneNum(){
 		//given
 		String phoneNum = TESTNUM;
-		Member member = Member.createMember(0L, "1234", "test@test.com", "010-1234-1234", TESTNUM);
+		Member member = Member.createMember(0L, "양소은", "test@test.com", "1234", TESTNUM);
 		memberRepository.userSignUp(member);
 
 		//when
