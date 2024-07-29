@@ -24,7 +24,7 @@ import domain.Signature;
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
 
-	public long cafeSignUp(Cafe cafe, Signature signature) {
+	public long cafeSignUp(Cafe cafe, String menu1, String menu2) {
 		String insertCafeSql = "insert into cafe(cafe_Id, name, address, password, email, contact) "
 			+ "values(CAFE_SEQ.NEXTVAL,?,?,?,?,?)";
 		String insertSignatureSql = "insert into signature(menu_id, menu_name, cafe_id)"
@@ -49,22 +49,29 @@ public class CafeRepository {
 			int affectedRows = pstmt.executeUpdate();
 
 			if (affectedRows == 0) {
-				throw new SQLException("Creating cafe failed, no rows affected.");
+				throw new SQLException("Creating cafeId failed, no rows affected.");
 			}
 
 			// 생성된 cafe_id 가져오기
 			rs = pstmt.getGeneratedKeys();
+			//insert문 실행 후 자동 생성된 키 값을 포함하는 ResultSet 객체 반환
 			long cafeId;
 			if (rs.next()) {
 				cafeId = rs.getLong(1);
+				//자동 생성된 cafe_id를 가져옴
 			} else {
 				throw new SQLException("Creating cafe failed, no ID obtained.");
+				//삽입된 행이 없으면 예외 발생
 			}
 
 			// 시그니처 메뉴 삽입을 위해 pstmt 재설정
 			pstmt.close(); // 기존 pstmt 닫기
 			pstmt = conn.prepareStatement(insertSignatureSql);
-			pstmt.setString(1, signature.getMenuName());
+			pstmt.setString(1, menu1);
+			pstmt.setLong(2, cafeId);
+			pstmt.executeUpdate();
+
+			pstmt.setString(1, menu2);
 			pstmt.setLong(2, cafeId);
 			pstmt.executeUpdate();
 

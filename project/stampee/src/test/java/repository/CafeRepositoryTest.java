@@ -48,11 +48,12 @@ class CafeRepositoryTest {
 		// given
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
+
 		Cafe loginCafe = new Cafe(2, "Test Cafe", "Test Street", "123411", randomEmail, randomPhone);
-		Signature signature = new Signature(0, "Test Menu", 2);
 
 		// when
-		cafeRepository.cafeSignUp(loginCafe, signature);
+		long cafeId = cafeRepository.cafeSignUp(loginCafe, "Test Menu 1", "Test Menu 2");
+		loginCafe.setCafeId(cafeId);  // 생성된 cafeId 설정
 		boolean loginResult = cafeRepository.login(loginCafe);
 
 		// then
@@ -65,10 +66,9 @@ class CafeRepositoryTest {
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
 		Cafe cafe = new Cafe(2, "ServiceTest Cafe", "Test Street", "123411", randomEmail, randomPhone);
-		Signature signature = new Signature(0, "ServiceTest Menu", 2);
 
 		// when
-		cafeService.signUp(cafe, signature);
+		cafeService.cafeSignUp(cafe, "ServiceTest Menu 1", "ServiceTest Menu 2");
 		boolean loginResult = cafeService.login(cafe);
 
 		// then
@@ -81,10 +81,9 @@ class CafeRepositoryTest {
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
 		Cafe cafe = new Cafe(2, "Wrong Password Cafe", "Wrong Password Street", "correctpass", randomEmail, randomPhone);
-		Signature signature = new Signature(0, "Wrong Password Menu", 2);
 
 		// when
-		cafeService.signUp(cafe, signature);
+		cafeService.cafeSignUp(cafe, "Wrong Password Menu 1", "Wrong Password Menu 2");
 
 		cafe.setPassword("correctpass1");
 		boolean loginResult = cafeService.login(cafe);
@@ -93,6 +92,7 @@ class CafeRepositoryTest {
 		assertThat(loginResult).isFalse();
 	}
 }
+
 
 class PasswordUtilTest {
 
