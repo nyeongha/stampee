@@ -1,5 +1,6 @@
 package domain;
 
+import java.sql.Clob;
 import java.sql.Date;
 
 public class Review {

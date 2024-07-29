@@ -1,5 +1,6 @@
 package repository;
 
+import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
 import java.sql.CallableStatement;
@@ -14,62 +15,62 @@ import domain.Cafe;
 import domain.Member;
 import domain.Review;
 
-public abstract class ReviewRepository {
 
-	public List<Review> findAllReviews() {        //전체 리뷰 조회,서비스 반영완,테스트 완
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+public class ReviewRepository {
 
-		String sql = "select * "
-			+ "from review r "
-			+ "join member m "
-			+ "on r.member_id = m.member_id "
-			+ "join cafe c2 "
-			+ "on r.cafe_id = c2.cafe_id";
+	private MemberRepository memberRepository;
+	private CafeRepository cafeRepository;
+
+	public ReviewRepository(MemberRepository memberRepository, CafeRepository cafeRepository) {
+		this.memberRepository = memberRepository;
+		this.cafeRepository = cafeRepository;
+	}
+
+	public List<Review> findAllReviews() {
+		String sql = "SELECT "
+			+ "r.review_id, r.rating, r.contents, r.create_time, "
+			+ "m.phone_number, "
+			+ "c2.contact "
+			+ "FROM review r "
+			+ "JOIN member m ON r.member_id = m.member_id "
+			+ "JOIN cafe c2 ON r.cafe_id = c2.cafe_id";
 
 		List<Review> reviews = new ArrayList<>();
 
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			rs = pstmt.executeQuery();
+		try (
+			Connection conn = getConnection();
+			 PreparedStatement pstmt = conn.prepareStatement(sql);
+			 ResultSet rs = pstmt.executeQuery()) {
 
 			while (rs.next()) {
-				Member member = Member.createMember(
-					rs.getLong("member_id"),
-					rs.getString("password"),
-					rs.getString("userName"),
-					rs.getString("email"),
-					rs.getString("phone_number")
-				);
+				long reviewId = rs.getLong("review_id");
+				String contact = rs.getString("contact");
+				String phoneNumber = rs.getString("phone_number");
 
-				Cafe cafe = new Cafe(rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getString("address"),
-					rs.getString("password_1"),
-					rs.getString("email_1"),
-					rs.getString("contact")
-				);
+				// Member와 Cafe를 한 번만 조회하도록 개선
+				Member member = memberRepository.findUserByPhoneNum(phoneNumber);
+				Cafe cafe = cafeRepository.findCafeByContact(contact);
 
-				Review review = new Review(rs.getLong("review_id"),
+				Review review = new Review(
+					reviewId,
 					rs.getInt("rating"),
 					rs.getString("contents"),
 					rs.getDate("create_time"),
 					member,
-					cafe);
-
+					cafe
+				);
 				reviews.add(review);
 			}
 
 		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			close(conn, pstmt, rs);
+			throw new RuntimeException("Database error", e);
 		}
 
 		return reviews;
 	}
+
+
+
 
 	public void insertReview(Review review) {        //리뷰 생성,서비스 반영,테스트 완
 		Connection conn = null;
@@ -157,6 +158,7 @@ public abstract class ReviewRepository {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				System.out.println();
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("username"),
@@ -211,6 +213,7 @@ public abstract class ReviewRepository {
 		List<Review> reviews = new ArrayList<>();
 
 		try {
+
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, cafeId);
@@ -218,6 +221,7 @@ public abstract class ReviewRepository {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
+				System.out.println(rs.getString("review_id"));
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("userName"),
@@ -253,5 +257,5 @@ public abstract class ReviewRepository {
 		return reviews;
 	}
 
-	protected abstract Connection getConnection();
+	// protected abstract Connection getConnection();
 }

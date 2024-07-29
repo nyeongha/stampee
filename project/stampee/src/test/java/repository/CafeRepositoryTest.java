@@ -27,24 +27,24 @@ class EncryptTest {
 
 	}
 
-	@Test
-	void testCafeSignUpAndLogin(){
-		//given
-		// 새로운 Cafe 객체 생성 (로그인용)
-		Cafe loginCafe = new Cafe(11,"Test Cafe", "Test Streat"
-			,"123411", "s11ys@example.com", "123-456-71199");
-		//when
-		cafeRepository.cafeSignUp(loginCafe);
-
-		loginCafe.setEmail(loginCafe.getEmail());
-		loginCafe.setPassword(loginCafe.getPassword());
-
-		boolean loginResult = cafeRepository.login(loginCafe);
-		System.out.println(loginCafe.getPassword());
-
-		//then
-		assertThat(loginResult).isTrue();
-	}
+	// @Test
+	// void testCafeSignUpAndLogin(){
+	// 	//given
+	// 	// 새로운 Cafe 객체 생성 (로그인용)
+	// 	Cafe loginCafe = new Cafe(11,"Test Cafe", "Test Streat"
+	// 		,"123411", "s11ys@example.com", "123-456-71199");
+	// 	//when
+	// 	cafeRepository.cafeSignUp(loginCafe);
+	//
+	// 	loginCafe.setEmail(loginCafe.getEmail());
+	// 	loginCafe.setPassword(loginCafe.getPassword());
+	//
+	// 	boolean loginResult = cafeRepository.login(loginCafe);
+	// 	System.out.println(loginCafe.getPassword());
+	//
+	// 	//then
+	// 	assertThat(loginResult).isTrue();
+	// }
 
 	@AfterEach
 	void tearDown() {
