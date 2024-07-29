@@ -1,12 +1,9 @@
 package controller;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
 
 import dto.response.MyCouponDto;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import repository.CouponRepository;
