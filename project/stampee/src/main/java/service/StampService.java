@@ -11,6 +11,8 @@ import javax.mail.MessagingException;
 
 import domain.Cafe;
 import domain.Member;
+import domain.Stamp;
+import dto.response.MyStampDto;
 import repository.MemberRepository;
 import repository.StampRepository;
 
@@ -23,6 +25,11 @@ public class StampService {
 		this.stampRepository = stampRepository;
 		this.memberRepository = memberRepository;
 		this.mailService = mailService;
+	}
+
+	public MyStampDto findMyStamp(long member_id, long cafe_id) {
+		Stamp stamp = stampRepository.findStamp(member_id, cafe_id);
+		return MyStampDto.createMyStampDto(stamp);
 	}
 
 	public void saveStamp(Cafe cafe, String userPhoneNum, int count) throws SQLException {	//스탬프 저장하는 메서드

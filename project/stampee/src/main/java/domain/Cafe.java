@@ -8,7 +8,6 @@ public class Cafe {
 	private String email;
 	private String contact;
 
-
 	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
 		this.cafeId = cafeId;
 		this.name = name;
@@ -40,5 +39,13 @@ public class Cafe {
 
 	public String getContact() {
 		return contact;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 }
