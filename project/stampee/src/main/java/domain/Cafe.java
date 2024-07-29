@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Cafe {
 	private long cafeId;
-	private String name;
-	private String address;
+	private final String name;
+	private final String address;
 	private String password;
 	private String email;
 	private final String contact;
