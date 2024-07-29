@@ -1,5 +1,5 @@
 
-package service;
+package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,12 +8,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-	public class AccountService {
+	public class AccountController {
 
+		public VBox signuppagemain;
+		public VBox usersignuppage;
 		@FXML
 		private TextField idField;
 
@@ -37,6 +41,7 @@ import java.io.IOException;
 			String id = idField.getText();
 			String password = passwordField.getText();
 
+			System.out.println("Log in button clicked");
 			loadIndexPage();
 
 			// 로그인 검증 로직 추가
@@ -70,6 +75,9 @@ import java.io.IOException;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
+
+		public void AccountController(MouseEvent mouseEvent) {
 		}
 	}
 

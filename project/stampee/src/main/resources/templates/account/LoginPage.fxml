@@ -10,7 +10,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 
-<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="561.0" prefWidth="947.0" styleClass="main-container" stylesheets="@../../modern-style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.AccountService">
+<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="561.0" prefWidth="947.0" styleClass="main-container" stylesheets="@../../modern-style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.AccountController">
    <children>
       <fx:include source="../reusables/Header.fxml" />
       <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">
@@ -44,7 +44,7 @@
             </VBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button fx:id="loginButton" mnemonicParsing="false" prefWidth="208.0" text="Login">
+                  <Button fx:id="loginButton" mnemonicParsing="false" onMouseClicked="#AccountController" prefWidth="208.0" text="Login">
                      <HBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </HBox.margin>
