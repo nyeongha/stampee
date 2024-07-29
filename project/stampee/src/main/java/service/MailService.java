@@ -4,7 +4,11 @@ import java.util.Properties;
 import javax.mail.* ;
 import javax.mail.internet.* ;
 
+import util.MailAPIConfigLoader;
+
 public class MailService {
+	private static final String EMAIL = MailAPIConfigLoader.getEmail();
+	private static final String APP_PASSWORD = MailAPIConfigLoader.getAPP_PASSWORD();
 
 	/** TODO 사용 예제
 		try{
@@ -32,7 +36,7 @@ public class MailService {
 		Session session = Session.getInstance(prop, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {			// Gmail 계정 및 앱 비밀번호
-				return new PasswordAuthentication("human9062@gmail.com", "nofw axcy nasr vmou") ;
+				return new PasswordAuthentication(EMAIL, APP_PASSWORD) ;
 			}
 		}) ;
 

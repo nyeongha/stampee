@@ -16,50 +16,29 @@ public class ReviewService {
 		this.reviewRepository = reviewRepository;
 	}
 
-	public void deleteReview(long reviewId,long memberId){
-
-		reviewRepository.deleteReviewByReviewId(reviewId,memberId);
+	public void deleteReview(long reviewId, long memberId) {
+		reviewRepository.deleteReviewByReviewId(reviewId, memberId);
 	}
 
-	public void updateReview(long id,int rating,String contents){
-		Review review=new Review(id,rating,contents);
+	public void updateReview(long id, int rating, String contents) {
+		Review review = new Review(id, rating, contents);
 		reviewRepository.updateReview(review);
-
 	}
 
-	public void insertReview(int rating,String contents, Date date,Member member, Cafe cafe){
-
-		Review review=new Review(
-			rating,
-			contents,
-			date,
-			member,
-			cafe
-		);
+	public void insertReview(int rating, String contents, Date date, Member member, Cafe cafe) {
+		Review review = new Review(rating, contents, date, member, cafe);
 		reviewRepository.insertReview(review);
 	}
 
-	public List<Review> findAllReviews(){
+	public List<Review> findAllReviews() {
 		return reviewRepository.findAllReviews();
-
 	}
 
-	public List<Review> findReviewsByMemberId(long memberId){
+	public List<Review> findReviewsByMemberId(long memberId) {
 		return reviewRepository.findReviewsByMemberId(memberId);
-
 	}
 
 	public List<Review> findReviewsByCafeId(long cafeId) {
 		return reviewRepository.findReviewsByCafeId(cafeId);
 	}
-
-
-
-
-
-
-
-
-
-
-	}
+}

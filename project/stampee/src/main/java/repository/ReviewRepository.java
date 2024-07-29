@@ -1,6 +1,5 @@
 package repository;
 
-import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
 import java.sql.CallableStatement;
@@ -25,9 +24,9 @@ public abstract class ReviewRepository {
 		String sql = "select * "
 			+ "from review r "
 			+ "join member m "
-			+ "on r.member_id=m.member_id "
+			+ "on r.member_id = m.member_id "
 			+ "join cafe c2 "
-			+ "on r.cafe_id=c2.cafe_id ";
+			+ "on r.cafe_id = c2.cafe_id";
 
 		List<Review> reviews = new ArrayList<>();
 
@@ -37,7 +36,6 @@ public abstract class ReviewRepository {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("password"),
@@ -101,7 +99,7 @@ public abstract class ReviewRepository {
 		PreparedStatement pstmt = null;
 		String sql = "update review "
 			+ "set rating=?, contents=? "
-			+ "where review_id=?";
+			+ "where review_id = ?";
 
 		try {
 			conn = getConnection();
@@ -112,7 +110,6 @@ public abstract class ReviewRepository {
 			pstmt.setLong(3, review.getId());
 
 			pstmt.executeUpdate();
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
@@ -133,7 +130,6 @@ public abstract class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			// 리소스 정리
 			close(conn, cstmt);
 		}
 	}
@@ -143,15 +139,15 @@ public abstract class ReviewRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, " +
+		String sql = "select r.review_id, r.rating, r.contents, r.create_time, " +
 			"m.member_id, m.password, m.email, m.phone_number, " +
 			"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
-			"FROM review r " +
-			"JOIN member m ON r.member_id = m.member_id " +
-			"JOIN cafe c ON r.cafe_id = c.cafe_id " +
-			"WHERE m.member_id = ?";
+			"from review r " +
+			"join member m on r.member_id = m.member_id " +
+			"join cafe c on r.cafe_id = c.cafe_id " +
+			"where m.member_id = ?";
 
-		List<Review> reviews = new ArrayList<Review>();
+		List<Review> reviews = new ArrayList<>();
 
 		try {
 			conn = getConnection();
@@ -204,15 +200,15 @@ public abstract class ReviewRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, " +
+		String sql = "select r.review_id, r.rating, r.contents, r.create_time, " +
 			"m.member_id, m.password, m.email, m.phone_number, " +
 			"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
-			"FROM review r " +
-			"JOIN member m ON r.member_id = m.member_id " +
-			"JOIN cafe c ON r.cafe_id = c.cafe_id " +
-			"WHERE c.cafeId = ?";
+			"from review r " +
+			"join member m on r.member_id = m.member_id " +
+			"join cafe c on r.cafe_id = c.cafe_id " +
+			"where c.cafeId = ?";
 
-		List<Review> reviews = new ArrayList<Review>();
+		List<Review> reviews = new ArrayList<>();
 
 		try {
 			conn = getConnection();
@@ -249,13 +245,11 @@ public abstract class ReviewRepository {
 				);
 				reviews.add(review);
 			}
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, rs);
 		}
-
 		return reviews;
 	}
 

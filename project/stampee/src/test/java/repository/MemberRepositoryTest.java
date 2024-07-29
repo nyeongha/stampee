@@ -25,7 +25,7 @@ class MemberRepositoryTest {
 	void findUserByPhoneNum(){
 		//given
 		String phoneNum = TESTNUM;
-		Member member = Member.createMember(0L, "1234", "test@test.com", "010-1234-1234", TESTNUM);
+		Member member = Member.createMember(0L, "양소은", "test@test.com", "1234", TESTNUM);
 		memberRepository.userSignUp(member);
 
 		//when

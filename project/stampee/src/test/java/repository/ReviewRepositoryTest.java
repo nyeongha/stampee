@@ -61,7 +61,7 @@ public class ReviewRepositoryTest {
 			5, // rating
 			"Test contents", // contents
 			new Date(System.currentTimeMillis()), // create_time
-			new Member(1L, "Test User", "testpassword", "test@example.com", "010-1234-5678"),
+			Member.createMember(1L, "Test User", "testpassword", "test@example.com", "010-1234-5678"),
 			new Cafe(1L, "Test Cafe", "Test Address", "testpass", "testcafe@example.com", "010-9876-5432")
 		);
 
@@ -148,7 +148,6 @@ public class ReviewRepositoryTest {
 	@Test
 	@DisplayName("testFindReviewsByCafeId")
 	public void testFindReviewsByCafeId(){
-
 		//Given
 		long cafeId=1L;
 
@@ -160,9 +159,6 @@ public class ReviewRepositoryTest {
 		for (Review review : reviews) {
 			assertEquals(cafeId, review.getCafe().getId(), "리뷰의 memberId가 예상과 일치해야 합니다.");
 		}
-
-
-
 	}
 
 	@Test
@@ -177,11 +173,5 @@ public class ReviewRepositoryTest {
 
 		// then
 		assertEquals(2, reviews.size(), "리뷰 개수가 일치해야 합니다.");
-
 	}
-
-
-
-
-
 }

@@ -9,16 +9,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import domain.Cafe;
 import domain.Member;
 import domain.Stamp;
 
 public class StampRepository {
-	private static final Logger log = LoggerFactory.getLogger(StampRepository.class);
-
 	public void save(long memberId, long cafeId, int count) throws SQLException {
 		String sql = "{ call add_stamp(?, ?, ?)}";
 		Connection conn = null;
@@ -34,7 +29,6 @@ public class StampRepository {
 			conn.commit();
 		} catch (SQLException e) {
 			conn.rollback();
-			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, cstmt);
@@ -69,7 +63,6 @@ public class StampRepository {
 				return null;
 			}
 		}  catch (SQLException e) {
-			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, rs);
