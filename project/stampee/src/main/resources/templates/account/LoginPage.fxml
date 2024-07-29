@@ -10,10 +10,10 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 
-<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="561.0" prefWidth="947.0" styleClass="main-container" stylesheets="@../../modern-style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="service.MapService">
+<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="561.0" prefWidth="947.0" styleClass="main-container" stylesheets="@../../modern-style.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.AccountService">
    <children>
       <fx:include source="../reusables/Header.fxml" />
-      <VBox alignment="CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">
+      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">
          <children>
             <fx:include source="../reusables/LogoArea.fxml" />
             <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="843.0">
@@ -23,7 +23,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField disable="true" text="Input ID" />
+                  <TextField fx:id="idField" text="Input ID" />
                </children>
                <VBox.margin>
                   <Insets bottom="30.0" />
@@ -36,7 +36,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Text>
-                  <TextField disable="true" text="Input Password" />
+                  <TextField fx:id="passwordField" text="Input Password" />
                </children>
                <VBox.margin>
                   <Insets bottom="30.0" />
@@ -44,12 +44,12 @@
             </VBox>
             <HBox alignment="CENTER">
                <children>
-                  <Button mnemonicParsing="false" prefWidth="208.0" text="Login">
+                  <Button fx:id="loginButton" mnemonicParsing="false" prefWidth="208.0" text="Login">
                      <HBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="Sign Up">
+                  <Button fx:id="signUpButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="Sign Up">
                      <HBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </HBox.margin>

@@ -6,6 +6,9 @@
   <component name="NewModuleRootManager" inherit-compiler-output="true">
     <exclude-output />
     <exclude-output />
+    <exclude-output />
+    <exclude-output />
+    <exclude-output />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
 </module>
