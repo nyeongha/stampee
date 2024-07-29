@@ -1,39 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #fffff;" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <BorderPane layoutX="14.0" layoutY="113.0" prefHeight="200.0" prefWidth="200.0" />
-      <Text layoutX="24.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="카페 이름">
-         <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font>
-      </Text>
-      <Text layoutX="25.0" layoutY="53.0" strokeType="OUTSIDE" strokeWidth="0.0" text="카페 주소" />
-      <Pane layoutX="24.0" layoutY="69.0" prefHeight="200.0" prefWidth="552.0" style="-fx-background-color: #EEEEEE;">
-         <children>
-            <ImageView fitHeight="75.0" fitWidth="85.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/github.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="75.0" fitWidth="85.0" layoutX="116.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/github.png" />
-               </image>
-            </ImageView>
-            <ImageView fitHeight="75.0" fitWidth="85.0" layoutX="215.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/github.png" />
-               </image>
-            </ImageView>
-         </children></Pane>
-   </children>
-</AnchorPane>
+<VBox prefHeight="417.0" prefWidth="600.0" styleClass="main-container" stylesheets="@modern-style.css" xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.StampController">
+   <HBox styleClass="header">
+      <ImageView fitHeight="40" fitWidth="40" styleClass="logo" />
+      <Region HBox.hgrow="ALWAYS" />
+      <HBox spacing="10" styleClass="menu-items">
+         <Label text="My Review" />
+         <Label text="Reviews" />
+         <Label text="Coupon" />
+         <Label text="Contacts" />
+         <Label text="Edit" />
+      </HBox>
+   </HBox>
+   <AnchorPane prefHeight="200.0" prefWidth="200.0">
+      <children>
+         <VBox spacing="10">
+            <AnchorPane prefHeight="362.0" prefWidth="595.0">
+               <children>
+                  <Label fx:id="cafeName" layoutX="14.0" layoutY="14.0" style="-fx-font-size: 24px; -fx-font-weight: bold;">
+                     <font>
+                        <Font name="Lucida Console" size="12.0" />
+                     </font></Label>
+                        <Pane layoutX="18.0" layoutY="93.0" maxWidth="570" prefHeight="20.0" prefWidth="570.0" style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
+                     <children>
+                        <Label layoutX="2.0" layoutY="1.0" style="-fx-font-size: 16px;" text="시그니처 메뉴!" />
+                     </children>
+                  </Pane>
+                  <Label fx:id="cafeAddress" layoutX="17.0" layoutY="43.0" prefHeight="18.0" prefWidth="570.0" style="-fx-font-size: 14px;" />
+                                    <Pane layoutX="19.0" layoutY="68.0" maxWidth="570.0" prefHeight="20.0" prefWidth="570.0" style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
+                     <Label style="-fx-font-size: 16px;" text="별다방 쿠폰: 3장" />
+                  </Pane>
+                        <Pane layoutX="16.0" layoutY="118.0" maxWidth="570" prefHeight="19.0" prefWidth="570.0" style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
+                     <Label style="-fx-font-size: 16px;" text="시그니처 메뉴!" />
+                  </Pane>
+                  <Region layoutX="16.0" layoutY="148.0" prefHeight="200.0" prefWidth="570.0" style="-fx-background-color: #EEEEEE;" />
+                  <HBox layoutX="26.0" layoutY="158.0" prefHeight="90.0" prefWidth="550.0" styleClass="stamp-row">
+                     <ImageView fx:id="stamp1" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp2" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp3" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp4" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp5" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                  </HBox>
+                  <HBox layoutX="26.0" layoutY="248.0" prefHeight="90.0" prefWidth="550.0" styleClass="stamp-row">
+                     <ImageView fx:id="stamp6" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp7" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp8" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp9" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                     <ImageView fx:id="stamp10" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp" />
+                  </HBox>
+               </children>
+            </AnchorPane>
+         </VBox>
+      </children>
+   </AnchorPane>
+   <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="600.0" />
+</VBox>
