@@ -55,9 +55,7 @@ public class Cafe {
 		return cafeId;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+
 
 	public void setCafeId(long cafeId) {
 		this.cafeId = cafeId;
