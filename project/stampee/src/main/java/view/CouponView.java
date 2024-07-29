@@ -20,18 +20,19 @@ public class CouponView {
 
 	public VBox createInfoBox(String name, String address) {
 		VBox infoBox = new VBox(5);
-		infoBox.setPrefWidth(200); // 카페 정보 영역의 너비 고정
+		infoBox.setPrefWidth(160); // 카페 정보 영역의 너비 고정
 		Label nameLabel = new Label(name);
 		nameLabel.getStyleClass().add("cafe-name");
 		Label addressLabel = new Label(address);
 		addressLabel.getStyleClass().add("cafe-address");
+		addressLabel.setWrapText(true);
 		infoBox.getChildren().addAll(nameLabel, addressLabel);
 		return infoBox;
 	}
 
 	public VBox createCouponBox(int couponCount, int expiredCount) {
 		VBox couponBox = new VBox(5);
-		couponBox.setAlignment(Pos.CENTER);
+		couponBox.setAlignment(Pos.CENTER_LEFT);
 		couponBox.setPrefWidth(100); // 쿠폰 정보 영역의 너비 고정
 		ImageView couponIcon = createImageView("/image/gift-card.png", 40, 40);
 		Label couponLabel = new Label("보유 쿠폰: " + couponCount);
@@ -40,7 +41,7 @@ public class CouponView {
 		return couponBox;
 	}
 
-	public HBox createStampAndButtonBox(int stampCount) {
+	public HBox createStampAndButtonBox(int stampCount, Button shareButton) {
 		HBox stampAndButtonBox = new HBox(10);
 		stampAndButtonBox.setAlignment(Pos.CENTER_LEFT);
 		HBox.setHgrow(stampAndButtonBox, Priority.ALWAYS); // 남은 공간을 모두 사용
@@ -48,12 +49,15 @@ public class CouponView {
 		GridPane stampGrid = createStampGrid(stampCount);
 		HBox.setHgrow(stampGrid, Priority.ALWAYS); // 스탬프 그리드가 가능한 많은 공간을 사용하도록 설정
 
+		stampAndButtonBox.getChildren().addAll(stampGrid, shareButton);
+		return stampAndButtonBox;
+	}
+
+	public Button createShareButton() {
 		Button shareButton = new Button("공유");
 		shareButton.getStyleClass().add("share-button");
 		shareButton.setPrefWidth(60);
-
-		stampAndButtonBox.getChildren().addAll(stampGrid, shareButton);
-		return stampAndButtonBox;
+		return shareButton;
 	}
 
 	public GridPane createStampGrid(int stampCount) {

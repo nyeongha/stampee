@@ -39,6 +39,35 @@ public class MemberRepository {
 		return member;
 	}
 
+	public Member findUserById(long memberId){
+		String sql = "select * "
+			+ "from member "
+			+ "where member_id = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
+			rs = pstmt.executeQuery();
+
+			if(rs.next()){
+				return Member.createMember(rs.getLong("member_id"), rs.getString("username"),
+					rs.getString("email"), rs.getString("password"), rs.getString("phone_number"));
+			}else{
+				return null;
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+		finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
 	public Member findUserByPhoneNum(String phoneNum) {
 		String sql = "select * from member "
 			+ "where phone_number = ?";
