@@ -35,12 +35,12 @@ public class CafeService {
 		}
 	}
 
-	public boolean login(Cafe cafe) {
-		boolean loginResult = cafeRepository.login(cafe);
+	public boolean login(String email, String password) {
+		boolean loginResult = cafeRepository.login(email, password);
 		if (loginResult) {
-			log.info("Successfully logged in cafe: {}", cafe.getEmail());
+			log.info("Successfully logged in cafe: {}", email);
 		} else {
-			log.warn("Failed login attempt for cafe: {}", cafe.getEmail());
+			log.warn("Failed login attempt for cafe: {}", email);
 		}
 		return loginResult;
 	}
