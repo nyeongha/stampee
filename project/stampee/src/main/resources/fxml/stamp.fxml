@@ -82,6 +82,13 @@
                 <ScrollPane fx:id="reviewContainer" prefHeight="520.0" prefWidth="560.0" style="-fx-background-color: #EEEEEE;"/>
                 <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="570.0"/>
             </VBox>
+            <HBox styleClass="footer">
+                <VBox styleClass="footer-content">
+                    <ImageView fitHeight="60" fitWidth="60" styleClass="footer-logo"/>
+                    <Label text="STAMPEE" styleClass="footer-title"/>
+                    <Label text="STAMP AND COLLECT!" styleClass="footer-subtitle"/>
+                </VBox>
+            </HBox>
         </VBox>
     </content>
 </ScrollPane>
