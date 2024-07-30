@@ -70,7 +70,7 @@ public class CouponController {
 
 	public String showNumberPadPopup() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/numberPad.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/numberPad.fxml"));
 			Parent root = loader.load();
 			NumberPadController controller = loader.getController();
 
