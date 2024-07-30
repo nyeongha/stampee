@@ -5,12 +5,8 @@ import domain.Review;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class ReviewView {
-	private static final double BLOCK_WIDTH = 300;
-	private static final double BLOCK_HEIGHT = 100;
 	private static final double SPACING = 10;
 	private static final String CONTAINER_STYLE = "-fx-padding: 10px;";
 	private static final String BLOCK_CONTAINER_STYLE = "-fx-padding: 10px; -fx-border-color: black; -fx-border-width: 1px;";
@@ -38,21 +34,12 @@ public class ReviewView {
 	}
 
 	private VBox createBlockContainer(Review review) {
-		Rectangle block = createBlock();
 		Label reviewLabel = createReviewLabel(review);
 
-		VBox blockContainer = new VBox(5, block, reviewLabel);
+		VBox blockContainer = new VBox(5, reviewLabel);
 		blockContainer.setStyle(BLOCK_CONTAINER_STYLE);
 
 		return blockContainer;
-	}
-
-	private Rectangle createBlock() {
-		Rectangle block = new Rectangle(BLOCK_WIDTH, BLOCK_HEIGHT);
-		block.setFill(Color.LIGHTGRAY);
-		block.setStroke(Color.BLACK);
-
-		return block;
 	}
 
 	private Label createReviewLabel(Review review) {

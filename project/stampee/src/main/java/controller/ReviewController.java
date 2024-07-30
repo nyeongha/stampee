@@ -13,6 +13,7 @@ import service.ReviewService;
 import view.ReviewView;
 
 public class ReviewController {
+	private long cafeId;
 	@FXML private ScrollPane scrollPane;
 	private final ReviewService reviewService;
 	private final ReviewView reviewView = new ReviewView();
@@ -42,5 +43,10 @@ public class ReviewController {
 		scrollPane.setFitToWidth(true); // 스크롤을 가로와 세로로 사용 가능하게 함
 		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS); // 수평 스크롤바 항상 표시
 		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // 수직 스크롤바 필요 시 표시
+	}
+
+	public void setCafeId(long cafeId){
+		this.cafeId = cafeId;
+		System.out.println("cafeId: " + cafeId);
 	}
 }
