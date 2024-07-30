@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Single Day';
+    src: url('/font/SingleDay-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Single Day';
+}
+
+
 .cafe-item {
     -fx-background-color: white;
     -fx-background-radius: 8;
@@ -9,12 +19,12 @@
 }
 
 .cafe-name {
-    -fx-font-size: 16;
+    -fx-font-size: 20;
     -fx-font-weight: bold;
 }
 
 .cafe-address {
-    -fx-font-size: 12;
+    -fx-font-size: 15;
     -fx-text-fill: #666;
 }
 
@@ -27,7 +37,7 @@
 .share-button {
     -fx-background-color: #333;
     -fx-text-fill: white;
-    -fx-font-size: 12;
+    -fx-font-size: 15;
     -fx-padding: 5 10;
     -fx-background-radius: 5;
     -fx-min-width: 60;

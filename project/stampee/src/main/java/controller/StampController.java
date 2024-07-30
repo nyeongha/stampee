@@ -51,7 +51,7 @@ public class StampController implements Initializable {
 		try {
 			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
 			mapContainer.getChildren().add(mapPane);
-			Pane reviewPane = FXMLLoader.load(getClass().getResource("/reviewListView.fxml"));
+			Pane reviewPane = FXMLLoader.load(getClass().getResource("/fxml/reviewListView.fxml"));
 			reviewContainer.setContent(reviewPane);
 		} catch (IOException e) {
 			e.printStackTrace();

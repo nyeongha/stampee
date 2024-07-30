@@ -40,7 +40,7 @@ public class InviteService {
 	// 위의 내용을 활용해서 프로모션 진행도 가능
 	private boolean giveStamp(String email){
 		String getMemberId = "Select member_id FROM member WHERE email = ?" ;
-		String updateStamp = "UPDATE stamp SET count = count + 1 WHERE member_id = ? AND   ";
+		String updateStamp = "UPDATE stamp SET count = count + 1 WHERE member_id = ? AND cafe_id = ?	";
 
 		try {
 			Connection conn = getConnection();

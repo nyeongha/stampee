@@ -41,12 +41,10 @@ public class NumberPadController {
 	@FXML
 	private void handleOK() {
 		String inputText = inputField.getText().trim();
-		System.out.println("Input phone number: " + inputText);
 
 		try {
 			// PhoneNumberFormatter를 사용하여 전화번호 형식 변환
 			String formattedPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputText);
-			System.out.println("Formatted phone number: " + formattedPhoneNumber);
 
 			String sql = "SELECT COUNT(*) FROM member WHERE phone_number = ?";
 			try (Connection conn = getConnection();
@@ -56,29 +54,24 @@ public class NumberPadController {
 
 				// 실제 SQL 쿼리 내용을 출력
 				String actualSQL = sql.replace("?", "'" + formattedPhoneNumber + "'");
-				System.out.println("Executing query: " + actualSQL);
 
 				try (ResultSet rs = pstmt.executeQuery()) {
 					if (rs.next()) {
 						int count = rs.getInt(1);
-						System.out.println("Query result count: " + count);
 						if (count > 0) {
 							showSuccessPopup();
 						} else {
 							showFailPopup();
 						}
 					} else {
-						System.out.println("No results returned from query");
 						showFailPopup();
 					}
 				}
 			}
 		} catch (IllegalArgumentException e) {
-			System.out.println("Invalid phone number format: " + e.getMessage());
 			showFailPopup();
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.out.println("SQLException occurred: " + e.getMessage());
 			showFailPopup();
 		}
 		closePopup();
