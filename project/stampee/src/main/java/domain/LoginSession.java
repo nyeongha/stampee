@@ -17,7 +17,7 @@ public class LoginSession {
 			instance = new LoginSession(loggedMemberDto);
 			return instance;
 		}
-		return null;
+		return instance;
 	}
 
 	public static  synchronized LoginSession getInstance(){
@@ -29,5 +29,9 @@ public class LoginSession {
 
 	public void clearSession() {
 		instance = null;
+	}
+
+	public LoggedMemberDto getLoggedMemberDto() {
+		return loggedMemberDto;
 	}
 }

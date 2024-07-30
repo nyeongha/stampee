@@ -47,7 +47,7 @@ public class CafeMainPageController implements Initializable {
 
 	public void setMember(Cafe cafe) {
 		cafeNameTextField.setText(cafe.getName());
-		memberCountText.setText(cafeRepository.fint);
+		// memberCountText.setText(cafeRepository.fint);
 		// emailLabel.setText(cafe.getEmail());
 		// phoneNumberLabel.setText(cafe.getPhoneNumber());
 		// addressLabel.setText(cafe.getAddress());
