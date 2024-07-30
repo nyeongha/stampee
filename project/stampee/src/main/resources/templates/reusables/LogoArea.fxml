@@ -6,18 +6,18 @@
 <?import javafx.scene.layout.*?>
 
 <VBox alignment="TOP_CENTER" xmlns="http://javafx.com/javafx/8">
-    <children>
-        <Hyperlink>
-            <graphic>
-                <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="/image/stampee_logo.png" />
-                        <Image url="@../../image/stampee_logo.png" />
-                    </image>
-                </ImageView>
-            </graphic>
-        </Hyperlink>
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="STAMPEE" />
-        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="STAMP AND COLLECT!" />
-    </children>
+   <children>
+      <Hyperlink>
+         <graphic>
+             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+                 <image>
+                     <Image url="/image/stampee_logo.png" />
+                     <Image url="@../../image/stampee_logo.png" />
+                 </image>
+             </ImageView>
+         </graphic>
+      </Hyperlink>
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="STAMPEE" />
+      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="STAMP AND COLLECT!" />
+   </children>
 </VBox>
