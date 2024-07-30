@@ -1,3 +1,7 @@
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
 .root {
     -fx-background-color: #f0f0f0;
     -fx-background-radius: 10;
@@ -5,6 +9,7 @@
     -fx-border-color: #cccccc;
     -fx-border-width: 1;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+    -fx-font-family: 'Jua';
 }
 
 .success-message {

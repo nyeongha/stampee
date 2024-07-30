@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Jua';
+}
 .signup-container {
     -fx-padding: 20;
     -fx-spacing: 10;

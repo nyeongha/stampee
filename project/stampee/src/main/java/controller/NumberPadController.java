@@ -1,28 +1,30 @@
 package controller;
 
-import static config.DBConnectionUtil.*;
-
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 
 import formatter.PhoneNumberFormatter;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import repository.MemberRepository;
+import service.UserService;
 
 public class NumberPadController {
-	@FXML
-	private TextField inputField;
-
+	private final UserService userService;
 	private StringBuilder inputBuilder = new StringBuilder();
+	@FXML private TextField inputField;
+
+	public NumberPadController() {
+		MemberRepository memberRepository = new MemberRepository();
+		userService = new UserService(memberRepository);
+	}
 
 	@FXML
 	private void handleDigit(javafx.event.ActionEvent event) {
@@ -40,46 +42,18 @@ public class NumberPadController {
 
 	@FXML
 	private void handleOK() {
-		String inputText = inputField.getText().trim();
-
 		try {
-			// PhoneNumberFormatter를 사용하여 전화번호 형식 변환
-			String formattedPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputText);
-
-			String sql = "SELECT COUNT(*) FROM member WHERE phone_number = ?";
-			try (Connection conn = getConnection();
-				 PreparedStatement pstmt = conn.prepareStatement(sql)) {
-
-				pstmt.setString(1, formattedPhoneNumber);
-
-				// 실제 SQL 쿼리 내용을 출력
-				String actualSQL = sql.replace("?", "'" + formattedPhoneNumber + "'");
-
-				try (ResultSet rs = pstmt.executeQuery()) {
-					if (rs.next()) {
-						int count = rs.getInt(1);
-						if (count > 0) {
-							showSuccessPopup();
-						} else {
-							showFailPopup();
-						}
-					} else {
-						showFailPopup();
-					}
-				}
-			}
+			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputField.getText().trim());
+			userService.findMemberByPhoneNumber(toPhoneNumber);
 		} catch (IllegalArgumentException e) {
-			showFailPopup();
-		} catch (SQLException e) {
-			e.printStackTrace();
 			showFailPopup();
 		}
 		closePopup();
+		showSuccessPopup();
 	}
 
 	// 팝업창의 동작 관리를 위해 메서드로 따로 관리한다네요
 	private void closePopup() {
-
 		inputField.getScene().getWindow().hide();
 	}
 
@@ -114,5 +88,11 @@ public class NumberPadController {
 	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
 	public TextField getInputField() {
 		return inputField;
+	}
+
+	@FXML
+	private void handleClose(ActionEvent event) {
+		Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+		stage.close();
 	}
 }

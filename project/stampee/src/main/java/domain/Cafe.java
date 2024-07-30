@@ -1,7 +1,5 @@
 package domain;
 
-import java.util.List;
-
 public class Cafe {
 	private long cafeId;
 	private final String name;
@@ -9,7 +7,6 @@ public class Cafe {
 	private String password;
 	private String email;
 	private final String contact;
-	private List<Signature> signatures;
 
 	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
 		this.cafeId = cafeId;

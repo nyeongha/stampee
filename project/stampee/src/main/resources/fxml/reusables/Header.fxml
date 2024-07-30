@@ -2,10 +2,9 @@
 
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8">
+<HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HeaderController">
     <children>
         <ImageView fitHeight="40" fitWidth="40" styleClass="logo">
             <image>
@@ -14,11 +13,9 @@
         </ImageView>
         <HBox spacing="10" styleClass="menu-items">
             <children>
-                <Label text="My Review"/>
-                <Label text="Reviews"/>
-                <Label text="Coupon"/>
-                <Label text="Contacts"/>
-                <Label text="Edit"/>
+                <Label text="My Review" onMouseClicked="#handleMyReview"/>
+                <Label text="Reviews" onMouseClicked="#handleReviews"/>
+                <Label text="MyCoupon" onMouseClicked="#handleMyCoupon"/>
                 <Region HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>
