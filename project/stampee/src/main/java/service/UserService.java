@@ -19,4 +19,12 @@ public class UserService {
 		}
 		return  findMember;
 	}
+
+	public Member findMemberByPhoneNumber(String phoneNumber){
+		Member findMember = memberRepository.findUserByPhoneNum(phoneNumber);
+		if(findMember == null){
+			throw new IllegalArgumentException(NOT_FOUND_MEMBER.getErrorMessage());
+		}
+		return  findMember;
+	}
 }
