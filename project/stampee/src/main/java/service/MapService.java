@@ -6,7 +6,6 @@ import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.control.Label;

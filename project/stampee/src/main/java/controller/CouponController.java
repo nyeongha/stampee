@@ -1,7 +1,9 @@
 package controller;
 
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ResourceBundle;
 
 import javax.mail.MessagingException;
 
@@ -10,6 +12,7 @@ import dto.response.MyCouponDto;
 import formatter.PhoneNumberFormatter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -26,7 +29,7 @@ import service.StampService;
 import service.UserService;
 import view.CouponView;
 
-public class CouponController {
+public class CouponController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final UserService userService;
@@ -44,7 +47,11 @@ public class CouponController {
 		userService = new UserService(memberRepository);
 	}
 
-	public void initData(long memberId) {
+	@Override
+	public void initialize(URL url, ResourceBundle resourceBundle) {
+		// LoggedMemberDto loggedMemberDto = LoginSession.getInstance().getLoggedMemberDto();
+		// long memberId = loggedMemberDto.getMemberId();
+		long memberId = 39l;
 		List<MyCouponDto> myCoupons = couponService.getMyCoupon(memberId);
 		for (MyCouponDto myCoupon : myCoupons) {
 			addCafeItem(myCoupon.getCafeId(), memberId,
@@ -53,6 +60,7 @@ public class CouponController {
 				couponService.getExpiringCouponCount(memberId, myCoupon.getCafeId()));
 		}
 	}
+
 
 	@FXML
 	public void handleShareButtonPress(long memberId, long cafeId) {

@@ -1,4 +1,4 @@
-package dto;
+package dto.response;
 
 public class LoggedMemberDto {
 	private long memberId;
