@@ -16,32 +16,18 @@ import javafx.stage.Stage;
 public class UserSignupController {public VBox signuppagemain;
 	public TextField emailField;
 	public TextField nameField;
+	public TextField passwordField;
 	public TextField contactField;
-	public TextField menuField;
-	public TextField menuField1;
-	public TextField menuField2;
-	public TextField addressField;
-	@FXML
-	private TextField idField;
-
-	@FXML
-	private TextField passwordField;
-
-	@FXML
-	private Button loginButton;
-
 	@FXML
 	private Button signUpButton;
 
 	@FXML
 	public void initialize() {
-		loginButton.setOnAction(this::handleLoginButtonAction);
 		signUpButton.setOnAction(this::handleSignUpButtonAction);
 	}
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
-		String id = idField.getText();
 		String password = passwordField.getText();
 
 		System.out.println("Log in button clicked");
@@ -72,9 +58,9 @@ public class UserSignupController {public VBox signuppagemain;
 		try {
 			Parent indexPage = FXMLLoader.load(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
 			Scene scene = new Scene(indexPage);
-			Stage stage = (Stage) loginButton.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			// Stage stage = (Stage) loginButton.getScene().getWindow();
+			// stage.setScene(scene);
+			// stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -7,12 +7,16 @@ public class LoggedMemberDto {
 	private String phoneNumber;
 	private String username;
 
-	private LoggedMemberDto(long memberId, String password, String email, String phoneNumber, String username) {
+	public LoggedMemberDto(long memberId, String password, String email, String phoneNumber, String username) {
 		this.memberId = memberId;
 		this.password = password;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.username = username;
+	}
+
+	public LoggedMemberDto() {
+
 	}
 
 	public long getMemberId() {
