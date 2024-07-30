@@ -1,6 +1,5 @@
 package controller;
 
-import domain.Cafe;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
@@ -9,19 +8,26 @@ import service.CafeService;
 
 public class SignupController {
 
-	@FXML private TextField nameField;
+	@FXML
+	private TextField nameField;
 
-	@FXML private TextField addressField;
+	@FXML
+	private TextField addressField;
 
-	@FXML private PasswordField passwordField;
+	@FXML
+	private PasswordField passwordField;
 
-	@FXML private PasswordField confirmPasswordField;
+	@FXML
+	private PasswordField confirmPasswordField;
 
-	@FXML private TextField emailField;
+	@FXML
+	private TextField emailField;
 
-	@FXML private TextField contactField;
+	@FXML
+	private TextField contactField;
 
-	@FXML private VBox signupContainer;
+	@FXML
+	private VBox signupContainer;
 
 	private final CafeService cafeService;
 

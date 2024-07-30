@@ -12,7 +12,7 @@ public class NumberPadController {
 
 	@FXML
 	private void handleDigit(javafx.event.ActionEvent event) {
-		Button button = (Button) event.getSource();
+		Button button = (Button)event.getSource();
 		String digit = button.getText();
 		inputBuilder.append(digit);
 		inputField.setText(inputBuilder.toString());

@@ -46,20 +46,4 @@ class ReviewRepositoryTest {
 		int cnt2 = reviewRepository.findAllReviews().size();
 		assertEquals(cnt1 + 1, cnt2, "The number of reviews should be incremented by 1.");
 	}
-
-	@Test
-	void updateReview() {
-	}
-
-	@Test
-	void deleteReviewByReviewId() {
-	}
-
-	@Test
-	void findReviewsByMemberId() {
-	}
-
-	@Test
-	void findReviewsByCafeId() {
-	}
 }

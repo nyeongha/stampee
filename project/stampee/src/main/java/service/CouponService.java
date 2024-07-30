@@ -23,19 +23,20 @@ public class CouponService {
 	public void expiredCoupon() throws MessagingException {
 		List<ExpiredCouponDto> expiringCoupons = couponRepository.findExpiringCoupons(LocalDate.now());
 		for (ExpiredCouponDto expiringCoupon : expiringCoupons) {
-			mailService.sendMail(expiringCoupon.getMemberEmail(), "human9062@gmail.com", expiringCoupon.toString(), EXPIRED_COUPON.getMessage());
+			mailService.sendMail(expiringCoupon.getMemberEmail(), "human9062@gmail.com", expiringCoupon.toString(),
+				EXPIRED_COUPON.getMessage());
 		}
 	}
 
-	public int getMyCount(long memberId, long cafeId){
+	public int getMyCount(long memberId, long cafeId) {
 		return couponRepository.findCouponByMemberIdAndCafeId(memberId, cafeId);
 	}
 
-	public List<MyCouponDto> getMyCoupon(long memberId){
+	public List<MyCouponDto> getMyCoupon(long memberId) {
 		return couponRepository.findCouponByMemberId(memberId);
 	}
 
-	public int getExpiringCouponCount(long memberId, long cafeId){
+	public int getExpiringCouponCount(long memberId, long cafeId) {
 		return couponRepository.findExpiringCouponCount(memberId, cafeId);
 	}
 }

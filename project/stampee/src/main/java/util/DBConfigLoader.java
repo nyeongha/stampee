@@ -5,7 +5,6 @@ import static exception.ErrorMessage.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.NoSuchElementException;
 import java.util.Properties;
 
 public class DBConfigLoader {
@@ -13,7 +12,8 @@ public class DBConfigLoader {
 	private static boolean isInitialized = false;
 
 	static {
-		try (InputStream input = GoogleAPIConfigLoader.class.getClassLoader().getResourceAsStream("config.properties")) {
+		try (InputStream input = GoogleAPIConfigLoader.class.getClassLoader()
+			.getResourceAsStream("config.properties")) {
 			if (input == null) {
 				throw new FileNotFoundException(NOT_FOUND_CONFIG.getErrorMessage());
 			} else {
@@ -24,7 +24,8 @@ public class DBConfigLoader {
 			e.getMessage();
 		}
 	}
-	public static String getURL(){
+
+	public static String getURL() {
 		if (!isInitialized) {
 			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
@@ -35,7 +36,7 @@ public class DBConfigLoader {
 		return url;
 	}
 
-	public static String getUsername(){
+	public static String getUsername() {
 		if (!isInitialized) {
 			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
@@ -46,7 +47,7 @@ public class DBConfigLoader {
 		return username;
 	}
 
-	public static String getPasswordD(){
+	public static String getPasswordD() {
 		if (!isInitialized) {
 			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
@@ -56,5 +57,4 @@ public class DBConfigLoader {
 		}
 		return password;
 	}
-
 }

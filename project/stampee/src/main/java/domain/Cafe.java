@@ -2,7 +2,6 @@ package domain;
 
 import java.util.List;
 
-
 public class Cafe {
 	private long cafeId;
 	private final String name;
@@ -33,7 +32,6 @@ public class Cafe {
 		return address;
 	}
 
-
 	public String getPassword() {
 		return password;
 	}
@@ -47,15 +45,9 @@ public class Cafe {
 	}
 
 
-	public List<Signature> getSignatures() {
-		return signatures;
-	}
-
 	public long getId() {
 		return cafeId;
 	}
-
-
 
 	public void setCafeId(long cafeId) {
 		this.cafeId = cafeId;
