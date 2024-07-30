@@ -35,7 +35,6 @@ public class ReviewController {
 	}
 
 	private void setScrollPane(HBox reviewsContainer) {
-		// ScrollPane 설정
 		scrollPane.setContent(reviewsContainer);
 		scrollPane.setFitToHeight(true); // 스크롤을 수직으로만 사용 가능하게 함
 		scrollPane.setFitToWidth(true); // 스크롤을 가로와 세로로 사용 가능하게 함
