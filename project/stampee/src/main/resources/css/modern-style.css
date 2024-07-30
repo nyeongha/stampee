@@ -92,3 +92,54 @@
     -fx-font-size: 12;
     -fx-text-fill: #888;
 }
+
+.cafe-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-background-color: #F0F0F0;
+    -fx-padding: 10;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.cafe-address {
+    -fx-font-size: 14px;
+    -fx-text-fill: #666666;
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 5;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+.info-box {
+    -fx-background-color: #F5F5F5;
+    -fx-padding: 10;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-margin: 5 0;
+}
+
+.coupon-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #444444;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+    -fx-margin: 10 0;
+}
+
+.signature-label {
+    -fx-font-size: 16px;
+    -fx-text-fill: #444444;
+}
