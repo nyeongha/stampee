@@ -48,41 +48,15 @@ public class Main extends Application {
 	// }
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
 		Parent root = loader.load();
 
-		StampController controller = loader.getController();
-		controller.initData(37L, 9L); // 예시로 memberId 1을 사용
+		CouponController controller = loader.getController();
+		controller.initData(37L); // 예시로 memberId 1을 사용
 
-		primaryStage.setTitle("Stamp Viewer");
+		primaryStage.setTitle("Coupon Viewer");
 		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
-
-		// try {
-		//
-		// 	File file = new File("src/main/resources/fxml/stamp.fxml");
-		// 	if (!file.exists()) {
-		// 		System.out.println("FXML file does not exist at: " + file.getAbsolutePath());
-		// 	} else {
-		// 		FXMLLoader loader = new FXMLLoader(file.toURI().toURL());
-		//
-		// 		Parent root = loader.load();
-		//
-		// 		StampController controller = loader.getController();
-		// 		controller.initData(37L, 9L);
-		//
-		// 		primaryStage.setTitle("Stamp Viewer");
-		// 		primaryStage.setScene(new Scene(root));
-		// 		primaryStage.show();
-		//
-		// 	}
-		//
-		//
-		// } catch (Exception e) {
-		// 	e.printStackTrace();
-		// 	System.out.println("Error message: " + e.getMessage());
-		// }
 	}
 
 	public static void main(String[] args) {
