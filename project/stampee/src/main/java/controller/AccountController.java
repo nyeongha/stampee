@@ -16,10 +16,8 @@ import java.io.IOException;
 
 public class AccountController {
 
-	public VBox signuppagemain;
-	public VBox usersignuppage;
 	@FXML
-	private TextField idField;
+	public TextField emailField;
 
 	@FXML
 	private TextField passwordField;
@@ -38,7 +36,7 @@ public class AccountController {
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
-		String id = idField.getText();
+		String email = emailField.getText();
 		String password = passwordField.getText();
 
 		System.out.println("Log in button clicked");
@@ -80,4 +78,3 @@ public class AccountController {
 	public void AccountController(MouseEvent mouseEvent) {
 	}
 }
-

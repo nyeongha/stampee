@@ -50,38 +50,37 @@ public class Main extends Application {
 	// 	launch(args);
 	// }
 
-	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-		Parent root = loader.load();
-
-		StampController controller = loader.getController();
-		controller.initData(39L, 1L); // 예시로 memberId 1을 사용
-
-		primaryStage.setTitle("Stamp Viewer");
-		primaryStage.setScene(new Scene(root));
-		primaryStage.show();
-	}
-
-	public static void main(String[] args) {
-		launch(args);
-	}
-
-	// @Override
-	// public void start(Stage primaryStage) {
-	// 	try {
-	// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
-	// 		Parent root = loader.load();
-	// 		Scene scene = new Scene(root);
-	// 		primaryStage.setTitle("Review Block Example");
-	// 		primaryStage.setScene(scene);
-	// 		primaryStage.show();
-	// 	} catch (Exception e) {
-	// 		e.printStackTrace();
-	// 	}
+	// public void start(Stage primaryStage) throws Exception {
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/CafeSignupPage.fxml"));
+	// 	Parent root = loader.load();
+	//
+	// 	StampController controller = loader.getController();
+	// 	controller.initData(39L, 1L); // 예시로 memberId 1을 사용
+	//
+	// 	primaryStage.setTitle("Stamp Viewer");
+	// 	primaryStage.setScene(new Scene(root));
+	// 	primaryStage.show();
 	// }
 	//
 	// public static void main(String[] args) {
 	// 	launch(args);
 	// }
-}
 
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			primaryStage.setTitle("Review Block Example");
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void main(String[] args) {
+		launch(args);
+	}
+}
