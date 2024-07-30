@@ -38,8 +38,8 @@ public class ReviewRepository {
 
 		try (
 			Connection conn = getConnection();
-			 PreparedStatement pstmt = conn.prepareStatement(sql);
-			 ResultSet rs = pstmt.executeQuery()) {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			ResultSet rs = pstmt.executeQuery()) {
 
 			while (rs.next()) {
 				long reviewId = rs.getLong("review_id");

@@ -3,15 +3,11 @@ package controller;
 import java.sql.SQLException;
 import java.util.List;
 
-import domain.Member;
 import domain.Review;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
-import repository.CafeRepository;
-import repository.MemberRepository;
-import repository.ReviewRepository;
 import service.ReviewService;
 
 public class ReviewController {

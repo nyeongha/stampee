@@ -1,4 +1,5 @@
 package repository;
+
 import static config.DBConnectionUtil.*;
 import static template.ConnectionClose.*;
 
@@ -39,7 +40,7 @@ public class MemberRepository {
 		return member;
 	}
 
-	public Member findUserById(long memberId){
+	public Member findUserById(long memberId) {
 		String sql = "select * "
 			+ "from member "
 			+ "where member_id = ?";
@@ -54,16 +55,15 @@ public class MemberRepository {
 			pstmt.setLong(1, memberId);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				return Member.createMember(rs.getLong("member_id"), rs.getString("username"),
 					rs.getString("email"), rs.getString("password"), rs.getString("phone_number"));
-			}else{
+			} else {
 				return null;
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}
-		finally {
+		} finally {
 			close(conn, pstmt, rs);
 		}
 	}

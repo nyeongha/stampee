@@ -1,6 +1,5 @@
 package domain;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 public class Review {
@@ -30,9 +29,9 @@ public class Review {
 	}
 
 	public Review(long reviewId, int rating, String contents) {
-		this.reviewId=reviewId;
-		this.rating=rating;
-		this.contents=contents;
+		this.reviewId = reviewId;
+		this.rating = rating;
+		this.contents = contents;
 	}
 
 	public long getId() {

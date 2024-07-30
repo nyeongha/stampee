@@ -6,15 +6,12 @@ import com.google.maps.model.GeocodingResult;
 import com.google.maps.model.LatLng;
 
 import javafx.fxml.FXML;
-import javafx.scene.layout.VBox;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
 import javafx.scene.control.Label;
 import util.GoogleAPIConfigLoader;
 
 public class MapService {
-
-	@FXML private VBox stampContainer;
 	@FXML private WebView webView;
 	@FXML private Label storeNameLabel;
 	@FXML private Label addressLabel;
@@ -22,7 +19,7 @@ public class MapService {
 	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
-	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();;
+	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();
 
 	@FXML
 	public void initialize() {
@@ -43,7 +40,7 @@ public class MapService {
 			GeocodingResult[] results = GeocodingApi.geocode(context, location).await();
 			if (results.length > 0) {
 				LatLng latLng = results[0].geometry.location;
-				return new Float[]{(float) latLng.lat, (float) latLng.lng};
+				return new Float[] {(float)latLng.lat, (float)latLng.lng};
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -71,10 +68,11 @@ public class MapService {
 				"    <script>" +
 				"        var map = L.map('map').setView([" + lat + ", " + lng + "], 15);" +
 				"        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {" +
-				"            attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'" +
+				"            attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'"
+				+
 				"        }).addTo(map);" +
 				"        L.marker([" + lat + ", " + lng + "]).addTo(map)" +
-				"            .bindPopup('" + location +"<br>"+"<center>무슨무슨 카페<center>" + "')" +
+				"            .bindPopup('" + location + "<br>" + "<center>무슨무슨 카페<center>" + "')" +
 				"            .openPopup();" +
 				"    </script>" +
 				"</body>" +

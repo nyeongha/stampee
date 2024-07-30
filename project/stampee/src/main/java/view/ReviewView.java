@@ -3,11 +3,7 @@ package view;
 import java.util.List;
 
 import domain.Review;
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
@@ -20,21 +16,18 @@ import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
 
-public class ReviewView{
-
+public class ReviewView {
 
 	ReviewRepository reviewRepository;
 	MemberRepository memberRepository;
 	CafeRepository cafeRepository;
 
-
-	private final ReviewService reviewService=new ReviewService(reviewRepository);
+	private final ReviewService reviewService = new ReviewService(reviewRepository);
 
 	public ReviewView(MemberRepository memberRepository, CafeRepository cafeRepository) {
 		this.memberRepository = memberRepository;
 		this.cafeRepository = cafeRepository;
 	}
-
 
 	public void ReviewViewStart(Stage primaryStage) {
 		// 블록 크기
@@ -54,7 +47,6 @@ public class ReviewView{
 		VBox currentColumn = new VBox(spacing);
 		reviewsContainer.getChildren().add(currentColumn);
 
-
 		for (int i = 0; i < reviews.size(); i++) {
 
 			Review review = reviews.get(i);
@@ -64,7 +56,7 @@ public class ReviewView{
 			block.setStroke(Color.BLACK);
 
 			Label reviewLabel = new Label(
-				"총리뷰"+reviews.size()+"\n" +
+				"총리뷰" + reviews.size() + "\n" +
 					"Username: " + review.getMember().getUserName() + "\n" +
 					"Cafe: " + review.getCafe().getName() + "\n" +
 					"Rating: " + review.getRating() + "\n" +

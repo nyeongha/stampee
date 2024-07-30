@@ -7,10 +7,9 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnectionUtil {
-	private static final String URL = getURL();;
+	private static final String URL = getURL();
 	private static final String USERNAME = getUsername();
 	private static final String PASSWORD = getPasswordD();
-
 
 	public static Connection getConnection() {
 		try {
