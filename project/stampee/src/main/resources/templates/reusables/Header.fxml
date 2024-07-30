@@ -2,6 +2,7 @@
 
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8">
