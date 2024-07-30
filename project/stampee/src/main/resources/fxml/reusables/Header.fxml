@@ -12,9 +12,9 @@
         <children>
             <ImageView fitHeight="40" fitWidth="40" styleClass="logo">
          <image>
-            <Image url="@../../stampee_logo.png" />
+            <Image url="@../../image/stampee_logo.png" />
          </image></ImageView>
-            <HBox spacing="10" styleClass="menu-items">
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="menu-items">
                 <children>
                     <Label text="My Review" />
                     <Label text="Reviews" />
@@ -22,6 +22,7 @@
                     <Label text="Contacts" />
                     <Label text="Edit" />
                     <Region HBox.hgrow="ALWAYS" />
+                    <Button fx:id="logoutButton" text="Logout" visible="false" />
                 </children>
             </HBox>
         </children>

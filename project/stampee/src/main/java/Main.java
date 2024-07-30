@@ -7,12 +7,20 @@ import javafx.stage.Stage;
 public class Main extends Application{
 
 	@Override
-	public void start(Stage primaryStage) throws Exception {
-		Parent root = FXMLLoader.load(
-			getClass().getResource("/templates/account/LoginPage.fxml"));
-		primaryStage.setTitle("카페 위치 정보");
-		primaryStage.setScene(new Scene(root, 600, 800));
-		primaryStage.show();
+	public void start(Stage primaryStage){
+
+		try{
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/LoginPage.fxml"));
+			primaryStage.setTitle("카페 위치 정보");
+
+			Scene scene = new Scene(root, 600, 800);
+			// scene.getStylesheets().add(getClass().getResource("modern-style.css").toExternalForm());
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e){
+			e.printStackTrace();
+		}
+
 	}
 
 	public static void main(String[] args) {

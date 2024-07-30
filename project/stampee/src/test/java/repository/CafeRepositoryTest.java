@@ -49,7 +49,7 @@ class CafeRepositoryTest {
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
 
-		Cafe loginCafe = new Cafe(2, "Test Cafe", "Test Street", "123411", randomEmail, randomPhone);
+		Cafe loginCafe = new Cafe(299, "Test Cafe", "Test Street", "123411", randomEmail, randomPhone);
 
 		// when
 		long cafeId = cafeRepository.cafeSignUp(loginCafe, "Test Menu 1", "Test Menu 2");
@@ -65,7 +65,7 @@ class CafeRepositoryTest {
 		// given
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
-		Cafe cafe = new Cafe(2, "ServiceTest Cafe", "Test Street", "123411", randomEmail, randomPhone);
+		Cafe cafe = new Cafe(299, "ServiceTest Cafe", "Test Street", "123411", randomEmail, randomPhone);
 
 		// when
 		cafeService.cafeSignUp(cafe, "ServiceTest Menu 1", "ServiceTest Menu 2");
@@ -80,7 +80,7 @@ class CafeRepositoryTest {
 		// given
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
-		Cafe cafe = new Cafe(2, "Wrong Password Cafe", "Wrong Password Street", "correctpass", randomEmail, randomPhone);
+		Cafe cafe = new Cafe(2999, "Wrong Password Cafe", "Wrong Password Street", "correctpass", randomEmail, randomPhone);
 
 		// when
 		cafeService.cafeSignUp(cafe, "Wrong Password Menu 1", "Wrong Password Menu 2");
