@@ -106,7 +106,7 @@ public class CafeRepository {
 
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
-				return verifyPassword(cafe.getPassword(), storedPassword);
+				return verifyPassword(password, storedPassword);
 			} 
 			else{
 				System.out.println("email not found : "+email);
@@ -117,7 +117,6 @@ public class CafeRepository {
 		} finally {
 			close(conn, pstmt);
 		}
-
 	}
 
 	public List<Member> findCafeMembersById(int cafeId) {
@@ -219,42 +218,4 @@ public class CafeRepository {
 		}
 		return cafe;
 	}
-
-	public Cafe findCafeByEmailAndPassword(String contact, String password) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "select * "
-			+ "from cafe "
-			+ "where email=? "
-			+ "and password=?";
-
-		Cafe cafe = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, contact);
-			pstmt.setString(2, password);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				cafe = new Cafe(
-					rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getString("address"),
-					rs.getString("password"),
-					rs.getString("email"),
-					rs.getString("contact")
-				);
-
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			close(conn, pstmt, rs);
-		}
-		return cafe;
-	}
-
 }

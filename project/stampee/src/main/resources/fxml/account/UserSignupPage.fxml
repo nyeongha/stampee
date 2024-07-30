@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="1199.0" prefWidth="947.0" styleClass="main-container" stylesheets="@../../css/modern-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AccountController">
+    <children>
+        <fx:include source="../reusables/Header.fxml" />
+        <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">
+            <children>
+                <fx:include source="../reusables/LogoArea.fxml" />
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이메일">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="emailField" promptText="이메일을 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이름">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="nameField" promptText="이름을 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="아이디">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="idField" promptText="아이디를 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="passwordField" promptText="비밀번호를 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전화번호">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="contactField" promptText="전화번호를 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Button fx:id="signUpButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="회원가입">
+                            <HBox.margin>
+                                <Insets left="50.0" right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</VBox>

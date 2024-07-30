@@ -66,3 +66,29 @@
 .info-container Label {
     -fx-font-size: 14;
 }
+
+.footer {
+    -fx-padding: 10;
+    -fx-background-color: #f8f8f8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1 0 0 0;
+    -fx-alignment: center;
+}
+
+.footer-content {
+    -fx-alignment: center;
+}
+
+.footer-logo {
+    -fx-image: url('/image/stampee_logo.png');
+}
+
+.footer-title {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.footer-subtitle {
+    -fx-font-size: 12;
+    -fx-text-fill: #888;
+}

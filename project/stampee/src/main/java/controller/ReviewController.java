@@ -24,9 +24,8 @@ public class ReviewController {
 		reviewService = new ReviewService(reviewRepository);
 	}
 
-	@FXML
-	public void initialize() {
-		List<Review> reviews = reviewService.findAllReviews();    //리뷰 가져오기
+	public void init(long cafeId) {
+		List<Review> reviews = reviewService.findReviewsByCafeId(cafeId);    //리뷰 가져오기
 		displayReviews(reviews);
 	}
 
