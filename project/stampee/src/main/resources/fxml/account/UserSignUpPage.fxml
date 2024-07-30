@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.geometry.Insets?>
+
+<VBox fx:id="usersignuppage" alignment="TOP_CENTER" prefHeight="561.0" prefWidth="947.0" styleClass="main-container" stylesheets="/css/modern-style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.LoginPageController">
+   <children>
+      <fx:include source="../reusables/Header.fxml" />
+      <VBox alignment="CENTER" fillWidth="false" maxWidth="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="482.0" prefWidth="536.0" styleClass="body">
+         <children>
+            <fx:include source="../reusables/LogoArea.fxml" />
+            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="843.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="email" />
+                  <TextField disable="true" text="Input Email" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Name">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin></Text>
+                  <TextField disable="true" text="Input Name" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="ID">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField disable="true" text="Input ID" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField disable="true" text="Input Password" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Confirm Password">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField disable="true" text="Input Password" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+            <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+               <children>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Phone Number">
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </Text>
+                  <TextField disable="true" text="Input Phone number" />
+               </children>
+               <padding>
+                  <Insets bottom="30.0" />
+               </padding>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="39.0" prefWidth="607.0">
+               <children>
+                  <Button mnemonicParsing="false" prefHeight="39.0" prefWidth="557.0" text="Submit">
+                     <HBox.margin>
+                        <Insets left="50.0" right="50.0" />
+                     </HBox.margin>
+                  </Button>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
