@@ -18,7 +18,6 @@ public class LoggedMemberDto {
 	public LoggedMemberDto() {
 
 	}
-
 	public long getMemberId() {
 		return memberId;
 	}
@@ -38,4 +37,22 @@ public class LoggedMemberDto {
 	public String getUsername() {
 		return username;
 	}
+
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+
 }

@@ -16,9 +16,7 @@
             <children>
                 <Label text="My Review"/>
                 <Label text="Reviews"/>
-                <Label text="Coupon"/>
-                <Label text="Contacts"/>
-                <Label text="Edit"/>
+                <Label text="My Coupon"/>
                 <Region HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>

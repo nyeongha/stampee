@@ -2,6 +2,7 @@ package service;
 
 import java.util.List;
 
+import dto.LoggedMemberDto;
 import repository.CafeRepository;
 
 import org.slf4j.Logger;
@@ -35,13 +36,17 @@ public class CafeService {
 		}
 	}
 
-	public boolean login(String email, String password) {
-		boolean loginResult = cafeRepository.login(email, password);
-		if (loginResult) {
+	public LoggedMemberDto login(String email, String password) {
+		//CafeRepository에서 로그인 시도 및 사용자 정보 반환
+		LoggedMemberDto loggedMemberDto = cafeRepository.login(email, password);
+		if (loggedMemberDto != null) {
 			log.info("Successfully logged in cafe: {}", email);
+			return loggedMemberDto;
+			//성공 시 사용자 정보를 담은 DTO 반환
 		} else {
 			log.warn("Failed login attempt for cafe: {}", email);
+			return null;
+			//실패 시 null 반환
 		}
-		return loginResult;
 	}
 }

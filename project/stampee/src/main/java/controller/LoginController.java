@@ -1,4 +1,3 @@
-
 package controller;
 
 import domain.LoginSession;
@@ -11,21 +10,18 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import repository.CafeRepository;
+import service.CafeService;
 
 import java.io.IOException;
 
 public class LoginController {
-	CafeRepository cafeRepository = new CafeRepository();
+	private CafeService cafeService = new CafeService(new CafeRepository());
 
 	@FXML public TextField emailField;
-
 	@FXML private TextField passwordField;
-
 	@FXML private Button loginButton;
-
 	@FXML private Button signUpButton;
 
 	@FXML
@@ -33,60 +29,63 @@ public class LoginController {
 		loginButton.setOnAction(this::handleLoginButtonAction);
 		signUpButton.setOnAction(this::handleSignUpButtonAction);
 	}
-	String email;
-	String password;
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
-		email = emailField.getText();
-		password = passwordField.getText();
+		String email = emailField.getText();
+		String password = passwordField.getText();
 
-		System.out.println("Log in button clicked");
-		loadIndexPage(email, password);
-		LoginSession instance = LoginSession.getInstance(new LoggedMemberDto());
+		// 로그인 시 사용자 정보를 받아옴
+		LoggedMemberDto loggedMemberDto = cafeService.login(email, password);
 
-		LoginSession instance1 = LoginSession.getInstance();
-		assert instance != null;
-		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
-		// 로그인 검증 로직 추가
-		if (cafeRepository.login(email, password)) {
-			showAlert("sucess", "로그인이 성공적으로 완료되었습니다.");
-			// 로그인 성공 시 인덱스 페이지로 이동
-			loadIndexPage(email, password);
+		if (loggedMemberDto != null) {
+			// 세션에 사용자 정보를 저장
+			LoginSession.getInstance(loggedMemberDto);
+
+			// 세션 검증 및 출력
+			verifySession();
+
+			showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
+			// 로그인 성공 시, 대시보드로 이동
+			loadIndexPage();
 		} else {
-			// 로그인 실패 시 경고 메시지 또는 다른 처리
-			showAlert("Error", "로그인이 실패했습니다. 다시 시도해주세요");
-
+			showAlert(Alert.AlertType.ERROR, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
 		}
 	}
 
-	private void showAlert(String title, String message) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+	// 세션 검증 메서드
+	private void verifySession() {
+		try {
+			LoginSession instance = LoginSession.getInstance();
+			LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
+			System.out.println("Email: " + loggedMemberDto.getEmail());
+			System.out.println("Username: " + loggedMemberDto.getUsername());
+			// 필요한 다른 정보도 출력
+		} catch (IllegalArgumentException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+
+	// 알림 창을 보여주는 메서드
+	private void showAlert(Alert.AlertType alertType, String title, String message) {
+		Alert alert = new Alert(alertType);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
 
+	// 회원가입 버튼 클릭 시 처리 메서드
 	@FXML
 	private void handleSignUpButtonAction(ActionEvent event) {
-		// 회원가입 버튼 클릭 시 로직 추가
-		loadIndexPage();
+		loadSignUpPage();
 	}
 
-	private boolean authenticate(String id, String password) {
-		// 간단한 검증 예시
-		return "admin".equals(id) && "password".equals(password);
-	}
-
-	private void loadIndexPage(String id, String password) {
+	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
+	private void loadIndexPage() {
 		try {
 			Parent indexPage = FXMLLoader.load(getClass().getResource("/fxml/index/CafeMainPage.fxml"));
-
-			// // 인덱스 페이지의 컨트롤러 가져오기
-			// CafeMainPageController controller = loader.getController();
-			// controller.setCafeCredentials(id, password);
-
 			Scene scene = new Scene(indexPage);
 			Stage stage = (Stage) loginButton.getScene().getWindow();
 			stage.setScene(scene);
@@ -96,18 +95,16 @@ public class LoginController {
 		}
 	}
 
-	private void loadIndexPage() {
+	// 회원가입 페이지 로드 메서드
+	private void loadSignUpPage() {
 		try {
-			Parent indexPage = FXMLLoader.load(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
-			Scene scene = new Scene(indexPage);
-			Stage stage = (Stage)loginButton.getScene().getWindow();
+			Parent signUpPage = FXMLLoader.load(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
+			Scene scene = new Scene(signUpPage);
+			Stage stage = (Stage) signUpButton.getScene().getWindow();
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	public void AccountController(MouseEvent mouseEvent) {
 	}
 }
