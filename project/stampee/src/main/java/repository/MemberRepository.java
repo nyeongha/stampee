@@ -17,7 +17,6 @@ public class MemberRepository {
 	private static final Logger log = LoggerFactory.getLogger(MemberRepository.class);
 
 	public Member userSignUp(Member member) {
-		// connection 영역
 		Connection conn = getConnection();
 		PreparedStatement pstmt = null;
 		try {

@@ -1,7 +1,9 @@
 package controller;
 
+import domain.CafeSession;
 import domain.LoginSession;
-import dto.LoggedMemberDto;
+import dto.response.LoggedCafeDto;
+import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +17,7 @@ import repository.CafeRepository;
 import service.CafeService;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class LoginController {
 	private CafeService cafeService = new CafeService(new CafeRepository());
@@ -36,11 +39,11 @@ public class LoginController {
 		String password = passwordField.getText();
 
 		// 로그인 시 사용자 정보를 받아옴
-		LoggedMemberDto loggedMemberDto = cafeService.login(email, password);
+		LoggedCafeDto loggedCafeDto = cafeService.login(email, password);
 
-		if (loggedMemberDto != null) {
+		if (loggedCafeDto != null) {
 			// 세션에 사용자 정보를 저장
-			LoginSession.getInstance(loggedMemberDto);
+			CafeSession.getInstance(loggedCafeDto);
 
 			// 세션 검증 및 출력
 			verifySession();
@@ -85,7 +88,8 @@ public class LoginController {
 	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
 	private void loadIndexPage() {
 		try {
-			Parent indexPage = FXMLLoader.load(getClass().getResource("/fxml/index/CafeMainPage.fxml"));
+			Parent indexPage = FXMLLoader.load(
+				Objects.requireNonNull(getClass().getResource("/templates/account/SignUpPageMain.fxml")));
 			Scene scene = new Scene(indexPage);
 			Stage stage = (Stage) loginButton.getScene().getWindow();
 			stage.setScene(scene);

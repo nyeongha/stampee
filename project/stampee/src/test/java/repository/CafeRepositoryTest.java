@@ -14,7 +14,7 @@ import org.mockito.MockitoAnnotations;
 
 import domain.Cafe;
 import domain.Signature;
-import dto.LoggedMemberDto;
+import dto.response.LoggedCafeDto;
 import repository.CafeRepository;
 import service.CafeService;
 import util.PasswordUtil;
@@ -54,7 +54,7 @@ class CafeRepositoryTest {
 		// when
 		long cafeId = cafeRepository.cafeSignUp(loginCafe, "Test Menu 1", "Test Menu 2");
 		loginCafe.setCafeId(cafeId);  // 생성된 cafeId 설정
-		LoggedMemberDto loginResult = cafeRepository.login(loginCafe.getEmail(), loginCafe.getPassword());
+		LoggedCafeDto loginResult = cafeRepository.login(loginCafe.getEmail(), loginCafe.getPassword());
 
 		// then
 		assertThat(loginResult).isNotNull();  // 로그인 성공 확인
@@ -70,7 +70,7 @@ class CafeRepositoryTest {
 
 		// when
 		cafeService.cafeSignUp(cafe, "ServiceTest Menu 1", "ServiceTest Menu 2");
-		LoggedMemberDto loginResult = cafeService.login(cafe.getEmail(), cafe.getPassword());
+		LoggedCafeDto loginResult = cafeService.login(cafe.getEmail(), cafe.getPassword());
 
 		// then
 		assertThat(loginResult).isNotNull();  // 로그인 성공 확인
@@ -87,7 +87,7 @@ class CafeRepositoryTest {
 		// when
 		cafeService.cafeSignUp(cafe, "Wrong Password Menu 1", "Wrong Password Menu 2");
 		cafe.setPassword("correctpass1");
-		LoggedMemberDto loginResult = cafeService.login(cafe.getEmail(), cafe.getPassword());
+		LoggedCafeDto loginResult = cafeService.login(cafe.getEmail(), cafe.getPassword());
 
 		// then
 		assertThat(loginResult).isNull();  // 로그인 실패 확인

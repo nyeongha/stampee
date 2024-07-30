@@ -1,13 +1,10 @@
 package service;
 
 import java.util.List;
-
-import dto.LoggedMemberDto;
+import dto.response.LoggedCafeDto;
 import repository.CafeRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import domain.Cafe;
 
 public class CafeService {
@@ -36,12 +33,12 @@ public class CafeService {
 		}
 	}
 
-	public LoggedMemberDto login(String email, String password) {
+	public LoggedCafeDto login(String email, String password) {
 		//CafeRepository에서 로그인 시도 및 사용자 정보 반환
-		LoggedMemberDto loggedMemberDto = cafeRepository.login(email, password);
-		if (loggedMemberDto != null) {
+		LoggedCafeDto loggedCafeDto = cafeRepository.login(email, password);
+		if (loggedCafeDto != null) {
 			log.info("Successfully logged in cafe: {}", email);
-			return loggedMemberDto;
+			return loggedCafeDto;
 			//성공 시 사용자 정보를 담은 DTO 반환
 		} else {
 			log.warn("Failed login attempt for cafe: {}", email);

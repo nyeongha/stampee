@@ -1,0 +1,91 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+
+<!--<?import javafx.scene.text.*?>-->
+<!--<?import java.lang.*?>-->
+<!--<?import javafx.geometry.*?>-->
+<!--<?import javafx.scene.image.*?>-->
+<!--<?import javafx.scene.layout.*?>-->
+<!--<?import javafx.scene.control.*?>-->
+<!--<?import javafx.scene.web.WebView?>-->
+<!--<?import javafx.scene.image.ImageView?>-->
+<!--<?import javafx.geometry.Insets?>-->
+
+<!--<VBox fx:id="Caf" alignment="TOP_CENTER" prefHeight="1144.0" prefWidth="947.0" styleClass="main-container" stylesheets="/css/CafeManePage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController">-->
+<!--   <children>-->
+<!--      <fx:include source="/templates/reusables/Header.fxml" />-->
+<!--      <AnchorPane prefHeight="160.0" prefWidth="947.0">-->
+<!--         <children>-->
+<!--            <VBox alignment="CENTER_LEFT" layoutX="100.0" layoutY="22.0" prefHeight="117.0" prefWidth="120.0">-->
+<!--               <children>-->
+<!--                  <Text fx:id="cafeNameTextField" strokeType="OUTSIDE" strokeWidth="0.0" text="Cafe1" />-->
+<!--                  <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="Subheading" />-->
+<!--               </children>-->
+<!--            </VBox>-->
+<!--         </children>-->
+<!--      </AnchorPane>-->
+<!--      <AnchorPane prefHeight="47.0" prefWidth="947.0">-->
+<!--         <children>-->
+<!--            <VBox id="dfdf" alignment="CENTER_LEFT" layoutX="103.0" layoutY="-4.0" prefHeight="95.0" prefWidth="585.0" styleClass="stamp-indicator">-->
+<!--               <children>-->
+<!--                  <HBox>-->
+<!--                     <children>-->
+<!--                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 회원수 : ">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets left="20.0" right="20.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </Text>-->
+<!--                        <Text fx:id="memberCountText" fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="X">-->
+<!--                           <HBox.margin>-->
+<!--                              <Insets right="20.0" />-->
+<!--                           </HBox.margin>-->
+<!--                        </Text>-->
+<!--                        <Text fill="#aeaeae" strokeType="OUTSIDE" strokeWidth="0.0" text="명" />-->
+<!--                     </children>-->
+<!--                  </HBox>-->
+<!--               </children>-->
+<!--            </VBox>-->
+<!--         </children>-->
+<!--      </AnchorPane>-->
+<!--      <AnchorPane prefHeight="137.0" prefWidth="947.0">-->
+<!--         <children>-->
+<!--            <VBox alignment="CENTER_LEFT" layoutX="101.0" layoutY="10.0" prefHeight="117.0" prefWidth="110.0">-->
+<!--               <children>-->
+<!--                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Customers" />-->
+<!--               </children>-->
+<!--            </VBox>-->
+<!--         </children>-->
+<!--      </AnchorPane>-->
+<!--      <ScrollPane prefHeight="200.0" prefWidth="200.0">-->
+<!--         <content>-->
+<!--            <HBox prefHeight="193.0" prefWidth="947.0">-->
+<!--               <children>-->
+<!--                  <Label alignment="TOP_LEFT" text="Spanish Instructor">-->
+
+<!--                  </Label>-->
+<!--                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />-->
+<!--                  <VBox prefHeight="200.0" prefWidth="100.0" />-->
+<!--                  <Label text="Item 1" />-->
+<!--                  <Label text="Item 1" />-->
+<!--                  <Label text="Item 1" />-->
+<!--               </children>-->
+<!--            </HBox>-->
+<!--         </content>-->
+<!--      </ScrollPane>-->
+<!--      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">-->
+<!--         <children>-->
+<!--            <fx:include source="../reusables/LogoArea.fxml" />-->
+<!--            <HBox alignment="CENTER">-->
+<!--               <opaqueInsets>-->
+<!--                  <Insets />-->
+<!--               </opaqueInsets>-->
+<!--               <VBox.margin>-->
+<!--                  <Insets />-->
+<!--               </VBox.margin>-->
+<!--               <padding>-->
+<!--                  <Insets top="10.0" />-->
+<!--               </padding>-->
+<!--            </HBox>-->
+<!--         </children>-->
+<!--      </VBox>-->
+<!--   </children>-->
+<!--</VBox>-->

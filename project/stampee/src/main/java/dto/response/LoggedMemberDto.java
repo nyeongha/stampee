@@ -1,4 +1,4 @@
-package dto;
+package dto.response;
 
 public class LoggedMemberDto {
 	private long memberId;
@@ -44,10 +44,6 @@ public class LoggedMemberDto {
 	}
 	public void setPassword(String password) {
 		this.password = password;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
 	}
 
 	public void setUsername(String username) {

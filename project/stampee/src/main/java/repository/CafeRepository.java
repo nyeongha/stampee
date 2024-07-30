@@ -17,7 +17,8 @@ import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
-import dto.LoggedMemberDto;
+import dto.response.LoggedCafeDto;
+import dto.response.LoggedCafeDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -90,7 +91,7 @@ public class CafeRepository {
 		}
 	}
 
-	public LoggedMemberDto login(String email, String password) {
+	public LoggedCafeDto login(String email, String password) {
 		String sql = "SELECT * FROM cafe WHERE email = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -106,12 +107,12 @@ public class CafeRepository {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
 					// 성공적으로 인증된 경우, DTO에 사용자 정보 설정
-					LoggedMemberDto loggedMemberDto = new LoggedMemberDto();
+					LoggedCafeDto loggedMemberDto = new LoggedCafeDto();
 					loggedMemberDto.setEmail(email);
 					loggedMemberDto.setPassword(storedPassword);
 					loggedMemberDto.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
-					loggedMemberDto.setUsername(rs.getString("name")); // 데이터베이스 필드에 따라 수정
-					loggedMemberDto.setPhoneNumber(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
+					loggedMemberDto.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
+					loggedMemberDto.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
 					return loggedMemberDto;
 				}
 			} else {

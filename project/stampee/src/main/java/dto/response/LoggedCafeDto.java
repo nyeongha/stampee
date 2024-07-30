@@ -1,20 +1,24 @@
-package domain;
+package dto.response;
 
-public class Cafe {
+public class LoggedCafeDto {
 	private long cafeId;
-	private final String name;
-	private final String address;
+	private String name;
+	private String address;
 	private String password;
 	private String email;
-	private final String contact;
+	private String contact;
 
-	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
+	public LoggedCafeDto(long cafeId, String name, String address, String password, String email, String contact) {
 		this.cafeId = cafeId;
 		this.name = name;
 		this.address = address;
 		this.password = password;
 		this.email = email;
 		this.contact = contact;
+	}
+
+	public LoggedCafeDto() {
+
 	}
 
 	public long getCafeId() {
@@ -33,28 +37,32 @@ public class Cafe {
 		return password;
 	}
 
-	public String getContact() {
-		return contact;
-	}
-
 	public String getEmail() {
 		return email;
 	}
 
-
-	public long getId() {
-		return cafeId;
+	public String getContact() {
+		return contact;
 	}
 
-	public void setCafeId(long cafeId) {
-		this.cafeId = cafeId;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public void setPassword(String password) {
 		this.password = password;
 	}
 
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
 }
