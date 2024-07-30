@@ -1,6 +1,7 @@
 .main-container {
     -fx-background-color: white;
     -fx-spacing: 10;
+    -fx-padding: 0 20 0 20;
 }
 
 .header {
@@ -11,7 +12,7 @@
 }
 
 .logo {
-    -fx-image: url('/stampee_logo.png');
+    -fx-image: url('/image/stampee_logo.png');
 }
 
 .menu-items {
