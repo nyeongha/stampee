@@ -33,5 +33,4 @@
         <Button text="0" onAction="#handleDigit" styleClass="number-pad-button"/>
         <Button text="OK" onAction="#handleOK" styleClass="number-pad-button"/>
     </HBox>
-
 </VBox>

@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import repository.CafeRepository;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +16,6 @@ public class CafeService {
 	public CafeService(CafeRepository cafeRepository) {
 		this.cafeRepository = cafeRepository;
 	}
-
 
 	public List<String> getSignatureMenu(long cafeId) {
 		return cafeRepository.findSignatureByCafeId(cafeId);
@@ -35,12 +35,12 @@ public class CafeService {
 		}
 	}
 
-	public boolean login(Cafe cafe) {
-		boolean loginResult = cafeRepository.login(cafe);
+	public boolean login(String email, String password) {
+		boolean loginResult = cafeRepository.login(email, password);
 		if (loginResult) {
-			log.info("Successfully logged in cafe: {}", cafe.getEmail());
+			log.info("Successfully logged in cafe: {}", email);
 		} else {
-			log.warn("Failed login attempt for cafe: {}", cafe.getEmail());
+			log.warn("Failed login attempt for cafe: {}", email);
 		}
 		return loginResult;
 	}

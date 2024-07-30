@@ -3,39 +3,9 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.web.WebView?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.geometry.Insets?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MapService" styleClass="main-container" stylesheets="@../css/modern-style.css">
-    <HBox styleClass="header">
-        <ImageView fitHeight="40" fitWidth="40" styleClass="logo"/>
-        <Region HBox.hgrow="ALWAYS" />
-        <HBox spacing="10" styleClass="menu-items">
-            <Label text="My Review"/>
-            <Label text="Reviews"/>
-            <Label text="Coupon"/>
-            <Label text="Contacts"/>
-            <Label text="Edit"/>
-        </HBox>
-    </HBox>
-
-    <VBox styleClass="stamp-container">
-        <HBox styleClass="stamp-row">
-            <ImageView styleClass="stamp" fx:id="stamp1" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp2" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp3" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp4" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp5" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-        </HBox>
-        <HBox styleClass="stamp-row">
-            <ImageView styleClass="stamp" fx:id="stamp6" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp7" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp8" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp9" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-            <ImageView styleClass="stamp" fx:id="stamp10" fitWidth="50" fitHeight="50" preserveRatio="true"/>
-        </HBox>
-    </VBox>
-
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MapService" styleClass="main-container" stylesheets="/css/modern-style.css">
     <AnchorPane VBox.vgrow="ALWAYS" minHeight="300" styleClass="map-container">
         <WebView fx:id="webView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
     </AnchorPane>

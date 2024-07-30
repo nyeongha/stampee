@@ -47,7 +47,7 @@ public class StampRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		try{
+		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, memberId);
@@ -59,10 +59,10 @@ public class StampRepository {
 					rs.getInt("count"),
 					rs.getDate("create_time"),
 					getMember(rs), getCafe(rs));
-			} else{
+			} else {
 				return null;
 			}
-		}  catch (SQLException e) {
+		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, rs);

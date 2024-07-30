@@ -12,13 +12,14 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
 import dto.ExpiredCouponDto;
 import dto.response.MyCouponDto;
 
 public class CouponRepository {
 	private final static int NO_COUPON = 0;
 
-	public List<MyCouponDto> findCouponByMemberId(long memberId){
+	public List<MyCouponDto> findCouponByMemberId(long memberId) {
 		String sql = "select c.cafe_id, c.name, c.address, a.count "
 			+ " from (select cafe_id, count(*) as count "
 			+ "			from coupon"
@@ -37,7 +38,7 @@ public class CouponRepository {
 			rs = pstmt.executeQuery();
 
 			List<MyCouponDto> myCouponDtos = new ArrayList<>();
-			while(rs.next()){
+			while (rs.next()) {
 				myCouponDtos.add(MyCouponDto.createMyCouponDto(
 					rs.getLong("cafe_id"),
 					rs.getString("name"),
@@ -52,7 +53,7 @@ public class CouponRepository {
 		}
 	}
 
-	public int findCouponByMemberIdAndCafeId(long memberId, long cafeId){
+	public int findCouponByMemberIdAndCafeId(long memberId, long cafeId) {
 		String sql = "select count(*) as count "
 			+ "from coupon "
 			+ "where member_id = ? "
@@ -69,19 +70,19 @@ public class CouponRepository {
 			pstmt.setLong(2, cafeId);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				return rs.getInt("count");
-			}else{
+			} else {
 				return NO_COUPON;
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(conn, pstmt, rs);
 		}
 	}
 
-	public int findExpiringCouponCount(long memberId, long cafeId){
+	public int findExpiringCouponCount(long memberId, long cafeId) {
 		String sql = "select count(*) as count "
 			+ "from coupon "
 			+ "where member_id = ? "
@@ -100,19 +101,19 @@ public class CouponRepository {
 			pstmt.setDate(3, Date.valueOf(now()));
 			rs = pstmt.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				return rs.getInt("count");
-			}else{
+			} else {
 				return NO_COUPON;
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
-		}finally {
+		} finally {
 			close(conn, pstmt, rs);
 		}
 	}
 
-	public List<ExpiredCouponDto> findExpiringCoupons(LocalDate localDate){
+	public List<ExpiredCouponDto> findExpiringCoupons(LocalDate localDate) {
 		String sql = "select m.email, ca.name, m.username, co.endtime - trunc(?) as remain_date "
 			+ "from member m join coupon co "
 			+ "on m.member_id = co.member_id "
@@ -132,7 +133,7 @@ public class CouponRepository {
 			rs = pstmt.executeQuery();
 
 			List<ExpiredCouponDto> expiredCouponDtos = new ArrayList<>();
-			while(rs.next()){
+			while (rs.next()) {
 				expiredCouponDtos.add(new ExpiredCouponDto(rs.getString("username"), rs.getString("email"),
 					rs.getString("name"), rs.getInt("remain_date")));
 			}

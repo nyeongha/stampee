@@ -13,7 +13,7 @@ public class MyCouponDto {
 		this.count = count;
 	}
 
-	public static MyCouponDto createMyCouponDto(long cafeId, String cafeName, String address, int count){
+	public static MyCouponDto createMyCouponDto(long cafeId, String cafeName, String address, int count) {
 		return new MyCouponDto(cafeId, cafeName, address, count);
 	}
 

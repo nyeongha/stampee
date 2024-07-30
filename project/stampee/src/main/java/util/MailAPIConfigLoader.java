@@ -5,7 +5,6 @@ import static exception.ErrorMessage.*;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.NoSuchElementException;
 import java.util.Properties;
 
 public class MailAPIConfigLoader {
@@ -25,7 +24,7 @@ public class MailAPIConfigLoader {
 		}
 	}
 
-	public static String getEmail(){
+	public static String getEmail() {
 		if (!isInitialized) {
 			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}
@@ -36,7 +35,7 @@ public class MailAPIConfigLoader {
 		return email;
 	}
 
-	public static String getAPP_PASSWORD(){
+	public static String getAPP_PASSWORD() {
 		if (!isInitialized) {
 			throw new IllegalStateException(FAILED_TO_INITIALIZE.getErrorMessage());
 		}

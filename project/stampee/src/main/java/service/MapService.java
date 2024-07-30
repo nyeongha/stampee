@@ -13,8 +13,6 @@ import javafx.scene.control.Label;
 import util.GoogleAPIConfigLoader;
 
 public class MapService {
-
-	@FXML private VBox stampContainer;
 	@FXML private WebView webView;
 	@FXML private Label storeNameLabel;
 	@FXML private Label addressLabel;
@@ -22,7 +20,7 @@ public class MapService {
 	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
-	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();;
+	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();
 
 	@FXML
 	public void initialize() {
@@ -63,7 +61,7 @@ public class MapService {
 				"    <script src=\"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js\"></script>" +
 				"    <style>" +
 				"        html, body { height: 100%; width: 100%; margin: 0; padding: 0; }" +
-				"#map { height: 300px; width: 80%; margin: 0; padding: 0; }" +
+				"#map { height: 200px; width: 71%; margin: 0; padding: 0; }" +
 				"    </style>" +
 				"</head>" +
 				"<body>" +

@@ -9,17 +9,14 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-
 import domain.Cafe;
 import domain.Member;
-import domain.Signature;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -39,7 +36,7 @@ public class CafeRepository {
 			conn.setAutoCommit(false);  // 트랜잭션 시작
 
 			// 카페 정보 삽입
-			pstmt = conn.prepareStatement(insertCafeSql, new String[]{"cafe_id"});
+			pstmt = conn.prepareStatement(insertCafeSql, new String[] {"cafe_id"});
 			pstmt.setString(1, cafe.getName());
 			pstmt.setString(2, cafe.getAddress());
 			pstmt.setString(3, hashPassword(cafe.getPassword()));
@@ -92,7 +89,7 @@ public class CafeRepository {
 		}
 	}
 
-	public boolean login(Cafe cafe){
+	public boolean login(String email, String password){
 		//sql
 		String sql = "select password from cafe where email = ?";
 		Connection conn = null;
@@ -104,18 +101,17 @@ public class CafeRepository {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cafe.getEmail());
+			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 
-			if(rs.next()){
+			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				return verifyPassword(cafe.getPassword(), storedPassword);
-			}
+			} 
 			else{
-				System.out.println("email not found : "+cafe.getEmail());
+				System.out.println("email not found : "+email);
 				return false;
 			}
-
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {

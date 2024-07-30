@@ -28,9 +28,9 @@ public class Encrypt {
 		return sb.toString();
 	}
 
-	public static String getEncrytedPassword(String password){
+	public static String getEncrytedPassword(String password) {
 
-		return password +":"+ getSalt();
+		return password + ":" + getSalt();
 
 	}
 
@@ -46,6 +46,5 @@ public class Encrypt {
 	// 	}
 	//
 	// }
-
 
 }

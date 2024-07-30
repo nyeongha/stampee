@@ -27,9 +27,9 @@ import service.UserService;
 import view.CouponView;
 
 public class CouponController {
-	private static CouponService couponService;
-	private static StampService stampService;
-	private static UserService userService;
+	private final CouponService couponService;
+	private final StampService stampService;
+	private final UserService userService;
 	private final CouponView couponView = new CouponView();
 
 	@FXML
@@ -87,12 +87,13 @@ public class CouponController {
 		}
 	}
 
-	private void addCafeItem(long cafeId, long memberId, String name, String address, int couponCount, int stampCount, int expiredCount) {
+	private void addCafeItem(long cafeId, long memberId, String name, String address, int couponCount, int stampCount,
+		int expiredCount) {
 		HBox cafeItem = couponView.createCafeItemHBox();
 		VBox infoBox = couponView.createInfoBox(name, address);
 		VBox couponBox = couponView.createCouponBox(couponCount, expiredCount);
 		Button shareButton = couponView.createShareButton();
-		shareButton.setOnAction(event -> handleShareButtonPress(memberId, cafeId));	//공유 버튼 클릭 시 동작
+		shareButton.setOnAction(event -> handleShareButtonPress(memberId, cafeId));    //공유 버튼 클릭 시 동작
 		HBox stampAndButtonBox = couponView.createStampAndButtonBox(stampCount, shareButton);
 
 		cafeItem.getChildren().addAll(infoBox, couponBox, stampAndButtonBox);
