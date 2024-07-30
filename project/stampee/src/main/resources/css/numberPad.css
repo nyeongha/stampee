@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Jua';
+}
 .number-pad-container {
     -fx-background-color: #f0f0f0;
     -fx-padding: 20px;

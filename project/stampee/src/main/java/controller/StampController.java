@@ -104,7 +104,7 @@ public class StampController implements Initializable {
 			Pane reviewPane = loader.load();
 
 			ReviewController controller = loader.getController();
-			controller.setCafeId(cafeId);
+			controller.init(cafeId);
 
 			reviewContainer.setContent(reviewPane);
 		} catch (IOException e) {

@@ -117,7 +117,6 @@ public class CafeRepository {
 		} finally {
 			close(conn, pstmt);
 		}
-
 	}
 
 	public List<Member> findCafeMembersById(int cafeId) {

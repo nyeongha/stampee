@@ -153,7 +153,6 @@ public class ReviewRepository {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println();
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
 					rs.getString("username"),
@@ -197,16 +196,16 @@ public class ReviewRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select r.review_id, r.rating, r.contents, r.create_time, " +
-			"m.member_id, m.password, m.email, m.phone_number, " +
-			"c.cafe_id, c.name, c.address, c.password_1, c.email_1, c.contact " +
-			"from review r " +
-			"join member m on r.member_id = m.member_id " +
-			"join cafe c on r.cafe_id = c.cafe_id " +
-			"where c.cafeId = ?";
+		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
+			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
+			"c.cafe_id, c.name, c.address, c.password AS cafe_password, c.email AS cafe_email, c.contact " +
+			"FROM review r " +
+			"JOIN member m ON r.member_id = m.member_id " +
+			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
+			"WHERE c.cafe_id = ?";
+
 
 		List<Review> reviews = new ArrayList<>();
-
 		try {
 
 			conn = getConnection();
@@ -216,12 +215,11 @@ public class ReviewRepository {
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
-				System.out.println(rs.getString("review_id"));
 				Member member = Member.createMember(
 					rs.getLong("member_id"),
-					rs.getString("userName"),
-					rs.getString("password"),
-					rs.getString("email"),
+					rs.getString("username"),
+					rs.getString("member_password"),
+					rs.getString("member_email"),
 					rs.getString("phone_number")
 				);
 
@@ -229,8 +227,8 @@ public class ReviewRepository {
 					rs.getLong("cafe_id"),
 					rs.getString("name"),
 					rs.getString("address"),
-					rs.getString("password_1"),
-					rs.getString("email_1"),
+					rs.getString("cafe_password"),
+					rs.getString("cafe_email"),
 					rs.getString("contact")
 				);
 
