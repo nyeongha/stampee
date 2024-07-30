@@ -51,7 +51,7 @@ public class Main extends Application {
 		// primaryStage.setScene(new Scene(root));
 		// primaryStage.show();
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
 		primaryStage.setTitle("Review Block Example");

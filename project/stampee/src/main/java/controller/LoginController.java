@@ -9,24 +9,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class AccountController {
+public class LoginController {
 
-	@FXML
-	public TextField emailField;
+	@FXML public TextField emailField;
 
-	@FXML
-	private TextField passwordField;
+	@FXML private TextField passwordField;
 
-	@FXML
-	private Button loginButton;
+	@FXML private Button loginButton;
 
-	@FXML
-	private Button signUpButton;
+	@FXML private Button signUpButton;
 
 	@FXML
 	public void initialize() {
@@ -39,8 +34,6 @@ public class AccountController {
 		String email = emailField.getText();
 		String password = passwordField.getText();
 
-		System.out.println("Log in button clicked");
-		loadIndexPage();
 
 		// 로그인 검증 로직 추가
 		// if (authenticate(id, password)) {
@@ -55,7 +48,7 @@ public class AccountController {
 	@FXML
 	private void handleSignUpButtonAction(ActionEvent event) {
 		// 회원가입 버튼 클릭 시 로직 추가
-		System.out.println("회원가입 버튼 클릭됨");
+		loadIndexPage();
 	}
 
 	private boolean authenticate(String id, String password) {
