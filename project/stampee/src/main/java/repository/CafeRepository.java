@@ -89,7 +89,7 @@ public class CafeRepository {
 		}
 	}
 
-	public boolean login(Cafe cafe) {
+	public boolean login(String email, String password){
 		//sql
 		String sql = "select password from cafe where email = ?";
 		Connection conn = null;
@@ -101,23 +101,22 @@ public class CafeRepository {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cafe.getEmail());
+			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
-				return verifyPassword(cafe.getPassword(), storedPassword);
-			} else {
-				System.out.println("email not found : " + cafe.getEmail());
+				return verifyPassword(password, storedPassword);
+			} 
+			else{
+				System.out.println("email not found : "+email);
 				return false;
 			}
-
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt);
 		}
-
 	}
 
 	public List<Member> findCafeMembersById(int cafeId) {

@@ -9,6 +9,7 @@ public class Member {
 	private String password;
 	private String phoneNumber;
 
+
 	private Member(long memberId, String userName, String email, String password, String phoneNumber) {
 		this.memberId = memberId;
 		this.userName = userName;

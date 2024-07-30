@@ -1,4 +1,5 @@
 
+import java.io.IOException;
 import java.util.List;
 
 import controller.CouponController;
@@ -10,6 +11,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -77,6 +79,25 @@ public class Main extends Application {
 	// 		primaryStage.setScene(scene);
 	// 		primaryStage.show();
 	// 	} catch (Exception e) {
+	// 		e.printStackTrace();
+	// 	}
+	// }
+	//
+	// public static void main(String[] args) {
+	// 	launch(args);
+	// }
+
+	// @Override
+	// public void start(Stage primaryStage) {
+	// 	try {
+	// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/reusables/Header.fxml"));
+	// 		BorderPane root = loader.load();
+	//
+	// 		Scene scene = new Scene(root, 600, 800);
+	// 		primaryStage.setTitle("Header Test Application");
+	// 		primaryStage.setScene(scene);
+	// 		primaryStage.show();
+	// 	} catch (IOException e) {
 	// 		e.printStackTrace();
 	// 	}
 	// }
