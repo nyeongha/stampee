@@ -10,15 +10,17 @@ public class Cafe {
 	private String password;
 	private String email;
 	private final String contact;
+	private boolean isLoggedIn;
 	private List<Signature> signatures;
 
-	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
+	public Cafe(long cafeId, String name, String address, String password, String email, String contact, boolean isLoggedIn) {
 		this.cafeId = cafeId;
 		this.name = name;
 		this.address = address;
 		this.password = password;
 		this.email = email;
 		this.contact = contact;
+		this.isLoggedIn = isLoggedIn;
 	}
 
 	public long getCafeId() {

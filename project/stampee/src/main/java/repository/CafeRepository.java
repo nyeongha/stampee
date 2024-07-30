@@ -149,7 +149,8 @@ public class CafeRepository {
 					rs.getString("username"),
 					rs.getString("email"),
 					rs.getString("password"),
-					rs.getString("phone_number")
+					rs.getString("phone_number"),
+					rs.getBoolean("is_Logged_in")
 				);
 				members.add(member);
 			}
@@ -185,7 +186,8 @@ public class CafeRepository {
 					rs.getString("address"),
 					rs.getString("password"),
 					rs.getString("email"),
-					rs.getString("contact")
+					rs.getString("contact"),
+					rs.getBoolean("is_logged_in") == 1
 				);
 
 			}
@@ -197,5 +199,9 @@ public class CafeRepository {
 		}
 
 		return cafe;
+	}
+
+	public void CafeSignout(){
+
 	}
 }
