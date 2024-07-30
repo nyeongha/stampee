@@ -41,15 +41,23 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+		// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+		// Parent root = loader.load();
+		//
+		// CouponController controller = loader.getController();
+		// controller.initData(37L); // 예시로 memberId 1을 사용
+		//
+		// primaryStage.setTitle("Coupon Viewer");
+		// primaryStage.setScene(new Scene(root));
+		// primaryStage.show();
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
 		Parent root = loader.load();
-
-		CouponController controller = loader.getController();
-		controller.initData(37L); // 예시로 memberId 1을 사용
-
-		primaryStage.setTitle("Coupon Viewer");
-		primaryStage.setScene(new Scene(root));
+		Scene scene = new Scene(root);
+		primaryStage.setTitle("Review Block Example");
+		primaryStage.setScene(scene);
 		primaryStage.show();
+
 	}
 
 	public static void main(String[] args) {
