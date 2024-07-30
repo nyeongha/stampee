@@ -1,6 +1,7 @@
 package dto.response;
 
 import domain.Stamp;
+
 public class MyStampDto {
 	private String cafeName;
 	private String cafeAddr;
@@ -12,7 +13,7 @@ public class MyStampDto {
 		this.count = count;
 	}
 
-	public static MyStampDto createMyStampDto(Stamp stamp){
+	public static MyStampDto createMyStampDto(Stamp stamp) {
 		return new MyStampDto(stamp.getCafe().getName(),
 			stamp.getCafe().getAddress(),
 			stamp.getCount());

@@ -1,10 +1,8 @@
 package domain;
 
-import java.sql.Clob;
 import java.sql.Date;
 
 public class Review {
-
 	private long reviewId;
 	private int rating;
 	private String contents;
@@ -30,9 +28,9 @@ public class Review {
 	}
 
 	public Review(long reviewId, int rating, String contents) {
-		this.reviewId=reviewId;
-		this.rating=rating;
-		this.contents=contents;
+		this.reviewId = reviewId;
+		this.rating = rating;
+		this.contents = contents;
 	}
 
 	public long getId() {
@@ -57,5 +55,14 @@ public class Review {
 
 	public Cafe getCafe() {
 		return cafe;
+	}
+
+	@Override
+	public String toString() {
+		return "Username: " + author.getUserName() + "\n" +
+			"Cafe: " + cafe.getName() + "\n" +
+			"Rating: " + rating + "\n" +
+			"Date: " + createTime + "\n" +
+			"Content: " + contents;
 	}
 }
