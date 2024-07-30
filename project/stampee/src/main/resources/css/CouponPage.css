@@ -1,10 +1,10 @@
 @font-face {
-    font-family: 'Single Day';
-    src: url('/font/SingleDay-Regular.ttf');
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
 }
 
 .root {
-    -fx-font-family: 'Single Day';
+    -fx-font-family: 'Jua';
 }
 
 
