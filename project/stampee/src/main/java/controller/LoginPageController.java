@@ -35,23 +35,25 @@ public class LoginPageController {
 		loginButton.setOnAction(this::handleLoginButtonAction);
 		signUpButton.setOnAction(this::handleSignUpButtonAction);
 	}
-
+	String email;
+	String password;
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
-		String email = emailField.getText();
-		String password = passwordField.getText();
+		 email = emailField.getText();
+		 password = passwordField.getText();
 
 		System.out.println("Log in button clicked");
+		loadIndexPage(email, password);
 		// 로그인 검증 로직 추가
-		if (cafeRepository.login(email, password)) {
-			showAlert("sucess", "로그인이 성공적으로 완료되었습니다.");
-			// 로그인 성공 시 인덱스 페이지로 이동
-			loadIndexPage(email, password);
-		} else {
-			// 로그인 실패 시 경고 메시지 또는 다른 처리
-			showAlert("Error", "로그인이 실패했습니다. 다시 시도해주세요");
-
-		}
+		// if (cafeRepository.login(email, password)) {
+		// 	showAlert("sucess", "로그인이 성공적으로 완료되었습니다.");
+		// 	// 로그인 성공 시 인덱스 페이지로 이동
+		// 	loadIndexPage(email, password);
+		// } else {
+		// 	// 로그인 실패 시 경고 메시지 또는 다른 처리
+		// 	showAlert("Error", "로그인이 실패했습니다. 다시 시도해주세요");
+		//
+		// }
 	}
 
 	@FXML
