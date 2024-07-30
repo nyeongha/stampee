@@ -1,26 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.image.ImageView?>
 
-<HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
         <children>
             <ImageView fitHeight="40" fitWidth="40" styleClass="logo">
          <image>
-            <Image url="@../../stampee_logo.png" />
+            <Image url="@../../image/stampee_logo.png" />
          </image></ImageView>
             <HBox spacing="10" styleClass="menu-items">
                 <children>
-                    <Label text="My Review" />
-                    <Label text="Reviews" />
-                    <Label text="Coupon" />
-                    <Label text="Contacts" />
-                    <Label text="Edit" />
+                    <Label text="내 리뷰" />
+                    <Label text="리뷰" />
+                    <Label text="쿠폰" />
+                    <Label text="마이페이지" />
                     <Region HBox.hgrow="ALWAYS" />
                 </children>
             </HBox>
