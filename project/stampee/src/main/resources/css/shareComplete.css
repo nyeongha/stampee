@@ -1,0 +1,31 @@
+.root {
+    -fx-background-color: #f0f0f0;
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.success-message {
+    -fx-font-family: "D2Coding";
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-text-fill: black;
+}
+
+.confirm-button {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 10 20 10 20;
+    -fx-background-radius: 5;
+}
+
+.confirm-button:hover {
+    -fx-background-color: #1976D2;
+}
+
+.confirm-button:pressed {
+    -fx-background-color: #0D47A1;
+}
