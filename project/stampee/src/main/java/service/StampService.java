@@ -27,8 +27,8 @@ public class StampService {
 		this.mailService = mailService;
 	}
 
-	public MyStampDto findMyStamp(long member_id, long cafe_id) {
-		Stamp stamp = stampRepository.findStamp(member_id, cafe_id);
+	public MyStampDto findMyStamp(long memberId, long cafeId) {
+		Stamp stamp = stampRepository.findStamp(memberId, cafeId);
 		return MyStampDto.createMyStampDto(stamp);
 	}
 
@@ -41,12 +41,12 @@ public class StampService {
 	}
 
 	//친구에게 스탬프 공유하는 메서드
-	public void shareStamp(Member fromMember, Cafe cafe, String toPhoneNum, int count) throws MessagingException, SQLException {
+	public void shareStamp(Member fromMember, long cafeId, String toPhoneNum, int count) throws MessagingException, SQLException {
 		Member toMember = memberRepository.findUserByPhoneNum(toPhoneNum);
 		if(toMember == null){
 			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
-		if (stampRepository.updateStamp(cafe.getId(), fromMember.getId(), toMember.getId(), count)) {	//성공한 경우
+		if (stampRepository.updateStamp(cafeId, fromMember.getId(), toMember.getId(), count)) {	//성공한 경우
 			mailService.sendMail(fromMember.getEmail(), "human9062@gmail.com", format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
 			mailService.sendMail(toMember.getEmail(), "human9062@gmail.com", format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
 		} else {	//실패 한 경우

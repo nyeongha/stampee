@@ -6,7 +6,7 @@ public class MyStampDto {
 	private String cafeAddr;
 	private int count;
 
-	private MyStampDto(String cafeName, String cafeAddr, int count) {
+	public MyStampDto(String cafeName, String cafeAddr, int count) {
 		this.cafeName = cafeName;
 		this.cafeAddr = cafeAddr;
 		this.count = count;
