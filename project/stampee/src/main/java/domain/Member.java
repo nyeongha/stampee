@@ -8,16 +8,14 @@ public class Member {
 	private String email;
 	private String password;
 	private String phoneNumber;
-	private boolean isLoggedIn;
 
 
-	private Member(long memberId, String userName, String email, String password, String phoneNumber, boolean isLoggedIn) {
+	private Member(long memberId, String userName, String email, String password, String phoneNumber) {
 		this.memberId = memberId;
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
-		this.isLoggedIn = isLoggedIn;
 	}
 
 	private static void validateMember(String userName, String email, String password, String phoneNumber) {
@@ -39,9 +37,9 @@ public class Member {
 	}
 
 	public static Member createMember(long memberId, String userName, String email, String password,
-		String phoneNumber, boolean isLoggedIn) {
+		String phoneNumber) {
 		// validateMember(userName, email, password, phoneNumber);
-		return new Member(memberId, userName, email, password, phoneNumber, isLoggedIn);
+		return new Member(memberId, userName, email, password, phoneNumber);
 	}
 
 	public long getId() {

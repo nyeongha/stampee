@@ -54,7 +54,7 @@ class CafeRepositoryTest {
 		// when
 		long cafeId = cafeRepository.cafeSignUp(loginCafe, "Test Menu 1", "Test Menu 2");
 		loginCafe.setCafeId(cafeId);  // 생성된 cafeId 설정
-		boolean loginResult = cafeRepository.login(loginCafe);
+		boolean loginResult = cafeRepository.login(loginCafe.getEmail(), loginCafe.getPassword());
 
 		// then
 		assertThat(loginResult).isTrue();
@@ -69,7 +69,7 @@ class CafeRepositoryTest {
 
 		// when
 		cafeService.cafeSignUp(cafe, "ServiceTest Menu 1", "ServiceTest Menu 2");
-		boolean loginResult = cafeService.login(cafe);
+		boolean loginResult = cafeService.login(cafe.getEmail(), cafe.getPassword());
 
 		// then
 		assertThat(loginResult).isTrue();
@@ -86,7 +86,7 @@ class CafeRepositoryTest {
 		cafeService.cafeSignUp(cafe, "Wrong Password Menu 1", "Wrong Password Menu 2");
 
 		cafe.setPassword("correctpass1");
-		boolean loginResult = cafeService.login(cafe);
+		boolean loginResult = cafeService.login(cafe.getEmail(), cafe.getPassword());
 
 		// then
 		assertThat(loginResult).isFalse();

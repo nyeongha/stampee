@@ -92,7 +92,7 @@ public class CafeRepository {
 		}
 	}
 
-	public boolean login(Cafe cafe){
+	public boolean login(String email, String password){
 		//sql
 		String sql = "select password from cafe where email = ?";
 		Connection conn = null;
@@ -104,15 +104,15 @@ public class CafeRepository {
 
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, cafe.getEmail());
+			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 
 			if(rs.next()){
 				String storedPassword = rs.getString("password");
-				return verifyPassword(cafe.getPassword(), storedPassword);
+				return verifyPassword(password, storedPassword);
 			}
 			else{
-				System.out.println("email not found : "+cafe.getEmail());
+				System.out.println("email not found : "+email);
 				return false;
 			}
 
@@ -149,8 +149,7 @@ public class CafeRepository {
 					rs.getString("username"),
 					rs.getString("email"),
 					rs.getString("password"),
-					rs.getString("phone_number"),
-					rs.getBoolean("is_Logged_in")
+					rs.getString("phone_number")
 				);
 				members.add(member);
 			}
@@ -213,8 +212,7 @@ public class CafeRepository {
 					rs.getString("address"),
 					rs.getString("password"),
 					rs.getString("email"),
-					rs.getString("contact"),
-					rs.getBoolean("is_logged_in") == 1
+					rs.getString("contact")
 				);
 
 			}
@@ -224,9 +222,5 @@ public class CafeRepository {
 			close(conn, pstmt, rs);
 		}
 		return cafe;
-	}
-
-	public void CafeSignout(){
-
 	}
 }
