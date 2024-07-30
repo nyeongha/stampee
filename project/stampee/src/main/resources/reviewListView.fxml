@@ -3,10 +3,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
-
 <?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.Label?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
-    <ScrollPane fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS">
         <FlowPane fx:id="reviewFlowPane" prefWidth="580" hgap="10" vgap="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
@@ -14,4 +15,3 @@
         </FlowPane>
     </ScrollPane>
 </VBox>
-

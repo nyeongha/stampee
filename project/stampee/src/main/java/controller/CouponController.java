@@ -27,9 +27,9 @@ import service.UserService;
 import view.CouponView;
 
 public class CouponController {
-	private static CouponService couponService;
-	private static StampService stampService;
-	private static UserService userService;
+	private final CouponService couponService;
+	private final StampService stampService;
+	private final UserService userService;
 	private final CouponView couponView = new CouponView();
 
 	@FXML
@@ -70,7 +70,7 @@ public class CouponController {
 
 	public String showNumberPadPopup() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/numberPad.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/numberPad.fxml"));
 			Parent root = loader.load();
 			NumberPadController controller = loader.getController();
 

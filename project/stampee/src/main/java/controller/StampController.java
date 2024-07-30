@@ -10,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -23,19 +24,15 @@ import service.MailService;
 import service.StampService;
 
 public class StampController implements Initializable {
-	private static CouponService couponService;
-	private static StampService stampService;
-	private static CafeService cafeService;
+	private final CouponService couponService;
+	private final StampService stampService;
+	private final CafeService cafeService;
 
-	@FXML
-	private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
-	@FXML
-	private Label cafeName, cafeAddress, couponCount;
-	;
-	@FXML
-	private Label signature1, signature2;
-	@FXML
-	private Pane mapContainer;
+	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
+	@FXML private Label cafeName, cafeAddress, couponCount;
+	@FXML private Label signature1, signature2;
+	@FXML private Pane mapContainer;
+	@FXML private ScrollPane reviewContainer;
 
 	public StampController() {
 		MailService mailService = new MailService();
@@ -52,8 +49,10 @@ public class StampController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			Pane mapPane = FXMLLoader.load(getClass().getResource("/MapOutput.fxml"));
+			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
 			mapContainer.getChildren().add(mapPane);
+			Pane reviewPane = FXMLLoader.load(getClass().getResource("/reviewListView.fxml"));
+			reviewContainer.setContent(reviewPane);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

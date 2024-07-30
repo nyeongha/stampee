@@ -3,7 +3,6 @@ package domain;
 import java.sql.Date;
 
 public class Review {
-
 	private long reviewId;
 	private int rating;
 	private String contents;
@@ -56,5 +55,14 @@ public class Review {
 
 	public Cafe getCafe() {
 		return cafe;
+	}
+
+	@Override
+	public String toString() {
+		return "Username: " + author.getUserName() + "\n" +
+			"Cafe: " + cafe.getName() + "\n" +
+			"Rating: " + rating + "\n" +
+			"Date: " + createTime + "\n" +
+			"Content: " + contents;
 	}
 }

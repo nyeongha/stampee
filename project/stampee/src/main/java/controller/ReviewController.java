@@ -1,56 +1,46 @@
 package controller;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import domain.Review;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.HBox;
+import repository.CafeRepository;
+import repository.MemberRepository;
+import repository.ReviewRepository;
 import service.ReviewService;
+import view.ReviewView;
 
 public class ReviewController {
-	@FXML
-	private FlowPane reviewFlowPane;
-
+	@FXML private ScrollPane scrollPane;
 	private final ReviewService reviewService;
+	private final ReviewView reviewView = new ReviewView();
 
-	public ReviewController(ReviewService reviewService) {
-		this.reviewService = reviewService;
+	public ReviewController() {
+		MemberRepository memberRepository = new MemberRepository();
+		CafeRepository cafeRepository = new CafeRepository();
+		ReviewRepository reviewRepository = new ReviewRepository(memberRepository, cafeRepository);
+		reviewService = new ReviewService(reviewRepository);
 	}
 
 	@FXML
-	public void initialize() throws SQLException {
-		List<Review> reviews = reviewService.findAllReviews();
-		System.out.println(reviews.size());
-		for (Review review : reviews) {
-			reviewFlowPane.getChildren().add(createReviewBox(review));
-		}
+	public void initialize() {
+		List<Review> reviews = reviewService.findAllReviews();    //리뷰 가져오기
+		displayReviews(reviews);
 	}
 
-	private VBox createReviewBox(Review review) {
-		VBox reviewBox = new VBox();
-		reviewBox.setStyle("-fx-border-color: black; -fx-padding: 10; -fx-background-color: #f0f0f0;");
-		reviewBox.setPrefSize(280, 150); // Adjust size to fit two boxes per row
-
-		// Extract the first 20 characters and add "..." if necessary
-		String content = review.getContents();
-		String shortContent = content.length() > 20 ? content.substring(0, 20) + "..." : content;
-
-		// Create labels
-		Label titleLabel = new Label("Title: " + shortContent);
-		Label authorLabel = new Label("Author: " + review.getMember().getUserName());
-		Label ratingLabel = new Label("Rating: " + review.getRating());
-
-		// Only add full content if it is not displayed in the title
-		Label contentLabel = new Label("Content: " + content);
-
-		// Add labels to VBox
-		reviewBox.getChildren().addAll(titleLabel, authorLabel, contentLabel, ratingLabel);
-		return reviewBox;
+	private void displayReviews(List<Review> reviews) {
+		HBox reviewsContainer = reviewView.createReviewsContainer(reviews);
+		setScrollPane(reviewsContainer);
 	}
 
+	private void setScrollPane(HBox reviewsContainer) {
+		// ScrollPane 설정
+		scrollPane.setContent(reviewsContainer);
+		scrollPane.setFitToHeight(true); // 스크롤을 수직으로만 사용 가능하게 함
+		scrollPane.setFitToWidth(true); // 스크롤을 가로와 세로로 사용 가능하게 함
+		scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.ALWAYS); // 수평 스크롤바 항상 표시
+		scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // 수직 스크롤바 필요 시 표시
+	}
 }
-
-
