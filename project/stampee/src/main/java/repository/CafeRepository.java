@@ -162,6 +162,33 @@ public class CafeRepository {
 		}
 	}
 
+	public List<String> findSignatureByCafeId(long cafeId) {
+		String sql = "select menu_name "
+			+ "from signature "
+			+ "where cafe_id = ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<String> menus = new ArrayList<>();
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, cafeId);
+
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				menus.add(rs.getString("menu_name"));
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+
+		return menus;
+	}
+
 	public Cafe findCafeByContact(String contact) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -189,13 +216,11 @@ public class CafeRepository {
 				);
 
 			}
-
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, rs);
 		}
-
 		return cafe;
 	}
 }

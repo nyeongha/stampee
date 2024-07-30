@@ -1,19 +1,24 @@
 package service;
 
+import java.util.List;
+
+import repository.CafeRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
-import domain.Signature;
-import repository.CafeRepository;
 
 public class CafeService {
-
 	private final CafeRepository cafeRepository;
 	private static final Logger log = LoggerFactory.getLogger(CafeService.class);
 
 	public CafeService(CafeRepository cafeRepository) {
 		this.cafeRepository = cafeRepository;
+	}
+
+
+	public List<String> getSignatureMenu(long cafeId) {
+		return cafeRepository.findSignatureByCafeId(cafeId);
 	}
 
 	public boolean cafeSignUp(Cafe cafe, String menu1, String menu2) {

@@ -15,7 +15,6 @@ import domain.Cafe;
 import domain.Member;
 import domain.Review;
 
-
 public class ReviewRepository {
 
 	private MemberRepository memberRepository;
@@ -61,16 +60,12 @@ public class ReviewRepository {
 				);
 				reviews.add(review);
 			}
-
 		} catch (SQLException e) {
 			throw new RuntimeException("Database error", e);
 		}
 
 		return reviews;
 	}
-
-
-
 
 	public void insertReview(Review review) {        //리뷰 생성,서비스 반영,테스트 완
 		Connection conn = null;
@@ -256,6 +251,4 @@ public class ReviewRepository {
 		}
 		return reviews;
 	}
-
-	// protected abstract Connection getConnection();
 }

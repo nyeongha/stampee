@@ -2,6 +2,7 @@ package repository;
 
 import static org.assertj.core.api.Assertions.*;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -9,13 +10,12 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import dto.ExpiredCouponDto;
-
 class CouponRepositoryTest {
 	private CouponRepository couponRepository = new CouponRepository();
 
 	@Test
-	@DisplayName("쿠폰 만료 예정 5일전인 사용자를 찾을 수 있다.")
-	void findExpiringCoupons(){
+	@DisplayName("쿠폰 만료 예정 사용자를 찾을 수 있다.")
+	void findExpiringCouponsCount(){
 		//given
 		LocalDate now = LocalDate.of(2024, 7, 28);
 		//when

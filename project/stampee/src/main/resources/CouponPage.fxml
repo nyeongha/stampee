@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CouponController"
+      styleClass="main-container" prefWidth="600" prefHeight="800" stylesheets="CouponPage.css">
+    <ScrollPane VBox.vgrow="ALWAYS" fitToWidth="true" styleClass="scroll-pane">
+        <VBox fx:id="cafeListContainer" spacing="10" styleClass="cafe-list-container">
+        </VBox>
+    </ScrollPane>
+</VBox>

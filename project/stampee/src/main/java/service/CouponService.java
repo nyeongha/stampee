@@ -8,6 +8,7 @@ import java.util.List;
 import javax.mail.MessagingException;
 
 import dto.ExpiredCouponDto;
+import dto.response.MyCouponDto;
 import repository.CouponRepository;
 
 public class CouponService {
@@ -24,5 +25,17 @@ public class CouponService {
 		for (ExpiredCouponDto expiringCoupon : expiringCoupons) {
 			mailService.sendMail(expiringCoupon.getMemberEmail(), "human9062@gmail.com", expiringCoupon.toString(), EXPIRED_COUPON.getMessage());
 		}
+	}
+
+	public int getMyCount(long memberId, long cafeId){
+		return couponRepository.findCouponByMemberIdAndCafeId(memberId, cafeId);
+	}
+
+	public List<MyCouponDto> getMyCoupon(long memberId){
+		return couponRepository.findCouponByMemberId(memberId);
+	}
+
+	public int getExpiringCouponCount(long memberId, long cafeId){
+		return couponRepository.findExpiringCouponCount(memberId, cafeId);
 	}
 }
