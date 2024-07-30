@@ -30,4 +30,8 @@ public class LoginSession {
 	public void clearSession() {
 		instance = null;
 	}
+
+	public LoggedMemberDto getLoggedMemberDto() {
+		return loggedMemberDto;
+	}
 }
