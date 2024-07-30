@@ -6,7 +6,7 @@
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="controller.NumberPadController"
       alignment="CENTER" prefWidth="200" prefHeight="300"
-      styleClass="number-pad-container" stylesheets="numberPad.css">
+      styleClass="number-pad-container" stylesheets="/css/numberPad.css">
 
     <TextField fx:id="inputField" editable="false"/>
 
@@ -33,5 +33,4 @@
         <Button text="0" onAction="#handleDigit" styleClass="number-pad-button"/>
         <Button text="OK" onAction="#handleOK" styleClass="number-pad-button"/>
     </HBox>
-
 </VBox>
