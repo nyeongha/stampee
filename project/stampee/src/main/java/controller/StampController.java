@@ -51,8 +51,11 @@ public class StampController implements Initializable {
 		try {
 			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
 			mapContainer.getChildren().add(mapPane);
-			Pane reviewPane = FXMLLoader.load(getClass().getResource("/reviewListView.fxml"));
+
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
+			Pane reviewPane = loader.load();
 			reviewContainer.setContent(reviewPane);
+
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -68,6 +71,7 @@ public class StampController implements Initializable {
 		couponCount.setText(myStamp.getCafeName() + " 쿠폰 " + count + "장");
 
 		setSignatureMenu(cafeId);
+		setReviewContainerCafeId(cafeId);
 	}
 
 	private void setSignatureMenu(long cafeId) {
@@ -91,6 +95,20 @@ public class StampController implements Initializable {
 			} else {
 				stamps[i].setImage(emptyStamp);
 			}
+		}
+	}
+
+	private void setReviewContainerCafeId(long cafeId) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
+			Pane reviewPane = loader.load();
+
+			ReviewController controller = loader.getController();
+			controller.setCafeId(cafeId);
+
+			reviewContainer.setContent(reviewPane);
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

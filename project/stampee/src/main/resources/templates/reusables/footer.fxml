@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox styleClass="footer">
+    <VBox styleClass="footer-content">
+        <ImageView fitHeight="60" fitWidth="60" styleClass="footer-logo"/>
+        <Label text="STAMPEE" styleClass="footer-title"/>
+        <Label text="STAMP AND COLLECT!" styleClass="footer-subtitle"/>
+    </VBox>
+</HBox>

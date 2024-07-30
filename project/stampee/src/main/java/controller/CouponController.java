@@ -32,8 +32,7 @@ public class CouponController {
 	private final UserService userService;
 	private final CouponView couponView = new CouponView();
 
-	@FXML
-	private VBox cafeListContainer;
+	@FXML private VBox cafeListContainer;
 
 	public CouponController() {
 		CouponRepository couponRepository = new CouponRepository();
@@ -76,7 +75,7 @@ public class CouponController {
 
 			Stage stage = new Stage();
 			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setTitle("숫자 입력");
+			stage.setTitle("전화번호 입력");
 			stage.setScene(new Scene(root));
 			stage.showAndWait(); // 팝업 창이 닫힐 때까지 대기
 

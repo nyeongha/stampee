@@ -1,6 +1,7 @@
 
 import java.util.List;
 
+import controller.CouponController;
 import controller.StampController;
 import domain.Review;
 import javafx.application.Application;
@@ -39,7 +40,7 @@ public class Main extends Application {
 	// 	Parent root = loader.load();
 	//
 	// 	CouponController controller = loader.getController();
-	// 	controller.initData(38L); // 예시로 memberId 1을 사용
+	// 	controller.initData(39L); // 예시로 memberId 1을 사용
 	//
 	// 	primaryStage.setTitle("Coupon Viewer");
 	// 	primaryStage.setScene(new Scene(root));
@@ -65,7 +66,7 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-
+	//
 	// @Override
 	// public void start(Stage primaryStage) {
 	// 	try {
