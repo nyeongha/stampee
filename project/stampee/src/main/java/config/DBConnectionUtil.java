@@ -6,10 +6,12 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import util.DBConfigLoader;
+
 public class DBConnectionUtil {
-	private static final String URL = getURL();
-	private static final String USERNAME = getUsername();
-	private static final String PASSWORD = getPasswordD();
+	private static final String URL = DBConfigLoader.getURL();
+	private static final String USERNAME = DBConfigLoader.getUsername();
+	private static final String PASSWORD = DBConfigLoader.getPasswordD();
 
 	public static Connection getConnection() {
 		try {
@@ -20,4 +22,5 @@ public class DBConnectionUtil {
 			throw new IllegalStateException(e);
 		}
 	}
+
 }
