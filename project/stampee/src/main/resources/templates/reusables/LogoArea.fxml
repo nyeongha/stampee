@@ -16,7 +16,7 @@
          <graphic>
              <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                  <image>
-                     <Image url="@../../stampee_logo.png" />
+                     <Image url="@../../image/stampee_logo.png" />
                  </image>
              </ImageView>
          </graphic>

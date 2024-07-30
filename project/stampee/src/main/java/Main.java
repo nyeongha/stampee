@@ -9,9 +9,9 @@ public class Main extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		Parent root = FXMLLoader.load(
-			getClass().getResource("/templates/account/LoginPage.fxml"));
+			getClass().getResource("/templates/account/CafeSignupPage.fxml"));
 		primaryStage.setTitle("카페 위치 정보");
-		primaryStage.setScene(new Scene(root, 600, 800));
+		primaryStage.setScene(new Scene(root, 600, 1000));
 		primaryStage.show();
 	}
 

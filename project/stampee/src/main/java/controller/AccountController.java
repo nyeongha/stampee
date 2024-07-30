@@ -17,7 +17,6 @@ import java.io.IOException;
 	public class AccountController {
 
 		public VBox signuppagemain;
-		public VBox usersignuppage;
 		@FXML
 		private TextField idField;
 
