@@ -4,23 +4,23 @@ import static exception.ErrorMessage.*;
 
 import dto.response.LoggedMemberDto;
 
-public class LoginSession {
-	private static LoginSession instance;
+public class MemberSession {
+	private static MemberSession instance;
 	private final LoggedMemberDto loggedMemberDto;
 
-	public LoginSession(LoggedMemberDto loggedMemberDto) {
+	public MemberSession(LoggedMemberDto loggedMemberDto) {
 		this.loggedMemberDto = loggedMemberDto;
 	}
 
-	public static synchronized LoginSession getInstance(LoggedMemberDto loggedMemberDto){
+	public static synchronized MemberSession getInstance(LoggedMemberDto loggedMemberDto){
 		if(instance == null){
-			instance = new LoginSession(loggedMemberDto);
+			instance = new MemberSession(loggedMemberDto);
 			return instance;
 		}
-		return null;
+		return instance;
 	}
 
-	public static  synchronized LoginSession getInstance(){
+	public static  synchronized MemberSession getInstance(){
 		if(instance == null){
 			throw new IllegalArgumentException(USER_NOT_LOGGED_IN.getErrorMessage());
 		}

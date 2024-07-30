@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Jua';
+}
 .main-container {
     -fx-background-color: white;
     -fx-spacing: 10;
