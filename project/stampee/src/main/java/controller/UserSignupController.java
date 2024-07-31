@@ -13,7 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class UserSignupController {public VBox signuppagemain;
+public class UserSignupController {
 	public TextField emailField;
 	public TextField nameField;
 	public TextField passwordField;
@@ -37,18 +37,5 @@ public class UserSignupController {public VBox signuppagemain;
 		return "admin".equals(id) && "password".equals(password);
 	}
 
-	private void loadIndexPage() {
-		try {
-			Parent indexPage = FXMLLoader.load(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
-			Scene scene = new Scene(indexPage);
-			// Stage stage = (Stage) loginButton.getScene().getWindow();
-			// stage.setScene(scene);
-			// stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 
-	public void AccountController(MouseEvent mouseEvent) {
-	}
 }
