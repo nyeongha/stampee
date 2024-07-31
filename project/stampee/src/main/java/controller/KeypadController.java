@@ -4,7 +4,6 @@ package controller;
 import static formatter.PhoneNumberFormatter.*;
 import static java.lang.Integer.*;
 import static javafx.scene.control.Alert.AlertType.*;
-import static view.PopupView.*;
 
 import javafx.event.ActionEvent;
 
@@ -40,7 +39,6 @@ public class KeypadController {
 		StampRepository stampRepository = new StampRepository();
 		MemberRepository memberRepository = new MemberRepository();
 		MailService mailService = new MailService();
-
 		stampService = new StampService(stampRepository, memberRepository, mailService);
 	}
 
@@ -53,12 +51,6 @@ public class KeypadController {
 		// 마우스 클릭으로 전환
 		phoneNumberField.setOnMouseClicked(event -> setPhoneNumberInput(true));
 		stampCountField.setOnMouseClicked(event -> setPhoneNumberInput(false));
-	}
-
-	// 마우스 클릭 전환 메서드
-	private void setPhoneNumberInput(boolean isPhoneNumber) {
-		isPhoneNumberInput = isPhoneNumber;
-		updateDisplayFields();
 	}
 
 	@FXML
@@ -135,5 +127,11 @@ public class KeypadController {
 		stampCountField.setText(stampCount.toString());
 		phoneNumberField.setStyle(isPhoneNumberInput ? "-fx-background-color: #e0e0e0;" : "");
 		stampCountField.setStyle(!isPhoneNumberInput ? "-fx-background-color: #e0e0e0;" : "");
+	}
+
+	// 마우스 클릭 전환 메서드
+	private void setPhoneNumberInput(boolean isPhoneNumber) {
+		isPhoneNumberInput = isPhoneNumber;
+		updateDisplayFields();
 	}
 }

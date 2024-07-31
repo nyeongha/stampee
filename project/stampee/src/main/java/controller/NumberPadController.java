@@ -1,17 +1,10 @@
 package controller;
 
-import java.io.IOException;
-
-import formatter.PhoneNumberFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.UserService;
@@ -45,16 +38,6 @@ public class NumberPadController {
 
 	@FXML
 	private void handleOK() {
-		// try {
-		// 	String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputField.getText().trim());
-		// 	userService.findMemberByPhoneNumber(toPhoneNumber);
-		// } catch (IllegalArgumentException e) {
-		// 	popupView.showFailPopup(e.getMessage());
-		// }
-		closePopup();
-	}
-
-	private void closePopup() {
 		inputField.getScene().getWindow().hide();
 	}
 

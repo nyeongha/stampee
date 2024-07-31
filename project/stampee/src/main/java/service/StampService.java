@@ -5,8 +5,6 @@ import static formatter.MailMessageFormatter.*;
 import static java.lang.String.*;
 
 import java.sql.SQLException;
-import java.util.NoSuchElementException;
-
 import javax.mail.MessagingException;
 
 import domain.Member;

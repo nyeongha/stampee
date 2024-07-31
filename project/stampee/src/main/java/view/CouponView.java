@@ -1,6 +1,10 @@
 package view;
 
+import controller.NumberPadController;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -9,8 +13,28 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class CouponView {
+	public String showNumberPadPopup() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/numberPad.fxml"));
+			Parent root = loader.load();
+			NumberPadController controller = loader.getController();
+
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setTitle("전화번호 입력");
+			stage.setScene(new Scene(root));
+			stage.showAndWait();
+
+			return controller.getInputField().getText();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
 	public HBox createCafeItemHBox() {
 		HBox cafeItem = new HBox(20);
 		cafeItem.getStyleClass().add("cafe-item");

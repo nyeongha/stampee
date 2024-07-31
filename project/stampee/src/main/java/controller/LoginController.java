@@ -19,7 +19,6 @@ import service.CafeService;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
-import lombok.SneakyThrows;
 
 public class LoginController {
 	private final CafeService cafeService = new CafeService(new CafeRepository());
@@ -28,8 +27,6 @@ public class LoginController {
 	@FXML private TextField passwordField;
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
-
-
 
 	@FXML
 	public void initialize() {
