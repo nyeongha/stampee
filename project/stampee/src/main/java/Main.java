@@ -1,3 +1,6 @@
+import java.awt.*;
+import java.io.InputStream;
+
 import controller.CouponController;
 
 import controller.StampController;
@@ -28,16 +31,27 @@ public class Main extends Application {
 	// 	}
 	// }
 
-
-	@Override
-	public void start(Stage primaryStage) throws Exception{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
 		Parent root = loader.load();
-		primaryStage.setTitle("Stamp Keypad");
-		Scene scene = new Scene(root, 600, 800);
-		primaryStage.setScene(scene);
-		primaryStage.show();
+		StampController controller = loader.getController();
+		controller.initData(39L, 1L); // 예시로 memberId 1을 사용
+		primaryStage.setTitle("Stamp Viewer");
+		primaryStage.setScene(new Scene(root));
+
+				primaryStage.setTitle("Coupon Application");
+				primaryStage.show();
 	}
+
+	// @Override
+	// public void start(Stage primaryStage) throws Exception{
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
+	// 	Parent root = loader.load();
+	// 	primaryStage.setTitle("Stamp Keypad");
+	// 	Scene scene = new Scene(root, 600, 800);
+	// 	primaryStage.setScene(scene);
+	// 	primaryStage.show();
+	// }
 
 		// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
 		// Parent root = loader.load();
@@ -101,31 +115,9 @@ public class Main extends Application {
 // import javafx.scene.Scene;
 // import javafx.stage.Stage;
 //
-//
-// public class Main extends Application {
-// 	public void start(Stage primaryStage) throws Exception {
-// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-// 		Parent root = loader.load();
-// 		StampController controller = loader.getController();
-// 		controller.initData(39L, 1L); // 예시로 memberId 1을 사용
-// 		primaryStage.setTitle("Stamp Viewer");
-// 		primaryStage.setScene(new Scene(root));
-// 		try {
-// 			InputStream is = getClass().getResourceAsStream("/font/Jua-Regular.ttf");
-// 			if (is != null) {
-// 				Font font = Font.loadFont(is, 12);
-// 				if (font != null) {
-// 					System.out.println("Font loaded: " + font.getName());
-// 				} else {
-// 					System.out.println("Failed to load font");
-// 				}
-// 			} else {
-// 				System.out.println("Font file not found");
-// 			}
-// 		} catch (Exception e) {
-// 			e.printStackTrace();
-// 		}
-//
+
+
+
 // 		// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
 // 		// Parent root = loader.load();
 // 		//

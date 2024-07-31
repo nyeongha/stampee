@@ -1,10 +1,13 @@
 package controller;
 
+import static domain.ReviewType.*;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import domain.ReviewType;
 import dto.response.MyStampDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -104,7 +107,7 @@ public class StampController implements Initializable {
 			Pane reviewPane = loader.load();
 
 			ReviewController controller = loader.getController();
-			controller.init(cafeId);
+			controller.init(cafeId, CAFE);
 
 			reviewContainer.setContent(reviewPane);
 		} catch (IOException e) {
