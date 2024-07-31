@@ -28,6 +28,16 @@ public class KeypadController {
 		phoneNumberField.setEditable(false);
 		stampCountField.setEditable(false);
 		updateDisplayFields();
+
+		// 마우스 클릭으로 전환
+		phoneNumberField.setOnMouseClicked(event -> setPhoneNumberInput(true));
+		stampCountField.setOnMouseClicked(event -> setPhoneNumberInput(false));
+	}
+
+	// 마우스 클릭 전환 메서드
+	private void setPhoneNumberInput(boolean isPhoneNumber) {
+		isPhoneNumberInput = isPhoneNumber;
+		updateDisplayFields();
 	}
 
 	@FXML
