@@ -15,10 +15,13 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.UserService;
+import view.PopupView;
 
 public class NumberPadController {
 	private final UserService userService;
 	private StringBuilder inputBuilder = new StringBuilder();
+	private PopupView popupView = new PopupView();
+
 	@FXML private TextField inputField;
 
 	public NumberPadController() {
@@ -42,31 +45,17 @@ public class NumberPadController {
 
 	@FXML
 	private void handleOK() {
-		try {
-			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputField.getText().trim());
-			userService.findMemberByPhoneNumber(toPhoneNumber);
-		} catch (IllegalArgumentException e) {
-			showFailPopup();
-		}
+		// try {
+		// 	String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputField.getText().trim());
+		// 	userService.findMemberByPhoneNumber(toPhoneNumber);
+		// } catch (IllegalArgumentException e) {
+		// 	popupView.showFailPopup(e.getMessage());
+		// }
 		closePopup();
 	}
 
 	private void closePopup() {
 		inputField.getScene().getWindow().hide();
-	}
-
-	private void showFailPopup() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shareFailed.fxml"));
-			Parent root = loader.load();
-
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(new Scene(root));
-			stage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해

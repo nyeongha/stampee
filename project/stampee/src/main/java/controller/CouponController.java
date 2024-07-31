@@ -29,12 +29,14 @@ import service.MailService;
 import service.StampService;
 import service.UserService;
 import view.CouponView;
+import view.PopupView;
 
 public class CouponController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final UserService userService;
 	private final CouponView couponView = new CouponView();
+	private final PopupView popupView = new PopupView();
 
 	@FXML private VBox cafeListContainer;
 
@@ -69,38 +71,9 @@ public class CouponController implements Initializable {
 		try {
 			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(showNumberPadPopup());
 			stampService.shareStamp(fromMember, cafeId, toPhoneNumber, 1);
-			showSuccessPopup();
+			popupView.showSuccessPopup("스탬프 공유 성공");
 		} catch (MessagingException | SQLException |  IllegalArgumentException e) {
-			showFailPopup();
-			throw new RuntimeException(e);
-		}
-	}
-
-	private void showSuccessPopup() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShareComplete.fxml"));
-			Parent root = loader.load();
-
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(new Scene(root));
-			stage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void showFailPopup() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shareFailed.fxml"));
-			Parent root = loader.load();
-
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(new Scene(root));
-			stage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
+			popupView.showFailPopup(e.getMessage());
 		}
 	}
 

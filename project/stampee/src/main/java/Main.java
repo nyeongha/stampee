@@ -12,24 +12,24 @@ import javafx.stage.Stage;
 
 
 public class Main extends Application {
-	// @Override
-	// public void start(Stage primaryStage) {
-	// 	try {
-	// 		// FXML 파일 경로를 설정합니다.
-	// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
-	//
-	// 		// FXML 파일을 로드하고 루트 레이아웃을 가져옵니다.
-	// 		Parent root = loader.load();
-	//
-	// 		// Scene을 설정하고 Stage에 추가합니다.
-	// 		Scene scene = new Scene(root);
-	// 		primaryStage.setScene(scene);
-	// 		primaryStage.setTitle("Coupon Application");
-	// 		primaryStage.show();
-	// 	} catch(Exception e) {
-	// 		e.printStackTrace();
-	// 	}
-	// }
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			// FXML 파일 경로를 설정합니다.
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+
+			// FXML 파일을 로드하고 루트 레이아웃을 가져옵니다.
+			Parent root = loader.load();
+
+			// Scene을 설정하고 Stage에 추가합니다.
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.setTitle("Coupon Application");
+			primaryStage.show();
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	// public void start(Stage primaryStage) throws Exception {
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
@@ -43,15 +43,15 @@ public class Main extends Application {
 	// 			primaryStage.show();
 	// }
 
-	@Override
-	public void start(Stage primaryStage) throws Exception{
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
-		Parent root = loader.load();
-		primaryStage.setTitle("Stamp Keypad");
-		Scene scene = new Scene(root, 600, 800);
-		primaryStage.setScene(scene);
-		primaryStage.show();
-	}
+	// @Override
+	// public void start(Stage primaryStage) throws Exception{
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
+	// 	Parent root = loader.load();
+	// 	primaryStage.setTitle("Stamp Keypad");
+	// 	Scene scene = new Scene(root, 600, 800);
+	// 	primaryStage.setScene(scene);
+	// 	primaryStage.show();
+	// }
 
 		// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
 		// Parent root = loader.load();

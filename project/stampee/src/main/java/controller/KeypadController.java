@@ -4,9 +4,8 @@ package controller;
 import static formatter.PhoneNumberFormatter.*;
 import static java.lang.Integer.*;
 import static javafx.scene.control.Alert.AlertType.*;
+import static view.PopupView.*;
 
-import domain.CafeSession;
-import dto.response.LoggedCafeDto;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -23,6 +22,7 @@ import repository.MemberRepository;
 import repository.StampRepository;
 import service.MailService;
 import service.StampService;
+import view.PopupView;
 
 import java.sql.*;
 
@@ -33,6 +33,7 @@ public class KeypadController {
 	private boolean isPhoneNumberInput = true;
 	private StringBuilder stampCount = new StringBuilder();
 	private StringBuilder phoneNumber = new StringBuilder();
+	private PopupView popupView = new PopupView();
 	private final StampService stampService;
 
 	public KeypadController() {
@@ -90,15 +91,15 @@ public class KeypadController {
 	@FXML
 	private void handleSubmitClick() {
 		if (phoneNumber.length() == 0 || stampCount.length() == 0) {
-			showFailPopup("전화번호와 스탬프 개수를 모두 입력해주세요.");
+			popupView.showFailPopup("전화번호와 스탬프 개수를 모두 입력해주세요.");
 			return;
 		}
 		try {
 			// LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
 			stampService.saveStamp(1l, formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
-			showSuccessPopup();
+			popupView.showSuccessPopup("스탬프 적립 성공");
 		} catch (IllegalArgumentException | SQLException e) {
-			showFailPopup(e.getMessage());
+			popupView.showFailPopup(e.getMessage());
 		}
 
 		phoneNumber.setLength(0);
@@ -122,22 +123,6 @@ public class KeypadController {
 	}
 
 	private void failGoToHome(String message) {
-		Alert alert = new Alert(ERROR);
-		alert.setTitle("오류");
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
-	}
-
-	private void showSuccessPopup() {
-		Alert alert = new Alert(INFORMATION);
-		alert.setTitle("성공");
-		alert.setHeaderText(null);
-		alert.setContentText("스탬프가 성공적으로 적립되었습니다.");
-		alert.showAndWait();
-	}
-
-	private void showFailPopup(String message) {
 		Alert alert = new Alert(ERROR);
 		alert.setTitle("오류");
 		alert.setHeaderText(null);
