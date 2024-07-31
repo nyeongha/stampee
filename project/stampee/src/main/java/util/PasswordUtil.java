@@ -38,37 +38,24 @@ public class PasswordUtil {
 	public static boolean verifyPassword(String inputPassword, String storedPassword) throws NoSuchAlgorithmException {
 		// 저장된 비밀번호에서 솔트와 해시된 비밀번호를 분리
 		String[] parts = storedPassword.split(":");
+
+		// parts 배열의 길이를 확인하여 올바른 형식인지 검증
+		if (parts.length != 2) {
+			// 예외 처리 또는 로그 추가
+			System.out.println("저장된 비밀번호의 형식이 올바르지 않습니다.");
+			return false;
+		}
+
 		byte[] salt = Base64.getDecoder().decode(parts[0]);
 		byte[] saltedPassword = combineSaltAndPassword(salt, inputPassword);
+
 		// 입력된 비밀번호를 같은 방식으로 해시
 		MessageDigest md = MessageDigest.getInstance("SHA-1");
 		byte[] hashedInputPassword = md.digest(saltedPassword);
+
 		// 저장된 해시된 비밀번호와 입력된 비밀번호를 비교
 		return Base64.getEncoder().encodeToString(hashedInputPassword).equals(parts[1]);
 	}
 
-	// 간단한 콘솔 애플리케이션 로그인 로직
-	public static void main(String[] args) throws NoSuchAlgorithmException {
-		Scanner scanner = new Scanner(System.in);
-
-		// 회원가입: 사용자 비밀번호 해시 생성 및 저장 (데이터베이스에 저장하는 과정 시뮬레이션)
-		System.out.print("input password: ");
-		String password = scanner.nextLine();
-		String storedPassword = hashPassword(password);
-		System.out.println("storedPassword: " + storedPassword);
-
-		// 로그인: 사용자 비밀번호 입력 및 검증
-		System.out.print("verify input password: ");
-		String inputPassword = scanner.nextLine();
-		boolean isPasswordCorrect = verifyPassword(inputPassword, storedPassword);
-
-		if (isPasswordCorrect) {
-			System.out.println("success login!");
-		} else {
-			System.out.println("fail login .. check password");
-		}
-
-		scanner.close();
-	}
 }
 

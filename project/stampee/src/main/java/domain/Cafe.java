@@ -2,11 +2,11 @@ package domain;
 
 public class Cafe {
 	private long cafeId;
-	private final String name;
-	private final String address;
+	private String name;
+	private String address;
 	private String password;
 	private String email;
-	private final String contact;
+	private String contact;
 
 	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
 		this.cafeId = cafeId;
@@ -15,6 +15,10 @@ public class Cafe {
 		this.password = password;
 		this.email = email;
 		this.contact = contact;
+	}
+
+	public Cafe() {
+
 	}
 
 	public long getCafeId() {
@@ -41,10 +45,11 @@ public class Cafe {
 		return email;
 	}
 
-
 	public long getId() {
 		return cafeId;
 	}
+
+	public void setName(String name) { this.name = name; }
 
 	public void setCafeId(long cafeId) {
 		this.cafeId = cafeId;
@@ -57,4 +62,8 @@ public class Cafe {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
+	public void setAddress(String address){ this.address = address;}
+
+	public void setContact(String contact){ this.contact = contact;}
 }
