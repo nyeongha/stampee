@@ -52,19 +52,6 @@
                 </VBox>
                 <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="아이디">
-                            <VBox.margin>
-                                <Insets bottom="10.0" />
-                            </VBox.margin>
-                        </Text>
-                        <TextField fx:id="idField" promptText="아이디를 입력하세요" />
-                    </children>
-                    <VBox.margin>
-                        <Insets bottom="30.0" />
-                    </VBox.margin>
-                </VBox>
-                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
-                    <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호">
                             <VBox.margin>
                                 <Insets bottom="10.0" />

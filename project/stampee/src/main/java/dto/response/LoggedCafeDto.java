@@ -17,6 +17,10 @@ public class LoggedCafeDto {
 		this.contact = contact;
 	}
 
+	public LoggedCafeDto() {
+
+	}
+
 	public long getCafeId() {
 		return cafeId;
 	}
@@ -40,4 +44,25 @@ public class LoggedCafeDto {
 	public String getContact() {
 		return contact;
 	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
 }
