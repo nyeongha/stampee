@@ -6,9 +6,15 @@ import config.DBConnectionUtil;
 import formatter.PhoneNumberFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.sql.*;
 
 public class KeypadController {
@@ -136,6 +142,29 @@ public class KeypadController {
 				throw e;
 			}
 		}
+	}
+
+	@FXML
+	private void GoToHome() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+			Parent root = loader.load();
+			Scene scene = new Scene(root);
+			Stage stage = (Stage) phoneNumberField.getScene().getWindow();
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+			failGoToHome("화면 전환 중 오류가 발생했습니다.");
+		}
+	}
+
+	private void failGoToHome(String message) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle("오류");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
 	}
 
 

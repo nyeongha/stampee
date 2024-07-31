@@ -9,12 +9,12 @@
       fx:controller="controller.KeypadController"
       stylesheets="/css/keypadView.css">
     <StackPane styleClass="title-background">
-        <Label text="사장님 적립 부탁드려요" styleClass="title-label"/>
+        <Label text="사장님 적립 부탁드려요!!" styleClass="title-label"/>
     </StackPane>
-    <HBox styleClass="input-container" alignment="CENTER" spacing="10">
+    <VBox styleClass="input-container" alignment="CENTER" spacing="10">
         <TextField fx:id="phoneNumberField" editable="false" promptText="전화번호" styleClass="input-field"/>
         <TextField fx:id="stampCountField" editable="false" promptText="스탬프 개수" styleClass="input-field"/>
-    </HBox>
+    </VBox>
     <GridPane hgap="10" vgap="10" alignment="CENTER">
         <Button text="1" onAction="#handleNumberClick" styleClass="keypad-button" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
         <Button text="2" onAction="#handleNumberClick" styleClass="keypad-button" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
@@ -27,9 +27,12 @@
         <Button text="9" onAction="#handleNumberClick" styleClass="keypad-button" GridPane.columnIndex="2" GridPane.rowIndex="2"/>
         <Button text="Clear" onAction="#handleClearClick" styleClass="keypad-button, clear-button" GridPane.columnIndex="0" GridPane.rowIndex="3"/>
         <Button text="0" onAction="#handleNumberClick" styleClass="keypad-button" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Button text="Submit" onAction="#handleSubmitClick" styleClass="keypad-button, submit-button" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
+        <Button text="적립" onAction="#handleSubmitClick" styleClass="keypad-button, submit-button" GridPane.columnIndex="2" GridPane.rowIndex="3"/>
     </GridPane>
-    <Button text="전환" onAction="#handleToggleInput" styleClass="toggle-button"/>
+    <HBox spacing="10" alignment="CENTER">
+        <Button text="전환" onAction="#handleToggleInput" styleClass="action-button"/>
+        <Button text="처음으로" onAction="#GoToHome" styleClass="action-button"/>
+    </HBox>
 </VBox>
 
 <!--<VBox alignment="CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml/1"-->
