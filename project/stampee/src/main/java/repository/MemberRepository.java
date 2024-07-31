@@ -2,6 +2,7 @@ package repository;
 
 import static config.DBConnectionUtil.*;
 import static config.ConnectionClose.*;
+import static exception.ErrorMessage.*;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -95,8 +96,7 @@ public class MemberRepository {
 				return null;
 			}
 		} catch (SQLException e) {
-			log.info("db error", e);
-			throw new RuntimeException(e);
+			throw new RuntimeException(DB_ERROR.getErrorMessage());
 		} finally {
 			close(conn, pstmt, rs);
 		}

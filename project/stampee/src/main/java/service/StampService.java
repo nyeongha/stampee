@@ -36,7 +36,7 @@ public class StampService {
 	public void saveStamp(long cafeId, String userPhoneNum, int count) throws SQLException {	//스탬프 저장하는 메서드
 		Member findUser = memberRepository.findUserByPhoneNum(userPhoneNum);
 		if(findUser == null){
-			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
+			throw new IllegalArgumentException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
 		stampRepository.save(findUser.getId(), cafeId, count);
 	}
@@ -51,7 +51,7 @@ public class StampService {
 			mailService.sendMail(toMember.getEmail(),format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
 			mailService.sendMail(toMember.getEmail(), format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
 		} else {	//실패 한 경우
-			mailService.sendMail(fromMember.getEmail(), FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
+			mailService.sendMail(toMember.getEmail(), FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
 			throw new IllegalArgumentException("스탬프 공유 실패");
 		}
 	}
