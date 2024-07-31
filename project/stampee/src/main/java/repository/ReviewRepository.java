@@ -26,7 +26,7 @@ public class ReviewRepository {
 			"FROM review r " +
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON c.cafe_id = r.cafe_id "
-			+ "ORDER BY r.create_time desc";
+			+ "ORDER BY r.create_time";
 
 		List<Review> reviews = new ArrayList<>();
 
@@ -146,7 +146,7 @@ public class ReviewRepository {
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
 			"WHERE m.member_id = ? "
-			+ "ORDER BY r.create_time desc";
+			+ "ORDER BY r.create_time";
 
 
 		List<Review> reviews = new ArrayList<>();
@@ -197,6 +197,38 @@ public class ReviewRepository {
 		return reviews;
 	}
 
+	public float cafeAvgOfRating(long cafeId){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		float avg;
+
+		String sql = "SELECT c.cafe_id, ROUND(AVG(r.rating), 2) AS avg_rating "
+			+ "FROM review r "
+			+ "JOIN cafe c "
+			+ "ON c.cafe_id = r.cafe_id "
+			+ "GROUP BY c.cafe_id "
+			+ "c.cafe_id=?";
+
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, cafeId);
+
+			rs = pstmt.executeQuery();
+
+			avg=rs.getFloat("avg_rating");
+
+
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		}
+
+		return avg;
+	}
+
+
 	public List<Review> findReviewsByCafeId(long cafeId) {            //카페리뷰조회,서비스 반영
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -209,7 +241,7 @@ public class ReviewRepository {
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
 			"WHERE c.cafe_id = ? "
-			+ "ORDER BY r.create_time desc";
+			+ "ORDER BY r.create_time";
 
 
 		List<Review> reviews = new ArrayList<>();

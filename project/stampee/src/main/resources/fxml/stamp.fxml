@@ -22,6 +22,10 @@
                         <Label fx:id="cafeName" layoutX="19.0" layoutY="14.0"
                                style="-fx-font-size: 24px; -fx-font-weight: bold;">
                         </Label>
+                        <Label fx:id="cafeRating" layoutX="19.0" layoutY="14.0"
+                               style="-fx-font-size: 24px; -fx-font-weight: bold;">
+
+                        </Label>
                         <Label fx:id="cafeAddress" layoutX="19.0" layoutY="43.0" prefHeight="18.0" prefWidth="570.0"
                                style="-fx-font-size: 14px;"/>
                         <Pane layoutX="19.0" layoutY="75.0" maxWidth="570.0" prefHeight="20.0" prefWidth="570.0"

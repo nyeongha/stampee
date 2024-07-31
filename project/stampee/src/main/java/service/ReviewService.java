@@ -25,6 +25,10 @@ public class ReviewService {
 		Review review = new Review(id, rating, contents);
 		reviewRepository.updateReview(review);
 	}
+	public float setCafeRatingAvg(long cafeId){
+		float avg=reviewRepository.cafeAvgOfRating(cafeId);
+		return avg;
+	}
 
 	public void insertReview(int rating, String contents, Date date, Member member, Cafe cafe) {
 		Review review = new Review(rating, contents, date, member, cafe);
