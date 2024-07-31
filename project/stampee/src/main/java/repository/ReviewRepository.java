@@ -85,7 +85,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -108,7 +108,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -125,7 +125,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, cstmt);
+			close(conn, cstmt, null);
 		}
 	}
 

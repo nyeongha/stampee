@@ -35,7 +35,7 @@ public class MemberRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 		return member;
 	}
@@ -120,7 +120,7 @@ public class MemberRepository {
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 }
