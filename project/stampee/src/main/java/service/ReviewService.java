@@ -12,8 +12,9 @@ public class ReviewService {
 
 	private static ReviewRepository reviewRepository;
 
-	public ReviewService(ReviewRepository reviewRepository) {
-		this.reviewRepository = reviewRepository;
+
+	public ReviewService(ReviewRepository reviewRepository){
+		this.reviewRepository=reviewRepository;
 	}
 
 	public void deleteReview(long reviewId, long memberId) {

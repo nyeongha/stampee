@@ -16,22 +16,17 @@ import domain.Member;
 import domain.Review;
 
 public class ReviewRepository {
-	private MemberRepository memberRepository;
-	private CafeRepository cafeRepository;
 
-	public ReviewRepository(MemberRepository memberRepository, CafeRepository cafeRepository) {
-		this.memberRepository = memberRepository;
-		this.cafeRepository = cafeRepository;
-	}
+
 
 	public List<Review> findAllReviews() {
-		String sql = "SELECT "
-			+ "r.review_id, r.rating, r.contents, r.create_time, "
-			+ "m.phone_number, "
-			+ "c2.contact "
-			+ "FROM review r "
-			+ "JOIN member m ON r.member_id = m.member_id "
-			+ "JOIN cafe c2 ON r.cafe_id = c2.cafe_id";
+		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
+			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
+			"c.cafe_id, c.name, c.address, c.password AS cafe_password, c.email AS cafe_email, c.contact " +
+			"FROM review r " +
+			"JOIN member m ON r.member_id = m.member_id " +
+			"JOIN cafe c ON c.cafe_id = r.cafe_id "
+			+ "ORDER BY r.create_time desc";
 
 		List<Review> reviews = new ArrayList<>();
 
@@ -41,16 +36,26 @@ public class ReviewRepository {
 			ResultSet rs = pstmt.executeQuery()) {
 
 			while (rs.next()) {
-				long reviewId = rs.getLong("review_id");
-				String contact = rs.getString("contact");
-				String phoneNumber = rs.getString("phone_number");
 
-				// Member와 Cafe를 한 번만 조회하도록 개선
-				Member member = memberRepository.findUserByPhoneNum(phoneNumber);
-				Cafe cafe = cafeRepository.findCafeByContact(contact);
+				Member member = Member.createMember(
+					rs.getLong("member_id"),
+					rs.getString("username"),
+					rs.getString("member_password"),
+					rs.getString("member_email"),
+					rs.getString("phone_number")
+				);
+
+				Cafe cafe = new Cafe(
+					rs.getLong("cafe_id"),
+					rs.getString("name"),
+					rs.getString("address"),
+					rs.getString("cafe_password"),
+					rs.getString("cafe_email"),
+					rs.getString("contact")
+				);
 
 				Review review = new Review(
-					reviewId,
+					rs.getLong("review_id"),
 					rs.getInt("rating"),
 					rs.getString("contents"),
 					rs.getDate("create_time"),
@@ -140,7 +145,9 @@ public class ReviewRepository {
 			"FROM review r " +
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
-			"WHERE m.member_id = ?";
+			"WHERE m.member_id = ? "
+			+ "ORDER BY r.create_time desc";
+
 
 		List<Review> reviews = new ArrayList<>();
 
@@ -201,7 +208,8 @@ public class ReviewRepository {
 			"FROM review r " +
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
-			"WHERE c.cafe_id = ?";
+			"WHERE c.cafe_id = ? "
+			+ "ORDER BY r.create_time desc";
 
 
 		List<Review> reviews = new ArrayList<>();

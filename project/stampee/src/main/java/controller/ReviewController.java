@@ -91,7 +91,7 @@ public class ReviewController {
 	public ReviewController() {
 		MemberRepository memberRepository = new MemberRepository();
 		CafeRepository cafeRepository = new CafeRepository();
-		ReviewRepository reviewRepository = new ReviewRepository(memberRepository, cafeRepository);
+		ReviewRepository reviewRepository = new ReviewRepository();
 		reviewService = new ReviewService(reviewRepository);
 	}
 
