@@ -17,7 +17,7 @@ public class LoginSession {
 			instance = new LoginSession(loggedMemberDto);
 			return instance;
 		}
-		return null;
+		return instance;
 	}
 
 	public static  synchronized LoginSession getInstance(){

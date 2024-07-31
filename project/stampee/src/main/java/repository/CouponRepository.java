@@ -2,7 +2,7 @@ package repository;
 
 import static config.DBConnectionUtil.*;
 import static java.time.LocalDate.*;
-import static template.ConnectionClose.*;
+import static config.ConnectionClose.*;
 
 import java.sql.Connection;
 import java.sql.Date;

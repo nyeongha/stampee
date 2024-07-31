@@ -52,7 +52,6 @@ public class NumberPadController {
 		showSuccessPopup();
 	}
 
-	// 팝업창의 동작 관리를 위해 메서드로 따로 관리한다네요
 	private void closePopup() {
 		inputField.getScene().getWindow().hide();
 	}

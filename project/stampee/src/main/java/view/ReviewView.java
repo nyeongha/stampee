@@ -12,7 +12,7 @@ public class ReviewView {
 	private static final String BLOCK_CONTAINER_STYLE = "-fx-padding: 10px; -fx-border-color: black; -fx-border-width: 1px;";
 	private static final String REVIEW_LABEL_STYLE = "-fx-padding: 10px;";
 
-	public HBox createReviewsContainer(List<Review> reviews) {
+	public HBox createAllReviewsContainer(List<Review> reviews) {
 		HBox reviewsContainer = new HBox(SPACING);
 		reviewsContainer.setStyle(CONTAINER_STYLE);
 
@@ -28,6 +28,25 @@ public class ReviewView {
 				currentColumn = new VBox(SPACING);
 				reviewsContainer.getChildren().add(currentColumn);
 			}
+		}
+
+		return reviewsContainer;
+	}
+
+	public HBox createMyReviewContainer(List<Review> reviews) {
+		HBox reviewsContainer = new HBox(SPACING);
+		reviewsContainer.setStyle(CONTAINER_STYLE);
+
+		VBox currentColumn = new VBox(SPACING);
+		reviewsContainer.getChildren().add(currentColumn);
+
+		for (int i = 0; i < reviews.size(); i++) {
+			Review review = reviews.get(i);
+			VBox blockContainer = createBlockContainer(review);
+			currentColumn.getChildren().add(blockContainer);
+
+			currentColumn = new VBox(SPACING);
+			reviewsContainer.getChildren().add(currentColumn);
 		}
 
 		return reviewsContainer;

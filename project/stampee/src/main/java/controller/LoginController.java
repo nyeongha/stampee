@@ -44,8 +44,6 @@ public class LoginController {
 		System.out.println("Log in button clicked");
 		loadIndexPage(email, password);
 		LoginSession instance = LoginSession.getInstance(new LoggedMemberDto());
-
-		LoginSession instance1 = LoginSession.getInstance();
 		assert instance != null;
 		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
 		// 로그인 검증 로직 추가
@@ -56,7 +54,6 @@ public class LoginController {
 		} else {
 			// 로그인 실패 시 경고 메시지 또는 다른 처리
 			showAlert("Error", "로그인이 실패했습니다. 다시 시도해주세요");
-
 		}
 	}
 

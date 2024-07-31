@@ -1,10 +1,13 @@
 package controller;
 
-import static config.DBConnectionUtil.*;
+
 
 import config.DBConnectionUtil;
 import formatter.PhoneNumberFormatter;
 import javafx.event.ActionEvent;
+
+import static formatter.PhoneNumberFormatter.*;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -12,22 +15,38 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+
 import javafx.stage.Stage;
 
 import java.io.IOException;
+
+import repository.MemberRepository;
+import repository.StampRepository;
+import service.MailService;
+import service.StampService;
+
 import java.sql.*;
 
 public class KeypadController {
+
 
 	@FXML
 	private TextField phoneNumberField;
 	@FXML
 	private TextField stampCountField;
 
+
 	private boolean isPhoneNumberInput = true;
-	private StringBuilder currentInput = new StringBuilder();
 	private StringBuilder stampCount = new StringBuilder();
 	private StringBuilder phoneNumber = new StringBuilder();
+	private final StampService stampService;
+
+	public KeypadController() {
+		StampRepository stampRepository = new StampRepository();
+		MemberRepository memberRepository = new MemberRepository();
+		MailService mailService = new MailService();
+		stampService = new StampService(stampRepository, memberRepository, mailService);
+	}
 
 	@FXML
 	public void initialize() {
@@ -82,6 +101,7 @@ public class KeypadController {
 
 	@FXML
 	private void handleSubmitClick() {
+
 		if (phoneNumber.length() == 0 || stampCount.length() == 0) {
 			showFailPopup("전화번호와 스탬프 개수를 모두 입력해주세요.");
 			return;
@@ -157,6 +177,16 @@ public class KeypadController {
 			e.printStackTrace();
 			failGoToHome("화면 전환 중 오류가 발생했습니다.");
 		}
+=======
+		try {
+			// LoggedCafeDto cafeInfo = CafeSession.getInstance().getLoggedCafeDto();
+			String phoneNumber = formatPhoneNumber(phoneNumberField.getText().trim());
+			stampService.saveStamp(1L, phoneNumber, 1);
+		} catch (IllegalArgumentException | SQLException e) {
+			showFailPopup();
+		}
+	    showSuccessPopup();
+		handleClearClick();
 	}
 
 	private void failGoToHome(String message) {
