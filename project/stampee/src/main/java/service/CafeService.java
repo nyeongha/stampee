@@ -1,12 +1,13 @@
 package service;
 
+import static util.PasswordUtil.*;
+
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
-
+import dto.response.LoggedCafeDto;
 import repository.CafeRepository;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import domain.Cafe;
 
 public class CafeService {
@@ -35,14 +36,25 @@ public class CafeService {
 		}
 	}
 
-	public boolean login(String email, String password) {
-		boolean loginResult = cafeRepository.login(email, password);
-		if (loginResult) {
+	public LoggedCafeDto login(String email, String password) throws NoSuchAlgorithmException {
+		//CafeRepository에서 엔티티 가져오기
+		Cafe cafe = cafeRepository.login(email,password);
+		if (cafe != null && verifyPassword(password, cafe.getPassword())) {
+			//엔티티를 DTO로 변환
+			LoggedCafeDto loggedCafeDto = new LoggedCafeDto();
+			loggedCafeDto.setEmail(cafe.getEmail());
+			loggedCafeDto.setName(cafe.getName());
+			loggedCafeDto.setPassword(cafe.getPassword());
+			loggedCafeDto.setAddress(cafe.getAddress());
+			loggedCafeDto.setContact(cafe.getContact());
 			log.info("Successfully logged in cafe: {}", email);
+			return loggedCafeDto;
+			//성공 시 사용자 정보를 담은 DTO 반환
 		} else {
 			log.warn("Failed login attempt for cafe: {}", email);
+			return null;
+			//실패 시 null 반환
 		}
-		return loginResult;
 	}
 
 }

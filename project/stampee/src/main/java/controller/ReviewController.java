@@ -1,8 +1,11 @@
 package controller;
 
+import static domain.ReviewType.*;
+
 import java.util.List;
 
 import domain.Review;
+import domain.ReviewType;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
@@ -24,18 +27,36 @@ public class ReviewController {
 		reviewService = new ReviewService(reviewRepository);
 	}
 
-	public void init(long cafeId) {
-		List<Review> reviews = reviewService.findReviewsByCafeId(cafeId);    //리뷰 가져오기
-		displayReviews(reviews);
+	public void init(long id, ReviewType type) {
+		List<Review> reviews;
+		if (type == CAFE) {
+			reviews = reviewService.findReviewsByCafeId(id);
+			displayCafeReviews(reviews);
+		} else if (type == MEMBER) {
+			reviews = reviewService.findReviewsByMemberId(id);
+			displayMyReviews(reviews);
+		} else {
+			reviews = reviewService.findAllReviews();
+			displayReviews(reviews);
+		}
 	}
 
 	private void displayReviews(List<Review> reviews) {
-		HBox reviewsContainer = reviewView.createReviewsContainer(reviews);
+		HBox reviewsContainer = reviewView.createAllReviewsContainer(reviews);
+		setScrollPane(reviewsContainer);
+	}
+
+	private void displayMyReviews(List<Review> reviews) {
+		HBox reviewsContainer = reviewView.createAllReviewsContainer(reviews);
+		setScrollPane(reviewsContainer);
+	}
+
+	private void displayCafeReviews(List<Review> reviews) {
+		HBox reviewsContainer = reviewView.createAllReviewsContainer(reviews);
 		setScrollPane(reviewsContainer);
 	}
 
 	private void setScrollPane(HBox reviewsContainer) {
-		// ScrollPane 설정
 		scrollPane.setContent(reviewsContainer);
 		scrollPane.setFitToHeight(true); // 스크롤을 수직으로만 사용 가능하게 함
 		scrollPane.setFitToWidth(true); // 스크롤을 가로와 세로로 사용 가능하게 함

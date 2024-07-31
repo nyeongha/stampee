@@ -85,17 +85,15 @@ public class CouponController implements Initializable {
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.setTitle("전화번호 입력");
 			stage.setScene(new Scene(root));
-			stage.showAndWait(); // 팝업 창이 닫힐 때까지 대기
+			stage.showAndWait();
 
 			return controller.getInputField().getText();
 		} catch (Exception e) {
-			e.printStackTrace();
 			return null;
 		}
 	}
 
-	private void addCafeItem(long cafeId, long memberId, String name, String address, int couponCount, int stampCount,
-		int expiredCount) {
+	private void addCafeItem(long cafeId, long memberId, String name, String address, int couponCount, int stampCount, int expiredCount) {
 		HBox cafeItem = couponView.createCafeItemHBox();
 		VBox infoBox = couponView.createInfoBox(name, address);
 		VBox couponBox = couponView.createCouponBox(couponCount, expiredCount);
