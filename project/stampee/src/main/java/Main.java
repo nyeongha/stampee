@@ -39,8 +39,8 @@ public class Main extends Application {
 		primaryStage.setTitle("Stamp Viewer");
 		primaryStage.setScene(new Scene(root));
 
-		primaryStage.setTitle("Coupon Application");
-		primaryStage.show();
+				primaryStage.setTitle("Coupon Application");
+				primaryStage.show();
 	}
 
 	// @Override
@@ -53,15 +53,15 @@ public class Main extends Application {
 	// 	primaryStage.show();
 	// }
 
-	// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
-	// Parent root = loader.load();
-	//
-	// CouponController controller = loader.getController();
-	// controller.initData(37L); // 예시로 memberId 1을 사용
-	//
-	// primaryStage.setTitle("Coupon Viewer");
-	// primaryStage.setScene(new Scene(root));
-	// primaryStage.show();
+		// FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+		// Parent root = loader.load();
+		//
+		// CouponController controller = loader.getController();
+		// controller.initData(37L); // 예시로 memberId 1을 사용
+		//
+		// primaryStage.setTitle("Coupon Viewer");
+		// primaryStage.setScene(new Scene(root));
+		// primaryStage.show();
 
 	public static void main(String[] args) {
 		launch(args);

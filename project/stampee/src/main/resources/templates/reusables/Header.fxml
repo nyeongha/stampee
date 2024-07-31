@@ -2,7 +2,6 @@
 
 <?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
 <HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HeaderController">
@@ -14,17 +13,9 @@
         </ImageView>
         <HBox spacing="10" styleClass="menu-items">
             <children>
-<<<<<<< HEAD
-                <Label text="My Review"/>
-                <Label text="Reviews"/>
-                <Label text="My Coupon"/>
-=======
-                <Label fx:id="myReviewLabel" text="My Review" onMouseClicked="#handleMyReviewClick"/>
-                <Label fx:id="reviewsLabel" text="Reviews" onMouseClicked="#handleReviewsClick"/>
-                <Label fx:id="couponLabel" text="Coupon" onMouseClicked="#handleCouponClick"/>
-                <Label fx:id="contactsLabel" text="Contacts" onMouseClicked="#handleContactsClick"/>
-                <Label fx:id="editLabel" text="Edit" onMouseClicked="#handleEditClick"/>
->>>>>>> c24c581 ([FEAT] : 적립 요청 기능 추가)
+                <Label text="My Review" onMouseClicked="#handleMyReview"/>
+                <Label text="Reviews" onMouseClicked="#handleReviews"/>
+                <Label text="MyCoupon" onMouseClicked="#handleMyCoupon"/>
                 <Region HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>

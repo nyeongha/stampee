@@ -46,10 +46,6 @@ public class LoggedMemberDto {
 		this.password = password;
 	}
 
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
 	public void setUsername(String username) {
 		this.username = username;
 	}
