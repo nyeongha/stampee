@@ -19,7 +19,7 @@ public class HeaderController {
 	@FXML
 	public void handleMyReview(MouseEvent event) {
 		// LoggedMemberDto member = LoginSession.getInstance().getLoggedMemberDto();
-		navigateTo("/fxml/reviews.fxml", event, MEMBER, 38L);
+		navigateTo("/fxml/reviews.fxml", event, MEMBER, 2L);
 	}
 
 	@FXML

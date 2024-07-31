@@ -35,12 +35,12 @@ public class Main extends Application {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
 		Parent root = loader.load();
 		StampController controller = loader.getController();
-		controller.initData(39L, 1L); // 예시로 memberId 1을 사용
+		controller.initData(9L, 2L); // 예시로 memberId 1을 사용
 		primaryStage.setTitle("Stamp Viewer");
 		primaryStage.setScene(new Scene(root));
 
-				primaryStage.setTitle("Coupon Application");
-				primaryStage.show();
+		primaryStage.setTitle("Coupon Application");
+		primaryStage.show();
 	}
 
 	// @Override
