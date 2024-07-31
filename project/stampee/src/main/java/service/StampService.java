@@ -9,7 +9,6 @@ import java.util.NoSuchElementException;
 
 import javax.mail.MessagingException;
 
-import domain.Cafe;
 import domain.Member;
 import domain.Stamp;
 import dto.response.MyStampDto;
@@ -32,12 +31,12 @@ public class StampService {
 		return MyStampDto.createMyStampDto(stamp);
 	}
 
-	public void saveStamp(Cafe cafe, String userPhoneNum, int count) throws SQLException {	//스탬프 저장하는 메서드
+	public void saveStamp(long cafeId, String userPhoneNum, int count) throws SQLException {	//스탬프 저장하는 메서드
 		Member findUser = memberRepository.findUserByPhoneNum(userPhoneNum);
 		if(findUser == null){
 			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
-		stampRepository.save(findUser.getId(), cafe.getId(), count);
+		stampRepository.save(findUser.getId(), cafeId, count);
 	}
 
 	//친구에게 스탬프 공유하는 메서드

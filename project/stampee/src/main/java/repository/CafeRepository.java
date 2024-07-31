@@ -1,7 +1,7 @@
 package repository;
 
 import static config.DBConnectionUtil.*;
-import static template.ConnectionClose.*;
+import static config.ConnectionClose.*;
 import static util.PasswordUtil.*;
 
 import java.security.NoSuchAlgorithmException;
