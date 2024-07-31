@@ -17,15 +17,19 @@ import repository.CafeRepository;
 import service.CafeService;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
+import lombok.SneakyThrows;
 
 public class LoginController {
-	private CafeService cafeService = new CafeService(new CafeRepository());
+	private final CafeService cafeService = new CafeService(new CafeRepository());
 
 	@FXML public TextField emailField;
 	@FXML private TextField passwordField;
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
+
+
 
 	@FXML
 	public void initialize() {
@@ -35,24 +39,30 @@ public class LoginController {
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
-		String email = emailField.getText();
-		String password = passwordField.getText();
+		try {
+			String email = emailField.getText();
+			String password = passwordField.getText();
 
-		// 로그인 시 사용자 정보를 받아옴
-		LoggedCafeDto loggedCafeDto = cafeService.login(email, password);
+			// 로그인 시 사용자 정보를 받아옴
+			LoggedCafeDto loggedCafeDto = cafeService.login(email, password);
 
-		if (loggedCafeDto != null) {
-			// 세션에 사용자 정보를 저장
-			CafeSession.getInstance(loggedCafeDto);
+			if (loggedCafeDto != null) {
+				// 세션에 사용자 정보를 저장
+				CafeSession instance = CafeSession.getInstance(loggedCafeDto);
+				System.out.println("instance + ======================" + instance.getLoggedCafeDto().getEmail());
 
-			// 세션 검증 및 출력
-			verifySession();
+				// 세션 검증 및 출력
+				verifySession();
 
-			showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
-			// 로그인 성공 시, 대시보드로 이동
-			loadIndexPage();
-		} else {
-			showAlert(Alert.AlertType.ERROR, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
+				showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
+				// 로그인 성공 시, 대시보드로 이동
+				loadIndexPage();
+			} else {
+				showAlert(Alert.AlertType.ERROR, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
+			}
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			showAlert(Alert.AlertType.ERROR, "Error", "시스템 오류가 발생했습니다. 관리자에게 문의하세요.");
 		}
 	}
 

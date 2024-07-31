@@ -1,3 +1,5 @@
+import domain.CafeSession;
+import dto.response.LoggedCafeDto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -35,6 +37,9 @@ public class Main extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+		CafeSession instance = CafeSession.getInstance();
+		LoggedCafeDto loggedCafeDto = instance.getLoggedCafeDto();
+		System.out.println(loggedCafeDto.getCafeId() + "===================================================");
 	}
 
 }

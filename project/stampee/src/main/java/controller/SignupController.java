@@ -47,18 +47,8 @@ public class SignupController {
 
 		if (!password.equals(confirmPassword)) {
 			showAlert("Error", "Passwords do not match.");
-			return;
 		}
 
-		// Cafe cafe = new Cafe(name, address, password, email, contact);
-		// boolean success = cafeService.signUp(cafe);
-
-		// if (success) {
-		// 	showAlert("Success", "Signup successful!");
-		// 	clearFields();
-		// } else {
-		// 	showAlert("Error", "Signup failed. Please check your input.");
-		// }
 	}
 
 	private void showAlert(String title, String message) {

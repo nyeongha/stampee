@@ -13,9 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
 
 import domain.Cafe;
-import domain.Signature;
 import dto.response.LoggedCafeDto;
-import repository.CafeRepository;
 import service.CafeService;
 import util.PasswordUtil;
 
@@ -26,7 +24,7 @@ class CafeRepositoryTest {
 	private CafeService cafeService;
 
 	@BeforeEach
-	void setUp() throws SQLException {
+	void setUp() {
 		MockitoAnnotations.openMocks(this);
 		cafeRepository = new CafeRepository();
 		random = new Random();
@@ -54,7 +52,7 @@ class CafeRepositoryTest {
 		// when
 		long cafeId = cafeRepository.cafeSignUp(loginCafe, "Test Menu 1", "Test Menu 2");
 		loginCafe.setCafeId(cafeId);  // 생성된 cafeId 설정
-		LoggedCafeDto loginResult = cafeRepository.login(loginCafe.getEmail(), loginCafe.getPassword());
+		Cafe loginResult = cafeRepository.login(loginCafe.getEmail(), loginCafe.getPassword());
 
 		// then
 		assertThat(loginResult).isNotNull();  // 로그인 성공 확인
@@ -62,7 +60,7 @@ class CafeRepositoryTest {
 	}
 
 	@Test
-	void testCafeServiceSignUpAndLogin() {
+	void testCafeServiceSignUpAndLogin() throws NoSuchAlgorithmException {
 		// given
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();
@@ -78,7 +76,7 @@ class CafeRepositoryTest {
 	}
 
 	@Test
-	void testCafeServiceLoginWithWrongPassword() {
+	void testCafeServiceLoginWithWrongPassword() throws NoSuchAlgorithmException {
 		// given
 		String randomEmail = generateRandomEmail();
 		String randomPhone = generateRandomPhone();

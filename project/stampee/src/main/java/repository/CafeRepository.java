@@ -12,6 +12,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.html.parser.Entity;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -91,7 +93,7 @@ public class CafeRepository {
 		}
 	}
 
-	public LoggedCafeDto login(String email, String password) {
+	public Cafe login(String email, String password) {
 		String sql = "SELECT * FROM cafe WHERE email = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -106,14 +108,14 @@ public class CafeRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					// 성공적으로 인증된 경우, DTO에 사용자 정보 설정
-					LoggedCafeDto loggedMemberDto = new LoggedCafeDto();
-					loggedMemberDto.setEmail(email);
-					loggedMemberDto.setPassword(storedPassword);
-					loggedMemberDto.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
-					loggedMemberDto.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
-					loggedMemberDto.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
-					return loggedMemberDto;
+					// 성공적으로 인증된 경우, Entity에 정보 저장
+					Cafe cafe = new Cafe();
+					cafe.setEmail(email);
+					cafe.setPassword(storedPassword);
+					cafe.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
+					cafe.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
+					cafe.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
+					return cafe;
 				}
 			} else {
 				System.out.println("email not found : " + email);
