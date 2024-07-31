@@ -3,7 +3,7 @@ package controller;
 
 import domain.Cafe;
 import domain.LoginSession;
-import dto.LoggedMemberDto;
+import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
