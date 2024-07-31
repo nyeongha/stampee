@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class SignupMainController {
-
 	@FXML
 	public VBox signuppagemain;
 

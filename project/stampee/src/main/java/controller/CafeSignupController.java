@@ -1,8 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Objects;
-
 import domain.Cafe;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
