@@ -1,7 +1,6 @@
 package controller;
 
-import domain.CafeSession;
-import domain.LoginSession;
+import session.CafeSession;
 import dto.response.LoggedCafeDto;
 import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
@@ -19,9 +18,8 @@ import service.CafeService;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
-import lombok.SneakyThrows;
 
-public class LoginController {
+public class CafeLoginController {
 	private final CafeService cafeService = new CafeService(new CafeRepository());
 
 	@FXML public TextField emailField;
@@ -61,7 +59,6 @@ public class LoginController {
 				showAlert(Alert.AlertType.ERROR, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
 			}
 		} catch (NoSuchAlgorithmException e) {
-			e.printStackTrace();
 			showAlert(Alert.AlertType.ERROR, "Error", "시스템 오류가 발생했습니다. 관리자에게 문의하세요.");
 		}
 	}
@@ -70,10 +67,10 @@ public class LoginController {
 	// 세션 검증 메서드
 	private void verifySession() {
 		try {
-			LoginSession instance = LoginSession.getInstance();
-			LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
-			System.out.println("Email: " + loggedMemberDto.getEmail());
-			System.out.println("Username: " + loggedMemberDto.getUsername());
+			CafeSession instance = CafeSession.getInstance();
+			LoggedCafeDto loggedCafeDto = instance.getLoggedCafeDto();
+			System.out.println("Email: " + loggedCafeDto.getEmail());
+			System.out.println("Username: " + loggedCafeDto.getName());
 			// 필요한 다른 정보도 출력
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
@@ -112,7 +109,8 @@ public class LoginController {
 	// 회원가입 페이지 로드 메서드
 	private void loadSignUpPage() {
 		try {
-			Parent signUpPage = FXMLLoader.load(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
+			Parent signUpPage = FXMLLoader.load(
+				Objects.requireNonNull(getClass().getResource("/templates/account/SignUpPageMain.fxml")));
 			Scene scene = new Scene(signUpPage);
 			Stage stage = (Stage) signUpButton.getScene().getWindow();
 			stage.setScene(scene);
