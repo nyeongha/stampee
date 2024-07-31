@@ -40,6 +40,8 @@ dependencies {
 
     //lombok
     implementation 'ch.qos.logback:logback-classic:1.2.11'
+    compileOnly 'org.projectlombok:lombok:1.18.24' // Lombok 추가
+    annotationProcessor 'org.projectlombok:lombok:1.18.24' // Lombok 추가
 
     // 지오코딩
     implementation 'com.google.code.geocoder-java:geocoder-java:0.16'
