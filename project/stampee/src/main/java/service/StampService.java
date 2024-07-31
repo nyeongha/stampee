@@ -9,7 +9,6 @@ import java.util.NoSuchElementException;
 
 import javax.mail.MessagingException;
 
-import domain.Cafe;
 import domain.Member;
 import domain.Stamp;
 import dto.response.MyStampDto;

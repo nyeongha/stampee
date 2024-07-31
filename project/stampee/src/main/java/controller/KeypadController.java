@@ -12,8 +12,7 @@ import java.sql.*;
 
 public class KeypadController {
 
-	@FXML
-	private TextField phoneNumberField;
+	@FXML private TextField phoneNumberField;
 
 	private StringBuilder phoneNumber = new StringBuilder();
 	private final StampService stampService;
@@ -45,7 +44,6 @@ public class KeypadController {
 			String phoneNumber = formatPhoneNumber(phoneNumberField.getText().trim());
 			stampService.saveStamp(1L, phoneNumber, 1);
 		} catch (IllegalArgumentException | SQLException e) {
-			System.out.println(e.getMessage());
 			showFailPopup();
 		}
 	    showSuccessPopup();
