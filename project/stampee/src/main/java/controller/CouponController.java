@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -42,6 +43,7 @@ public class CouponController implements Initializable {
 		StampRepository stampRepository = new StampRepository();
 		MemberRepository memberRepository = new MemberRepository();
 		MailService mailService = new MailService();
+
 		couponService = new CouponService(couponRepository, mailService);
 		stampService = new StampService(stampRepository, memberRepository, mailService);
 		userService = new UserService(memberRepository);
@@ -61,17 +63,44 @@ public class CouponController implements Initializable {
 		}
 	}
 
-
 	@FXML
 	public void handleShareButtonPress(long memberId, long cafeId) {
 		Member fromMember = userService.findMemberById(memberId);
-		String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(showNumberPadPopup());
 		try {
+			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(showNumberPadPopup());
 			stampService.shareStamp(fromMember, cafeId, toPhoneNumber, 1);
-		} catch (MessagingException e) {
+			showSuccessPopup();
+		} catch (MessagingException | SQLException |  IllegalArgumentException e) {
+			showFailPopup();
 			throw new RuntimeException(e);
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
+		}
+	}
+
+	private void showSuccessPopup() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShareComplete.fxml"));
+			Parent root = loader.load();
+
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(new Scene(root));
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void showFailPopup() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shareFailed.fxml"));
+			Parent root = loader.load();
+
+			Stage stage = new Stage();
+			stage.initModality(Modality.APPLICATION_MODAL);
+			stage.setScene(new Scene(root));
+			stage.showAndWait();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 

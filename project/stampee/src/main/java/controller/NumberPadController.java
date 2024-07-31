@@ -49,25 +49,10 @@ public class NumberPadController {
 			showFailPopup();
 		}
 		closePopup();
-		showSuccessPopup();
 	}
 
 	private void closePopup() {
 		inputField.getScene().getWindow().hide();
-	}
-
-	private void showSuccessPopup() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShareComplete.fxml"));
-			Parent root = loader.load();
-
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(new Scene(root));
-			stage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
 	}
 
 	private void showFailPopup() {

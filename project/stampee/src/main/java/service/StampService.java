@@ -43,13 +43,14 @@ public class StampService {
 	public void shareStamp(Member fromMember, long cafeId, String toPhoneNum, int count) throws MessagingException, SQLException {
 		Member toMember = memberRepository.findUserByPhoneNum(toPhoneNum);
 		if(toMember == null){
-			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
+			throw new IllegalArgumentException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
 		if (stampRepository.updateStamp(cafeId, fromMember.getId(), toMember.getId(), count)) {	//성공한 경우
 			mailService.sendMail(fromMember.getEmail(), "human9062@gmail.com", format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
 			mailService.sendMail(toMember.getEmail(), "human9062@gmail.com", format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
 		} else {	//실패 한 경우
 			mailService.sendMail(fromMember.getEmail(), "human9062@gmail.com", FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
+			throw new IllegalArgumentException("스탬프 공유 실패");
 		}
 	}
 }
