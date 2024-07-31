@@ -1,12 +1,9 @@
 package controller;
 
 
-
 import config.DBConnectionUtil;
 import formatter.PhoneNumberFormatter;
 import javafx.event.ActionEvent;
-
-import static formatter.PhoneNumberFormatter.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -37,6 +34,7 @@ public class KeypadController {
 
 
 	private boolean isPhoneNumberInput = true;
+	private StringBuilder currentInput = new StringBuilder();
 	private StringBuilder stampCount = new StringBuilder();
 	private StringBuilder phoneNumber = new StringBuilder();
 	private final StampService stampService;
@@ -177,17 +175,8 @@ public class KeypadController {
 			e.printStackTrace();
 			failGoToHome("화면 전환 중 오류가 발생했습니다.");
 		}
-=======
-		try {
-			// LoggedCafeDto cafeInfo = CafeSession.getInstance().getLoggedCafeDto();
-			String phoneNumber = formatPhoneNumber(phoneNumberField.getText().trim());
-			stampService.saveStamp(1L, phoneNumber, 1);
-		} catch (IllegalArgumentException | SQLException e) {
-			showFailPopup();
-		}
-	    showSuccessPopup();
-		handleClearClick();
 	}
+
 
 	private void failGoToHome(String message) {
 		Alert alert = new Alert(Alert.AlertType.ERROR);
