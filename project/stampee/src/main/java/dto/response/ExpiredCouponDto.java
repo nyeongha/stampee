@@ -1,4 +1,4 @@
-package dto;
+package dto.response;
 
 public class ExpiredCouponDto {
 	private String username;

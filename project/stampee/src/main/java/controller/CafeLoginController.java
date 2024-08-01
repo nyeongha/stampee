@@ -26,8 +26,6 @@ public class CafeLoginController {
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
 
-
-
 	@FXML
 	public void initialize() {
 		loginButton.setOnAction(this::handleLoginButtonAction);
