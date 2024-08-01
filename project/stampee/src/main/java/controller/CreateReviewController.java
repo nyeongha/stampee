@@ -33,7 +33,6 @@ public class CreateReviewController {
 	private Member loggedInMember = null;
 	private Cafe selectedCafe = null; // 리뷰할 카페 객체
 
-
 	public CreateReviewController(){
 		memberRepository = new MemberRepository();
 		cafeRepository = new CafeRepository();
@@ -59,6 +58,7 @@ public class CreateReviewController {
 	private void handleSubmitButtonAction() {
 		Float selectedRating = rating.getValue();
 		String contents = reviewContents.getText();
+
 
 		// 유효성 검사
 		if (selectedRating == null) {
@@ -86,9 +86,9 @@ public class CreateReviewController {
 		// 리뷰 삽입
 		reviewService.insertReview(selectedRating, contents, createTime, loggedInMember, selectedCafe);
 
-		// 리뷰 작성 후 입력창 숨기기 또는 초기화
 		reviewContents.clear();
 		rating.getSelectionModel().clearSelection();
+
 	}
 
 	private void showAlert(String title, String message) {
@@ -98,11 +98,5 @@ public class CreateReviewController {
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
-	}
-
-	@FXML
-	private void handleToggleReview() {
-		boolean isVisible = reviewPane.isVisible();
-		reviewPane.setVisible(!isVisible);
 	}
 }
