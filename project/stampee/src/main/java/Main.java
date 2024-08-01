@@ -17,7 +17,6 @@ public class Main extends Application {
 		try {
 			// FXML 파일 경로를 설정합니다.
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
-
 			// FXML 파일을 로드하고 루트 레이아웃을 가져옵니다.
 			Parent root = loader.load();
 
@@ -30,6 +29,18 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	// public void start(Stage primaryStage) throws Exception {
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
+	// 	Parent root = loader.load();
+	//
+	// 	StampController controller = loader.getController();
+	// 	controller.initData(9L, 2L); // 예시로 memberId 1을 사용
+	// 	primaryStage.setTitle("Stamp Viewer");
+	// 	primaryStage.setScene(new Scene(root));
+	//
+	// 	primaryStage.setTitle("Coupon Application");
+	// 	primaryStage.show();
+	// }
 
 	// public void start(Stage primaryStage) throws Exception {
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
