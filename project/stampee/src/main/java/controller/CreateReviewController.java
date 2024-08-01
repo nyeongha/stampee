@@ -113,7 +113,4 @@ public class CreateReviewController {
 		boolean isVisible = reviewPane.isVisible();
 		reviewPane.setVisible(!isVisible);
 	}
-
-
 }
-

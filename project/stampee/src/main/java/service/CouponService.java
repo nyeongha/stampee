@@ -1,12 +1,10 @@
 package service;
 
 import static formatter.MailMessageFormatter.*;
+import static java.time.LocalDate.*;
 
-import java.time.LocalDate;
 import java.util.List;
-
 import javax.mail.MessagingException;
-
 import dto.response.ExpiredCouponDto;
 import dto.response.MyCouponDto;
 import repository.CouponRepository;
@@ -21,7 +19,8 @@ public class CouponService {
 	}
 
 	public void expiredCoupon() throws MessagingException {
-		List<ExpiredCouponDto> expiringCoupons = couponRepository.findExpiringCoupons(LocalDate.now());
+		couponRepository.deleteExpiredCoupons(now());
+		List<ExpiredCouponDto> expiringCoupons = couponRepository.findExpiringCoupons(now());
 		for (ExpiredCouponDto expiringCoupon : expiringCoupons) {
 			mailService.sendMail(expiringCoupon.getMemberEmail(), expiringCoupon.toString(), EXPIRED_COUPON.getMessage());
 		}
