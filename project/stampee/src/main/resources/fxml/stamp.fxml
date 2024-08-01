@@ -18,6 +18,7 @@
     <content>
         <VBox spacing="10">
             <fx:include source="/templates/reusables/Header.fxml" />
+
             <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
                 <Label fx:id="cafeName" styleClass="cafe-name"
                        style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FF69B4; -fx-effect: dropshadow(gaussian, #FFC0CB, 2, 0, 0, 1);"/>
@@ -56,6 +57,61 @@
                 </VBox>
 
                 <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #F5F5DC;"/>
+
+            <VBox spacing="10">
+                <AnchorPane>
+                    <children>
+                        <Label fx:id="cafeName" layoutX="19.0" layoutY="14.0"
+                               style="-fx-font-size: 24px; -fx-font-weight: bold;">
+                        </Label>
+                        <Label fx:id="cafeRating" layoutX="19.0" layoutY="14.0"
+                               style="-fx-font-size: 24px; -fx-font-weight: bold;">
+
+                        </Label>
+                        <Label fx:id="cafeAddress" layoutX="19.0" layoutY="43.0" prefHeight="18.0" prefWidth="570.0"
+                               style="-fx-font-size: 14px;"/>
+                        <Pane layoutX="19.0" layoutY="75.0" maxWidth="570.0" prefHeight="20.0" prefWidth="570.0"
+                              style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
+                            <Label fx:id="couponCount" style="-fx-font-size: 16px;"/>
+                        </Pane>
+                        <Text layoutX="19.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="시그니쳐 메뉴"/>
+                        <Pane layoutX="19.0" layoutY="118.0" maxWidth="570.0" prefHeight="20.0" prefWidth="570.0"
+                              style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
+                            <Label fx:id="signature1" style="-fx-font-size: 16px;"/>
+                        </Pane>
+                        <Pane layoutX="19.0" layoutY="138.0" maxWidth="570.0" prefHeight="20.0" prefWidth="570.0"
+                              style="-fx-background-color: #F5F5F5; -fx-padding: 10;">
+                            <Label fx:id="signature2" style="-fx-font-size: 16px;"/>
+                        </Pane>
+                        <Region layoutX="19.0" layoutY="168.0" prefHeight="200.0" prefWidth="570.0" style="-fx-background-color: #EEEEEE;"/>
+                        <HBox layoutX="19.0" layoutY="180.0" prefHeight="95.0" prefWidth="570.0" styleClass="stamp-row">
+                            <ImageView fx:id="stamp1" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp2" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp3" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp4" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp5" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                        </HBox>
+                        <HBox layoutX="19.0" layoutY="255.0" prefHeight="95.0" prefWidth="570.0" styleClass="stamp-row">
+                            <ImageView fx:id="stamp6" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp7" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp8" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp9" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                            <ImageView fx:id="stamp10" fitHeight="85.0" fitWidth="85.0" preserveRatio="true"
+                                       styleClass="stamp"/>
+                        </HBox>
+                    </children>
+                </AnchorPane>
+                <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #EEEEEE;"/>
+
                 <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="570.0"/>
             </VBox>
             <fx:include source="/templates/reusables/footer.fxml"/>
