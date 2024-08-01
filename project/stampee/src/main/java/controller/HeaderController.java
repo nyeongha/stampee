@@ -39,9 +39,8 @@ public class HeaderController {
 		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
-	@FXML
 	public void handleLogo(MouseEvent event) throws IOException {
-		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
+		SceneNavigator.getInstance().navigateTo("/fxml/index/MemberMain.fxml", event);
 	}
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {

@@ -91,4 +91,17 @@ public class CreateReviewController {
 		}
 		return ReviewValidationResult.VALID;
 	}
+<<<<<<< HEAD
+=======
+
+	private void showAlert(String title, String message) {
+		// 오류 메시지를 표시하는 간단한 알림창
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+>>>>>>> 7e5b759cb36cd807f528aa389bf664743e3fe6b6
 }
+

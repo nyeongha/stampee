@@ -19,8 +19,11 @@ import repository.StampRepository;
 import service.MailService;
 import service.StampService;
 import session.CafeSession;
+import util.Popup;
 
 import java.sql.*;
+
+import static util.SceneNavigator.getInstance;
 
 public class KeypadController {
 	@FXML private TextField phoneNumberField;
@@ -86,6 +89,7 @@ public class KeypadController {
 			LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
 			stampService.saveStamp(cafe.getCafeId(), formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
 			showSuccessPopup("스탬프 적립 성공");
+			goToCafeMainPage();
 		} catch (IllegalArgumentException | SQLException e) {
 			showFailPopup(e.getMessage());
 		}
@@ -97,12 +101,14 @@ public class KeypadController {
 
 	@FXML
 	private void GoToHome() {
+
 		try {
 			getInstance().navigateTo("/fxml/CouponPage.fxml", phoneNumberField);
 		} catch (IOException e) {
 			e.printStackTrace();
 			showFailPopup("화면 전환 중 오류가 발생했습니다.");
 		}
+		goToCafeMainPage();
 	}
 
 	private void updateDisplayFields() {
@@ -116,5 +122,14 @@ public class KeypadController {
 	private void setPhoneNumberInput(boolean isPhoneNumber) {
 		isPhoneNumberInput = isPhoneNumber;
 		updateDisplayFields();
+	}
+
+	private void goToCafeMainPage() {
+		try {
+			getInstance().navigateTo("/fxml/index/CafeMainPage.fxml", phoneNumberField);
+		} catch (IOException e) {
+			e.printStackTrace();
+			showFailPopup("화면 전환 중 오류가 발생했습니다.");
+		}
 	}
 }
