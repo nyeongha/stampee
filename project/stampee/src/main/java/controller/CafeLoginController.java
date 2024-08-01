@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.CafeRepository;
 import service.CafeService;
+import util.SceneNavigator;
 
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
@@ -78,12 +79,7 @@ public class CafeLoginController {
 	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
 	private void loadIndexPage() {
 		try {
-			Parent indexPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/index/CafeMainPage.fxml")));
-			Scene scene = new Scene(indexPage);
-			Stage stage = (Stage) loginButton.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/index/CafeMainPage.fxml", signUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -92,12 +88,7 @@ public class CafeLoginController {
 	// 회원가입 페이지 로드 메서드
 	private void loadSignUpPage() {
 		try {
-			Parent signUpPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
-			Scene scene = new Scene(signUpPage);
-			Stage stage = (Stage) signUpButton.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/account/SignUpPageMain.fxml", signUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

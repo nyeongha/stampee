@@ -6,6 +6,7 @@ import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Control;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
@@ -37,11 +38,11 @@ public class SceneNavigator {
 		}
 	}
 
-	public void navigateTo(String fxmlPath, TextField textField) throws IOException {
+	public void navigateTo(String fxmlPath, Control control) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
 		Parent root = loader.load();
 		Scene scene = new Scene(root);
-		Stage stage = (Stage)textField.getScene().getWindow();
+		Stage stage = (Stage)control.getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
 	}
