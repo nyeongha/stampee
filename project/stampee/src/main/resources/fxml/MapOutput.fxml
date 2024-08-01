@@ -6,8 +6,8 @@
 <?import javafx.geometry.Insets?>
 
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MapService" styleClass="main-container" stylesheets="/css/modern-style.css">
-    <AnchorPane VBox.vgrow="ALWAYS" minHeight="300" styleClass="map-container">
-        <WebView fx:id="webView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
+    <AnchorPane VBox.vgrow="ALWAYS"  minHeight="200"  styleClass="map-container">
+        <WebView fx:id="webView" AnchorPane.topAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
     </AnchorPane>
 
     <GridPane hgap="10" vgap="10" styleClass="store-info">

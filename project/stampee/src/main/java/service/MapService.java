@@ -24,12 +24,7 @@ public class MapService {
 	@FXML
 	public void initialize() {
 		webEngine = webView.getEngine();
-		// String location = "서울 종로구 성균관로3길 15";
-		// Float[] coords = findGeoPoint(location);
-		// if (coords != null) {
-		// 	loadMap(coords[0], coords[1], location);
-		// 	updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
-		// }
+
 	}
 
 	private static Float[] findGeoPoint(String location) {

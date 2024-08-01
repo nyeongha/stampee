@@ -44,13 +44,14 @@
 }
 
 .stamp {
-    -fx-fit-width: 50px;
-    -fx-fit-height: 50px;
+    -fx-fit-width: 60px;
+    -fx-fit-height: 60px;
     -fx-preserve-ratio: true;
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
+
 
 .stamp.filled {
     -fx-image: url('/image/github_logo.png');
@@ -66,14 +67,6 @@
     -fx-border-width: 1;
 }
 
-.info-container {
-    -fx-padding: 20;
-    -fx-spacing: 10;
-}
-
-.info-container Label {
-    -fx-font-size: 14;
-}
 
 .footer {
     -fx-padding: 10;

@@ -32,12 +32,12 @@ public class Main extends Application {
 	// }
 
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
 		Parent root = loader.load();
 
 		StampController controller = loader.getController();
 
-		controller.initData(37L, 9L); // 예시로 memberId 1을 사용
+		controller.initData(37L, 5L); // 예시로 memberId 1을 사용
 
 		primaryStage.setTitle("Stamp Viewer");
 		primaryStage.setScene(new Scene(root));

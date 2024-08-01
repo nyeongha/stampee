@@ -98,18 +98,21 @@ public class StampController implements Initializable {
 
 	private void setStampImage(int count) {
 		Image filledStamp = new Image(getClass().getResourceAsStream("/image/github_logo.png"));
-		Image emptyStamp = new Image(getClass().getResourceAsStream("/image/github_logo_rec.png"));
+		Image emptyStamp = new Image(getClass().getResourceAsStream("/image/test3.png"));
 
 		ImageView[] stamps = {stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10};
 
 		for (int i = 0; i < stamps.length; i++) {
 			if (i < count) {
 				stamps[i].setImage(filledStamp);
+				stamps[i].setFitWidth(70);
+				stamps[i].setFitHeight(70);
 			} else {
 				stamps[i].setImage(emptyStamp);
+				stamps[i].setFitWidth(50);
+				stamps[i].setFitHeight(50);
 			}
-			stamps[i].setFitWidth(85);
-			stamps[i].setFitHeight(85);
+
 		}
 	}
 
