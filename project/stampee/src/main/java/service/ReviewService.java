@@ -9,9 +9,12 @@ import domain.Review;
 import lombok.RequiredArgsConstructor;
 import repository.ReviewRepository;
 
-@RequiredArgsConstructor
 public class ReviewService {
 	private final ReviewRepository reviewRepository;
+
+	public ReviewService(ReviewRepository reviewRepository) {
+		this.reviewRepository = reviewRepository;
+	}
 
 	public void deleteReview(long reviewId, long memberId) {
 		reviewRepository.deleteReviewByReviewId(reviewId, memberId);

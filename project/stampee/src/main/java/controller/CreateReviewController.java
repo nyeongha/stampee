@@ -12,13 +12,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import lombok.RequiredArgsConstructor;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
 
-@RequiredArgsConstructor
 public class CreateReviewController {
 	@FXML private ComboBox<Float> rating;
 
@@ -28,7 +26,7 @@ public class CreateReviewController {
 
 	@FXML
 	private AnchorPane reviewPane;
-	private ReviewService reviewService;
+	private final ReviewService reviewService;
 	private MemberRepository memberRepository;
 	private CafeRepository cafeRepository;
 	private ReviewRepository reviewRepository;
@@ -37,6 +35,12 @@ public class CreateReviewController {
 	private Member loggedInMember=null;
 	private Cafe selectedCafe=null; // 리뷰할 카페 객체
 
+	public CreateReviewController(){
+		memberRepository = new MemberRepository();
+		cafeRepository = new CafeRepository();
+		reviewRepository = new ReviewRepository();
+		reviewService = new ReviewService(reviewRepository);
+	}
 	@FXML
 	public void initialize() {
 		// 실수 값을 ComboBox에 추가

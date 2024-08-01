@@ -16,4 +16,7 @@ public class MyStampDto {
 			stamp.getCafe().getAddress(),
 			stamp.getCount());
 	}
+
+	public String getCafeName() {
+	}
 }
