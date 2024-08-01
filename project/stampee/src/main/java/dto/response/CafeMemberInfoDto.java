@@ -10,7 +10,7 @@ public class CafeMemberInfoDto {
 		this.memberId =  memberId;
 		this.memberName =  memberName;
 		this.stampCount =  stampCount;
-		this.memberId =  couponCount;
+		this.couponCount =  couponCount;
 	}
 
 	public static CafeMemberInfoDto createCafeMemberDto (long memberId, String memberName, long stampCount, long couponCount){
