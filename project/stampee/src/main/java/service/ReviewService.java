@@ -12,8 +12,9 @@ public class ReviewService {
 
 	private static ReviewRepository reviewRepository;
 
-	public ReviewService(ReviewRepository reviewRepository) {
-		this.reviewRepository = reviewRepository;
+
+	public ReviewService(ReviewRepository reviewRepository){
+		this.reviewRepository=reviewRepository;
 	}
 
 	public void deleteReview(long reviewId, long memberId) {
@@ -23,6 +24,10 @@ public class ReviewService {
 	public void updateReview(long id, int rating, String contents) {
 		Review review = new Review(id, rating, contents);
 		reviewRepository.updateReview(review);
+	}
+	public float setCafeRatingAvg(long cafeId){
+		float avg=reviewRepository.cafeAvgOfRating(cafeId);
+		return avg;
 	}
 
 	public void insertReview(int rating, String contents, Date date, Member member, Cafe cafe) {

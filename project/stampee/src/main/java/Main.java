@@ -34,8 +34,15 @@ public class Main extends Application {
 	public void start(Stage primaryStage) throws Exception {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
 		Parent root = loader.load();
+
+		StampController controller = loader.getController();
+		controller.initData(9L, 2L); // 예시로 memberId 1을 사용
+		primaryStage.setTitle("Stamp Viewer");
 		primaryStage.setScene(new Scene(root));
-				primaryStage.show();
+
+		primaryStage.setTitle("Coupon Application");
+		primaryStage.show();
+
 	}
 
 	// @Override
