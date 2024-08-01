@@ -6,11 +6,6 @@
 .root {
     -fx-font-family: 'Jua';
 }
-.main-container {
-    -fx-background-color: white;
-    -fx-spacing: 10;
-    -fx-padding: 0 20 0 20;
-}
 
 .header {
     -fx-padding: 10;
@@ -58,7 +53,16 @@
 }
 
 .stamp.empty {
-    -fx-image: url('/image/java_logo.png');
+    -fx-image: url('/image/github_logo_rec.png');
+}
+
+.info-container {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+}
+
+.info-container Label {
+    -fx-font-size: 14;
 }
 
 #mapView {
@@ -67,10 +71,9 @@
     -fx-border-width: 1;
 }
 
-
 .footer {
     -fx-padding: 10;
-    -fx-background-color: #f8f8f8;
+    -fx-background-color: white;
     -fx-border-color: #e0e0e0;
     -fx-border-width: 1 0 0 0;
     -fx-alignment: center;

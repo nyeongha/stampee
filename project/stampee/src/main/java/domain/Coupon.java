@@ -2,6 +2,9 @@ package domain;
 
 import java.sql.Date;
 
+import lombok.Getter;
+
+@Getter
 public class Coupon {
 	private long couponId;
 	private Date createTime;

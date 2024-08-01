@@ -38,8 +38,7 @@ dependencies {
     //mail
     implementation 'com.sun.mail:javax.mail:1.6.2'
 
-    //lombok
-    implementation 'ch.qos.logback:logback-classic:1.2.11'
+
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
