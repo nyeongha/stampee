@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SignupMainController {
 	@FXML public VBox signuppagemain;
@@ -25,7 +26,8 @@ public class SignupMainController {
 	@FXML
 	private void handleUserSignUpButtonAction(ActionEvent actionEvent) {
 		try {
-			Parent userSignUpPage = FXMLLoader.load(getClass().getResource("/templates/account/UserSignupPage.fxml"));
+			Parent userSignUpPage = FXMLLoader.load(
+				Objects.requireNonNull(getClass().getResource("/fxml/account/MemberSignupPage.fxml")));
 			Scene scene1 = new Scene(userSignUpPage);
 
 			// Get the current stage (window)
@@ -40,7 +42,7 @@ public class SignupMainController {
 	@FXML
 	private void handleCafeSignUpButtonAction(ActionEvent event) {
 		try {
-			Parent cafeSignUpPage = FXMLLoader.load(getClass().getResource("/templates/account/CafeSignupPage.fxml"));
+			Parent cafeSignUpPage = FXMLLoader.load(getClass().getResource("/fxml/account/CafeSignupPage.fxml"));
 			Scene scene2 = new Scene(cafeSignUpPage);
 
 			Stage stage2 = (Stage) cafeSignUpButton.getScene().getWindow();
@@ -53,7 +55,7 @@ public class SignupMainController {
 
 	private void loadIndexPage() {
 		try {
-			Parent indexPage = FXMLLoader.load(getClass().getResource("/templates/account/SignUpPageMain.fxml"));
+			Parent indexPage = FXMLLoader.load(getClass().getResource("/fxml/account/SignUpPageMain.fxml"));
 			Scene scene = new Scene(indexPage);
 		} catch (IOException e) {
 			e.printStackTrace();

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+
+<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="800" prefWidth="600" styleClass="main-container" stylesheets="@../../css/loginPage.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.CafeLoginController">
+    <children>
+        <fx:include source="../reusables/Header.fxml" />
+        <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0">
+            <children>
+                <fx:include source="../reusables/LogoArea.fxml" />
+                <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="843.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이메일">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="emailField" promptText="이메일 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="passwordField" promptText="비밀번호를 입력하세요" />
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="30.0" />
+                    </VBox.margin>
+                </VBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Button fx:id="loginButton" mnemonicParsing="false" prefWidth="208.0" text="Login">
+                            <HBox.margin>
+                                <Insets left="50.0" right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                        <Button fx:id="signUpButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="Sign Up">
+                            <HBox.margin>
+                                <Insets left="50.0" right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets />
+                    </VBox.margin>
+                    <padding>
+                        <Insets top="10.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </children>
+</VBox>
