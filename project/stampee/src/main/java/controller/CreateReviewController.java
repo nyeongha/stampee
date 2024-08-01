@@ -6,34 +6,44 @@ import java.time.LocalDateTime;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import lombok.RequiredArgsConstructor;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
+import session.MemberSession;
+import validation.ReviewValidationResult;
 
 public class CreateReviewController {
-	@FXML private ComboBox<Float> rating;
-	@FXML private TextArea reviewContents;
-	@FXML private Button submitReviewButton;
+	@FXML
+	private ComboBox<Float> rating;
+
+	@FXML
+	private TextArea reviewContents;
+
+	@FXML
+	private Button submitReviewButton;
 
 	@FXML
 	private AnchorPane reviewPane;
-	private final ReviewService reviewService;
-	private final MemberRepository memberRepository;
-	private final CafeRepository cafeRepository;
-	private final ReviewRepository reviewRepository;
+	private ReviewService reviewService;
+	private MemberRepository memberRepository;
+	private CafeRepository cafeRepository;
+	private ReviewRepository reviewRepository;
 
 	// 멤버 세션 객체
 	private Member loggedInMember = null;
 	private Cafe selectedCafe = null; // 리뷰할 카페 객체
 
-	public CreateReviewController(){
+	public CreateReviewController() {
 		memberRepository = new MemberRepository();
 		cafeRepository = new CafeRepository();
 		reviewRepository = new ReviewRepository();
@@ -59,20 +69,10 @@ public class CreateReviewController {
 		Float selectedRating = rating.getValue();
 		String contents = reviewContents.getText();
 
-
 		// 유효성 검사
-		if (selectedRating == null) {
-			showAlert("Error", "Please select a rating.");
-			return;
-		}
-
-		if (contents.trim().isEmpty()) {
-			showAlert("Error", "Review contents cannot be empty.");
-			return;
-		}
-
-		if (loggedInMember == null || selectedCafe == null) {
-			showAlert("Error", "Invalid member or cafe information.");
+		ReviewValidationResult validationResult = validateReview(selectedRating, contents);
+		if (validationResult != ReviewValidationResult.VALID) {
+			showAlert("Error", validationResult.getMessage());
 			return;
 		}
 
@@ -80,15 +80,29 @@ public class CreateReviewController {
 		LocalDateTime now = LocalDateTime.now();
 		Date createTime = Date.valueOf(now.toLocalDate());
 
-		// 리뷰 객체 생성
-		Review review = new Review(selectedRating, contents, createTime, loggedInMember, selectedCafe);
-
 		// 리뷰 삽입
 		reviewService.insertReview(selectedRating, contents, createTime, loggedInMember, selectedCafe);
 
+		// UI 업데이트
 		reviewContents.clear();
 		rating.getSelectionModel().clearSelection();
 
+	}
+
+	private ReviewValidationResult validateReview(Float selectedRating, String contents) {
+		if (selectedRating == null) {
+			return ReviewValidationResult.NO_RATING;
+		}
+
+		if (contents.trim().isEmpty()) {
+			return ReviewValidationResult.EMPTY_CONTENTS;
+		}
+
+		if (loggedInMember == null || selectedCafe == null) {
+			return ReviewValidationResult.INVALID_MEMBER_OR_CAFE;
+		}
+
+		return ReviewValidationResult.VALID;
 	}
 
 	private void showAlert(String title, String message) {
@@ -99,4 +113,5 @@ public class CreateReviewController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
+
 }
