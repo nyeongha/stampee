@@ -66,6 +66,7 @@ public class MemberRepository {
 					// 성공적으로 인증된 경우, Entity에 정보 저장
 					Member member = new Member();
 					member.setEmail(email);
+					member.setMemberId(rs.getLong("member_id"));
 					member.setPassword(storedPassword); // 데이터베이스 필드에 따라 수정
 					member.setUserName(rs.getString("username")); // 데이터베이스 필드에 따라 수정
 					member.setPhoneNumber(rs.getString("phone_number")); // 데이터베이스 필드에 따라 수정

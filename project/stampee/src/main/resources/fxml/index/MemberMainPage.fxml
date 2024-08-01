@@ -1,90 +1,49 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" styleClass="root" stylesheets="@../../css/CafeMainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberMainPageController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberMainPageController" stylesheets="@/css/CafeMainPage.css">
    <children>
-      <fx:include source="../reusables/Header.fxml" />
-      <VBox styleClass="wrapper">
+      <VBox styleClass="main-container" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <HBox styleClass="cafe-nameTag">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
+            <fx:include source="/fxml/reusables/Header.fxml" />
+
+            <HBox styleClass="info-container">
                <children>
-                  <Text fx:id="memberName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
-                  <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
+                     <Text fx:id="memberName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
+                     <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
                </children>
             </HBox>
-            <HBox styleClass="all-member-tag">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
-               <children>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+               <Text text="카페별 스탬프와 쿠폰" styleClass="section-title"/>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 스탬프 수">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Text>
                   <Text fx:id="totalStamps" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Text>
-
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 쿠폰 수">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Text>
                   <Text fx:id="totalCoupons" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
                   </Text>
-
-               </children>
             </HBox>
-            <HBox styleClass="member-nameTag">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="카페별 스탬프와 쿠폰">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Text>
-               </children>
-            </HBox>
-            <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefViewportHeight="50.0" prefViewportWidth="600.0" prefWidth="579.0">
-               <opaqueInsets>
-                  <Insets />
-               </opaqueInsets>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-               <content>
-                  <HBox fx:id="MembersHbox" spacing="20.0">
-            </HBox>
-               </content>
-            </ScrollPane>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="customer-scroll-pane"
+                           AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <content>
+                     <FlowPane fx:id="MembersFlowPane" hgap="20" vgap="20"/>
+                  </content>
+               </ScrollPane>
+            </AnchorPane>
          </children>
       </VBox>
-      <fx:include source="../reusables/footer.fxml" />
+      <fx:include source="/fxml/reusables/footer.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
    </children>
-</VBox>
+</AnchorPane>

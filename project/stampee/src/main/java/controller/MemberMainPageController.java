@@ -1,6 +1,7 @@
 package controller;
 
 import dto.response.MemberInfoDto;
+import javafx.scene.layout.FlowPane;
 import session.MemberSession;
 import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
@@ -21,10 +22,7 @@ import repository.MemberRepository;
 public class MemberMainPageController implements Initializable {
 
 	@FXML
-	private HBox MembersHbox;
-
-	@FXML
-	private Text numberOfMembers;
+	private FlowPane MembersFlowPane;
 
 	@FXML
 	private Text memberName;
@@ -45,58 +43,65 @@ public class MemberMainPageController implements Initializable {
 		MemberRepository cafeRepository = new MemberRepository();
 
 		List<MemberInfoDto> memberInfos = cafeRepository.findMemberInfoById(loggedMemberDto.getMemberId());
-		int stamp_sum = 0;
-		int coupon_sum = 0;
-		for(MemberInfoDto memberInfo : memberInfos) {
-			stamp_sum += memberInfo.getStampCount();
-			coupon_sum += memberInfo.getCouponCount();
-		}
 
 		renderMemberCards(memberInfos);
 
-		// numberOfMembers.setText(String.valueOf(memberInfos.size()));
 		memberName.setText(loggedMemberDto.getUsername());
 
-	}
+		// 출력영역
+		System.out.println(loggedMemberDto.getUsername());
+		System.out.println(loggedMemberDto.getEmail());
+		System.out.println(loggedMemberDto.getMemberId());
+
+
+		for (MemberInfoDto memberInfo : memberInfos) {
+			System.out.println(memberInfo.getCafeId());
+			System.out.println(memberInfo.getCafeName());
+			System.out.println(memberInfo.getCouponCount());
+			System.out.println(memberInfo.getStampCount());
+		}
+
+
+		}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
-		int stamp_sum = 0;
-		int coupon_sum = 0;
+		Long stamp_sum = 0L;
+		Long coupon_sum = 0L;
 		for (MemberInfoDto memberInfo : memberInfos){
 			stamp_sum += memberInfo.getStampCount();
 			coupon_sum += memberInfo.getCouponCount();
 			VBox memberVBox = new VBox(10);
-			memberVBox.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-background-color: white;");
+			memberVBox.getStyleClass().add("customer-card");
+			memberVBox.setPrefWidth(150);  // 카드의 너비 설정
+			memberVBox.setMaxWidth(150);   // 최대 너비 제한
 			memberVBox.setPadding(new Insets(15));
 
-			HBox textHeadingHBox = new HBox();
-			Label nameLabel = new Label(memberInfo.getCafeName());
-			textHeadingHBox.getChildren().add(nameLabel);
+			Text nameText = new Text(memberInfo.getCafeName());
+			nameText.getStyleClass().add("customer-name");
 
-			HBox avatarBlockHBox = new HBox(15);
-			StackPane avatarStackPane = new StackPane();
-			ImageView imageView = new ImageView(new Image("/image/default_profile_picture.jpg"));
-			imageView.setFitHeight(56);
-			imageView.setFitWidth(51);
-			avatarStackPane.getChildren().add(imageView);
+			ImageView imageView = new ImageView(new Image("/image/noprofile.png"));
+			imageView.setFitHeight(50);
+			imageView.setFitWidth(50);
 
 			VBox infoVBox = new VBox(10);
-			HBox couponHBox = new HBox();
-			Label couponLabel = new Label("쿠폰 갯수:");
+
+			HBox couponHBox = new HBox(5);
+			Label couponLabel = new Label("쿠폰 :");
 			Text couponText = new Text(String.valueOf(memberInfo.getCouponCount()));
 			couponHBox.getChildren().addAll(couponLabel, couponText);
 
-			HBox stampHBox = new HBox();
-			Label stampLabel = new Label("스탬프 갯수:");
+			HBox stampHBox = new HBox(5);
+			Label stampLabel = new Label("스탬프 :");
 			Text stampText = new Text(String.valueOf(memberInfo.getStampCount()));
 			stampHBox.getChildren().addAll(stampLabel, stampText);
 
-
 			infoVBox.getChildren().addAll(couponHBox, stampHBox);
-			avatarBlockHBox.getChildren().addAll(avatarStackPane, infoVBox);
 
-			memberVBox.getChildren().addAll(textHeadingHBox, avatarBlockHBox);
-			MembersHbox.getChildren().add(memberVBox);
+			HBox avatarInfoHBox = new HBox(15);
+			avatarInfoHBox.getChildren().addAll(imageView, infoVBox);
+
+			memberVBox.getChildren().addAll(nameText, avatarInfoHBox);
+			MembersFlowPane.getChildren().add(memberVBox);
 		}
 		totalStamps.setText(String.valueOf(stamp_sum));
 		totalCoupons.setText(String.valueOf(coupon_sum));
