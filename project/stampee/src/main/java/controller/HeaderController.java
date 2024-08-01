@@ -27,7 +27,7 @@ public class HeaderController {
 
 	@FXML
 	public void handleReviews(MouseEvent event) {
-		navigateTo("/fxml/reviews.fxml", event, ALL, 0L);
+		navigateTo("/fxml/reviews.fxml", event, ALL, 1L);
 	}
 
 	@FXML
@@ -37,7 +37,7 @@ public class HeaderController {
 
 	@FXML
 	public void handleLogo(MouseEvent event) {
-		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
+		getInstance().navigateTo("/fxml/index/MemberMain.fxml", event);
 	}
 
 

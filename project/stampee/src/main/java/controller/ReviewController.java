@@ -280,18 +280,18 @@ public class ReviewController {
 		}
 
 		try {
-			boolean deleted = reviewService.deleteReview(review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId() );
+			boolean deleted = reviewService.deleteReview(review.getReviewId(),1L);
 			if (deleted) {
 				refreshReviews();
 				showAlert("삭제 성공", "리뷰가 성공적으로 삭제되었습니다.");
-				log.info("Review deleted: reviewId={}, memberId={}", review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId());
+				log.info("Review deleted: reviewId={}, memberId={}", review.getReviewId(),1L);
 			} else {
 				showAlert("삭제 실패", "리뷰를 삭제할 수 없습니다. 자신의 리뷰인지 확인해주세요.");
-				log.warn("Review deletion failed: reviewId={}, memberId={}", review.getReviewId(), review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId());
+				log.warn("Review deletion failed: reviewId={}, memberId={}", review.getReviewId(), review.getReviewId(),1L);
 			}
 		} catch (Exception e) {
 			showAlert("오류 발생", "리뷰 삭제 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
-			log.error("Error occurred while deleting review: reviewId={}, memberId={}", review.getReviewId(),review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId(), e);
+			log.error("Error occurred while deleting review: reviewId={}, memberId={}", review.getReviewId(),review.getReviewId(),1L, e);
 		}
 	}
 
@@ -357,7 +357,7 @@ public class ReviewController {
 
 		deleteButton.setStyle("-fx-background-color: #FFB6C1; -fx-text-fill: white;");
 		VBox blockContainer;
-		if (MemberSession.getInstance().getLoggedMemberDto().getMemberId() == review.getAuthor().getMemberId()) {
+		if (1L == review.getAuthor().getMemberId()) {
 			blockContainer = new VBox(5, reviewLabel, deleteButton);
 			blockContainer.setStyle(BLOCK_CONTAINER_STYLE);
 			blockContainer.setPrefWidth(545); // 너비를 설정하여 수평으로 나열되게 함

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="root" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.MemberMainController"
+      prefWidth="600" prefHeight="800" styleClass="root" stylesheets="@/css/MemberMain.css">
+    <fx:include source="/fxml/reusables/Header.fxml" />
+
+    <VBox styleClass="header">
+        <Text fx:id="userNameText" styleClass="title" text="하민영님" />
+        <Text styleClass="subtitle" text="Subheading" />
+        <HBox styleClass="coupon-summary">
+            <Text text="전체 쿠폰: " />
+            <Text fx:id="totalCouponCount" text="3장" />
+        </HBox>
+    </VBox>
+
+    <Text styleClass="section-title" text="CAFE" />
+
+    <ScrollPane fitToWidth="true" styleClass="cafe-list-scroll">
+        <VBox fx:id="cafeListContainer" spacing="10">
+            <!-- 카페 항목들이 여기에 동적으로 추가됩니다 -->
+        </VBox>
+    </ScrollPane>
+
+    <fx:include source="/fxml/reusables/footer.fxml" />
+</VBox>

@@ -17,6 +17,7 @@
 
 /* 로고 스타일 정의 */
 .logo {
+    -fx-cursor: hand;
     -fx-padding: 10px;
 }
 
