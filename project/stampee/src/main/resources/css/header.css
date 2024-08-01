@@ -8,21 +8,20 @@
     -fx-font-family: 'Jua';
 }
 .header {
-    -fx-background-color: #FFF0F5; /* 연한 핑크 배경 */
+    -fx-background-color: #FFF0F5;
     -fx-padding: 10;
     -fx-border-color: #ffffff;
     -fx-alignment: center-left;
     -fx-border-width: 0 0 3 0;
 }
 
-/* 로고 스타일 정의 */
 .logo {
     -fx-cursor: hand;
     -fx-padding: 10px;
 }
 
-/* 메뉴 아이템 스타일 정의 */
 .menu-items {
+    -fx-cursor: hand;
     -fx-spacing: 20px;
     -fx-alignment: center-left;
 }

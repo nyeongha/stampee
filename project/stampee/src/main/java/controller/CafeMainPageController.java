@@ -1,6 +1,7 @@
 package controller;
 
 import dto.response.CafeMemberInfoDto;
+import javafx.scene.layout.FlowPane;
 import session.CafeSession;
 import dto.response.LoggedCafeDto;
 import javafx.fxml.FXML;
@@ -20,7 +21,8 @@ import java.util.ResourceBundle;
 import repository.CafeRepository;
 public class CafeMainPageController implements Initializable {
 
-	@FXML private HBox cafeMembersHbox;
+	@FXML private FlowPane cafeMembersFlowPane;
+	// @FXML private HBox cafeMembersHbox;
 	@FXML private Text numberOfMembers;
 	@FXML private Text cafeName;
 	@FXML private Text cafeAddress;
@@ -43,24 +45,26 @@ public class CafeMainPageController implements Initializable {
 		for (CafeMemberInfoDto memberInfo : memberInfos) {
 			VBox memberVBox = new VBox(10);
 			memberVBox.getStyleClass().add("customer-card");
+			memberVBox.setPrefWidth(150);  // 카드의 너비 설정
+			memberVBox.setMaxWidth(150);   // 최대 너비 제한
 			memberVBox.setPadding(new Insets(15));
 
 			Text nameText = new Text(memberInfo.getMemberName());
 			nameText.getStyleClass().add("customer-name");
 
-			ImageView imageView = new ImageView(new Image("/image/default_profile_picture.jpg"));
-			imageView.setFitHeight(56);
-			imageView.setFitWidth(51);
+			ImageView imageView = new ImageView(new Image("/image/noprofile.png"));
+			imageView.setFitHeight(50);
+			imageView.setFitWidth(50);
 
 			VBox infoVBox = new VBox(10);
 
 			HBox couponHBox = new HBox(5);
-			Text couponLabel = new Text("쿠폰 갯수:");
+			Text couponLabel = new Text("쿠폰 :");
 			Text couponText = new Text(String.valueOf(memberInfo.getCouponCount()));
 			couponHBox.getChildren().addAll(couponLabel, couponText);
 
 			HBox stampHBox = new HBox(5);
-			Text stampLabel = new Text("스탬프 갯수:");
+			Text stampLabel = new Text("스탬프 :");
 			Text stampText = new Text(String.valueOf(memberInfo.getStampCount()));
 			stampHBox.getChildren().addAll(stampLabel, stampText);
 
@@ -70,7 +74,7 @@ public class CafeMainPageController implements Initializable {
 			avatarInfoHBox.getChildren().addAll(imageView, infoVBox);
 
 			memberVBox.getChildren().addAll(nameText, avatarInfoHBox);
-			cafeMembersHbox.getChildren().add(memberVBox);
+			cafeMembersFlowPane.getChildren().add(memberVBox);
 		}
 	}
 }

@@ -11,104 +11,47 @@
 .main-container {
     -fx-background-color: #FFF0F5;
     -fx-spacing: 15;
-    -fx-padding: 0 20 0 20;
-}
-
-.logo {
-    -fx-image: url('/image/stampee_logo.png');
-}
-
-.menu-items {
-    -fx-alignment: center-right;
-}
-
-.menu-items Label {
-    -fx-padding: 8 15;
-    -fx-background-color: #FFEBD4;
-    -fx-text-fill: #FF69B4;
-    -fx-background-radius: 15;
-    -fx-cursor: hand;
-}
-
-.stamp-container {
-    -fx-background-color: #FFEBD4;
     -fx-padding: 20;
-    -fx-alignment: center;
-    -fx-background-radius: 15;
 }
-
-.stamp-row {
-    -fx-spacing: 20;
-    -fx-alignment: center;
-}
-
-.stamp {
-    -fx-fit-width: 60px;
-    -fx-fit-height: 60px;
-    -fx-preserve-ratio: true;
-    -fx-background-size: contain;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-}
-
-.stamp.filled {
-    -fx-image: url('/image/github_logo.png');
-}
-
-.stamp.empty {
-    -fx-image: url('/image/github_logo_rec.png');
-}
-
 
 .info-container {
     -fx-padding: 20;
-    -fx-spacing: 15;
-    -fx-background-color: #FFEBD4;
+    -fx-spacing: 10;
+    -fx-background-color: #FFE4E1;
     -fx-background-radius: 15;
-}
-
-.info-container Label {
-    -fx-font-size: 16;
-    -fx-text-fill: #FF69B4;
-}
-
-Text {
-    -fx-fill: #FF69B4;
-}
-
-.scroll-pane {
-    -fx-background-color: transparent;
-}
-
-.scroll-pane > .viewport {
-    -fx-background-color: transparent;
-}
-
-.scroll-bar:vertical {
-    -fx-background-color: #FFEBD4;
-}
-
-.scroll-bar:vertical .thumb {
-    -fx-background-color: #FF69B4;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
 }
 
 .cafe-name {
-    -fx-font-size: 24px;
+    -fx-font-size: 28px;
     -fx-font-weight: bold;
+    -fx-fill: black;
 }
 
 .cafe-address {
     -fx-font-size: 18px;
+    -fx-fill: black;
 }
 
 .member-count {
     -fx-spacing: 5;
+    -fx-alignment: center-left;
+}
+
+.member-count Text {
+    -fx-fill: black;
+    -fx-font-size: 16px;
+}
+
+HBox {
+    -fx-alignment: center-left;
+    -fx-spacing: 20;
 }
 
 .section-title {
-    -fx-font-size: 20px;
+    -fx-font-size: 24px;
     -fx-font-weight: bold;
-    -fx-padding: 10 0;
+    -fx-fill: black;
 }
 
 .customer-scroll-pane {
@@ -119,18 +62,47 @@ Text {
     -fx-background-color: transparent;
 }
 
+
 .customer-card {
     -fx-background-color: white;
-    -fx-padding: 10;
-    -fx-border-radius: 5;
-    -fx-background-radius: 5;
+    -fx-padding: 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
 }
 
 .customer-name {
     -fx-font-weight: bold;
+    -fx-fill: black;
+    -fx-font-size: 18px;
 }
 
 .customer-card Text {
-    -fx-fill: #FF69B4;
+    -fx-fill: black;
+}
+
+.footer {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1 0 0 0;
+    -fx-alignment: center;
+}
+
+.footer-content {
+    -fx-alignment: center;
+}
+
+.footer-logo {
+    -fx-image: url('/image/stampee_logo.png');
+}
+
+.footer-title {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.footer-subtitle {
+    -fx-font-size: 12;
+    -fx-text-fill: #888;
 }

@@ -8,7 +8,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController" stylesheets="@/css/CafeMainPage.css">
    <children>
-      <VBox styleClass="main-container" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox styleClass="main-container" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <fx:include source="/fxml/reusables/Header.fxml" />
 
@@ -16,27 +16,31 @@
                <children>
                   <Text fx:id="cafeName" styleClass="cafe-name"/>
                   <Text fx:id="cafeAddress" styleClass="cafe-address"/>
-
-                  <HBox styleClass="member-count">
-                     <children>
-                        <Text text="전체 회원수: "/>
-                        <Text fx:id="numberOfMembers"/>
-                        <Text text="명"/>
-                     </children>
-                  </HBox>
                </children>
             </VBox>
-            <Text text="CUSTOMERS" styleClass="section-title"/>
 
-            <ScrollPane fitToWidth="true" styleClass="customer-scroll-pane">
-               <content>
-                  <HBox fx:id="cafeMembersHbox" spacing="20.0"/>
-               </content>
-            </ScrollPane>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+               <Text text="CUSTOMERS" styleClass="section-title"/>
+               <HBox styleClass="member-count" alignment="CENTER_LEFT">
+                  <children>
+                     <Text text="전체 회원수: "/>
+                     <Text fx:id="numberOfMembers"/>
+                     <Text text="명"/>
+                  </children>
+               </HBox>
+            </HBox>
 
-            <fx:include source="/fxml/reusables/footer.fxml" />
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="customer-scroll-pane"
+                           AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <content>
+                     <FlowPane fx:id="cafeMembersFlowPane" hgap="20" vgap="20"/>
+                  </content>
+               </ScrollPane>
+            </AnchorPane>
          </children>
       </VBox>
-      <fx:include source="/fxml/reusables/footer.fxml" />
+      <fx:include source="/fxml/reusables/footer.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
    </children>
 </AnchorPane>
