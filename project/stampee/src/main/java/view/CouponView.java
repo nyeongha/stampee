@@ -92,7 +92,7 @@ public class CouponView {
 
 		for (int i = 0; i < 10; i++) {
 			ImageView stamp = createImageView(
-				i < stampCount ? "/image/github_logo.png" : "/image/java_logo.png", 25, 25
+				i < stampCount ? "/image/github_logo.png" : "/image/github_logo_rec.png", 25, 25
 			);
 			grid.add(stamp, i % 5, i / 5); // 5x2 그리드로 배치
 		}
