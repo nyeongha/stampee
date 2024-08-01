@@ -4,10 +4,15 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.Image?>
 
-<HBox styleClass="footer">
+<HBox styleClass="footer" >
     <VBox styleClass="footer-content">
-        <ImageView fitHeight="60" fitWidth="60" styleClass="footer-logo"/>
+        <ImageView fitHeight="60" fitWidth="60" styleClass="footer-logo">
+            <Image url="@../../image/stampee_logo.png"/>
+        </ImageView>
+
+
         <Label text="STAMPEE" styleClass="footer-title"/>
         <Label text="STAMP AND COLLECT!" styleClass="footer-subtitle"/>
     </VBox>

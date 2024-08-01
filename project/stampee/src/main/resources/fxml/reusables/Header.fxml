@@ -8,7 +8,7 @@
     <children>
         <ImageView fitHeight="40" fitWidth="40" styleClass="logo" onMouseClicked="#handleLogo">
             <image>
-                <Image url="/image/stampee_logo.png"/>
+                <Image url="@../../image/stampee_logo.png"/>
             </image>
         </ImageView>
         <HBox spacing="10" styleClass="menu-items">

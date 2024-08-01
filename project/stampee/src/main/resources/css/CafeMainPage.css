@@ -3,11 +3,9 @@
     src: url('/font/Jua-Regular.ttf');
 }
 
-
-
 .root {
-    -fx-background-color: #FFF0F5; /* 연한 핑크 배경 */
-    -fx-font-family: Jua;
+    -fx-font-family: 'Jua';
+    -fx-background-color: white; /* 연한 핑크 배경 */
 }
 
 .header {
@@ -17,60 +15,61 @@
     -fx-border-width: 0 0 1 0;
 }
 
-nameTag {
+.root * {
+
+}
+
+.wrapper {
+    -fx-padding: 10, 20;
+    -fx-start-margin: 10;
+    -fx-end-margin: 10;
+    -fx-spacing: 10;
+}
+
+.wrapper * {
+    -fx-padding: 10;
+    -fx-start-margin: 10;
+    -fx-end-margin: 10;
+}
+
+.cafe-nameTag {
     -fx-font-style: Jua;
-    -fx-background-color: #FF69B4;
-    -fx-border-width: 1;
-    -fx-border-radius: 10;
-    -fx-border-color: black;
-    -fx-border-style: solid;
+    -fx-background-radius: 10;
+
+}
+
+.all-member-tag {
+    -fx-font-style: Jua;
+    -fx-background-color: gray;
+    -fx-background-radius: 10;
+
 }
 
 .member-nameTag {
     -fx-font-style: Jua;
-    -fx-background-color: white;
-    -fx-border-width: 1;
-    -fx-border-radius: 10;
-    -fx-border-color: black;
-    -fx-border-style: solid;
+    /*-fx-background-color: #FFEBD4;*/
+    -fx-background-radius: 10;
 }
 
-.cafe-name {
+.cafe-name-text {
     -fx-font-size: 20;
     -fx-font-weight: bold;
 }
 
-.cafe-address {
+.cafe-address-text {
     -fx-font-size: 15;
     -fx-text-fill: #666;
 }
 
-.logo {
-    -fx-image: url('/image/stampee_logo.png');
-}
-
-.menu-items {
-    -fx-alignment: center-right;
-}
-
-.menu-items Label {
-    -fx-padding: 5 10;
-    -fx-cursor: hand;
-}
 
 
 
-.info-container {
-    -fx-padding: 20;
-    -fx-spacing: 10;
-}
 
-.info-container Label {
-    -fx-font-size: 14;
-}
-#dfdf {
-    -fx-background-color: #FFEBD4;
-}
+
+
+
+
+
 
 
 
@@ -91,18 +90,28 @@ nameTag {
     -fx-text-fill: #666;
 }
 
-.stamp-grid {
-    -fx-background-color:#FFF0F5;
-    -fx-padding: 5;
+.footer {
+    -fx-padding: 10;
+    -fx-background-color: white;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1 0 0 0;
     -fx-alignment: center;
 }
 
-.share-button {
-    -fx-background-color: #FFB6C1;
-    -fx-text-fill: white;
-    -fx-font-size: 15;
-    -fx-padding: 5 10;
-    -fx-background-radius: 5;
-    -fx-min-width: 60;
-    -fx-max-width: 60;
+.footer-content {
+    -fx-alignment: center;
+}
+
+.footer-logo {
+    -fx-image: url('/image/stampee_logo.png');
+}
+
+.footer-title {
+    -fx-font-size: 18;
+    -fx-font-weight: bold;
+}
+
+.footer-subtitle {
+    -fx-font-size: 12;
+    -fx-text-fill: #888;
 }

@@ -6,90 +6,68 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox styleClass="root" stylesheets="@../../css/CafeMainPage.css" xmlns="http://javafx.com/javafx/8"
-      xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController">
-   <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0"
-               prefWidth="600.0">
-      <VBox layoutX="264.0" layoutY="141.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0"
-            AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <fx:include source="../reusables/Header.fxml"/>
-         <AnchorPane>
-            <VBox styleClass="nameTag" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0"
-                  AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+<VBox alignment="TOP_CENTER" styleClass="root" stylesheets="@../../css/CafeMainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController">
+   <children>
+      <fx:include source="../reusables/Header.fxml" />
+      <VBox styleClass="wrapper">
+         <children>
+            <VBox styleClass="nameTag">
                <VBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
+                  <Insets />
                </VBox.margin>
-               <padding>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-               </padding>
-               <Text fx:id="cafeName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name"
-                     text="cafe name"/>
-               <Text fx:id="cafeAddress" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-address"
-                     text="cafe address"/>
+               <children>
+                  <Text fx:id="cafeName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name-text" text="cafe name" />
+                  <Text fx:id="cafeAddress" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-address-text" text="cafe address" />
+               </children>
             </VBox>
-         </AnchorPane>
-         <AnchorPane>
-            <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
-                  AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <HBox styleClass="nameTag">
-                  <VBox.margin>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                  </VBox.margin>
-                  <padding>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                  </padding>
+            <HBox styleClass="nameTag">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체회원수 : ">
                      <HBox.margin>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
                   <Text fx:id="numberOfMembers" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
                      <HBox.margin>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="명">
                      <HBox.margin>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
-               </HBox>
-            </VBox>
-         </AnchorPane>
-         <AnchorPane>
-            <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity"
-                  minWidth="-Infinity" prefHeight="80.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0"
-                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <HBox styleClass="nameTag">
-                  <VBox.margin>
-                     <Insets left="10.0" right="10.0"/>
-                  </VBox.margin>
-                  <padding>
-                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-                  </padding>
+               </children>
+            </HBox>
+            <HBox styleClass="nameTag">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Members">
                      <HBox.margin>
-                        <Insets right="10.0"/>
+                        <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
-               </HBox>
-            </VBox>
-         </AnchorPane>
-         <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                     prefHeight="182.0" prefViewportHeight="50.0" prefViewportWidth="600.0" prefWidth="579.0">
-            <opaqueInsets>
-               <Insets/>
-            </opaqueInsets>
-            <VBox.margin>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </VBox.margin>
-            <padding>
-               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
-            </padding>
-            <HBox fx:id="cafeMembersHbox" spacing="20.0">
+               </children>
             </HBox>
-         </ScrollPane>
-         <fx:include source="../reusables/footer.fxml"/>
+            <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefViewportHeight="50.0" prefViewportWidth="600.0" prefWidth="579.0">
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <content>
+                  <HBox fx:id="cafeMembersHbox" spacing="20.0">
+            </HBox>
+               </content>
+            </ScrollPane>
+         </children>
       </VBox>
-   </AnchorPane>
+      <fx:include source="../reusables/footer.fxml" />
+   </children>
 </VBox>
