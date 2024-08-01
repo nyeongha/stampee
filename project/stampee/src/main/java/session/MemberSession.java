@@ -32,7 +32,7 @@ public class MemberSession {
 		return instance;
 	}
 
-	public void clearSession() {
+	public static void clearSession() {
 		instance = null;
 		LOGGER.log(Level.INFO, "Clear MemberSession instance: {0}", instance);
 
