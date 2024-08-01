@@ -31,7 +31,7 @@ public class StampRepository {
 			conn.rollback();
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, cstmt);
+			close(conn, cstmt, null);
 		}
 	}
 
@@ -65,7 +65,7 @@ public class StampRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -87,7 +87,7 @@ public class StampRepository {
 			conn.rollback();
 			return false;
 		} finally {
-			close(conn, cstmt);
+			close(conn, cstmt, null);
 		}
 		return true;
 	}

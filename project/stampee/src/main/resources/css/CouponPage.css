@@ -29,13 +29,13 @@
 }
 
 .stamp-grid {
-    -fx-background-color: #f8f8f8;
+    -fx-background-color:#FFF0F5;
     -fx-padding: 5;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
 }
 
 .share-button {
-    -fx-background-color: #333;
+    -fx-background-color: #FFB6C1;
     -fx-text-fill: white;
     -fx-font-size: 15;
     -fx-padding: 5 10;

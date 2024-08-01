@@ -4,10 +4,15 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.geometry.Insets?>
+<?import java.net.URL?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" stylesheets="/css/modern-style.css" fx:controller="controller.ReviewController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController" prefWidth="600" prefHeight="800" minWidth="600" minHeight="800">
+    <stylesheets>
+        <URL value="@/css/modern-style.css"/>
+        <URL value="@/css/common.css"/>
+    </stylesheets>
     <fx:include source="/fxml/reusables/Header.fxml" />
-    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER">
         <FlowPane fx:id="reviewFlowPane" prefWidth="580" hgap="10" vgap="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>

@@ -1,12 +1,13 @@
 package domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@AllArgsConstructor
 public class Cafe {
-	@Getter
 	private long cafeId;
 	private String name;
 	private String address;
@@ -14,17 +15,10 @@ public class Cafe {
 	private String email;
 	private String contact;
 
-	public Cafe(long cafeId, String name, String address, String password, String email, String contact) {
-		this.cafeId = cafeId;
-		this.name = name;
-		this.address = address;
-		this.password = password;
-		this.email = email;
-		this.contact = contact;
-	}
-
 	public Cafe() {
 
 	}
 
+	public void setEmail(String email) {
+	}
 }

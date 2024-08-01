@@ -11,6 +11,7 @@
 <stylesheets>
     <URL value="@/css/CouponPage.css"/>
     <URL value="@/css/modern-style.css"/>
+    <URL value="@/css/common.css"/>
 </stylesheets>
 <fx:include source="/fxml/reusables/Header.fxml" />
 <VBox VBox.vgrow="ALWAYS" spacing="10" styleClass="content-container">

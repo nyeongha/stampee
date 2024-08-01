@@ -8,15 +8,10 @@ import com.google.maps.model.LatLng;
 import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
-import javafx.scene.control.Label;
 import util.GoogleAPIConfigLoader;
 
 public class MapService {
 	@FXML private WebView webView;
-	@FXML private Label storeNameLabel;
-	@FXML private Label addressLabel;
-	@FXML private Label phoneLabel;
-	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
 	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();
@@ -24,12 +19,6 @@ public class MapService {
 	@FXML
 	public void initialize() {
 		webEngine = webView.getEngine();
-		String location = "서울 종로구 성균관로3길 15";
-		Float[] coords = findGeoPoint(location);
-		if (coords != null) {
-			loadMap(coords[0], coords[1], location);
-			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
-		}
 	}
 
 	private static Float[] findGeoPoint(String location) {
@@ -50,7 +39,7 @@ public class MapService {
 		return null;
 	}
 
-	private void loadMap(float lat, float lng, String location) {
+	private void loadMap(float lat, float lng, String location, String cafeName) {
 		String mapContent =
 			"<!DOCTYPE html>" +
 				"<html>" +
@@ -60,7 +49,7 @@ public class MapService {
 				"    <script src=\"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js\"></script>" +
 				"    <style>" +
 				"        html, body { height: 100%; width: 100%; margin: 0; padding: 0; }" +
-				"#map { height: 200px; width: 71%; margin: 0; padding: 0; }" +
+				"#map { height: 200px; width: 100%; margin: 0; padding: 0; }" +
 				"    </style>" +
 				"</head>" +
 				"<body>" +
@@ -71,7 +60,7 @@ public class MapService {
 				"            attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'" +
 				"        }).addTo(map);" +
 				"        L.marker([" + lat + ", " + lng + "]).addTo(map)" +
-				"            .bindPopup('" + location +"<br>"+"<center>무슨무슨 카페<center>" + "')" +
+				"            .bindPopup('" + location + "<br><center>" + cafeName + "</center>')" +
 				"            .openPopup();" +
 				"    </script>" +
 				"</body>" +
@@ -80,10 +69,10 @@ public class MapService {
 		webEngine.loadContent(mapContent);
 	}
 
-	private void updateStoreInfo(String name, String address, String phone, String hours) {
-		storeNameLabel.setText(name);
-		addressLabel.setText(address);
-		phoneLabel.setText(phone);
-		hoursLabel.setText(hours);
+	public void initializeMap(String name, String address) {
+		Float[] coords = findGeoPoint(address);
+		if (coords != null) {
+			loadMap(coords[0], coords[1], address, name);
+		}
 	}
 }

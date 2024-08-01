@@ -2,22 +2,20 @@ package domain;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
 
-@Setter
 @Getter
+@AllArgsConstructor
 public class Review {
 	private long reviewId;
-	private int rating;
+	private float rating;
 	private String contents;
 	private Date createTime;
 	private Member author;
 	private Cafe cafe;
 
-	public Review(long reviewId, int rating, String contents, Date createTime, Member author, Cafe cafe) {
-		this.reviewId = reviewId;
+	public Review(float rating, String contents, Date createTime, Member author, Cafe cafe) {
 		this.rating = rating;
 		this.contents = contents;
 		this.createTime = createTime;
@@ -25,20 +23,11 @@ public class Review {
 		this.author = author;
 	}
 
-	public Review(int rating, String contents, Date createTime, Member author, Cafe cafe) {
-		this.rating = rating;
-		this.contents = contents;
-		this.createTime = createTime;
-		this.cafe = cafe;
-		this.author = author;
-	}
-
-	public Review(long reviewId, int rating, String contents) {
+	public Review(long reviewId, float rating, String contents) {
 		this.reviewId = reviewId;
 		this.rating = rating;
 		this.contents = contents;
 	}
-
 
 	@Override
 	public String toString() {
@@ -48,18 +37,4 @@ public class Review {
 			"Date: " + createTime + "\n" +
 			"Content: " + contents;
 	}
-
-	public Thread getMember() {
-		return null;
-	}
-
-	public Cafe getCafe() {
-		return cafe;
-	}
-
-	public long getReviewId() {
-		return reviewId;
-	}
-
-
 }

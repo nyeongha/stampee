@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.ExpiredCouponDto;
+import dto.response.ExpiredCouponDto;
 import dto.response.MyCouponDto;
 
 public class CouponRepository {
@@ -49,7 +49,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
 		}
 	}
 
@@ -109,7 +109,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
 		}
 	}
 
@@ -141,7 +141,25 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
+		}
+	}
+
+	public void deleteExpiredCoupons(LocalDate localDate) {
+		String sql = "delete from coupon where endtime <= ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, Date.valueOf(localDate));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt);
 		}
 	}
 }

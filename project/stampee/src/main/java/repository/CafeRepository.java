@@ -85,7 +85,7 @@ public class CafeRepository {
 			log.error("Error during cafe sign up", e);
 			throw new RuntimeException("Failed to sign up cafe", e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -119,7 +119,7 @@ public class CafeRepository {
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 		return null;
 	}
@@ -158,7 +158,7 @@ public class CafeRepository {
 			log.info("db error", e);
 			throw new RuntimeException();
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -183,7 +183,7 @@ public class CafeRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 
 		return menus;
@@ -219,7 +219,7 @@ public class CafeRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 		return cafe;
 	}

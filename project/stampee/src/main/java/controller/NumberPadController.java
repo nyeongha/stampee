@@ -1,31 +1,21 @@
 package controller;
 
-import java.io.IOException;
-
-import formatter.PhoneNumberFormatter;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
-import lombok.Getter;
 import repository.MemberRepository;
 import service.MemberService;
 
 public class NumberPadController {
 	private final MemberService memberService;
 	private StringBuilder inputBuilder = new StringBuilder();
-	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
-	@Getter
+
 	@FXML private TextField inputField;
 
-	public NumberPadController(MemberService memberService) {
-		this.memberService = memberService;
+	public NumberPadController() {
 		MemberRepository memberRepository = new MemberRepository();
 		memberService = new MemberService(memberRepository);
 	}
@@ -46,46 +36,11 @@ public class NumberPadController {
 
 	@FXML
 	private void handleOK() {
-		try {
-			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputField.getText().trim());
-			memberService.findMemberByPhoneNumber(toPhoneNumber);
-		} catch (IllegalArgumentException e) {
-			showFailPopup();
-		}
-		closePopup();
-		showSuccessPopup();
-	}
-
-	private void closePopup() {
 		inputField.getScene().getWindow().hide();
 	}
 
-	private void showSuccessPopup() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShareComplete.fxml"));
-			Parent root = loader.load();
-
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(new Scene(root));
-			stage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void showFailPopup() {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shareFailed.fxml"));
-			Parent root = loader.load();
-
-			Stage stage = new Stage();
-			stage.initModality(Modality.APPLICATION_MODAL);
-			stage.setScene(new Scene(root));
-			stage.showAndWait();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	public TextField getInputField() {
+		return inputField;
 	}
 
 	@FXML

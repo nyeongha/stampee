@@ -13,14 +13,9 @@ import java.io.IOException;
 import java.util.Objects;
 
 public class SignupMainController {
-	@FXML
-	public VBox signuppagemain;
-
-	@FXML
-	public Button memberSignUpButton;
-
-	@FXML
-	private Button cafeSignUpButton;
+	@FXML public VBox signuppagemain;
+	@FXML public Button memberSignUpButton;
+	@FXML private Button cafeSignUpButton;
 
 	@FXML
 	public void initialize() {
@@ -50,7 +45,6 @@ public class SignupMainController {
 			Parent cafeSignUpPage = FXMLLoader.load(getClass().getResource("/fxml/account/CafeSignupPage.fxml"));
 			Scene scene2 = new Scene(cafeSignUpPage);
 
-			// Get the current stage (window)
 			Stage stage2 = (Stage) cafeSignUpButton.getScene().getWindow();
 			stage2.setScene(scene2);
 			stage2.show();

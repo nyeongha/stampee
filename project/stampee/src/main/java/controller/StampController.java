@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import domain.ReviewType;
 import dto.response.MyStampDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,26 +15,33 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import repository.CafeRepository;
 import repository.CouponRepository;
 import repository.MemberRepository;
+import repository.ReviewRepository;
 import repository.StampRepository;
 import service.CafeService;
 import service.CouponService;
 import service.MailService;
+import service.MapService;
+import service.ReviewService;
 import service.StampService;
 
 public class StampController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final CafeService cafeService;
+	private final ReviewService reviewService;
+	private MapService mapService;
 
 	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
-	@FXML private Label cafeName, cafeAddress, couponCount;
+	@FXML private Label cafeName, cafeAddress, couponCount, cafeRating;;
 	@FXML private Label signature1, signature2;
 	@FXML private Pane mapContainer;
 	@FXML private ScrollPane reviewContainer;
+	@FXML private AnchorPane createReviewContainer;
 
 	public StampController() {
 		MailService mailService = new MailService();
@@ -43,22 +49,28 @@ public class StampController implements Initializable {
 		StampRepository stampRepository = new StampRepository();
 		CouponRepository couponRepository = new CouponRepository();
 		CafeRepository cafeRepository = new CafeRepository();
+		ReviewRepository reviewRepository = new ReviewRepository();
 
 		stampService = new StampService(stampRepository, memberRepository, mailService);
 		couponService = new CouponService(couponRepository, mailService);
 		cafeService = new CafeService(cafeRepository);
+		reviewService = new ReviewService(reviewRepository);
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
+			FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("/fxml/MapOutput.fxml"));
+			Pane mapPane = mapLoader.load();
 			mapContainer.getChildren().add(mapPane);
+			mapService = mapLoader.getController();
+
+			AnchorPane CreateReview=FXMLLoader.load(getClass().getResource("/fxml/CreateReview.fxml"));
+			createReviewContainer.getChildren().add(CreateReview);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
 			Pane reviewPane = loader.load();
 			reviewContainer.setContent(reviewPane);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -66,15 +78,21 @@ public class StampController implements Initializable {
 
 	public void initData(long memberId, long cafeId) {
 		MyStampDto myStamp = stampService.findMyStamp(memberId, cafeId);
+		float ratingAvg = reviewService.getCafeRatingAvg(cafeId);
+
 		int count = couponService.getMyCount(memberId, cafeId);
 		setStampImage(myStamp.getCount());
 
 		cafeName.setText(myStamp.getCafeName());
 		cafeAddress.setText(myStamp.getCafeAddr());
 		couponCount.setText(myStamp.getCafeName() + " 쿠폰 " + count + "장");
+		cafeRating.setText(ratingAvg + "");
 
 		setSignatureMenu(cafeId);
-		setReviewContainerCafeId(cafeId);
+		initReviewContainer(cafeId);
+
+		mapService.initializeMap(myStamp.getCafeName(), myStamp.getCafeAddr());
+		initCreateReviewContainer(memberId,cafeId);
 	}
 
 	private void setSignatureMenu(long cafeId) {
@@ -88,30 +106,46 @@ public class StampController implements Initializable {
 
 	private void setStampImage(int count) {
 		Image filledStamp = new Image(getClass().getResourceAsStream("/image/github_logo.png"));
-		Image emptyStamp = new Image(getClass().getResourceAsStream("/image/java_logo.png"));
+		Image emptyStamp = new Image(getClass().getResourceAsStream("/image/github_logo_rec.png"));
 
 		ImageView[] stamps = {stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10};
 
 		for (int i = 0; i < stamps.length; i++) {
 			if (i < count) {
 				stamps[i].setImage(filledStamp);
+				stamps[i].setFitWidth(70);
+				stamps[i].setFitHeight(70);
 			} else {
 				stamps[i].setImage(emptyStamp);
+				stamps[i].setFitWidth(50);
+				stamps[i].setFitHeight(50);
 			}
+
 		}
 	}
 
-	private void setReviewContainerCafeId(long cafeId) {
+	private void initReviewContainer(long cafeId) {
+		ReviewController controller = loadController("/fxml/reviewListView.fxml");
+		controller.init(cafeId, CAFE);
+	}
+
+	private void initCreateReviewContainer(long memberId, long cafeId) {
+		CreateReviewController controller = loadController("/fxml/CreateReview.fxml");
+		controller.initData(memberId, cafeId);
+	}
+
+	private <T> T loadController(String path) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
-			Pane reviewPane = loader.load();
-
-			ReviewController controller = loader.getController();
-			controller.init(cafeId, CAFE);
-
-			reviewContainer.setContent(reviewPane);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+			Pane pane = loader.load();
+			if (path.contains("CreateReview")) {
+				createReviewContainer.getChildren().setAll(pane);
+			} else if (path.contains("reviewListView")) {
+				reviewContainer.setContent(pane);
+			}
+			return loader.getController();
 		} catch (IOException e) {
-			e.printStackTrace();
+			throw new RuntimeException("Error loading FXML file: " + path, e);
 		}
 	}
 }

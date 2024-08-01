@@ -13,7 +13,6 @@ import java.sql.SQLException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import domain.Cafe;
 import domain.Member;
 
 public class MemberRepository {
@@ -90,7 +89,7 @@ public class MemberRepository {
 			System.err.println("Password verification algorithm not found: " + e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
 		}
 		return null;
 	}
@@ -120,7 +119,7 @@ public class MemberRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
 		}
 	}
 
@@ -155,7 +154,7 @@ public class MemberRepository {
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt);
 		}
 	}
 

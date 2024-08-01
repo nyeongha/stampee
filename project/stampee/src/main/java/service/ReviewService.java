@@ -6,15 +6,12 @@ import java.util.List;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
+import lombok.RequiredArgsConstructor;
 import repository.ReviewRepository;
 
+@RequiredArgsConstructor
 public class ReviewService {
-
-	private static ReviewRepository reviewRepository;
-
-	public ReviewService(ReviewRepository reviewRepository) {
-		this.reviewRepository = reviewRepository;
-	}
+	private final ReviewRepository reviewRepository;
 
 	public void deleteReview(long reviewId, long memberId) {
 		reviewRepository.deleteReviewByReviewId(reviewId, memberId);
@@ -25,7 +22,11 @@ public class ReviewService {
 		reviewRepository.updateReview(review);
 	}
 
-	public void insertReview(int rating, String contents, Date date, Member member, Cafe cafe) {
+	public float getCafeRatingAvg(long cafeId) {
+		return reviewRepository.cafeAvgOfRating(cafeId);
+	}
+
+	public void insertReview(float rating, String contents, Date date, Member member, Cafe cafe) {
 		Review review = new Review(rating, contents, date, member, cafe);
 		reviewRepository.insertReview(review);
 	}

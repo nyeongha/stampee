@@ -1,20 +1,35 @@
 package controller;
 
+
 import static formatter.PhoneNumberFormatter.*;
+import static java.lang.Integer.*;
+import static javafx.scene.control.Alert.AlertType.*;
+import static util.SceneNavigator.*;
+
+import javafx.event.ActionEvent;
+
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import java.io.IOException;
+
 import repository.MemberRepository;
 import repository.StampRepository;
 import service.MailService;
 import service.StampService;
+import view.PopupView;
 
 import java.sql.*;
 
 public class KeypadController {
-
 	@FXML private TextField phoneNumberField;
+	@FXML private TextField stampCountField;
 
+	private boolean isPhoneNumberInput = true;
+	private StringBuilder stampCount = new StringBuilder();
 	private StringBuilder phoneNumber = new StringBuilder();
+	private final PopupView popupView = new PopupView();
 	private final StampService stampService;
 
 	public KeypadController() {
@@ -25,38 +40,90 @@ public class KeypadController {
 	}
 
 	@FXML
-	private void handleNumberClick(javafx.event.ActionEvent event) {
-		String digit = ((javafx.scene.control.Button) event.getSource()).getText();
-		phoneNumber.append(digit);
-		phoneNumberField.setText(phoneNumber.toString());
+	public void initialize() {
+		phoneNumberField.setEditable(false);
+		stampCountField.setEditable(false);
+		updateDisplayFields();
+
+		// 마우스 클릭으로 전환
+		phoneNumberField.setOnMouseClicked(event -> setPhoneNumberInput(true));
+		stampCountField.setOnMouseClicked(event -> setPhoneNumberInput(false));
+	}
+
+	@FXML
+	private void handleNumberClick(ActionEvent event) {
+		String digit = ((Button) event.getSource()).getText();
+		if (isPhoneNumberInput) {
+			phoneNumber.append(digit);
+		} else {
+			stampCount.append(digit);
+		}
+		updateDisplayFields();
 	}
 
 	@FXML
 	private void handleClearClick() {
-		phoneNumber.setLength(0);
-		phoneNumberField.clear();
+		if (isPhoneNumberInput) {
+			phoneNumber.setLength(0);
+		} else {
+			stampCount.setLength(0);
+		}
+		updateDisplayFields();
+	}
+
+	@FXML
+	private void handleToggleInput() {
+		isPhoneNumberInput = !isPhoneNumberInput;
+		updateDisplayFields();
 	}
 
 	@FXML
 	private void handleSubmitClick() {
-		try {
-			// LoggedCafeDto cafeInfo = CafeSession.getInstance().getLoggedCafeDto();
-			String phoneNumber = formatPhoneNumber(phoneNumberField.getText().trim());
-			stampService.saveStamp(1L, phoneNumber, 1);
-		} catch (IllegalArgumentException | SQLException e) {
-			showFailPopup();
+		if (phoneNumber.length() == 0 || stampCount.length() == 0) {
+			popupView.showFailPopup("전화번호와 스탬프 개수를 모두 입력해주세요.");
+			return;
 		}
-	    showSuccessPopup();
-		handleClearClick();
+		try {
+			// LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
+			stampService.saveStamp(1l, formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
+			popupView.showSuccessPopup("스탬프 적립 성공");
+		} catch (IllegalArgumentException | SQLException e) {
+			popupView.showFailPopup(e.getMessage());
+		}
+
+		phoneNumber.setLength(0);
+		stampCount.setLength(0);
+		updateDisplayFields();
 	}
 
-	private void showSuccessPopup() {
-		// 성공 팝업 표시 로직
-		System.out.println("stamp success.");
+	@FXML
+	private void GoToHome() {
+		try {
+			getInstance().navigateTo("/fxml/CouponPage.fxml", phoneNumberField);
+		} catch (IOException e) {
+			e.printStackTrace();
+			failGoToHome("화면 전환 중 오류가 발생했습니다.");
+		}
 	}
 
-	private void showFailPopup() {
-		// 실패 팝업 표시 로직
-		System.out.println("stamp failed.");
+	private void failGoToHome(String message) {
+		Alert alert = new Alert(ERROR);
+		alert.setTitle("오류");
+		alert.setHeaderText(null);
+		alert.setContentText(message);
+		alert.showAndWait();
+	}
+
+	private void updateDisplayFields() {
+		phoneNumberField.setText(phoneNumber.toString());
+		stampCountField.setText(stampCount.toString());
+		phoneNumberField.setStyle(isPhoneNumberInput ? "-fx-background-color: #e0e0e0;" : "");
+		stampCountField.setStyle(!isPhoneNumberInput ? "-fx-background-color: #e0e0e0;" : "");
+	}
+
+	// 마우스 클릭 전환 메서드
+	private void setPhoneNumberInput(boolean isPhoneNumber) {
+		isPhoneNumberInput = isPhoneNumber;
+		updateDisplayFields();
 	}
 }
