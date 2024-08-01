@@ -1,10 +1,11 @@
 package dto.response;
 
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-@AllArgsConstructor
 @Getter
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class MyCouponDto {
 	private long cafeId;
 	private String cafeName;

@@ -1,0 +1,47 @@
+/* alert.css */
+
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Jua';
+}
+
+.custom-alert .dialog-pane {
+    -fx-background-color: #F5F5F5; /* 커스텀 배경색 */
+}
+.dialog-pane {
+    -fx-background-color: #FFB6C1; /* 전체 배경색 */
+    -fx-border-color: #FFB6C1; /* 테두리 색상 */
+    -fx-border-width: 1px; /* 테두리 두께 */
+}
+
+/* alert.css */
+.custom-alert .alert-header {
+    -fx-background-color: #FFB6C1; /* 원하는 배경색으로 변경 */
+    -fx-text-fill: white; /* 헤더 텍스트 색상 변경 (선택 사항) */
+}
+
+.custom-alert .dialog-pane .graphic {
+    -fx-graphic: null; /* 기본 아이콘 제거 */
+}
+.custom-alert .header-panel {
+    -fx-background-color: #FFB6C1;
+    -fx-text-fill: white;
+}
+
+.custom-alert .content {
+    -fx-background-color: #dccacc;
+    -fx-text-fill: #e57889;
+}
+
+.custom-alert .button-bar {
+    -fx-background-color: #dccacc;
+}
+
+.custom-alert .button {
+    -fx-background-color: #FFB6C1;
+    -fx-text-fill: white;
+}

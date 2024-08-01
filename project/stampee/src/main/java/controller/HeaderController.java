@@ -7,6 +7,7 @@ import java.io.IOException;
 
 import domain.Cafe;
 import domain.ReviewType;
+import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,8 @@ import javafx.stage.Stage;
 import session.MemberSession;
 
 public class HeaderController {
+	private static final long ALL_MEMBER = 0L;
+
 	@FXML
 	public Label logoutLabel;
 	@FXML
@@ -26,13 +29,13 @@ public class HeaderController {
 
 	@FXML
 	public void handleMyReview(MouseEvent event) {
-		// LoggedMemberDto member = LoginSession.getInstance().getLoggedMemberDto();
-		navigateTo("/fxml/reviews.fxml", event, MEMBER, 1L);
+		LoggedMemberDto member = MemberSession.getInstance().getLoggedMemberDto();
+		navigateTo("/fxml/reviews.fxml", event, MEMBER, member.getMemberId());
 	}
 
 	@FXML
 	public void handleReviews(MouseEvent event) {
-		navigateTo("/fxml/reviews.fxml", event, ALL, 0L);
+		navigateTo("/fxml/reviews.fxml", event, ALL, ALL_MEMBER);
 	}
 
 	@FXML
@@ -44,7 +47,6 @@ public class HeaderController {
 	public void handleLogo(MouseEvent event) {
 		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
-
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {
 		try {

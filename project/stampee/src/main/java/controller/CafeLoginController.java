@@ -25,15 +25,11 @@ public class CafeLoginController {
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
 
-
-
 	@FXML
 	public void initialize() {
 		loginButton.setOnAction(this::handleLoginButtonAction);
 		signUpButton.setOnAction(this::handleSignUpButtonAction);
 	}
-
-
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
@@ -51,15 +47,11 @@ public class CafeLoginController {
 
 			if (loggedCafeDto != null) {
 				// 세션에 사용자 정보를 저장
-				CafeSession instance = CafeSession.getInstance(loggedCafeDto);
-				System.out.println("instance + ======================" + instance.getLoggedCafeDto().getEmail());
-
-				// 세션 검증 및 출력
-				verifySession();
+				CafeSession.getInstance(loggedCafeDto);
 
 				showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
-				// 로그인 성공 시, 대시보드로 이동
-				loadIndexPage();
+
+				loadIndexPage();	// 로그인 성공 시, 대시보드로 이동
 			} else {
 				showAlert(Alert.AlertType.INFORMATION, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
 			}
@@ -68,22 +60,7 @@ public class CafeLoginController {
 		}
 	}
 
-
-	// 세션 검증 메서드
-	private void verifySession() {
-		try {
-			CafeSession instance = CafeSession.getInstance();
-			LoggedCafeDto loggedCafeDto = instance.getLoggedCafeDto();
-			System.out.println("Email: " + loggedCafeDto.getEmail());
-			System.out.println("Username: " + loggedCafeDto.getName());
-			// 필요한 다른 정보도 출력
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
 	// 알림 창을 보여주는 메서드
-
 	private void showAlert(Alert.AlertType information, String title, String message) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle(title);
