@@ -32,14 +32,9 @@ public class Main extends Application {
 	// }
 
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
 		Parent root = loader.load();
-		StampController controller = loader.getController();
-		controller.initData(39L, 1L); // 예시로 memberId 1을 사용
-		primaryStage.setTitle("Stamp Viewer");
 		primaryStage.setScene(new Scene(root));
-
-				primaryStage.setTitle("Coupon Application");
 				primaryStage.show();
 	}
 
@@ -198,4 +193,4 @@ public class Main extends Application {
 // 	// 	launch(args);
 // 	// }
 // }
-//
+
