@@ -24,27 +24,28 @@ public class Main extends Application {
 	// 	}
 	// }
 
-	// public void start(Stage primaryStage) throws Exception {
-	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-	// 	Parent root = loader.load();
-	//
-	// 	StampController controller = loader.getController();
-	//
-	// 	controller.initData(37L, 5L); // 예시로 memberId 1을 사용
-	//
-	// 	primaryStage.setTitle("Stamp Viewer");
-	// 	primaryStage.setScene(new Scene(root));
-	//
-	// 	primaryStage.setTitle("Coupon Application");
-	// 	primaryStage.show();
-	//
-	// }
 
+	public void start(Stage primaryStage) throws Exception {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+		Parent root = loader.load();
+
+		StampController controller = loader.getController();
+
+		controller.initData(38L, 1l); // 예시로 memberId 1을 사용
+
+		primaryStage.setTitle("Stamp Viewer");
+		primaryStage.setScene(new Scene(root));
+
+		primaryStage.setTitle("Coupon Application");
+		primaryStage.show();
+
+	}
+
+	//
 	// @Override
 	// public void start(Stage primaryStage) throws Exception{
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
 	// 	Parent root = loader.load();
-	// 	primaryStage.setTitle("Stamp Keypad");
 	// 	Scene scene = new Scene(root, 600, 800);
 	// 	primaryStage.setScene(scene);
 	// 	primaryStage.show();
@@ -82,24 +83,6 @@ public class Main extends Application {
 	// 	}
 	// }
 
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-			Parent root = loader.load();
-
-			// Initialize data if necessary
-			StampController controller = loader.getController();
-			controller.initData(10, 10);  // Example memberId and cafeId, replace with actual values
-
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Stamp Management");
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	// @Override
 	// public void start(Stage primaryStage) throws Exception {
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
