@@ -88,6 +88,7 @@ public class ReviewRepository {
 	}
 
 	public List<Review> findReviewsByMemberId(long memberId) {        //멤버별 리뷰 조회,서비스 반영,테스트 완
+
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
 			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
 			"c.cafe_id, c.name, c.address, c.password AS cafe_password, c.email AS cafe_email, c.contact " +
@@ -98,6 +99,7 @@ public class ReviewRepository {
 			+ "ORDER BY r.create_time";
 
 		return whileStatement(sql,memberId);
+
 	}
 
 	public float cafeAvgOfRating(long cafeId) {
@@ -154,10 +156,10 @@ public class ReviewRepository {
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
+
 			if (id!=1000_000L){		//findAllReviews를 제외
 				pstmt.setLong(1, id);
 			}
-
 
 			rs = pstmt.executeQuery();
 
