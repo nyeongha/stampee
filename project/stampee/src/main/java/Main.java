@@ -82,24 +82,6 @@ public class Main extends Application {
 	// 	}
 	// }
 
-	@Override
-	public void start(Stage primaryStage) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-			Parent root = loader.load();
-
-			// Initialize data if necessary
-			StampController controller = loader.getController();
-			controller.initData(10, 10);  // Example memberId and cafeId, replace with actual values
-
-			Scene scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.setTitle("Stamp Management");
-			primaryStage.show();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
 	// @Override
 	// public void start(Stage primaryStage) throws Exception {
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
