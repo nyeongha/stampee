@@ -51,7 +51,7 @@ public class CouponController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// LoggedMemberDto loggedMemberDto = LoginSession.getInstance().getLoggedMemberDto();
 		// long memberId = loggedMemberDto.getMemberId();
-		long memberId = 39l;
+		long memberId = 1l;
 		List<MyCouponDto> myCoupons = couponService.getMyCoupon(memberId);
 		for (MyCouponDto myCoupon : myCoupons) {
 			addCafeItem(myCoupon.getCafeId(), memberId,

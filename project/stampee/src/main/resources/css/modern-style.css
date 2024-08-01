@@ -6,11 +6,6 @@
 .root {
     -fx-font-family: 'Jua';
 }
-.main-container {
-    -fx-background-color: #FFF0F5;
-    -fx-spacing: 10;
-    -fx-padding: 0 20 0 20;
-}
 
 .header {
     -fx-padding: 10;
@@ -18,7 +13,6 @@
     -fx-border-color: #e0e0e0;
     -fx-border-width: 0 0 1 0;
 }
-
 
 .logo {
     -fx-image: url('/image/stampee_logo.png');
@@ -33,20 +27,6 @@
     -fx-cursor: hand;
 }
 
-.button {
-    -fx-background-color: #FFB6C1; /* 핫핑크 배경 */
-    -fx-text-fill: #FFFFFF; /* 흰색 글씨 */
-    -fx-font-size: 16px;
-    -fx-padding: 10px 20px;
-    -fx-border-radius: 5px;
-    -fx-background-radius: 5px;
-    -fx-cursor: hand;
-}
-
-.button:hover {
-    -fx-background-color: #FF69B4; /* 더 진한 핫핑크 (호버 시) */
-}
-
 .stamp-container {
     -fx-background-color: #f0f0f0;
     -fx-padding: 20;
@@ -59,26 +39,21 @@
 }
 
 .stamp {
-    -fx-fit-width: 50px;
-    -fx-fit-height: 50px;
+    -fx-fit-width: 60px;
+    -fx-fit-height: 60px;
     -fx-preserve-ratio: true;
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
+
 .stamp.filled {
     -fx-image: url('/image/github_logo.png');
 }
 
 .stamp.empty {
-    -fx-image: url('/image/java_logo.png');
-}
-
-#mapView {
-    -fx-pref-height: 300;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
+    -fx-image: url('/image/github_logo_rec.png');
 }
 
 .info-container {
@@ -90,9 +65,15 @@
     -fx-font-size: 14;
 }
 
+#mapView {
+    -fx-pref-height: 300;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
+}
+
 .footer {
     -fx-padding: 10;
-    -fx-background-color: #f8f8f8;
+    -fx-background-color: white;
     -fx-border-color: #e0e0e0;
     -fx-border-width: 1 0 0 0;
     -fx-alignment: center;
