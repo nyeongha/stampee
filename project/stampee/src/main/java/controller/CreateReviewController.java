@@ -27,13 +27,9 @@ public class CreateReviewController {
 	@FXML
 	private AnchorPane reviewPane;
 	private final ReviewService reviewService;
-	private MemberRepository memberRepository;
-	private CafeRepository cafeRepository;
-	private ReviewRepository reviewRepository;
-
-	// 멤버 세션 객체
-	private Member loggedInMember=null;
-	private Cafe selectedCafe=null; // 리뷰할 카페 객체
+	private final MemberRepository memberRepository;
+	private final CafeRepository cafeRepository;
+	private final ReviewRepository reviewRepository;
 
 	public CreateReviewController(){
 		memberRepository = new MemberRepository();
@@ -41,6 +37,11 @@ public class CreateReviewController {
 		reviewRepository = new ReviewRepository();
 		reviewService = new ReviewService(reviewRepository);
 	}
+
+	// 멤버 세션 객체
+	private Member loggedInMember=null;
+	private Cafe selectedCafe=null; // 리뷰할 카페 객체
+
 	@FXML
 	public void initialize() {
 		// 실수 값을 ComboBox에 추가

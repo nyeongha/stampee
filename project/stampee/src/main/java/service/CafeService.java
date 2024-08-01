@@ -41,6 +41,7 @@ public class CafeService {
 			//엔티티를 DTO로 변환
 			LoggedCafeDto loggedCafeDto = new LoggedCafeDto();
 			loggedCafeDto.setEmail(cafe.getEmail());
+			loggedCafeDto.setCafeId(cafe.getCafeId());
 			loggedCafeDto.setName(cafe.getName());
 			loggedCafeDto.setPassword(cafe.getPassword());
 			loggedCafeDto.setAddress(cafe.getAddress());
