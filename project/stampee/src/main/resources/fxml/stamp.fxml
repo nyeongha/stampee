@@ -6,6 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 
 <?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <ScrollPane prefWidth="600.0" prefHeight="800.0" styleClass="main-container"
             stylesheets="/css/modern-style.css"
             xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
@@ -60,11 +61,11 @@
                         <ImageView fx:id="stamp10" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
                     </HBox>
                 </VBox>
+                <AnchorPane fx:id="createReviewContainer">
+                </AnchorPane>
 
-                <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #FFF0F5;"/>
-                <VBox alignment="CENTER" style="-fx-background-color: #FFF0F5;">
-                    <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="560.0"/>
-                </VBox>
+                <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #F5F5DC;"/>
+                <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="570.0"/>
             </VBox>
             <fx:include source="/templates/reusables/footer.fxml" />
         </VBox>

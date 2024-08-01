@@ -10,11 +10,15 @@ import dto.response.MyStampDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import repository.CafeRepository;
 import repository.CouponRepository;
 import repository.MemberRepository;
@@ -37,6 +41,7 @@ public class StampController implements Initializable {
 	@FXML private Label signature1, signature2;
 	@FXML private Pane mapContainer;
 	@FXML private ScrollPane reviewContainer;
+	@FXML private AnchorPane createReviewContainer;
 
 	public StampController() {
 		MailService mailService = new MailService();
@@ -57,6 +62,9 @@ public class StampController implements Initializable {
 		try {
 			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
 			mapContainer.getChildren().add(mapPane);
+
+			AnchorPane CreateReview=FXMLLoader.load(getClass().getResource("/fxml/CreateReview.fxml"));
+			createReviewContainer.getChildren().add(CreateReview);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
 			Pane reviewPane = loader.load();
@@ -81,6 +89,7 @@ public class StampController implements Initializable {
 
 		setSignatureMenu(cafeId);
 		setReviewContainerCafeId(cafeId);
+		setCreateReviewContainer(memberId,cafeId);
 	}
 
 	private void setSignatureMenu(long cafeId) {
@@ -121,5 +130,25 @@ public class StampController implements Initializable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	private void setCreateReviewContainer(long memberId,long cafeId){
+
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
+		try {
+			AnchorPane createReview = loader.load(); // 루트 노드가 VBox인 경우
+
+			// CreateReviewController의 인스턴스 가져오기
+			CreateReviewController controller = loader.getController();
+			controller.initData(memberId, cafeId);
+
+			// VBox에 자식 노드를 추가
+			createReviewContainer.getChildren().setAll(createReview);
+		} catch (IOException e) {
+			throw new RuntimeException("Error loading FXML file for CreateReview: " + e.getMessage(), e);
+		}
+
+
 	}
 }
