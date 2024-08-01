@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <VBox fx:id="root" xmlns:fx="http://javafx.com/fxml" fx:controller="controller.MemberMainController"
       prefWidth="600" prefHeight="800" styleClass="root" stylesheets="@/css/MemberMain.css">
     <fx:include source="/fxml/reusables/Header.fxml" />
@@ -20,9 +22,7 @@
     <Text styleClass="section-title" text="CAFE" />
 
     <ScrollPane fitToWidth="true" styleClass="cafe-list-scroll">
-        <VBox fx:id="cafeListContainer" spacing="10">
-            <!-- 카페 항목들이 여기에 동적으로 추가됩니다 -->
-        </VBox>
+        <FlowPane fx:id="cafeListContainer" hgap="10" vgap="10" />
     </ScrollPane>
 
     <fx:include source="/fxml/reusables/footer.fxml" />
