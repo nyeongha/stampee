@@ -4,7 +4,6 @@ package controller;
 import static formatter.PhoneNumberFormatter.*;
 import static java.lang.Integer.*;
 import static util.Popup.*;
-import static util.SceneNavigator.*;
 
 import dto.response.LoggedCafeDto;
 import javafx.event.ActionEvent;
@@ -19,8 +18,6 @@ import repository.StampRepository;
 import service.MailService;
 import service.StampService;
 import session.CafeSession;
-import util.Popup;
-
 import java.sql.*;
 
 import static util.SceneNavigator.getInstance;
@@ -101,13 +98,6 @@ public class KeypadController {
 
 	@FXML
 	private void GoToHome() {
-
-		try {
-			getInstance().navigateTo("/fxml/CouponPage.fxml", phoneNumberField);
-		} catch (IOException e) {
-			e.printStackTrace();
-			showFailPopup("화면 전환 중 오류가 발생했습니다.");
-		}
 		goToCafeMainPage();
 	}
 

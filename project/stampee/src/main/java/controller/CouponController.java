@@ -1,5 +1,4 @@
 package controller;
-import static session.MemberSession.*;
 import static util.Popup.*;
 
 import java.net.URL;
@@ -10,7 +9,6 @@ import java.util.ResourceBundle;
 import javax.mail.MessagingException;
 
 import domain.Member;
-import dto.response.LoggedMemberDto;
 import dto.response.MyCouponDto;
 import formatter.PhoneNumberFormatter;
 import javafx.fxml.FXML;

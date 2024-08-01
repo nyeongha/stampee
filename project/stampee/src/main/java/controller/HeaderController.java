@@ -77,11 +77,4 @@ public class HeaderController {
 		Popup.showSuccessPopup("로그아웃 되었습니다.");
 		SceneNavigator.getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
 	}
-
-	private void updateHeaderVisibility() {
-		// 로그아웃 라벨만 숨김
-		if (logoutLabel != null) {
-			logoutLabel.setVisible(false);
-		}
-	}
 }

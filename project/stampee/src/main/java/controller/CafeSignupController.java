@@ -15,7 +15,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.CafeService;
 import repository.CafeRepository;
-import util.SceneNavigator;
 
 public class CafeSignupController {
 	@FXML private TextField emailField;

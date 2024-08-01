@@ -41,11 +41,8 @@ public class MemberLoginController {
 		LoggedMemberDto loggedMemberDto = memberService.login(email, password);
 
 		if (loggedMemberDto != null) {
-			// 세션에 사용자 정보를 저장
 			MemberSession instance = MemberSession.getInstance(loggedMemberDto);
-
 			showSuccessPopup("로그인이 성공적으로 되었습니다.");
-			// 로그인 성공 시, 대시보드로 이동
 			loadIndexPage();
 		} else {
 			showSuccessPopup("로그인이 실패했습니다. \n이메일 또는 비밀번호를 확인하세요.");
