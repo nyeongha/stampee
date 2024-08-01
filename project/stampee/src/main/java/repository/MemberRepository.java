@@ -10,17 +10,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import domain.Member;
 
 public class MemberRepository {
-	private static final Logger log = LoggerFactory.getLogger(MemberRepository.class);
-
 	public void memberSignUp(Member member) {
-		System.out.println(member.toString());
-		System.out.println("레포 들어옴=============================================");
 		String insertMemberSql = "insert into member(member_id, username, email, password, phone_number) " +
 			"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
 
@@ -40,15 +33,12 @@ public class MemberRepository {
 			pstmt.executeUpdate();
 
 			conn.commit();
-			System.out.println("정상===========================================================");
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			try {
-				if (conn != null)
-					conn.rollback();
+				conn.rollback();
 			} catch (SQLException rollbackEx) {
-				log.error("Failed to rollback transaction", rollbackEx);
+				throw new RuntimeException(e);
 			}
-			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt, null);
 		}
@@ -76,20 +66,12 @@ public class MemberRepository {
 					member.setUserName(rs.getString("username")); // 데이터베이스 필드에 따라 수정
 					member.setPhoneNumber(rs.getString("phone_number")); // 데이터베이스 필드에 따라 수정
 					return member;
-				} else {
-					System.out.println("Invalid password for email: " + email);
 				}
-			} else {
-				System.out.println("Email not found: " + email);
 			}
-		} catch (SQLException e) {
-			System.err.println("SQL Exception: " + e.getMessage());
-			throw new RuntimeException(e);
-		} catch (NoSuchAlgorithmException e) {
-			System.err.println("Password verification algorithm not found: " + e.getMessage());
+		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 		return null;
 	}
@@ -119,7 +101,7 @@ public class MemberRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt,null);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -151,16 +133,16 @@ public class MemberRepository {
 				return null;
 			}
 		} catch (SQLException e) {
-			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 	}
 
 	public void deleteUser(String phoneNum) throws SQLException {
 		String sql = "delete from member "
 			+ "where phone_number = ?";
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -172,11 +154,9 @@ public class MemberRepository {
 			conn.commit();
 		} catch (SQLException e) {
 			conn.rollback();
-			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt,null);
-
 		}
 	}
 }

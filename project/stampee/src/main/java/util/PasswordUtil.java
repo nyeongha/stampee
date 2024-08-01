@@ -40,8 +40,6 @@ public class PasswordUtil {
 
 		// parts 배열의 길이를 확인하여 올바른 형식인지 검증
 		if (parts.length != 2) {
-			// 예외 처리 또는 로그 추가
-			System.out.println("저장된 비밀번호의 형식이 올바르지 않습니다.");
 			return false;
 		}
 
@@ -55,6 +53,5 @@ public class PasswordUtil {
 		// 저장된 해시된 비밀번호와 입력된 비밀번호를 비교
 		return Base64.getEncoder().encodeToString(hashedInputPassword).equals(parts[1]);
 	}
-
 }
 
