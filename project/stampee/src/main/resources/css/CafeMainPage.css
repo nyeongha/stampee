@@ -1,7 +1,13 @@
-.main-container {
-    -fx-background-color: white;
-    -fx-spacing: 10;
-    -fx-padding: 0 20 0 20;
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+
+
+.root {
+    -fx-background-color: #FFF0F5; /* 연한 핑크 배경 */
+    -fx-font-family: Jua;
 }
 
 .header {
@@ -9,6 +15,34 @@
     -fx-background-color: #f8f8f8;
     -fx-border-color: #e0e0e0;
     -fx-border-width: 0 0 1 0;
+}
+
+nameTag {
+    -fx-font-style: Jua;
+    -fx-background-color: #FF69B4;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+.member-nameTag {
+    -fx-font-style: Jua;
+    -fx-background-color: white;
+    -fx-border-width: 1;
+    -fx-border-radius: 10;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+}
+
+.cafe-name {
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+.cafe-address {
+    -fx-font-size: 15;
+    -fx-text-fill: #666;
 }
 
 .logo {
@@ -24,39 +58,7 @@
     -fx-cursor: hand;
 }
 
-.stamp-container {
-    -fx-background-color: #f0f0f0;
-    -fx-padding: 20;
-    -fx-alignment: center;
-}
 
-.stamp-row {
-    -fx-spacing: 20;
-    -fx-alignment: center;
-}
-
-.stamp {
-    -fx-fit-width: 50px;
-    -fx-fit-height: 50px;
-    -fx-preserve-ratio: true;
-    -fx-background-size: contain;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-}
-
-.stamp.filled {
-    -fx-image: url('/image/github_logo.png');
-}
-
-.stamp.empty {
-    -fx-image: url('/image/java_logo.png');
-}
-
-#mapView {
-    -fx-pref-height: 300;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
-}
 
 .info-container {
     -fx-padding: 20;
@@ -68,4 +70,39 @@
 }
 #dfdf {
     -fx-background-color: #FFEBD4;
+}
+
+
+
+.cafe-item {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+    -fx-alignment: center-left;
+}
+
+
+
+.cafe-address {
+    -fx-font-size: 15;
+    -fx-text-fill: #666;
+}
+
+.stamp-grid {
+    -fx-background-color:#FFF0F5;
+    -fx-padding: 5;
+    -fx-alignment: center;
+}
+
+.share-button {
+    -fx-background-color: #FFB6C1;
+    -fx-text-fill: white;
+    -fx-font-size: 15;
+    -fx-padding: 5 10;
+    -fx-background-radius: 5;
+    -fx-min-width: 60;
+    -fx-max-width: 60;
 }

@@ -9,7 +9,7 @@
       <fx:include source="../reusables/Header.fxml" />
       <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="499.0" prefWidth="949.0" styleClass="body">
          <children>
-            <fx:include source="../reusables/LogoArea.fxml" />
+            <fx:include source="../reusables/footer.fxml" />
             <HBox alignment="CENTER" prefHeight="198.0" prefWidth="800.0">
                <children>
                   <Button fx:id="memberSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="Member Sign Up">
