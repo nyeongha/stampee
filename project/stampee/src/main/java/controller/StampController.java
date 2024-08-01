@@ -120,7 +120,6 @@ public class StampController implements Initializable {
 				stamps[i].setFitWidth(50);
 				stamps[i].setFitHeight(50);
 			}
-
 		}
 	}
 

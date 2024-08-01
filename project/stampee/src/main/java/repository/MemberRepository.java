@@ -15,14 +15,13 @@ import domain.Member;
 public class MemberRepository {
 	public void memberSignUp(Member member) {
 		String insertMemberSql = "insert into member(member_id, username, email, password, phone_number) " +
-			"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
+			"values(MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?)";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			conn = getConnection();
-			conn.setAutoCommit(false);
 
 			//멤버 회원 정보 삽입
 			pstmt = conn.prepareStatement(insertMemberSql);
@@ -31,7 +30,6 @@ public class MemberRepository {
 			pstmt.setString(3, hashPassword(member.getPassword()));
 			pstmt.setString(4, member.getPhoneNumber());
 			pstmt.executeUpdate();
-
 			conn.commit();
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			try {
@@ -59,13 +57,8 @@ public class MemberRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					// 성공적으로 인증된 경우, Entity에 정보 저장
-					Member member = new Member();
-					member.setEmail(email);
-					member.setPassword(storedPassword); // 데이터베이스 필드에 따라 수정
-					member.setUserName(rs.getString("username")); // 데이터베이스 필드에 따라 수정
-					member.setPhoneNumber(rs.getString("phone_number")); // 데이터베이스 필드에 따라 수정
-					return member;
+					return new Member(rs.getLong("member_id"), rs.getString("username"), email, storedPassword,
+						rs.getString("phone_number"));
 				}
 			}
 		} catch (SQLException | NoSuchAlgorithmException e) {

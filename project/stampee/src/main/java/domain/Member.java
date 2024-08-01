@@ -23,9 +23,6 @@ public class Member {
 		this.phoneNumber = phoneNumber;
 	}
 
-	public Member() {
-
-	}
 
 	private static void validateMember(String userName, String email, String password, String phoneNumber) {
 		if (!email.matches(EMAIL_VALDIDATION_RULE)) {

@@ -1,5 +1,5 @@
 package controller;
-import static session.MemberSession.*;
+import static util.Popup.*;
 
 import java.net.URL;
 import java.sql.SQLException;
@@ -9,7 +9,6 @@ import java.util.ResourceBundle;
 import javax.mail.MessagingException;
 
 import domain.Member;
-import dto.response.LoggedMemberDto;
 import dto.response.MyCouponDto;
 import formatter.PhoneNumberFormatter;
 import javafx.fxml.FXML;
@@ -25,14 +24,12 @@ import service.MailService;
 import service.StampService;
 import service.MemberService;
 import view.CouponView;
-import view.PopupView;
 
 public class CouponController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final MemberService userService;
 	private final CouponView couponView;
-	private final PopupView popupView;
 
 	@FXML private VBox cafeListContainer;
 
@@ -43,8 +40,6 @@ public class CouponController implements Initializable {
 		MailService mailService = new MailService();
 
 		couponView = new CouponView();
-		popupView = new PopupView();
-
 		couponService = new CouponService(couponRepository, mailService);
 		stampService = new StampService(stampRepository, memberRepository, mailService);
 		userService = new MemberService(memberRepository);
@@ -71,9 +66,9 @@ public class CouponController implements Initializable {
 		try {
 			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(couponView.showNumberPadPopup());
 			stampService.shareStamp(fromMember, cafeId, toPhoneNumber, 1);
-			popupView.showSuccessPopup("스탬프 공유 성공");
+			showSuccessPopup("스탬프 공유 성공");
 		} catch (MessagingException | SQLException |  IllegalArgumentException e) {
-			popupView.showFailPopup(e.getMessage());
+			showFailPopup(e.getMessage());
 		}
 	}
 
