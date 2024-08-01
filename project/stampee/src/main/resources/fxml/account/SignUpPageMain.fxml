@@ -10,23 +10,26 @@
       <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="600.0" styleClass="body">
          <children>
             <fx:include source="../reusables/LogoArea.fxml" />
-            <HBox alignment="CENTER" prefHeight="198.0" prefWidth="600.0">
+            <VBox alignment="CENTER" prefHeight="198.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="memberSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Member Sign Up">
-                     <HBox.margin>
-                        <Insets left="50.0" right="50.0" />
-                     </HBox.margin>
+                  <Button fx:id="memberSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Member Sign Up">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </Button>
-                  <Button fx:id="cafeSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Cafe Sign up">
-                     <HBox.margin>
-                        <Insets left="50.0" right="50.0" />
-                     </HBox.margin>
+                  <Button fx:id="cafeSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Cafe Sign up">
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                   </Button>
                </children>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
-            </HBox>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </VBox>
          </children>
       </VBox>
    </children>

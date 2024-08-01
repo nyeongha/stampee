@@ -6,26 +6,26 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="600.0" styleClass="main-container" stylesheets="@../../css/modern-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberSignupController">
+<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="600.0" styleClass="main-container" stylesheets="@../../css/cafeSignupMain.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberSignupController">
     <children>
         <fx:include source="../reusables/Header.fxml" />
-        <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">
+        <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="600.0" styleClass="body">
             <children>
                 <fx:include source="../reusables/LogoArea.fxml" />
-                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="600.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이름">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Text>
-                        <TextField fx:id="nameField" promptText="이름을 입력하세요" />
+                        <TextField fx:id="userNameField" promptText="이름을 입력하세요" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="600.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이메일">
                             <VBox.margin>
@@ -38,28 +38,28 @@
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </VBox>
-                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="600.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Text>
-                        <TextField fx:id="passwordField" promptText="비밀번호를 입력하세요" />
+                        <PasswordField fx:id="passwordField" promptText="비밀번호를 입력하세요" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="30.0" />
                     </VBox.margin>
                 </VBox>
 
-                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="947.0">
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" prefHeight="99.0" prefWidth="600.0">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전화번호">
                             <VBox.margin>
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Text>
-                        <TextField fx:id="contactField" promptText="전화번호를 입력하세요" />
+                        <TextField fx:id="phoneNumberField" promptText="전화번호를 입력하세요" />
                     </children>
                     <VBox.margin>
                         <Insets bottom="30.0" />
