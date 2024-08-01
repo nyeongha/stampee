@@ -11,35 +11,52 @@
       <fx:include source="../reusables/Header.fxml" />
       <VBox styleClass="wrapper">
          <children>
-            <VBox styleClass="cafe-nameTag">
+            <HBox styleClass="cafe-nameTag">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
                <children>
-                  <Text fx:id="cafeName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
-                  <Text fx:id="cafeAddress" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-address" text="cafe address" />
+                  <Text fx:id="memberName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
+                  <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
                </children>
-            </VBox>
+            </HBox>
             <HBox styleClass="all-member-tag">
                <VBox.margin>
                   <Insets bottom="20.0" />
                </VBox.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체회원수 : ">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 스탬프 수">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
-                  <Text fx:id="numberOfMembers" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                  <Text fx:id="totalStamps" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="명">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
                   </Text>
+
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 쿠폰 수">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text fx:id="totalCoupons" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
+                     <HBox.margin>
+                        <Insets right="10.0" />
+                     </HBox.margin>
+                  </Text>
+
                </children>
             </HBox>
             <HBox styleClass="member-nameTag">
@@ -47,7 +64,7 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Members">
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="카페별 스탬프와 쿠폰">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>

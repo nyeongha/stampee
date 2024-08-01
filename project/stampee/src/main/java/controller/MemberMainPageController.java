@@ -29,26 +29,42 @@ public class MemberMainPageController implements Initializable {
 	@FXML
 	private Text memberName;
 
+	@FXML
+	private Text totalStamps;
+
+	@FXML
+	private Text totalCoupons;
+
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 
-		// MemberSession instance = MemberSession.getInstance();
-		// LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
+		MemberSession instance = MemberSession.getInstance();
+
+		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
 
 		MemberRepository cafeRepository = new MemberRepository();
 
-		List<MemberInfoDto> memberInfos = cafeRepository.findMemberInfoById(1);
-
-
+		List<MemberInfoDto> memberInfos = cafeRepository.findMemberInfoById(loggedMemberDto.getMemberId());
+		int stamp_sum = 0;
+		int coupon_sum = 0;
+		for(MemberInfoDto memberInfo : memberInfos) {
+			stamp_sum += memberInfo.getStampCount();
+			coupon_sum += memberInfo.getCouponCount();
+		}
 
 		renderMemberCards(memberInfos);
 
-		numberOfMembers.setText(String.valueOf(memberInfos.size()));
-		// memberName.setText(loggedMemberDto.getUsername());
+		// numberOfMembers.setText(String.valueOf(memberInfos.size()));
+		memberName.setText(loggedMemberDto.getUsername());
+
 	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
+		int stamp_sum = 0;
+		int coupon_sum = 0;
 		for (MemberInfoDto memberInfo : memberInfos){
+			stamp_sum += memberInfo.getStampCount();
+			coupon_sum += memberInfo.getCouponCount();
 			VBox memberVBox = new VBox(10);
 			memberVBox.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-background-color: white;");
 			memberVBox.setPadding(new Insets(15));
@@ -82,6 +98,8 @@ public class MemberMainPageController implements Initializable {
 			memberVBox.getChildren().addAll(textHeadingHBox, avatarBlockHBox);
 			MembersHbox.getChildren().add(memberVBox);
 		}
+		totalStamps.setText(String.valueOf(stamp_sum));
+		totalCoupons.setText(String.valueOf(coupon_sum));
 	}
 
 }

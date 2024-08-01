@@ -40,7 +40,7 @@ public class MemberSignupController {
 			return;
 		}
 
-		Member member = new Member(-1, userName, password, email, phoneNumber);
+		Member member = new Member(-1, userName,  email, password, phoneNumber);
 		boolean success = memberService.memberSignUp(member);
 
 		if (success) {
