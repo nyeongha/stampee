@@ -20,14 +20,14 @@ import repository.StampRepository;
 import service.CouponService;
 import service.MailService;
 import service.StampService;
-import service.UserService;
+import service.MemberService;
 import view.CouponView;
 import view.PopupView;
 
 public class CouponController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
-	private final UserService userService;
+	private final MemberService userService;
 	private final CouponView couponView;
 	private final PopupView popupView;
 
@@ -44,7 +44,7 @@ public class CouponController implements Initializable {
 
 		couponService = new CouponService(couponRepository, mailService);
 		stampService = new StampService(stampRepository, memberRepository, mailService);
-		userService = new UserService(memberRepository);
+		userService = new MemberService(memberRepository);
 	}
 
 	@Override

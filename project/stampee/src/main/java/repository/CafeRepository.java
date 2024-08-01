@@ -18,9 +18,6 @@ import org.slf4j.LoggerFactory;
 import domain.Cafe;
 import domain.Member;
 import dto.response.CafeMemberInfoDto;
-import dto.response.LoggedCafeDto;
-import dto.response.LoggedCafeDto;
-import dto.response.LoggedMemberDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -89,7 +86,7 @@ public class CafeRepository {
 			log.error("Error during cafe sign up", e);
 			throw new RuntimeException("Failed to sign up cafe", e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -108,11 +105,14 @@ public class CafeRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					return new Cafe(rs.getLong("cafe_id"),
-						rs.getString("name"),
-						rs.getString("address"),
-						rs.getString("password"),
-						email, rs.getString("contact"));
+					// 성공적으로 인증된 경우, Entity에 정보 저장
+					Cafe cafe = new Cafe();
+					cafe.setEmail(email);
+					cafe.setPassword(storedPassword);
+					cafe.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
+					cafe.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
+					cafe.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
+					return cafe;
 				}
 			} else {
 				System.out.println("email not found : " + email);
@@ -120,12 +120,12 @@ public class CafeRepository {
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 		return null;
 	}
 
-	public List<Member> findCafeMembersById(long cafeId) {
+	public List<Member> findCafeMembersById(int cafeId) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -159,6 +159,7 @@ public class CafeRepository {
 			log.info("db error", e);
 			throw new RuntimeException();
 		} finally {
+			close(conn, pstmt, null);
 			close(conn, pstmt, rs);
 		}
 	}
@@ -267,7 +268,7 @@ public class CafeRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 		return cafe;
 	}

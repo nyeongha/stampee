@@ -1,12 +1,10 @@
 package dto.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
-@AllArgsConstructor
+@Getter
 public class LoggedCafeDto {
 	private long cafeId;
 	private String name;
@@ -15,7 +13,17 @@ public class LoggedCafeDto {
 	private String email;
 	private String contact;
 
+	public LoggedCafeDto(long cafeId, String name, String address, String password, String email, String contact) {
+		this.cafeId = cafeId;
+		this.name = name;
+		this.address = address;
+		this.password = password;
+		this.email = email;
+		this.contact = contact;
+	}
+
 	public LoggedCafeDto() {
 
 	}
+
 }

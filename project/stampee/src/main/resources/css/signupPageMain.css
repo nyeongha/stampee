@@ -33,6 +33,7 @@
     -fx-cursor: hand;
 }
 
+/* 버튼 스타일 정의 */
 .button {
     -fx-background-color: #FFB6C1; /* 핫핑크 배경 */
     -fx-text-fill: #FFFFFF; /* 흰색 글씨 */
@@ -46,6 +47,7 @@
 .button:hover {
     -fx-background-color: #FF69B4; /* 더 진한 핫핑크 (호버 시) */
 }
+
 
 .stamp-container {
     -fx-background-color: #f0f0f0;
