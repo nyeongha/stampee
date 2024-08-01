@@ -4,13 +4,13 @@ import java.sql.Date;
 
 public class Review {
 	private long reviewId;
-	private int rating;
+	private float rating;
 	private String contents;
 	private Date createTime;
 	private Member author;
 	private Cafe cafe;
 
-	public Review(long reviewId, int rating, String contents, Date createTime, Member author, Cafe cafe) {
+	public Review(long reviewId, float rating, String contents, Date createTime, Member author, Cafe cafe) {
 		this.reviewId = reviewId;
 		this.rating = rating;
 		this.contents = contents;
@@ -19,7 +19,7 @@ public class Review {
 		this.author = author;
 	}
 
-	public Review(int rating, String contents, Date createTime, Member author, Cafe cafe) {
+	public Review(float rating, String contents, Date createTime, Member author, Cafe cafe) {
 		this.rating = rating;
 		this.contents = contents;
 		this.createTime = createTime;
@@ -27,7 +27,7 @@ public class Review {
 		this.author = author;
 	}
 
-	public Review(long reviewId, int rating, String contents) {
+	public Review(long reviewId, float rating, String contents) {
 		this.reviewId = reviewId;
 		this.rating = rating;
 		this.contents = contents;
@@ -37,7 +37,7 @@ public class Review {
 		return reviewId;
 	}
 
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
 
