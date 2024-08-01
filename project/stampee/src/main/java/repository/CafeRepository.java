@@ -12,15 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.html.parser.Entity;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
-import dto.response.LoggedCafeDto;
-import dto.response.LoggedCafeDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);

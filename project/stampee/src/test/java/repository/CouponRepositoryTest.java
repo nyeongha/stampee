@@ -2,14 +2,13 @@ package repository;
 
 import static org.assertj.core.api.Assertions.*;
 
-import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import dto.ExpiredCouponDto;
+import dto.response.ExpiredCouponDto;
 class CouponRepositoryTest {
 	private CouponRepository couponRepository = new CouponRepository();
 

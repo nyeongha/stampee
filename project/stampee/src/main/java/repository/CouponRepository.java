@@ -13,7 +13,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.ExpiredCouponDto;
+import dto.response.ExpiredCouponDto;
 import dto.response.MyCouponDto;
 
 public class CouponRepository {

@@ -16,9 +16,6 @@ import domain.Member;
 import domain.Review;
 
 public class ReviewRepository {
-
-
-
 	public List<Review> findAllReviews() {
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
 			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
@@ -90,7 +87,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -113,7 +110,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -130,7 +127,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, cstmt);
+			close(conn, cstmt, null);
 		}
 	}
 
@@ -197,37 +194,35 @@ public class ReviewRepository {
 		return reviews;
 	}
 
-	public float cafeAvgOfRating(long cafeId){
+	public float cafeAvgOfRating(long cafeId) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		float avg;
 
 		String sql = "SELECT c.cafe_id, ROUND(AVG(r.rating), 2) AS avg_rating "
 			+ "FROM review r "
 			+ "JOIN cafe c "
 			+ "ON c.cafe_id = r.cafe_id "
-			+ "GROUP BY c.cafe_id "
-			+ "c.cafe_id=?";
-
+			+ "where c.cafe_id = ?"
+			+ "GROUP BY c.cafe_id ";
 
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, cafeId);
-
 			rs = pstmt.executeQuery();
 
-			avg=rs.getFloat("avg_rating");
-
-
+			if(rs.next()){
+				return rs.getFloat("avg_rating");
+			} else{
+				return 0;
+			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt, rs);
 		}
-
-		return avg;
 	}
-
 
 	public List<Review> findReviewsByCafeId(long cafeId) {            //카페리뷰조회,서비스 반영
 		Connection conn = null;
