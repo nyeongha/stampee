@@ -9,12 +9,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class LoginMainController {
 
 	@FXML public Button memberLoginButton;
 	@FXML public Button cafeLoginButton;
+	@FXML public VBox loginPageMain;
 
 	@FXML
 	public void initialize() {
