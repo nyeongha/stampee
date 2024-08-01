@@ -1,73 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
-<?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" styleClass="root" stylesheets="@../../css/CafeMainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController">
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController">
    <children>
-      <fx:include source="../reusables/Header.fxml" />
-      <VBox styleClass="wrapper">
+      <VBox layoutX="264.0" layoutY="141.0" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox styleClass="cafe-nameTag">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
+               <fx:include source="../reusables/Header.fxml" />
+            <AnchorPane>
                <children>
-                  <Text fx:id="cafeName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
-                  <Text fx:id="cafeAddress" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-address" text="cafe address" />
+                  <VBox style="-fx-background-color: skyblue;" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <children>
+                        <Text fx:id="cafeName" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                        <Text fx:id="cafeAddress" strokeType="OUTSIDE" strokeWidth="0.0" text="" />
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </padding>
+                  </VBox>
                </children>
-            </VBox>
-            <HBox styleClass="all-member-tag">
-               <VBox.margin>
-                  <Insets bottom="20.0" />
-               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체회원수 : ">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text fx:id="numberOfMembers" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="명">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Text>
+                  <VBox alignment="CENTER_LEFT" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox style="-fx-background-color: skyblue;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체회원수 : ">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text fx:id="numberOfMembers" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="명">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-            </HBox>
-            <HBox styleClass="member-nameTag">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            </AnchorPane>
+            <AnchorPane>
                <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Members">
-                     <HBox.margin>
-                        <Insets right="10.0" />
-                     </HBox.margin>
-                  </Text>
+                  <VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="80.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <HBox style="-fx-background-color: skyblue;">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Members">
+                                 <HBox.margin>
+                                    <Insets right="10.0" />
+                                 </HBox.margin>
+                              </Text>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="10.0" right="10.0" />
+                           </VBox.margin>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </VBox>
                </children>
-            </HBox>
-            <ScrollPane maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefViewportHeight="50.0" prefViewportWidth="600.0" prefWidth="579.0">
+            </AnchorPane>
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="182.0" prefViewportHeight="50.0" prefViewportWidth="600.0" prefWidth="579.0">
+               <content>
+                  <HBox fx:id="cafeMembersHbox" spacing="20.0">
+                  </HBox>
+               </content>
                <opaqueInsets>
                   <Insets />
                </opaqueInsets>
                <VBox.margin>
-                  <Insets />
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </VBox.margin>
-               <content>
-                  <HBox fx:id="cafeMembersHbox" spacing="20.0">
-            </HBox>
-               </content>
+               <padding>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </padding>
             </ScrollPane>
-         </children>
-      </VBox>
-      <fx:include source="../reusables/footer.fxml" />
+               <fx:include source="../reusables/LogoArea.fxml" />
+         </children></VBox>
    </children>
-</VBox>
+</AnchorPane>

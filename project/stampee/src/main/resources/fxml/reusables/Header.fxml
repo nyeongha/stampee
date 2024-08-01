@@ -15,7 +15,10 @@
                 <Label text="My Review" onMouseClicked="#handleMyReview" styleClass="menu-label"/>
                 <Label text="Reviews" onMouseClicked="#handleReviews" styleClass="menu-label"/>
                 <Label text="MyCoupon" onMouseClicked="#handleMyCoupon" styleClass="menu-label"/>
+                <Label fx:id="loginLabel" text="Login" onMouseClicked="#handleLogin" styleClass="menu-label"/>
                 <Label fx:id="logoutLabel" text="Logout" onMouseClicked="#handleLogout" styleClass="menu-label"/>
+
+
                 <Region HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>

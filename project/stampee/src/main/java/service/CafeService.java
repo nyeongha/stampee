@@ -27,7 +27,7 @@ public class CafeService {
 	}
 
 	public LoggedCafeDto login(String email, String password) throws NoSuchAlgorithmException {
-		Cafe cafe = cafeRepository.login(email,password);
+		Cafe cafe = cafeRepository.login(email, password);
 		if (cafe != null && verifyPassword(password, cafe.getPassword())) {
 			return LoggedCafeDto.createLoggedCafeDto(cafe);
 		} else {

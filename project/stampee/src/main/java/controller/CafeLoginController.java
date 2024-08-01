@@ -47,7 +47,7 @@ public class CafeLoginController {
 
 			if (loggedCafeDto != null) {
 				// 세션에 사용자 정보를 저장
-				CafeSession.getInstance(loggedCafeDto);
+				CafeSession instance = CafeSession.getInstance(loggedCafeDto);
 
 				showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
 
@@ -79,7 +79,7 @@ public class CafeLoginController {
 	private void loadIndexPage() {
 		try {
 			Parent indexPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
+				Objects.requireNonNull(getClass().getResource("/fxml/index/CafeMainPage.fxml")));
 			Scene scene = new Scene(indexPage);
 			Stage stage = (Stage) loginButton.getScene().getWindow();
 			stage.setScene(scene);
