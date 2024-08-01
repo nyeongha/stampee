@@ -8,13 +8,10 @@ import com.google.maps.model.LatLng;
 import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
-import javafx.scene.control.Label;
 import util.GoogleAPIConfigLoader;
 
 public class MapService {
 	@FXML private WebView webView;
-	@FXML private Label storeNameLabel;
-	@FXML private Label addressLabel;
 
 	private WebEngine webEngine;
 	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();
@@ -22,19 +19,12 @@ public class MapService {
 	@FXML
 	public void initialize() {
 		webEngine = webView.getEngine();
-		String location = "서울 종로구 성균관로3길 15";
-		Float[] coords = findGeoPoint(location);
-		if (coords != null) {
-			loadMap(coords[0], coords[1], location, "");
-			// updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
-		}
 	}
 
 	private static Float[] findGeoPoint(String location) {
 		GeoApiContext context = new GeoApiContext.Builder()
 			.apiKey(API_KEY)
 			.build();
-
 		try {
 			GeocodingResult[] results = GeocodingApi.geocode(context, location).await();
 			if (results.length > 0) {
@@ -79,16 +69,10 @@ public class MapService {
 		webEngine.loadContent(mapContent);
 	}
 
-	private void updateStoreInfo(String name, String address) {
-		storeNameLabel.setText(name);
-		addressLabel.setText(address);
-	}
-
 	public void initializeMap(String name, String address) {
 		Float[] coords = findGeoPoint(address);
 		if (coords != null) {
 			loadMap(coords[0], coords[1], address, name);
-			updateStoreInfo(name, address);
 		}
 	}
 }
