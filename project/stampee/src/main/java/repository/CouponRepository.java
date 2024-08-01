@@ -26,7 +26,6 @@ public class CouponRepository {
 			+ "			where member_id = ?"
 			+ "			group by cafe_id) a join cafe c "
 			+ "on a.cafe_id = c.cafe_id";
-
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -49,7 +48,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -78,7 +77,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -109,7 +108,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -141,7 +140,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -159,7 +158,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt,null);
 		}
 	}
 }

@@ -1,6 +1,11 @@
 package controller;
-import session.CafeSession;
+
+import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
+
 import dto.response.LoggedCafeDto;
+import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,16 +16,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.CafeRepository;
+import repository.MemberRepository;
 import service.CafeService;
+import service.MemberService;
+import session.CafeSession;
+import session.MemberSession;
 
-import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
-import java.util.Objects;
+public class MemberLoginController {
+	private final MemberService memberService = new MemberService(new MemberRepository());
 
-public class CafeLoginController {
-	private final CafeService cafeService = new CafeService(new CafeRepository());
-
-	@FXML public TextField emailField;
+	@FXML
+	public TextField emailField;
 	@FXML private TextField passwordField;
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
@@ -37,34 +43,30 @@ public class CafeLoginController {
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
-		try {
-			String email = emailField.getText();
-			String password = passwordField.getText();
+		String email = emailField.getText();
+		String password = passwordField.getText();
 
-			if (email.isEmpty() ||  password.isEmpty() ) {
-				showAlert(Alert.AlertType.INFORMATION, "Error", "모든 필드를 입력해주세요.");
-				return;
-			}
+		if (email.isEmpty() ||  password.isEmpty() ) {
+			showAlert(Alert.AlertType.INFORMATION, "Error", "모든 필드를 입력해주세요.");
+			return;
+		}
 
-			// 로그인 시 사용자 정보를 받아옴
-			LoggedCafeDto loggedCafeDto = cafeService.login(email, password);
+		// 로그인 시 사용자 정보를 받아옴
+		LoggedMemberDto loggedMemberDto = memberService.login(email, password);
 
-			if (loggedCafeDto != null) {
-				// 세션에 사용자 정보를 저장
-				CafeSession instance = CafeSession.getInstance(loggedCafeDto);
-				System.out.println("instance + ======================" + instance.getLoggedCafeDto().getEmail());
+		if (loggedMemberDto != null) {
+			// 세션에 사용자 정보를 저장
+			MemberSession instance = MemberSession.getInstance(loggedMemberDto);
+			System.out.println("instance + ======================" + instance.getLoggedMemberDto().getEmail());
 
-				// 세션 검증 및 출력
-				verifySession();
+			// 세션 검증 및 출력
+			verifySession();
 
-				showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
-				// 로그인 성공 시, 대시보드로 이동
-				loadIndexPage();
-			} else {
-				showAlert(Alert.AlertType.INFORMATION, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
-			}
-		} catch (NoSuchAlgorithmException e) {
-			showAlert(Alert.AlertType.INFORMATION, "Error", "시스템 오류가 발생했습니다. 관리자에게 문의하세요.");
+			showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
+			// 로그인 성공 시, 대시보드로 이동
+			loadIndexPage();
+		} else {
+			showAlert(Alert.AlertType.INFORMATION, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
 		}
 	}
 
@@ -72,10 +74,10 @@ public class CafeLoginController {
 	// 세션 검증 메서드
 	private void verifySession() {
 		try {
-			CafeSession instance = CafeSession.getInstance();
-			LoggedCafeDto loggedCafeDto = instance.getLoggedCafeDto();
-			System.out.println("Email: " + loggedCafeDto.getEmail());
-			System.out.println("Username: " + loggedCafeDto.getName());
+			MemberSession instance = MemberSession.getInstance();
+			LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
+			System.out.println("Email: " + loggedMemberDto.getEmail());
+			System.out.println("Username: " + loggedMemberDto.getUsername());
 			// 필요한 다른 정보도 출력
 		} catch (IllegalArgumentException e) {
 			System.out.println(e.getMessage());
