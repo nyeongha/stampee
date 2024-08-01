@@ -39,20 +39,21 @@
 }
 
 .stamp {
-    -fx-fit-width: 50px;
-    -fx-fit-height: 50px;
+    -fx-fit-width: 60px;
+    -fx-fit-height: 60px;
     -fx-preserve-ratio: true;
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
+
 .stamp.filled {
     -fx-image: url('/image/github_logo.png');
 }
 
 .stamp.empty {
-    -fx-image: url('/image/java_logo.png');
+    -fx-image: url('/image/github_logo_rec.png');
 }
 
 .info-container {
@@ -62,6 +63,12 @@
 
 .info-container Label {
     -fx-font-size: 14;
+}
+
+#mapView {
+    -fx-pref-height: 300;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
 }
 
 .footer {

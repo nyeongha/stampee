@@ -33,3 +33,4 @@
         <Button text="처음으로" onAction="#GoToHome" styleClass="action-button"/>
     </HBox>
 </VBox>
+

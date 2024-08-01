@@ -3,8 +3,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.web.WebView?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="service.MapService" stylesheets="/css/modern-style.css" prefWidth="560" prefHeight="100">
     <AnchorPane VBox.vgrow="ALWAYS" minHeight="200">
         <WebView fx:id="webView" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
     </AnchorPane>
+
+    <GridPane hgap="10" vgap="10" styleClass="store-info">
+        <padding>
+            <Insets top="20" right="20" bottom="20" left="20"/>
+        </padding>
+
+        <Label text="가게 이름:" GridPane.columnIndex="0" GridPane.rowIndex="0" styleClass="info-label"/>
+        <Label fx:id="storeNameLabel" GridPane.columnIndex="1" GridPane.rowIndex="0" styleClass="info-value"/>
+
+        <Label text="주소:" GridPane.columnIndex="0" GridPane.rowIndex="1" styleClass="info-label"/>
+        <Label fx:id="addressLabel" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="info-value"/>
+    </GridPane>
 </VBox>
+
