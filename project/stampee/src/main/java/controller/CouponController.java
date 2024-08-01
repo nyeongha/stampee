@@ -1,4 +1,6 @@
 package controller;
+import static session.MemberSession.*;
+
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.mail.MessagingException;
 
 import domain.Member;
+import dto.response.LoggedMemberDto;
 import dto.response.MyCouponDto;
 import formatter.PhoneNumberFormatter;
 import javafx.fxml.FXML;
@@ -49,9 +52,9 @@ public class CouponController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		// LoggedMemberDto loggedMemberDto = LoginSession.getInstance().getLoggedMemberDto();
-		// long memberId = loggedMemberDto.getMemberId();
-		long memberId = 1l;
+		LoggedMemberDto currentMember = getInstance().getLoggedMemberDto();
+		long memberId = currentMember.getMemberId();
+
 		List<MyCouponDto> myCoupons = couponService.getMyCoupon(memberId);
 		for (MyCouponDto myCoupon : myCoupons) {
 			addCafeItem(myCoupon.getCafeId(), memberId,
