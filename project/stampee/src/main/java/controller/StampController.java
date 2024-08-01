@@ -33,7 +33,6 @@ public class StampController implements Initializable {
 	private final CafeService cafeService;
 	private MapService mapService;
 
-	@FXML private WebView webView;
 	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
 	@FXML private Label cafeName, cafeAddress, couponCount;
 	@FXML private Label signature1, signature2;
@@ -55,8 +54,6 @@ public class StampController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			// Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
-			// mapContainer.getChildren().add(mapPane);
 			FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("/fxml/MapOutput.fxml"));
 			Pane mapPane = mapLoader.load();
 			mapContainer.getChildren().add(mapPane);
