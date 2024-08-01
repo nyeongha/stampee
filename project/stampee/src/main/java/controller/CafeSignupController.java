@@ -58,7 +58,7 @@ public class CafeSignupController {
 
 	private void navigateToLoginPage(ActionEvent event) {
 		try {
-			Parent loginPage = FXMLLoader.load(getClass().getResource("/templates/account/LoginPage.fxml"));
+			Parent loginPage = FXMLLoader.load(getClass().getResource("/fxml/account/LoginPage.fxml"));
 			Scene loginScene = new Scene(loginPage);
 			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 			appStage.setScene(loginScene);
