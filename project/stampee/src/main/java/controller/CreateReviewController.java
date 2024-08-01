@@ -14,7 +14,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import lombok.RequiredArgsConstructor;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
@@ -30,10 +29,17 @@ public class CreateReviewController {
 
 	@FXML
 	private AnchorPane reviewPane;
-	private ReviewService reviewService;
-	private MemberRepository memberRepository;
-	private CafeRepository cafeRepository;
-	private ReviewRepository reviewRepository;
+	private final ReviewService reviewService;
+	private final MemberRepository memberRepository;
+	private final CafeRepository cafeRepository;
+	private final ReviewRepository reviewRepository;
+
+	public CreateReviewController(){
+		memberRepository = new MemberRepository();
+		cafeRepository = new CafeRepository();
+		reviewRepository = new ReviewRepository();
+		reviewService = new ReviewService(reviewRepository);
+	}
 
 	// 멤버 세션 객체
 	private Member loggedInMember=null;

@@ -184,7 +184,7 @@ public class ReviewRepository {
 			System.err.println("SQL Exception: " + e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 
 		return reviews;
@@ -216,7 +216,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -240,7 +240,6 @@ public class ReviewRepository {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, cafeId);
-
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -274,7 +273,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 		return reviews;
 	}

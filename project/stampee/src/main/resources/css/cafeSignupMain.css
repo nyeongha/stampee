@@ -1,0 +1,62 @@
+/* Header 스타일 정의 */
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Jua';
+}
+
+/* 로고 스타일 정의 */
+.logo {
+    -fx-start-margin: 20px;
+    -fx-padding: 30px;
+    -fx-image: url('/image/stampee_logo.png');
+}
+
+/* 메뉴 아이템 스타일 정의 */
+.menu-items {
+    -fx-spacing: 20px;
+    -fx-alignment: center-left;
+}
+
+
+/* 메인 컨테이너 스타일 정의 */
+.main-container {
+    -fx-background-color: #FFF0F5; /* 연한 핑크 배경 */
+    -fx-spacing: 10;
+    -fx-padding: 0 20 0 20;
+}
+
+/* 입력 필드 스타일 정의 */
+.text-field {
+    -fx-background-color: #FFFFFF;
+    -fx-border-width: 2px;
+    -fx-border-height: 2px;
+    -fx-padding: 5px;
+    -fx-margin: 6px 0; /* 위아래 3px의 마진을 추가 */
+}
+
+/* 또는 text-field를 포함하는 컨테이너에 패딩을 추가 */
+.vbox-margin {
+    -fx-padding: 6px 0;
+    -fx-margin-bottom: 30px;
+}
+
+
+/* 버튼 스타일 정의 */
+.button {
+    -fx-background-color: #FFB6C1; /* 핫핑크 배경 */
+    -fx-text-fill: #FFFFFF; /* 흰색 글씨 */
+    -fx-font-size: 16px;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+.button:hover {
+    -fx-background-color: #FF69B4; /* 더 진한 핫핑크 (호버 시) */
+}
+

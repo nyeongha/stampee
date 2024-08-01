@@ -4,17 +4,14 @@ package controller;
 import static formatter.PhoneNumberFormatter.*;
 import static java.lang.Integer.*;
 import static javafx.scene.control.Alert.AlertType.*;
+import static util.SceneNavigator.*;
 
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import java.io.IOException;
 
 import repository.MemberRepository;
@@ -102,12 +99,7 @@ public class KeypadController {
 	@FXML
 	private void GoToHome() {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
-			Parent root = loader.load();
-			Scene scene = new Scene(root);
-			Stage stage = (Stage) phoneNumberField.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			getInstance().navigateTo("/fxml/CouponPage.fxml", phoneNumberField);
 		} catch (IOException e) {
 			e.printStackTrace();
 			failGoToHome("화면 전환 중 오류가 발생했습니다.");
