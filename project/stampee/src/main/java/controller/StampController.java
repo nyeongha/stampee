@@ -142,16 +142,11 @@ public class StampController implements Initializable {
 
 
 	private void setCreateReviewContainer(long memberId,long cafeId){
-
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
 		try {
 			AnchorPane createReview = loader.load(); // 루트 노드가 VBox인 경우
-
-			// CreateReviewController의 인스턴스 가져오기
 			CreateReviewController controller = loader.getController();
 			controller.initData(memberId, cafeId);
-
-			// VBox에 자식 노드를 추가
 			createReviewContainer.getChildren().setAll(createReview);
 		} catch (IOException e) {
 			throw new RuntimeException("Error loading FXML file for CreateReview: " + e.getMessage(), e);

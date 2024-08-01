@@ -12,26 +12,23 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
+import lombok.RequiredArgsConstructor;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
 
+@RequiredArgsConstructor
 public class CreateReviewController {
-	@FXML
-	private ComboBox<Float> rating;
+	@FXML private ComboBox<Float> rating;
 
-	@FXML
-	private TextArea reviewContents;
+	@FXML private TextArea reviewContents;
 
-	@FXML
-	private Button submitReviewButton;
+	@FXML private Button submitReviewButton;
 
 	@FXML
 	private AnchorPane reviewPane;
-
 	private ReviewService reviewService;
-
 	private MemberRepository memberRepository;
 	private CafeRepository cafeRepository;
 	private ReviewRepository reviewRepository;
@@ -40,20 +37,10 @@ public class CreateReviewController {
 	private Member loggedInMember=null;
 	private Cafe selectedCafe=null; // 리뷰할 카페 객체
 
-	public CreateReviewController() {
-		// 기본 생성자에서 repository 초기화
-		this.memberRepository = new MemberRepository();
-		this.cafeRepository = new CafeRepository();
-		this.reviewRepository = new ReviewRepository();
-	}
-
 	@FXML
 	public void initialize() {
 		// 실수 값을 ComboBox에 추가
 		rating.getItems().addAll(5.0f, 4.5f, 4.0f, 3.5f, 3.0f, 2.5f, 2.0f, 1.5f, 1.0f, 0.5f, 0.0f);
-
-		// 초기화 시점에 ReviewService 인스턴스 생성
-		reviewService = new ReviewService(reviewRepository);
 
 		// 버튼 클릭 이벤트 핸들러 설정
 		submitReviewButton.setOnAction(event -> handleSubmitButtonAction());

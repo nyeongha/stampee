@@ -13,7 +13,7 @@ import view.PopupView;
 public class NumberPadController {
 	private final UserService userService;
 	private StringBuilder inputBuilder = new StringBuilder();
-	private PopupView popupView = new PopupView();
+	private final PopupView popupView = new PopupView();
 
 	@FXML private TextField inputField;
 

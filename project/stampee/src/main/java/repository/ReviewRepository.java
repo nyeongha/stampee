@@ -81,8 +81,8 @@ public class ReviewRepository {
 			pstmt.setFloat(1, review.getRating());
 			pstmt.setString(2, review.getContents());
 			pstmt.setDate(3, review.getCreateTime());
-			pstmt.setLong(4, review.getMember().getId());
-			pstmt.setLong(5, review.getCafe().getId());
+			pstmt.setLong(4, review.getAuthor().getMemberId());
+			pstmt.setLong(5, review.getCafe().getCafeId());
 			pstmt.executeUpdate();
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
@@ -104,7 +104,7 @@ public class ReviewRepository {
 
 			pstmt.setFloat(1, review.getRating());
 			pstmt.setString(2, review.getContents());
-			pstmt.setLong(3, review.getId());
+			pstmt.setLong(3, review.getReviewId());
 
 			pstmt.executeUpdate();
 		} catch (SQLException e) {

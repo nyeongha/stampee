@@ -105,14 +105,11 @@ public class CafeRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					// 성공적으로 인증된 경우, Entity에 정보 저장
-					Cafe cafe = new Cafe();
-					cafe.setEmail(email);
-					cafe.setPassword(storedPassword);
-					cafe.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
-					cafe.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
-					cafe.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
-					return cafe;
+					return new Cafe(rs.getLong("cafe_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("password"),
+						email, rs.getString("contact"));
 				}
 			} else {
 				System.out.println("email not found : " + email);

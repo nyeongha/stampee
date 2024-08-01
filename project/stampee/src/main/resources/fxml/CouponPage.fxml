@@ -13,12 +13,12 @@
     <URL value="@/css/modern-style.css"/>
     <URL value="@/css/common.css"/>
 </stylesheets>
-<fx:include source="/templates/reusables/Header.fxml" />
+<fx:include source="/fxml/reusables/Header.fxml" />
 <VBox VBox.vgrow="ALWAYS" spacing="10" styleClass="content-container">
     <ScrollPane fitToWidth="true" styleClass="scroll-pane" VBox.vgrow="ALWAYS">
         <VBox fx:id="cafeListContainer" spacing="10" styleClass="cafe-list-container">
         </VBox>
     </ScrollPane>
 </VBox>
-<fx:include source="/templates/reusables/footer.fxml" />
+<fx:include source="/fxml/reusables/footer.fxml" />
 </VBox>

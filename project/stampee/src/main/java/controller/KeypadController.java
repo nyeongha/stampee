@@ -32,7 +32,7 @@ public class KeypadController {
 	private boolean isPhoneNumberInput = true;
 	private StringBuilder stampCount = new StringBuilder();
 	private StringBuilder phoneNumber = new StringBuilder();
-	private PopupView popupView = new PopupView();
+	private final PopupView popupView = new PopupView();
 	private final StampService stampService;
 
 	public KeypadController() {

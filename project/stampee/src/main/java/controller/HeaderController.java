@@ -81,6 +81,7 @@ public class HeaderController {
 			e.printStackTrace();
 		}
 	}
+
 	@FXML
 	public void handleLogout(MouseEvent mouseEvent) {
 		/*

@@ -7,16 +7,14 @@ import java.util.List;
 import javax.mail.MessagingException;
 import dto.response.ExpiredCouponDto;
 import dto.response.MyCouponDto;
+import lombok.RequiredArgsConstructor;
 import repository.CouponRepository;
 
+
+@RequiredArgsConstructor
 public class CouponService {
 	private final CouponRepository couponRepository;
 	private final MailService mailService;
-
-	public CouponService(CouponRepository couponRepository, MailService mailService) {
-		this.couponRepository = couponRepository;
-		this.mailService = mailService;
-	}
 
 	public void expiredCoupon() throws MessagingException {
 		couponRepository.deleteExpiredCoupons(now());
