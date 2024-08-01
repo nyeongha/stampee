@@ -18,6 +18,9 @@ import org.slf4j.LoggerFactory;
 import domain.Cafe;
 import domain.Member;
 import dto.response.CafeMemberInfoDto;
+import dto.response.LoggedCafeDto;
+import dto.response.LoggedCafeDto;
+import dto.response.LoggedMemberDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -165,16 +168,21 @@ public class CafeRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "select m.member_id as member_id "
-				   + "            ,m.username "
-				   + "            ,nvl(s.count,0) as stamp_cnt "
-				   + "            ,nvl(c.count,0) as coupon_cnt "
-				   + "        from member m "
-				   + "        left outer join stamp s "
-				   + "          on m.member_id = s.member_id "
-				   + "        left join coupon c "
-				   + "          on s.cafe_id = c.cafe_id "
-				   + "			where s.cafe_id = ? ";
+		String sql = "select "
+			+ "m.member_id, "
+			+ "m.username, "
+			+ "sc.stamp_count, "
+			+ "sc.coupon_count "
+			+ "from member m left outer join (select nvl(s.member_id, c.member_id) as member_id, "
+			+ "                                      nvl(s.cafe_id, c.cafe_id) as cafe_id, "
+			+ "                                      nvl(s.count,0) as stamp_count,  "
+			+ "                                      nvl(c.count,0) as coupon_count "
+			+ "                                 from stamp s full outer join coupon c "
+			+ "                                   on s.cafe_id = c.cafe_id "
+			+ "                                  and s.member_id = c.member_id "
+			+ "                                  ) sc "
+			+ "on m.member_id = sc.member_id "
+			+ "where sc.cafe_id = ?";
 
 		List<CafeMemberInfoDto> memberInfos = new ArrayList<>();
 
@@ -188,8 +196,8 @@ public class CafeRepository {
 				CafeMemberInfoDto memberInfo = CafeMemberInfoDto.createCafeMemberDto(
 					rs.getLong("member_id"),
 					rs.getString("username"),
-					rs.getLong("stamp_cnt"),
-					rs.getLong("coupon_cnt")
+					rs.getLong("stamp_count"),
+					rs.getLong("coupon_count")
 				);
 				memberInfos.add(memberInfo);
 			}
