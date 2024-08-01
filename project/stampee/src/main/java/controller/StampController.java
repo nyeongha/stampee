@@ -6,19 +6,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
 import dto.response.MyStampDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import repository.CafeRepository;
 import repository.CouponRepository;
 import repository.MemberRepository;
@@ -27,6 +25,7 @@ import repository.StampRepository;
 import service.CafeService;
 import service.CouponService;
 import service.MailService;
+import service.MapService;
 import service.ReviewService;
 import service.StampService;
 
@@ -34,6 +33,8 @@ public class StampController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final CafeService cafeService;
+	private MapService mapService;
+
 	private final ReviewService reviewService;
 
 	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
@@ -60,8 +61,10 @@ public class StampController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
+			FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("/fxml/MapOutput.fxml"));
+			Pane mapPane = mapLoader.load();
 			mapContainer.getChildren().add(mapPane);
+			mapService = mapLoader.getController();
 
 			AnchorPane CreateReview=FXMLLoader.load(getClass().getResource("/fxml/CreateReview.fxml"));
 			createReviewContainer.getChildren().add(CreateReview);
@@ -89,6 +92,8 @@ public class StampController implements Initializable {
 
 		setSignatureMenu(cafeId);
 		setReviewContainerCafeId(cafeId);
+
+		mapService.initializeMap(myStamp.getCafeName(), myStamp.getCafeAddr());
 		setCreateReviewContainer(memberId,cafeId);
 	}
 
@@ -110,11 +115,14 @@ public class StampController implements Initializable {
 		for (int i = 0; i < stamps.length; i++) {
 			if (i < count) {
 				stamps[i].setImage(filledStamp);
+				stamps[i].setFitWidth(70);
+				stamps[i].setFitHeight(70);
 			} else {
 				stamps[i].setImage(emptyStamp);
+				stamps[i].setFitWidth(50);
+				stamps[i].setFitHeight(50);
 			}
-			stamps[i].setFitWidth(85);
-			stamps[i].setFitHeight(85);
+
 		}
 	}
 
@@ -148,7 +156,5 @@ public class StampController implements Initializable {
 		} catch (IOException e) {
 			throw new RuntimeException("Error loading FXML file for CreateReview: " + e.getMessage(), e);
 		}
-
-
 	}
 }
