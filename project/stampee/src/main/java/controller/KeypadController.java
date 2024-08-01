@@ -24,6 +24,8 @@ import view.PopupView;
 
 import java.sql.*;
 
+import static util.SceneNavigator.getInstance;
+
 public class KeypadController {
 	@FXML private TextField phoneNumberField;
 	@FXML private TextField stampCountField;
@@ -89,6 +91,7 @@ public class KeypadController {
 			LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
 			stampService.saveStamp(cafe.getCafeId(), formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
 			popupView.showSuccessPopup("스탬프 적립 성공");
+			goToCafeMainPage();
 		} catch (IllegalArgumentException | SQLException e) {
 			popupView.showFailPopup(e.getMessage());
 		}
@@ -100,12 +103,7 @@ public class KeypadController {
 
 	@FXML
 	private void GoToHome() {
-		try {
-			getInstance().navigateTo("/fxml/CouponPage.fxml", phoneNumberField);
-		} catch (IOException e) {
-			e.printStackTrace();
-			failGoToHome("화면 전환 중 오류가 발생했습니다.");
-		}
+		goToCafeMainPage();
 	}
 
 	private void failGoToHome(String message) {
@@ -127,5 +125,14 @@ public class KeypadController {
 	private void setPhoneNumberInput(boolean isPhoneNumber) {
 		isPhoneNumberInput = isPhoneNumber;
 		updateDisplayFields();
+	}
+
+	private void goToCafeMainPage() {
+		try {
+			getInstance().navigateTo("/fxml/index/CafeMainPage.fxml", phoneNumberField);
+		} catch (IOException e) {
+			e.printStackTrace();
+			failGoToHome("화면 전환 중 오류가 발생했습니다.");
+		}
 	}
 }
