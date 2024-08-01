@@ -14,11 +14,13 @@ import domain.Stamp;
 import dto.response.MyStampDto;
 import repository.MemberRepository;
 import repository.StampRepository;
+import util.MailAPIConfigLoader;
 
 public class StampService {
 	private final StampRepository stampRepository;
 	private final MemberRepository memberRepository;
 	private final MailService mailService;
+	private static final String EMAIL = MailAPIConfigLoader.getEmail();
 
 	public StampService(StampRepository stampRepository, MemberRepository memberRepository, MailService mailService) {
 		this.stampRepository = stampRepository;
@@ -46,10 +48,10 @@ public class StampService {
 			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
 		if (stampRepository.updateStamp(cafeId, fromMember.getId(), toMember.getId(), count)) {	//성공한 경우
-			mailService.sendMail(fromMember.getEmail(), "human9062@gmail.com", format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
-			mailService.sendMail(toMember.getEmail(), "human9062@gmail.com", format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
+			mailService.sendMail(fromMember.getEmail(), EMAIL, format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
+			mailService.sendMail(toMember.getEmail(), EMAIL, format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
 		} else {	//실패 한 경우
-			mailService.sendMail(fromMember.getEmail(), "human9062@gmail.com", FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
+			mailService.sendMail(fromMember.getEmail(), EMAIL, FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
 		}
 	}
 }

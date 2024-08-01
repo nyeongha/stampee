@@ -16,6 +16,7 @@
                 <Label text="My Review" onMouseClicked="#handleMyReview"/>
                 <Label text="Reviews" onMouseClicked="#handleReviews"/>
                 <Label text="MyCoupon" onMouseClicked="#handleMyCoupon"/>
+                <Label fx:id="logoutLabel" text="Logout" onMouseClicked="#handleLogout"/>
                 <Region HBox.hgrow="ALWAYS"/>
             </children>
         </HBox>
