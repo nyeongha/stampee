@@ -43,7 +43,7 @@ public class MemberSignupController {
 			return;
 		}
 
-		Member member = new Member(-1, userName, password, email, phoneNumber);
+		Member member = new Member(-1, userName, email, password, phoneNumber);
 
 		boolean success = memberService.memberSignUp(member);
 
@@ -64,7 +64,6 @@ public class MemberSignupController {
 			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 			appStage.setScene(loginScene);
 			appStage.show();
-			// SceneNavigator.getInstance().navigateTo("/fxml/account/MemberLoginPage.fxml", event);
 		} catch (IOException e) {
 			showFailPopup("로그인 페이지로 이동하는 동안 오류가 발생했습니다.");
 		}

@@ -68,9 +68,10 @@ public class HeaderController {
 	@FXML
 	public void handleLogout(MouseEvent mouseEvent) throws IOException {
 
-		if(CafeSession.getInstance() !=null){
+		if(CafeSession.getInstance() != null){
 			CafeSession.clearSession();
-		}else if(MemberSession.getInstance() !=null){
+		}
+		if(MemberSession.getInstance() != null){
 			MemberSession.clearSession();
 		}
 
