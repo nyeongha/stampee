@@ -2,15 +2,11 @@ package controller;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
+import util.SceneNavigator;
 
 import java.io.IOException;
-import java.util.Objects;
 
 public class SignupMainController {
 	@FXML public VBox signuppagemain;
@@ -26,14 +22,7 @@ public class SignupMainController {
 	@FXML
 	private void handleUserSignUpButtonAction(ActionEvent actionEvent) {
 		try {
-			Parent userSignUpPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/MemberSignupPage.fxml")));
-			Scene scene1 = new Scene(userSignUpPage);
-
-			// Get the current stage (window)
-			Stage stage1 = (Stage) memberSignUpButton.getScene().getWindow();
-			stage1.setScene(scene1);
-			stage1.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/account/MemberSignupPage.fxml", memberSignUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -42,21 +31,7 @@ public class SignupMainController {
 	@FXML
 	private void handleCafeSignUpButtonAction(ActionEvent event) {
 		try {
-			Parent cafeSignUpPage = FXMLLoader.load(getClass().getResource("/fxml/account/CafeSignupPage.fxml"));
-			Scene scene2 = new Scene(cafeSignUpPage);
-
-			Stage stage2 = (Stage) cafeSignUpButton.getScene().getWindow();
-			stage2.setScene(scene2);
-			stage2.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-	private void loadIndexPage() {
-		try {
-			Parent indexPage = FXMLLoader.load(getClass().getResource("/fxml/account/SignUpPageMain.fxml"));
-			Scene scene = new Scene(indexPage);
+			SceneNavigator.getInstance().navigateTo("/fxml/account/CafeSignupPage.fxml", event);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

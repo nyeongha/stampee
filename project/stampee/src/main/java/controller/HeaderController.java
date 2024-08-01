@@ -35,12 +35,12 @@ public class HeaderController {
 	}
 
 	@FXML
-	public void handleMyCoupon(MouseEvent event) {
+	public void handleMyCoupon(MouseEvent event) throws IOException {
 		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
 	@FXML
-	public void handleLogo(MouseEvent event) {
+	public void handleLogo(MouseEvent event) throws IOException {
 		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
@@ -61,12 +61,12 @@ public class HeaderController {
 		}
 	}
 	@FXML
-	public void handleLogin(MouseEvent mouseEvent) {
+	public void handleLogin(MouseEvent mouseEvent) throws IOException {
 		SceneNavigator.getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
 	}
 
 	@FXML
-	public void handleLogout(MouseEvent mouseEvent) {
+	public void handleLogout(MouseEvent mouseEvent) throws IOException {
 
 		if(CafeSession.getInstance() !=null){
 			CafeSession.clearSession();

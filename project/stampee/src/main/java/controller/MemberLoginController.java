@@ -3,20 +3,15 @@ package controller;
 import static util.Popup.*;
 
 import java.io.IOException;
-import java.util.Objects;
-
 import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.MemberService;
 import session.MemberSession;
+import util.SceneNavigator;
 
 public class MemberLoginController {
 	private final MemberService memberService = new MemberService(new MemberRepository());
@@ -66,12 +61,7 @@ public class MemberLoginController {
 	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
 	private void loadIndexPage() {
 		try {
-			Parent indexPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
-			Scene scene = new Scene(indexPage);
-			Stage stage = (Stage)loginButton.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/account/SignUpPageMain.fxml", loginButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,12 +70,7 @@ public class MemberLoginController {
 	// 회원가입 페이지 로드 메서드
 	private void loadSignUpPage() {
 		try {
-			Parent signUpPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
-			Scene scene = new Scene(signUpPage);
-			Stage stage = (Stage) signUpButton.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/account/SignUpPageMain.fxml", signUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

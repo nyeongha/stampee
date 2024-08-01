@@ -14,6 +14,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.MemberService;
+import util.SceneNavigator;
 
 public class MemberSignupController {
 
@@ -55,12 +56,7 @@ public class MemberSignupController {
 
 	private void navigateToLoginPage(ActionEvent event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/MemberLoginPage.fxml"));
-			Parent loginPage = loader.load();
-			Scene loginScene = new Scene(loginPage);
-			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
-			appStage.setScene(loginScene);
-			appStage.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/account/MemberLoginPage.fxml", event);
 		} catch (IOException e) {
 			showFailPopup("로그인 페이지로 이동하는 동안 오류가 발생했습니다.");
 		}
