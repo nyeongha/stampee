@@ -6,16 +6,19 @@ import java.time.LocalDateTime;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
+import session.MemberSession;
 
 public class CreateReviewController {
 	@FXML private ComboBox<Float> rating;
@@ -61,6 +64,7 @@ public class CreateReviewController {
 		Float selectedRating = rating.getValue();
 		String contents = reviewContents.getText();
 
+
 		// 유효성 검사
 		if (selectedRating == null) {
 			showAlert("Error", "Please select a rating.");
@@ -87,9 +91,9 @@ public class CreateReviewController {
 		// 리뷰 삽입
 		reviewService.insertReview(selectedRating, contents, createTime, loggedInMember, selectedCafe);
 
-		// 리뷰 작성 후 입력창 숨기기 또는 초기화
 		reviewContents.clear();
 		rating.getSelectionModel().clearSelection();
+
 	}
 
 	private void showAlert(String title, String message) {
@@ -106,3 +110,4 @@ public class CreateReviewController {
 		reviewPane.setVisible(!isVisible);
 	}
 }
+

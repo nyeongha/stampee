@@ -6,7 +6,6 @@ import java.util.List;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
-import lombok.RequiredArgsConstructor;
 import repository.ReviewRepository;
 
 public class ReviewService {
@@ -16,8 +15,8 @@ public class ReviewService {
 		this.reviewRepository = reviewRepository;
 	}
 
-	public void deleteReview(long reviewId, long memberId) {
-		reviewRepository.deleteReviewByReviewId(reviewId, memberId);
+	public boolean deleteReview(long reviewId, long memberId) {
+		return reviewRepository.deleteReviewByReviewId(reviewId, memberId);
 	}
 
 	public void updateReview(long id, int rating, String contents) {

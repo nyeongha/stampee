@@ -1,0 +1,43 @@
+
+.main-container {
+    -fx-background-color: #FFF0F5;
+}
+
+#loginButton {
+    -fx-background-color: #FFB6C1;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+#loginButton:hover {
+    -fx-background-color: #FF69B4;
+}
+
+#loginButton:pressed {
+    -fx-background-color: #FF69B4;
+}
+
+/* 회원가입 버튼 스타일 */
+#signUpButton {
+    -fx-background-color: #FFB6C1;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-cursor: hand;
+}
+
+#signUpButton:hover {
+    -fx-background-color: #FF69B4;
+}
+
+#signUpButton:pressed {
+    -fx-background-color: #FF69B4;
+}
