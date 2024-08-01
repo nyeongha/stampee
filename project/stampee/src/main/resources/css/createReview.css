@@ -1,0 +1,4 @@
+.toggle-review-button {
+    -fx-background-color: #FFB6C1; /* 버튼 배경색 설정 */
+    -fx-text-fill: #FFFFFF;
+}

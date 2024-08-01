@@ -3,6 +3,7 @@ import java.io.InputStream;
 
 import controller.CouponController;
 
+import controller.CreateReviewController;
 import controller.StampController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -31,17 +32,33 @@ public class Main extends Application {
 	// 	}
 	// }
 
+	// public void start(Stage primaryStage) throws Exception {
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+	// 	Parent root = loader.load();
+	// 	StampController controller = loader.getController();
+	// 	controller.initData(9L, 2L); // 예시로 memberId 1을 사용
+	// 	primaryStage.setTitle("Stamp Viewer");
+	// 	primaryStage.setScene(new Scene(root));
+	//
+	// 	primaryStage.setTitle("Coupon Application");
+	// 	primaryStage.show();
+	// }
+	@Override
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
 		Parent root = loader.load();
-		StampController controller = loader.getController();
-		controller.initData(9L, 2L); // 예시로 memberId 1을 사용
-		primaryStage.setTitle("Stamp Viewer");
-		primaryStage.setScene(new Scene(root));
 
-		primaryStage.setTitle("Coupon Application");
+		// CreateReviewController의 인스턴스 가져오기
+		CreateReviewController controller = loader.getController();
+
+		// initData 메서드를 호출하여 memberId와 cafeId 초기화
+		controller.initData(9L, 2L); // 예시로 memberId 9와 cafeId 2 사용
+
+		primaryStage.setTitle("Review Application");
+		primaryStage.setScene(new Scene(root));
 		primaryStage.show();
 	}
+
 
 	// @Override
 	// public void start(Stage primaryStage) throws Exception{

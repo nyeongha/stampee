@@ -30,7 +30,7 @@ public class ReviewService {
 		return avg;
 	}
 
-	public void insertReview(int rating, String contents, Date date, Member member, Cafe cafe) {
+	public void insertReview(float rating, String contents, Date date, Member member, Cafe cafe) {
 		Review review = new Review(rating, contents, date, member, cafe);
 		reviewRepository.insertReview(review);
 	}

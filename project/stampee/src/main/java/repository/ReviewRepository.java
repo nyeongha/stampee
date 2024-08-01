@@ -81,7 +81,7 @@ public class ReviewRepository {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, review.getRating());
+			pstmt.setFloat(1, review.getRating());
 			pstmt.setString(2, review.getContents());
 			pstmt.setDate(3, review.getCreateTime());
 			pstmt.setLong(4, review.getMember().getId());
@@ -105,7 +105,7 @@ public class ReviewRepository {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, review.getRating());
+			pstmt.setFloat(1, review.getRating());
 			pstmt.setString(2, review.getContents());
 			pstmt.setLong(3, review.getId());
 
