@@ -61,9 +61,14 @@ public class CafeSignupController {
 	}
 
 	private void navigateToLoginPage(ActionEvent event) {
-		try{
-			SceneNavigator.getInstance().navigateTo("/fxml/account/CafeLoginPage.fxml", event);
-		} catch (IOException e){
+		try {
+			Parent loginPage = FXMLLoader.load(
+				Objects.requireNonNull(getClass().getResource("/fxml/account/CafeLoginPage.fxml")));
+			Scene loginScene = new Scene(loginPage);
+			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+			appStage.setScene(loginScene);
+			appStage.show();
+		} catch (IOException e) {
 			showFailPopup("오류가 발생했습니다.");
 		}
 	}

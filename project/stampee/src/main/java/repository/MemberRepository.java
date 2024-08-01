@@ -59,13 +59,8 @@ public class MemberRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					// 성공적으로 인증된 경우, Entity에 정보 저장
-					Member member = new Member();
-					member.setEmail(email);
-					member.setPassword(storedPassword); // 데이터베이스 필드에 따라 수정
-					member.setUserName(rs.getString("username")); // 데이터베이스 필드에 따라 수정
-					member.setPhoneNumber(rs.getString("phone_number")); // 데이터베이스 필드에 따라 수정
-					return member;
+					return new Member(rs.getLong("member_id"), rs.getString("username"), email, storedPassword,
+						rs.getString("phone_number"));
 				}
 			}
 		} catch (SQLException | NoSuchAlgorithmException e) {

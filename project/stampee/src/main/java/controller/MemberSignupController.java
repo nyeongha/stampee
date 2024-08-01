@@ -42,7 +42,7 @@ public class MemberSignupController {
 			return;
 		}
 
-		Member member = new Member(-1, name, password, email, contact);
+		Member member = new Member(0, name, email, password, contact);
 		boolean success = memberService.memberSignUp(member);
 
 		if (success) {
@@ -56,7 +56,13 @@ public class MemberSignupController {
 
 	private void navigateToLoginPage(ActionEvent event) {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/account/MemberLoginPage.fxml", event);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/MemberLoginPage.fxml"));
+			Parent loginPage = loader.load();
+			Scene loginScene = new Scene(loginPage);
+			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
+			appStage.setScene(loginScene);
+			appStage.show();
+			// SceneNavigator.getInstance().navigateTo("/fxml/account/MemberLoginPage.fxml", event);
 		} catch (IOException e) {
 			showFailPopup("로그인 페이지로 이동하는 동안 오류가 발생했습니다.");
 		}

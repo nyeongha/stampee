@@ -31,7 +31,7 @@ public class SignupMainController {
 	@FXML
 	private void handleCafeSignUpButtonAction(ActionEvent event) {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/account/CafeSignupPage.fxml", event);
+			SceneNavigator.getInstance().navigateTo("/fxml/account/CafeSignupPage.fxml", cafeSignUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
