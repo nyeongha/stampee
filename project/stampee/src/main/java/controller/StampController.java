@@ -33,9 +33,8 @@ public class StampController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final CafeService cafeService;
-	private MapService mapService;
-
 	private final ReviewService reviewService;
+	private MapService mapService;
 
 	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
 	@FXML private Label cafeName, cafeAddress, couponCount, cafeRating;;
@@ -72,7 +71,6 @@ public class StampController implements Initializable {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
 			Pane reviewPane = loader.load();
 			reviewContainer.setContent(reviewPane);
-
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -91,10 +89,10 @@ public class StampController implements Initializable {
 		cafeRating.setText(ratingAvg + "");
 
 		setSignatureMenu(cafeId);
-		setReviewContainerCafeId(cafeId);
+		initReviewContainer(cafeId);
 
 		mapService.initializeMap(myStamp.getCafeName(), myStamp.getCafeAddr());
-		setCreateReviewContainer(memberId,cafeId);
+		initCreateReviewContainer(memberId,cafeId);
 	}
 
 	private void setSignatureMenu(long cafeId) {
@@ -126,30 +124,28 @@ public class StampController implements Initializable {
 		}
 	}
 
-	private void setReviewContainerCafeId(long cafeId) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
-			Pane reviewPane = loader.load();
-
-			ReviewController controller = loader.getController();
-			controller.init(cafeId, CAFE);
-
-			reviewContainer.setContent(reviewPane);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	private void initReviewContainer(long cafeId) {
+		ReviewController controller = loadController("/fxml/reviewListView.fxml");
+		controller.init(cafeId, CAFE);
 	}
 
+	private void initCreateReviewContainer(long memberId, long cafeId) {
+		CreateReviewController controller = loadController("/fxml/CreateReview.fxml");
+		controller.initData(memberId, cafeId);
+	}
 
-	private void setCreateReviewContainer(long memberId,long cafeId){
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
+	private <T> T loadController(String path) {
 		try {
-			AnchorPane createReview = loader.load(); // 루트 노드가 VBox인 경우
-			CreateReviewController controller = loader.getController();
-			controller.initData(memberId, cafeId);
-			createReviewContainer.getChildren().setAll(createReview);
+			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
+			Pane pane = loader.load();
+			if (path.contains("CreateReview")) {
+				createReviewContainer.getChildren().setAll(pane);
+			} else if (path.contains("reviewListView")) {
+				reviewContainer.setContent(pane);
+			}
+			return loader.getController();
 		} catch (IOException e) {
-			throw new RuntimeException("Error loading FXML file for CreateReview: " + e.getMessage(), e);
+			throw new RuntimeException("Error loading FXML file: " + path, e);
 		}
 	}
 }

@@ -1,10 +1,9 @@
 package controller;
 
 import static domain.ReviewType.*;
+import static util.SceneNavigator.*;
 
 import java.io.IOException;
-import java.util.Objects;
-
 import domain.ReviewType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,7 +11,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import session.CafeSession;
 import javafx.stage.Stage;
@@ -34,34 +32,12 @@ public class HeaderController {
 
 	@FXML
 	public void handleMyCoupon(MouseEvent event) {
-		navigateTo("/fxml/CouponPage.fxml", event);
+		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
 	@FXML
 	public void handleLogo(MouseEvent event) {
-		navigateTo("/fxml/CouponPage.fxml", event);
-	}
-
-	private void navigateTo(String fxmlPath, MouseEvent event) {
-		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-			Parent root = loader.load();
-			Stage stage;
-
-			if (event.getSource() instanceof Label) {
-				stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
-			} else if (event.getSource() instanceof ImageView) {
-				stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
-			} else {
-				throw new IllegalArgumentException("Unsupported event source");
-			}
-
-			Scene scene = new Scene(root);
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
 
@@ -84,29 +60,10 @@ public class HeaderController {
 
 	@FXML
 	public void handleLogout(MouseEvent mouseEvent) {
-		/*
-		1. CafeSession 값 비워주기
-		2. 버튼 클릭 시 LoginPage.fxml로 이동
-		3. header의 배너에서 logout 버튼 안 보이게 하기
-		 */
-		// 1. CafeSession 값 비워주기
 		showAlert(Alert.AlertType.INFORMATION, "Logout", "로그아웃 되었습니다.");
-
-		CafeSession.clearSession();
-		//2. 버튼 클릭 시 LoginPage.fxml로 이동
-		try {
-			Parent loginPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/templates/account/LoginPage.fxml")));
-			Scene scene = new Scene(loginPage);
-			Stage stage = (Stage) ((Label) mouseEvent.getSource()).getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			throw new RuntimeException(e);
-		}
-		//3. header의 배너에서 logout 라벨 안 보이게 하기
-		updateHeaderVisibility();
-
+		CafeSession.clearSession();			// 1. CafeSession 값 비워주기
+		getInstance().navigateTo("/templates/account/LoginPage.fxml", mouseEvent);			//2. 버튼 클릭 시 LoginPage.fxml로 이동
+		updateHeaderVisibility();			//3. header의 배너에서 logout 라벨 안 보이게 하기
 	}
 
 	private void updateHeaderVisibility() {

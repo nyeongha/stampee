@@ -8,12 +8,10 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.UserService;
-import view.PopupView;
 
 public class NumberPadController {
 	private final UserService userService;
 	private StringBuilder inputBuilder = new StringBuilder();
-	private final PopupView popupView = new PopupView();
 
 	@FXML private TextField inputField;
 
@@ -41,7 +39,6 @@ public class NumberPadController {
 		inputField.getScene().getWindow().hide();
 	}
 
-	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
 	public TextField getInputField() {
 		return inputField;
 	}
