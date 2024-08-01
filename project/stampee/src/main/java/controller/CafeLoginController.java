@@ -1,8 +1,9 @@
 package controller;
 
+
+
 import session.CafeSession;
 import dto.response.LoggedCafeDto;
-import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,11 +36,18 @@ public class CafeLoginController {
 		signUpButton.setOnAction(this::handleSignUpButtonAction);
 	}
 
+
+
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
 		try {
 			String email = emailField.getText();
 			String password = passwordField.getText();
+
+			if (email.isEmpty() ||  password.isEmpty() ) {
+				showAlert(Alert.AlertType.INFORMATION, "Error", "모든 필드를 입력해주세요.");
+				return;
+			}
 
 			// 로그인 시 사용자 정보를 받아옴
 			LoggedCafeDto loggedCafeDto = cafeService.login(email, password);
@@ -56,10 +64,10 @@ public class CafeLoginController {
 				// 로그인 성공 시, 대시보드로 이동
 				loadIndexPage();
 			} else {
-				showAlert(Alert.AlertType.ERROR, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
+				showAlert(Alert.AlertType.INFORMATION, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
 			}
 		} catch (NoSuchAlgorithmException e) {
-			showAlert(Alert.AlertType.ERROR, "Error", "시스템 오류가 발생했습니다. 관리자에게 문의하세요.");
+			showAlert(Alert.AlertType.INFORMATION, "Error", "시스템 오류가 발생했습니다. 관리자에게 문의하세요.");
 		}
 	}
 
@@ -78,8 +86,9 @@ public class CafeLoginController {
 	}
 
 	// 알림 창을 보여주는 메서드
-	private void showAlert(Alert.AlertType alertType, String title, String message) {
-		Alert alert = new Alert(alertType);
+
+	private void showAlert(Alert.AlertType information, String title, String message) {
+		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
 		alert.setContentText(message);
@@ -96,7 +105,7 @@ public class CafeLoginController {
 	private void loadIndexPage() {
 		try {
 			Parent indexPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/templates/account/SignUpPageMain.fxml")));
+				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
 			Scene scene = new Scene(indexPage);
 			Stage stage = (Stage) loginButton.getScene().getWindow();
 			stage.setScene(scene);
@@ -110,7 +119,7 @@ public class CafeLoginController {
 	private void loadSignUpPage() {
 		try {
 			Parent signUpPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/templates/account/SignUpPageMain.fxml")));
+				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
 			Scene scene = new Scene(signUpPage);
 			Stage stage = (Stage) signUpButton.getScene().getWindow();
 			stage.setScene(scene);

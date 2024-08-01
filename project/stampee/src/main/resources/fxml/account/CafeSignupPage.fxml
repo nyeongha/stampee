@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane fitToWidth="true" fitToHeight="true" prefHeight="800.0" prefWidth="600.0" styleClass="main-container"
+            stylesheets="@../../css/cafeSignupMain.css" xmlns="http://javafx.com/javafx/8"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeSignupController">
+    <VBox fx:id="dfdf" alignment="TOP_CENTER" styleClass="main-container">
+        <fx:include source="../reusables/Header.fxml"/>
+        <VBox alignment="TOP_CENTER" fillWidth="false" styleClass="body">
+            <children>
+                <fx:include source="../reusables/LogoArea.fxml" />
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이메일" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="emailField" prefWidth="520.0" promptText="이메일을 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="카페명" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="nameField" prefWidth="520.0" promptText="카페명을 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="카페주소" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="addressField" prefWidth="520.0" promptText="카페 주소를 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="passwordField" prefWidth="520.0" promptText="비밀번호를 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전화번호" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="contactField" prefWidth="520.0" promptText="전화번호를 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시그니처 메뉴1" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="menuField1" prefWidth="520.0" promptText="시그니처 메뉴를 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
+                    <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시그니처 메뉴2" styleClass="label">
+                            <VBox.margin>
+                                <Insets bottom="10.0" />
+                            </VBox.margin>
+                        </Text>
+                        <TextField fx:id="menuField2" prefWidth="520.0" promptText="시그니처 메뉴를 입력하세요" styleClass="text-field" />
+                    </children>
+                </VBox>
+                <HBox alignment="CENTER">
+                    <children>
+                        <Button fx:id="signUpButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="회원가입" onAction="#handleSignUp" styleClass="button">
+                            <HBox.margin>
+                                <Insets left="50.0" right="50.0" />
+                            </HBox.margin>
+                        </Button>
+                    </children>
+                    <opaqueInsets>
+                        <Insets />
+                    </opaqueInsets>
+                    <VBox.margin>
+                        <Insets bottom="20.0" />
+                    </VBox.margin>
+                    <padding>
+                        <Insets top="20.0" />
+                    </padding>
+                </HBox>
+            </children>
+        </VBox>
+    </VBox>
+</ScrollPane>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8" stylesheets="@../../css/header.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.HeaderController">
+    <children>
+        <ImageView fitHeight="40" fitWidth="40" styleClass="logo">
+            <image>
+                <Image url="/image/stampee_logo.png"/>
+            </image>
+        </ImageView>
+        <HBox spacing="20" styleClass="menu-items">
+            <children>
+                <Label text="My Review" onMouseClicked="#handleMyReview" styleClass="menu-label"/>
+                <Label text="Reviews" onMouseClicked="#handleReviews" styleClass="menu-label"/>
+                <Label text="MyCoupon" onMouseClicked="#handleMyCoupon" styleClass="menu-label"/>
+                <Label fx:id="logoutLabel" text="Logout" onMouseClicked="#handleLogout" styleClass="menu-label"/>
+                <Region HBox.hgrow="ALWAYS"/>
+            </children>
+        </HBox>
+    </children>
+</HBox>

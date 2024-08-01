@@ -1,9 +1,3 @@
-import java.awt.*;
-import java.io.InputStream;
-
-import controller.CouponController;
-
-import controller.StampController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +26,7 @@ public class Main extends Application {
 	// }
 
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/LoginPage.fxml"));
 		Parent root = loader.load();
 		primaryStage.setScene(new Scene(root));
 				primaryStage.show();
