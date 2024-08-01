@@ -18,19 +18,22 @@ import javafx.scene.layout.Pane;
 import repository.CafeRepository;
 import repository.CouponRepository;
 import repository.MemberRepository;
+import repository.ReviewRepository;
 import repository.StampRepository;
 import service.CafeService;
 import service.CouponService;
 import service.MailService;
+import service.ReviewService;
 import service.StampService;
 
 public class StampController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final CafeService cafeService;
+	private final ReviewService reviewService;
 
 	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
-	@FXML private Label cafeName, cafeAddress, couponCount;
+	@FXML private Label cafeName, cafeAddress, couponCount, cafeRating;;
 	@FXML private Label signature1, signature2;
 	@FXML private Pane mapContainer;
 	@FXML private ScrollPane reviewContainer;
@@ -41,10 +44,12 @@ public class StampController implements Initializable {
 		StampRepository stampRepository = new StampRepository();
 		CouponRepository couponRepository = new CouponRepository();
 		CafeRepository cafeRepository = new CafeRepository();
+		ReviewRepository reviewRepository = new ReviewRepository();
 
 		stampService = new StampService(stampRepository, memberRepository, mailService);
 		couponService = new CouponService(couponRepository, mailService);
 		cafeService = new CafeService(cafeRepository);
+		reviewService = new ReviewService(reviewRepository);
 	}
 
 	@Override
@@ -64,12 +69,15 @@ public class StampController implements Initializable {
 
 	public void initData(long memberId, long cafeId) {
 		MyStampDto myStamp = stampService.findMyStamp(memberId, cafeId);
+		float ratingAvg = reviewService.getCafeRatingAvg(cafeId);
+
 		int count = couponService.getMyCount(memberId, cafeId);
 		setStampImage(myStamp.getCount());
 
 		cafeName.setText(myStamp.getCafeName());
 		cafeAddress.setText(myStamp.getCafeAddr());
 		couponCount.setText(myStamp.getCafeName() + " 쿠폰 " + count + "장");
+		cafeRating.setText(ratingAvg + "");
 
 		setSignatureMenu(cafeId);
 		setReviewContainerCafeId(cafeId);
