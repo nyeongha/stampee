@@ -94,7 +94,7 @@ public class CafeLoginController {
 		try {
 			Parent signUpPage = FXMLLoader.load(
 				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
-			Scene scene = new Scene(signUpPage);
+			Scene scene = new Scene(signUpPage, 600, 800);
 			Stage stage = (Stage) signUpButton.getScene().getWindow();
 			stage.setScene(scene);
 			stage.show();

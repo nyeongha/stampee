@@ -32,7 +32,7 @@ public class Main extends Application {
 
 			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/CafeLoginPage.fxml"));
 
-			Scene scene = new Scene(root);
+			Scene scene = new Scene(root, 600, 800);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {

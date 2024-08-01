@@ -54,23 +54,6 @@ HBox {
     -fx-fill: black;
 }
 
-.accumulate-button {
-    -fx-background-color: #FF69B4;
-    -fx-text-fill: white;
-    -fx-font-size: 18px;
-    -fx-padding: 10 20;
-    -fx-background-radius: 5;
-}
-
-StackPane {
-    -fx-alignment: center;
-}
-
-.accumulate-button:hover {
-    -fx-cursor: hand;
-    -fx-background-color: #FF1493;
-}
-
 .customer-scroll-pane {
     -fx-background-color: transparent;
 }
