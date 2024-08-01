@@ -50,7 +50,7 @@ public class MemberRepository {
 			}
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -89,7 +89,7 @@ public class MemberRepository {
 			System.err.println("Password verification algorithm not found: " + e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 		return null;
 	}
@@ -119,7 +119,7 @@ public class MemberRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -154,7 +154,7 @@ public class MemberRepository {
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -176,7 +176,7 @@ public class MemberRepository {
 			log.info("db error", e);
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 }
