@@ -3,9 +3,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
+<?import java.net.URL?>
+
 <VBox alignment="CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controller.KeypadController"
       stylesheets="/css/keypadView.css">
+
     <StackPane styleClass="title-background">
         <Label text="사장님 적립 부탁드려요!!" styleClass="title-label"/>
     </StackPane>
