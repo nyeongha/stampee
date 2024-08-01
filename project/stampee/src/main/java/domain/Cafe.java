@@ -14,11 +14,4 @@ public class Cafe {
 	private String password;
 	private String email;
 	private String contact;
-
-	public Cafe() {
-
-	}
-
-	public void setEmail(String email) {
-	}
 }
