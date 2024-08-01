@@ -24,12 +24,12 @@ public class MapService {
 	@FXML
 	public void initialize() {
 		webEngine = webView.getEngine();
-		String location = "서울 종로구 성균관로3길 15";
-		Float[] coords = findGeoPoint(location);
-		if (coords != null) {
-			loadMap(coords[0], coords[1], location);
-			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
-		}
+		// String location = "서울 종로구 성균관로3길 15";
+		// Float[] coords = findGeoPoint(location);
+		// if (coords != null) {
+		// 	loadMap(coords[0], coords[1], location);
+		// 	updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
+		// }
 	}
 
 	private static Float[] findGeoPoint(String location) {
@@ -50,7 +50,7 @@ public class MapService {
 		return null;
 	}
 
-	private void loadMap(float lat, float lng, String location) {
+	private void loadMap(float lat, float lng, String location, String cafeName) {
 		String mapContent =
 			"<!DOCTYPE html>" +
 				"<html>" +
@@ -71,7 +71,7 @@ public class MapService {
 				"            attribution: '&copy; <a href=\"https://www.openstreetmap.org/copyright\">OpenStreetMap</a> contributors'" +
 				"        }).addTo(map);" +
 				"        L.marker([" + lat + ", " + lng + "]).addTo(map)" +
-				"            .bindPopup('" + location +"<br>"+"<center>무슨무슨 카페<center>" + "')" +
+				"            .bindPopup('" + location + "<br><center>" + cafeName + "</center>')" +
 				"            .openPopup();" +
 				"    </script>" +
 				"</body>" +
@@ -80,10 +80,16 @@ public class MapService {
 		webEngine.loadContent(mapContent);
 	}
 
-	private void updateStoreInfo(String name, String address, String phone, String hours) {
+	private void updateStoreInfo(String name, String address) {
 		storeNameLabel.setText(name);
 		addressLabel.setText(address);
-		phoneLabel.setText(phone);
-		hoursLabel.setText(hours);
+	}
+
+	public void initializeMap(String name, String address) {
+		Float[] coords = findGeoPoint(address);
+		if (coords != null) {
+			loadMap(coords[0], coords[1], address, name);
+			updateStoreInfo(name, address);
+		}
 	}
 }

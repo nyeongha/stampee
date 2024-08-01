@@ -17,6 +17,7 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
+import javafx.scene.web.WebView;
 import repository.CafeRepository;
 import repository.CouponRepository;
 import repository.MemberRepository;
@@ -24,13 +25,16 @@ import repository.StampRepository;
 import service.CafeService;
 import service.CouponService;
 import service.MailService;
+import service.MapService;
 import service.StampService;
 
 public class StampController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
 	private final CafeService cafeService;
+	private MapService mapService;
 
+	@FXML private WebView webView;
 	@FXML private ImageView stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10;
 	@FXML private Label cafeName, cafeAddress, couponCount;
 	@FXML private Label signature1, signature2;
@@ -52,8 +56,12 @@ public class StampController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
+			// Pane mapPane = FXMLLoader.load(getClass().getResource("/fxml/MapOutput.fxml"));
+			// mapContainer.getChildren().add(mapPane);
+			FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("/fxml/MapOutput.fxml"));
+			Pane mapPane = mapLoader.load();
 			mapContainer.getChildren().add(mapPane);
+			mapService = mapLoader.getController();
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
 			Pane reviewPane = loader.load();
@@ -75,6 +83,8 @@ public class StampController implements Initializable {
 
 		setSignatureMenu(cafeId);
 		setReviewContainerCafeId(cafeId);
+
+		mapService.initializeMap(myStamp.getCafeName(), myStamp.getCafeAddr());
 	}
 
 	private void setSignatureMenu(long cafeId) {
