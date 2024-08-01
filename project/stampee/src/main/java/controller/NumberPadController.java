@@ -7,17 +7,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
-import service.UserService;
+import service.MemberService;
 
 public class NumberPadController {
-	private final UserService userService;
+	private final MemberService memberService;
 	private StringBuilder inputBuilder = new StringBuilder();
 
 	@FXML private TextField inputField;
 
 	public NumberPadController() {
 		MemberRepository memberRepository = new MemberRepository();
-		userService = new UserService(memberRepository);
+		memberService = new MemberService(memberRepository);
 	}
 
 	@FXML
