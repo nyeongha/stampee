@@ -1,11 +1,12 @@
 package dto.response;
 
 import domain.Stamp;
+import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
-@AllArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class MyStampDto {
 	private String cafeName;
 	private String cafeAddr;

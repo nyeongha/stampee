@@ -1,10 +1,14 @@
 package dto.response;
 
+import domain.Cafe;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class LoggedCafeDto {
 	private long cafeId;
 	private String name;
@@ -13,17 +17,7 @@ public class LoggedCafeDto {
 	private String email;
 	private String contact;
 
-	public LoggedCafeDto(long cafeId, String name, String address, String password, String email, String contact) {
-		this.cafeId = cafeId;
-		this.name = name;
-		this.address = address;
-		this.password = password;
-		this.email = email;
-		this.contact = contact;
+	public static LoggedCafeDto createLoggedCafeDto(Cafe cafe){
+		return new LoggedCafeDto(cafe.getCafeId(), cafe.getName(), cafe.getAddress(), cafe.getPassword(), cafe.getEmail(), cafe.getContact());
 	}
-
-	public LoggedCafeDto() {
-
-	}
-
 }

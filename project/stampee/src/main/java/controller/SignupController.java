@@ -7,27 +7,13 @@ import repository.CafeRepository;
 import service.CafeService;
 
 public class SignupController {
-
-	@FXML
-	private TextField nameField;
-
-	@FXML
-	private TextField addressField;
-
-	@FXML
-	private PasswordField passwordField;
-
-	@FXML
-	private PasswordField confirmPasswordField;
-
-	@FXML
-	private TextField emailField;
-
-	@FXML
-	private TextField contactField;
-
-	@FXML
-	private VBox signupContainer;
+	@FXML private TextField nameField;
+	@FXML private TextField addressField;
+	@FXML private PasswordField passwordField;
+	@FXML private PasswordField confirmPasswordField;
+	@FXML private TextField emailField;
+	@FXML private TextField contactField;
+	@FXML private VBox signupContainer;
 
 	private final CafeService cafeService;
 
@@ -48,7 +34,6 @@ public class SignupController {
 		if (!password.equals(confirmPassword)) {
 			showAlert("Error", "Passwords do not match.");
 		}
-
 	}
 
 	private void showAlert(String title, String message) {
