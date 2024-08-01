@@ -12,11 +12,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.text.html.parser.Entity;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
+import dto.response.LoggedCafeDto;
+import dto.response.LoggedCafeDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -89,34 +93,39 @@ public class CafeRepository {
 		}
 	}
 
-	public boolean login(String email, String password){
-		//sql
-		String sql = "select password from cafe where email = ?";
+	public Cafe login(String email, String password) {
+		String sql = "SELECT * FROM cafe WHERE email = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		//db connection
-		conn = getConnection();
-
 		try {
+			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, email);
 			rs = pstmt.executeQuery();
 
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
-				return verifyPassword(password, storedPassword);
-			} 
-			else{
-				System.out.println("email not found : "+email);
-				return false;
+				if (verifyPassword(password, storedPassword)) {
+					// 성공적으로 인증된 경우, Entity에 정보 저장
+					Cafe cafe = new Cafe();
+					cafe.setEmail(email);
+					cafe.setPassword(storedPassword);
+					cafe.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
+					cafe.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
+					cafe.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
+					return cafe;
+				}
+			} else {
+				System.out.println("email not found : " + email);
 			}
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt, rs);
 		}
+		return null;
 	}
 
 	public List<Member> findCafeMembersById(int cafeId) {

@@ -10,12 +10,54 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.control.ScrollPane?>
 
-<ScrollPane prefHeight="600.0" prefWidth="600.0" styleClass="main-container" stylesheets="/css/modern-style.css"
+<?import java.net.URL?>
+<ScrollPane prefWidth="600.0" prefHeight="800.0" styleClass="main-container"
+            stylesheets="/css/modern-style.css"
             xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.StampController">
     <content>
         <VBox spacing="10">
             <fx:include source="/templates/reusables/Header.fxml" />
+
+            <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
+                <Label fx:id="cafeName" styleClass="cafe-name"
+                       style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FF69B4; -fx-effect: dropshadow(gaussian, #FFC0CB, 2, 0, 0, 1);"/>
+
+                <Label fx:id="cafeAddress" styleClass="cafe-address"
+                       style="-fx-font-size: 16px; -fx-text-fill: #8B4513;  -fx-padding: 5 10; -fx-background-radius: 10;"/>
+
+                <HBox alignment="CENTER" style="-fx-background-color: #FFB6C1; -fx-background-radius: 15; -fx-padding: 10;">
+                    <Label fx:id="couponCount" style="-fx-font-size: 18px; -fx-text-fill: #FFFFFF; -fx-font-weight: bold;"/>
+                </HBox>
+
+                <Label text="시그니쳐 메뉴" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF69B4;"/>
+
+                <VBox spacing="10" style="-fx-background-color: #FFF0F5; -fx-padding: 15; -fx-background-radius: 15; -fx-border-color: #FFB6C1; -fx-border-width: 2; -fx-border-radius: 15;">
+                    <Label fx:id="signature1" styleClass="signature-menu"
+                           style="-fx-font-size: 16px; -fx-text-fill: #8B4513; -fx-padding: 5 10; -fx-background-radius: 10;"/>
+                    <Label fx:id="signature2" styleClass="signature-menu"
+                           style="-fx-font-size: 16px; -fx-text-fill: #8B4513; -fx-padding: 5 10; -fx-background-radius: 10;"/>
+                </VBox>
+
+                <VBox spacing="10" style="-fx-background-color: FFEBD4; -fx-padding: 15; -fx-background-radius: 15;">
+                    <HBox spacing="10" alignment="CENTER">
+                        <ImageView fx:id="stamp1" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp2" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp3" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp4" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp5" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                    </HBox>
+                    <HBox spacing="10" alignment="CENTER">
+                        <ImageView fx:id="stamp6" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp7" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp8" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp9" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                        <ImageView fx:id="stamp10" fitHeight="85.0" fitWidth="85.0" preserveRatio="true" styleClass="stamp"/>
+                    </HBox>
+                </VBox>
+
+                <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #F5F5DC;"/>
+
             <VBox spacing="10">
                 <AnchorPane>
                     <children>
@@ -69,6 +111,7 @@
                     </children>
                 </AnchorPane>
                 <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #EEEEEE;"/>
+
                 <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="570.0"/>
             </VBox>
             <fx:include source="/templates/reusables/footer.fxml"/>
