@@ -20,28 +20,18 @@ import java.util.ResourceBundle;
 import repository.CafeRepository;
 public class CafeMainPageController implements Initializable {
 
-	@FXML
-	private HBox cafeMembersHbox;
-
-	@FXML
-	private Text numberOfMembers;
-
-	@FXML
-	private Text cafeName;
-
-	@FXML
-	private Text cafeAddress;
+	@FXML private HBox cafeMembersHbox;
+	@FXML private Text numberOfMembers;
+	@FXML private Text cafeName;
+	@FXML private Text cafeAddress;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-
 		CafeSession instance = CafeSession.getInstance();
 		LoggedCafeDto loggedCafeDto = instance.getLoggedCafeDto();
 
 		CafeRepository cafeRepository = new CafeRepository();
-
 		List<CafeMemberInfoDto> memberInfos = cafeRepository.findCafeMemberInfoById(loggedCafeDto.getCafeId());
-
 		renderCafeMemberCards(memberInfos);
 
 		numberOfMembers.setText(String.valueOf(memberInfos.size()));
@@ -85,5 +75,4 @@ public class CafeMainPageController implements Initializable {
 			cafeMembersHbox.getChildren().add(memberVBox);
 		}
 	}
-
 }

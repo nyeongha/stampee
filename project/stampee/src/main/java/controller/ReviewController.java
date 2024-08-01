@@ -7,7 +7,6 @@ import domain.Review;
 import domain.ReviewType;
 import javafx.fxml.FXML;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.FlowPane;
 import repository.ReviewRepository;
 import service.ReviewService;
@@ -18,9 +17,6 @@ public class ReviewController {
 	@FXML private FlowPane reviewFlowPane;
 	private final ReviewService reviewService;
 	private final ReviewView reviewView = new ReviewView();
-
-	@FXML
-	private ToggleButton toggleButton;
 
 	public ReviewController() {
 		ReviewRepository reviewRepository = new ReviewRepository();

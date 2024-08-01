@@ -12,16 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import domain.Cafe;
-import domain.Member;
 import dto.response.CafeMemberInfoDto;
 
 public class CafeRepository {
-	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
-
 	public long cafeSignUp(Cafe cafe, String menu1, String menu2) {
 		String insertCafeSql = "insert into cafe(cafe_Id, name, address, password, email, contact) "
 			+ "values(CAFE_SEQ.NEXTVAL,?,?,?,?,?)";
@@ -59,7 +53,6 @@ public class CafeRepository {
 				//자동 생성된 cafe_id를 가져옴
 			} else {
 				throw new SQLException("Creating cafe failed, no ID obtained.");
-				//삽입된 행이 없으면 예외 발생
 			}
 
 			// 시그니처 메뉴 삽입을 위해 pstmt 재설정
@@ -80,13 +73,12 @@ public class CafeRepository {
 				try {
 					conn.rollback();  // 예외 발생 시 롤백
 				} catch (SQLException ex) {
-					log.error("Rollback failed", ex);
+					throw new RuntimeException(e);
 				}
 			}
-			log.error("Error during cafe sign up", e);
-			throw new RuntimeException("Failed to sign up cafe", e);
+			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -114,54 +106,13 @@ public class CafeRepository {
 					cafe.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
 					return cafe;
 				}
-			} else {
-				System.out.println("email not found : " + email);
 			}
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
-		}
-		return null;
-	}
-
-	public List<Member> findCafeMembersById(int cafeId) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "select * "
-			+ "from member "
-			+ "where member_id in (select member_id "
-			+ "                      from stamp "
-			+ "                     where cafe_id = ?)";
-
-		List<Member> members = new ArrayList<>();
-
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, cafeId);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				Member member = Member.createMember(
-					rs.getInt("member_id"),
-					rs.getString("username"),
-					rs.getString("email"),
-					rs.getString("password"),
-					rs.getString("phone_number")
-				);
-				members.add(member);
-			}
-			return members;
-		} catch (SQLException e) {
-			log.info("db error", e);
-			throw new RuntimeException();
-		} finally {
-			close(conn, pstmt, null);
 			close(conn, pstmt, rs);
 		}
+		return null;
 	}
 
 	public List<CafeMemberInfoDto> findCafeMemberInfoById(long cafeId) {
@@ -204,7 +155,6 @@ public class CafeRepository {
 			}
 			return memberInfos;
 		} catch (SQLException e) {
-			log.info("db error", e);
 			throw new RuntimeException();
 		} finally {
 			close(conn, pstmt, rs);
@@ -234,42 +184,7 @@ public class CafeRepository {
 		} finally {
 			close(conn, pstmt, rs);
 		}
-
 		return menus;
-	}
-
-	public Cafe findCafeByContact(String contact) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "select * "
-			+ "from cafe "
-			+ "where contact=?";
-
-		Cafe cafe = null;
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, contact);
-			rs = pstmt.executeQuery();
-
-			if (rs.next()) {
-				cafe = new Cafe(
-					rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getString("address"),
-					rs.getString("password"),
-					rs.getString("email"),
-					rs.getString("contact")
-				);
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException(e);
-		} finally {
-			close(conn, pstmt, null);
-		}
-		return cafe;
 	}
 
 	public Cafe findCafeById(long id) {
@@ -306,6 +221,4 @@ public class CafeRepository {
 		}
 		return cafe;
 	}
-
-
 }

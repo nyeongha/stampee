@@ -19,9 +19,7 @@ import service.ReviewService;
 
 public class CreateReviewController {
 	@FXML private ComboBox<Float> rating;
-
 	@FXML private TextArea reviewContents;
-
 	@FXML private Button submitReviewButton;
 
 	@FXML
@@ -31,16 +29,17 @@ public class CreateReviewController {
 	private final CafeRepository cafeRepository;
 	private final ReviewRepository reviewRepository;
 
+	// 멤버 세션 객체
+	private Member loggedInMember = null;
+	private Cafe selectedCafe = null; // 리뷰할 카페 객체
+
+
 	public CreateReviewController(){
 		memberRepository = new MemberRepository();
 		cafeRepository = new CafeRepository();
 		reviewRepository = new ReviewRepository();
 		reviewService = new ReviewService(reviewRepository);
 	}
-
-	// 멤버 세션 객체
-	private Member loggedInMember=null;
-	private Cafe selectedCafe=null; // 리뷰할 카페 객체
 
 	@FXML
 	public void initialize() {
@@ -100,6 +99,7 @@ public class CreateReviewController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
+
 	@FXML
 	private void handleToggleReview() {
 		boolean isVisible = reviewPane.isVisible();
