@@ -81,7 +81,7 @@ public class HeaderController {
 		//2. 버튼 클릭 시 LoginPage.fxml로 이동
 		try {
 			Parent loginPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/LoginPage.fxml")));
+				Objects.requireNonNull(getClass().getResource("/fxml/account/CafeLoginPage.fxml")));
 			Scene scene = new Scene(loginPage);
 			Stage stage = (Stage) ((Label) mouseEvent.getSource()).getScene().getWindow();
 			stage.setScene(scene);

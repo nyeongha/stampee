@@ -25,14 +25,13 @@ import repository.MemberRepository;
 import repository.StampRepository;
 import service.CouponService;
 import service.MailService;
+import service.MemberService;
 import service.StampService;
-import service.UserService;
 import view.CouponView;
 
 public class CouponController implements Initializable {
 	private final CouponService couponService;
 	private final StampService stampService;
-	private final UserService userService;
 	private final CouponView couponView = new CouponView();
 
 	@FXML private VBox cafeListContainer;
@@ -44,14 +43,14 @@ public class CouponController implements Initializable {
 		MailService mailService = new MailService();
 		couponService = new CouponService(couponRepository, mailService);
 		stampService = new StampService(stampRepository, memberRepository, mailService);
-		userService = new UserService(memberRepository);
+		MemberService memberService = new MemberService(memberRepository);
 	}
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		// LoggedMemberDto loggedMemberDto = LoginSession.getInstance().getLoggedMemberDto();
 		// long memberId = loggedMemberDto.getMemberId();
-		long memberId = 39l;
+		long memberId = 39L;
 		List<MyCouponDto> myCoupons = couponService.getMyCoupon(memberId);
 		for (MyCouponDto myCoupon : myCoupons) {
 			addCafeItem(myCoupon.getCafeId(), memberId,
@@ -64,13 +63,11 @@ public class CouponController implements Initializable {
 
 	@FXML
 	public void handleShareButtonPress(long memberId, long cafeId) {
-		Member fromMember = userService.findMemberById(memberId);
+		Member fromMember = MemberService.findMemberById(memberId);
 		String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(showNumberPadPopup());
 		try {
 			stampService.shareStamp(fromMember, cafeId, toPhoneNumber, 1);
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		} catch (SQLException e) {
+		} catch (MessagingException | SQLException e) {
 			throw new RuntimeException(e);
 		}
 	}

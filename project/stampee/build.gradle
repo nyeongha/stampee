@@ -23,7 +23,7 @@ dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
     testImplementation 'org.junit.jupiter:junit-jupiter'
     implementation group: 'com.oracle.database.jdbc', name: 'ojdbc6', version: '11.2.0.4'
-    implementation 'ch.qos.logback:logback-classic:1.2.11'
+    implementation 'ch.qos.logback:logback-classic:1.4.12'
 
     // AssertJ 의존성 추가
     testImplementation 'org.assertj:assertj-core:3.24.2'
@@ -39,10 +39,9 @@ dependencies {
     implementation 'com.sun.mail:javax.mail:1.6.2'
 
     //lombok
-    implementation 'ch.qos.logback:logback-classic:1.2.11'
-    compileOnly 'org.projectlombok:lombok:1.18.24' // Lombok 추가
-    annotationProcessor 'org.projectlombok:lombok:1.18.24' // Lombok 추가
-
+    implementation 'ch.qos.logback:logback-classic:1.4.12'
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     // 지오코딩
     implementation 'com.google.code.geocoder-java:geocoder-java:0.16'
     implementation 'com.google.maps:google-maps-services:2.1.2'

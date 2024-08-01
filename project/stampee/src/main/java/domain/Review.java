@@ -2,6 +2,12 @@ package domain;
 
 import java.sql.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter
 public class Review {
 	private long reviewId;
 	private int rating;
@@ -33,29 +39,6 @@ public class Review {
 		this.contents = contents;
 	}
 
-	public long getId() {
-		return reviewId;
-	}
-
-	public int getRating() {
-		return rating;
-	}
-
-	public String getContents() {
-		return contents;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public Member getMember() {
-		return author;
-	}
-
-	public Cafe getCafe() {
-		return cafe;
-	}
 
 	@Override
 	public String toString() {
@@ -65,4 +48,18 @@ public class Review {
 			"Date: " + createTime + "\n" +
 			"Content: " + contents;
 	}
+
+	public Thread getMember() {
+		return null;
+	}
+
+	public Cafe getCafe() {
+		return cafe;
+	}
+
+	public long getReviewId() {
+		return reviewId;
+	}
+
+
 }

@@ -2,6 +2,11 @@ package domain;
 
 import java.sql.Date;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Stamp {
 	private long stampId;
 	private int count;
@@ -17,15 +22,4 @@ public class Stamp {
 		this.cafe = cafe;
 	}
 
-	public int getCount() {
-		return count;
-	}
-
-	public Member getMember() {
-		return member;
-	}
-
-	public Cafe getCafe() {
-		return cafe;
-	}
 }

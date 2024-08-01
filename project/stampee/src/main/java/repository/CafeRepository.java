@@ -12,15 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.html.parser.Entity;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
-import dto.response.LoggedCafeDto;
-import dto.response.LoggedCafeDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -39,7 +35,7 @@ public class CafeRepository {
 			conn = getConnection();
 			conn.setAutoCommit(false);  // 트랜잭션 시작
 
-			// 카페 정보 삽입
+			// 카페 점주 정보 삽입
 			pstmt = conn.prepareStatement(insertCafeSql, new String[] {"cafe_id"});
 			pstmt.setString(1, cafe.getName());
 			pstmt.setString(2, cafe.getAddress());
@@ -94,7 +90,7 @@ public class CafeRepository {
 	}
 
 	public Cafe login(String email, String password) {
-		String sql = "SELECT * FROM cafe WHERE email = ?";
+		String sql = "select * from cafe where email = ?";
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

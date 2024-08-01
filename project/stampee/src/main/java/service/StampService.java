@@ -36,7 +36,7 @@ public class StampService {
 		if(findUser == null){
 			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
-		stampRepository.save(findUser.getId(), cafeId, count);
+		stampRepository.save(findUser.getMemberId(), cafeId, count);
 	}
 
 	//친구에게 스탬프 공유하는 메서드
@@ -45,7 +45,7 @@ public class StampService {
 		if(toMember == null){
 			throw new NoSuchElementException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
-		if (stampRepository.updateStamp(cafeId, fromMember.getId(), toMember.getId(), count)) {	//성공한 경우
+		if (stampRepository.updateStamp(cafeId, fromMember.getMemberId(), toMember.getMemberId(), count)) {	//성공한 경우
 			mailService.sendMail(fromMember.getEmail(), "human9062@gmail.com", format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
 			mailService.sendMail(toMember.getEmail(), "human9062@gmail.com", format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
 		} else {	//실패 한 경우

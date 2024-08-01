@@ -26,7 +26,7 @@ public class Main extends Application {
 	// }
 
 	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/LoginPage.fxml"));
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/MemberSignupPage.fxml"));
 		Parent root = loader.load();
 		primaryStage.setScene(new Scene(root));
 				primaryStage.show();
@@ -117,7 +117,7 @@ public class Main extends Application {
 // 		// primaryStage.setScene(new Scene(root));
 // 		// primaryStage.show();
 //
-// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/LoginPage.fxml"));
+// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/templates/account/CafeLoginPage.fxml"));
 // 		Parent root = loader.load();
 // 		Scene scene = new Scene(root);
 // 		primaryStage.setTitle("Review Block Example");

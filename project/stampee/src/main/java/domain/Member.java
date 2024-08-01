@@ -2,6 +2,11 @@ package domain;
 
 import static config.ValidationRules.*;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 public class Member {
 	private long memberId;
 	private String userName;
@@ -10,12 +15,16 @@ public class Member {
 	private String phoneNumber;
 
 
-	private Member(long memberId, String userName, String email, String password, String phoneNumber) {
+	public Member(long memberId, String userName, String email, String password, String phoneNumber) {
 		this.memberId = memberId;
 		this.userName = userName;
 		this.email = email;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
+	}
+
+	public Member() {
+
 	}
 
 	private static void validateMember(String userName, String email, String password, String phoneNumber) {
@@ -42,23 +51,18 @@ public class Member {
 		return new Member(memberId, userName, email, password, phoneNumber);
 	}
 
-	public long getId() {
+	public long getMemberId() {
 		return memberId;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
-
-	public String getUserName() {
-		return userName;
+	@Override
+	public String toString() {
+		return "Member{" +
+			"memberId=" + memberId +
+			", userName='" + userName + '\'' +
+			", email='" + email + '\'' +
+			", password='" + password + '\'' +
+			", phoneNumber='" + phoneNumber + '\'' +
+			'}';
 	}
 }

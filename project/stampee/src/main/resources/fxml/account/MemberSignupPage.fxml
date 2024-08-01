@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="600.0" styleClass="main-container" stylesheets="@../../css/modern-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.UserSignupController">
+<VBox fx:id="dfdf" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="600.0" styleClass="main-container" stylesheets="@../../css/modern-style.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberSignupController">
     <children>
         <fx:include source="../reusables/Header.fxml" />
         <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="395.0" prefWidth="536.0" styleClass="body">
@@ -67,7 +67,7 @@
                 </VBox>
                 <HBox alignment="CENTER">
                     <children>
-                        <Button fx:id="signUpButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="회원가입">
+                        <Button fx:id="signUpButton" mnemonicParsing="false" prefHeight="39.0" prefWidth="208.0" text="회원가입" onAction="#handleSignUp">
                             <HBox.margin>
                                 <Insets left="50.0" right="50.0" />
                             </HBox.margin>

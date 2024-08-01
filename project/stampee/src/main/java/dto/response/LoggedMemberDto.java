@@ -1,5 +1,10 @@
 package dto.response;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Setter
+@Getter
 public class LoggedMemberDto {
 	private long memberId;
 	private String password;
@@ -18,37 +23,8 @@ public class LoggedMemberDto {
 	public LoggedMemberDto() {
 
 	}
-	public long getMemberId() {
-		return memberId;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public String getPhoneNumber() {
-		return phoneNumber;
-	}
 
 	public String getUsername() {
 		return username;
 	}
-
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
-	}
-
-
 }

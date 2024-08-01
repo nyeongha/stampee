@@ -13,17 +13,21 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import lombok.Getter;
 import repository.MemberRepository;
-import service.UserService;
+import service.MemberService;
 
 public class NumberPadController {
-	private final UserService userService;
+	private final MemberService memberService;
 	private StringBuilder inputBuilder = new StringBuilder();
+	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
+	@Getter
 	@FXML private TextField inputField;
 
-	public NumberPadController() {
+	public NumberPadController(MemberService memberService) {
+		this.memberService = memberService;
 		MemberRepository memberRepository = new MemberRepository();
-		userService = new UserService(memberRepository);
+		memberService = new MemberService(memberRepository);
 	}
 
 	@FXML
@@ -44,7 +48,7 @@ public class NumberPadController {
 	private void handleOK() {
 		try {
 			String toPhoneNumber = PhoneNumberFormatter.formatPhoneNumber(inputField.getText().trim());
-			userService.findMemberByPhoneNumber(toPhoneNumber);
+			memberService.findMemberByPhoneNumber(toPhoneNumber);
 		} catch (IllegalArgumentException e) {
 			showFailPopup();
 		}
@@ -82,11 +86,6 @@ public class NumberPadController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-
-	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
-	public TextField getInputField() {
-		return inputField;
 	}
 
 	@FXML

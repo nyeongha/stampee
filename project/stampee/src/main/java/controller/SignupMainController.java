@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class SignupMainController {
 	@FXML
@@ -30,7 +31,8 @@ public class SignupMainController {
 	@FXML
 	private void handleUserSignUpButtonAction(ActionEvent actionEvent) {
 		try {
-			Parent userSignUpPage = FXMLLoader.load(getClass().getResource("/fxml/account/UserSignupPage.fxml"));
+			Parent userSignUpPage = FXMLLoader.load(
+				Objects.requireNonNull(getClass().getResource("/fxml/account/MemberSignupPage.fxml")));
 			Scene scene1 = new Scene(userSignUpPage);
 
 			// Get the current stage (window)
