@@ -1,14 +1,17 @@
-.main-container {
-    -fx-background-color: white;
-    -fx-spacing: 10;
-    -fx-padding: 0 20 0 20;
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
 }
 
-.header {
-    -fx-padding: 10;
-    -fx-background-color: #f8f8f8;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 0 0 1 0;
+.root {
+    -fx-font-family: 'Jua';
+    -fx-background-color: #FFF0F5;
+}
+
+.main-container {
+    -fx-background-color: #FFF0F5;
+    -fx-spacing: 15;
+    -fx-padding: 0 20 0 20;
 }
 
 .logo {
@@ -20,14 +23,18 @@
 }
 
 .menu-items Label {
-    -fx-padding: 5 10;
+    -fx-padding: 8 15;
+    -fx-background-color: #FFEBD4;
+    -fx-text-fill: #FF69B4;
+    -fx-background-radius: 15;
     -fx-cursor: hand;
 }
 
 .stamp-container {
-    -fx-background-color: #f0f0f0;
+    -fx-background-color: #FFEBD4;
     -fx-padding: 20;
     -fx-alignment: center;
+    -fx-background-radius: 15;
 }
 
 .stamp-row {
@@ -36,8 +43,8 @@
 }
 
 .stamp {
-    -fx-fit-width: 50px;
-    -fx-fit-height: 50px;
+    -fx-fit-width: 60px;
+    -fx-fit-height: 60px;
     -fx-preserve-ratio: true;
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
@@ -52,20 +59,78 @@
     -fx-image: url('/image/github_logo_rec.png');
 }
 
-#mapView {
-    -fx-pref-height: 300;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
-}
 
 .info-container {
     -fx-padding: 20;
-    -fx-spacing: 10;
+    -fx-spacing: 15;
+    -fx-background-color: #FFEBD4;
+    -fx-background-radius: 15;
 }
 
 .info-container Label {
-    -fx-font-size: 14;
+    -fx-font-size: 16;
+    -fx-text-fill: #FF69B4;
 }
-#dfdf {
+
+Text {
+    -fx-fill: #FF69B4;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical {
     -fx-background-color: #FFEBD4;
+}
+
+.scroll-bar:vertical .thumb {
+    -fx-background-color: #FF69B4;
+}
+
+.cafe-name {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
+
+.cafe-address {
+    -fx-font-size: 18px;
+}
+
+.member-count {
+    -fx-spacing: 5;
+}
+
+.section-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-padding: 10 0;
+}
+
+.customer-scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.customer-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+.customer-card {
+    -fx-background-color: white;
+    -fx-padding: 10;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.customer-name {
+    -fx-font-weight: bold;
+}
+
+.customer-card Text {
+    -fx-fill: #FF69B4;
 }
