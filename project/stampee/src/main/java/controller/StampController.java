@@ -28,6 +28,7 @@ import service.MailService;
 import service.MapService;
 import service.ReviewService;
 import service.StampService;
+import session.MemberSession;
 
 public class StampController implements Initializable {
 	private final CouponService couponService;
@@ -89,10 +90,16 @@ public class StampController implements Initializable {
 		cafeRating.setText(ratingAvg + "");
 
 		setSignatureMenu(cafeId);
-		initReviewContainer(cafeId);
+
+		setReviewContainerByCafeId(cafeId);
 
 		mapService.initializeMap(myStamp.getCafeName(), myStamp.getCafeAddr());
+		setCreateReviewContainer(cafeId);
+
+		initReviewContainer(cafeId);
+
 		initCreateReviewContainer(memberId,cafeId);
+
 	}
 
 	private void setSignatureMenu(long cafeId) {
@@ -124,15 +131,40 @@ public class StampController implements Initializable {
 		}
 	}
 
+
+	private void setReviewContainerByCafeId(long cafeId) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
+			Pane reviewPane = loader.load();
+
+			ReviewController controller = loader.getController();
+			controller.init(cafeId, CAFE);
+
+
+			reviewContainer.setContent(reviewPane);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	private void initReviewContainer(long cafeId) {
 		ReviewController controller = loadController("/fxml/reviewListView.fxml");
 		controller.init(cafeId, CAFE);
+
 	}
 
 	private void initCreateReviewContainer(long memberId, long cafeId) {
 		CreateReviewController controller = loadController("/fxml/CreateReview.fxml");
 		controller.initData(memberId, cafeId);
 	}
+
+
+	private void setCreateReviewContainer(long cafeId){
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
+		try {
+			AnchorPane createReview = loader.load(); // 루트 노드가 VBox인 경우
+			CreateReviewController controller = loader.getController();
+			controller.initData(MemberSession.getInstance().getLoggedMemberDto().getMemberId(),cafeId);
+			createReviewContainer.getChildren().setAll(createReview);
 
 	private <T> T loadController(String path) {
 		try {
@@ -144,6 +176,7 @@ public class StampController implements Initializable {
 				reviewContainer.setContent(pane);
 			}
 			return loader.getController();
+
 		} catch (IOException e) {
 			throw new RuntimeException("Error loading FXML file: " + path, e);
 		}
