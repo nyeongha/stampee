@@ -42,7 +42,6 @@ public class StampRepository {
 			+ "join cafe c on s.cafe_id = c.cafe_id "
 			+ "where s.member_id = ? "
 			+ "and s.cafe_id = ?";
-
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

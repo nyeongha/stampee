@@ -245,7 +245,6 @@ public class ReviewRepository {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setLong(1, cafeId);
-
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
