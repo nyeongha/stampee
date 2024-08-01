@@ -129,9 +129,7 @@ public class ReviewRepository {
 	}
 
 	public List<Review> findReviewsByMemberId(long memberId) {        //멤버별 리뷰 조회,서비스 반영,테스트 완
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+
 
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
 			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
@@ -142,52 +140,7 @@ public class ReviewRepository {
 			"WHERE m.member_id = ? "
 			+ "ORDER BY r.create_time";
 
-		List<Review> reviews = new ArrayList<>();
-
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, memberId);
-
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				Member member = Member.createMember(
-					rs.getLong("member_id"),
-					rs.getString("username"),
-					rs.getString("member_password"),
-					rs.getString("member_email"),
-					rs.getString("phone_number")
-				);
-
-				Cafe cafe = new Cafe(
-					rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getString("address"),
-					rs.getString("cafe_password"),
-					rs.getString("cafe_email"),
-					rs.getString("contact")
-				);
-
-				Review review = new Review(
-					rs.getLong("review_id"),
-					rs.getInt("rating"),
-					rs.getString("contents"),
-					rs.getDate("create_time"),
-					member,
-					cafe
-				);
-				reviews.add(review);
-			}
-
-		} catch (SQLException e) {
-			System.err.println("SQL Exception: " + e.getMessage());
-			throw new RuntimeException(e);
-		} finally {
-			close(conn, pstmt, rs);
-		}
-
-		return reviews;
+		return whileStatement(sql,memberId);
 	}
 
 	public float cafeAvgOfRating(long cafeId) {
@@ -221,9 +174,7 @@ public class ReviewRepository {
 	}
 
 	public List<Review> findReviewsByCafeId(long cafeId) {            //카페리뷰조회,서비스 반영
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
+
 
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
 			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
@@ -233,13 +184,20 @@ public class ReviewRepository {
 			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
 			"WHERE c.cafe_id = ? "
 			+ "ORDER BY r.create_time";
+		return whileStatement(sql,cafeId);
 
+	}
+
+	public List<Review> whileStatement(String sql, Long id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
 		List<Review> reviews = new ArrayList<>();
 		try {
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, cafeId);
+			pstmt.setLong(1, id);
 
 			rs = pstmt.executeQuery();
 
