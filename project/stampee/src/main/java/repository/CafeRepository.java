@@ -110,6 +110,7 @@ public class CafeRepository {
 				if (verifyPassword(password, storedPassword)) {
 					// 성공적으로 인증된 경우, Entity에 정보 저장
 					Cafe cafe = new Cafe();
+					cafe.setCafeId(rs.getLong("cafe_id"));
 					cafe.setEmail(email);
 					cafe.setPassword(storedPassword);
 					cafe.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
@@ -199,8 +200,8 @@ public class CafeRepository {
 				CafeMemberInfoDto memberInfo = CafeMemberInfoDto.createCafeMemberDto(
 					rs.getLong("member_id"),
 					rs.getString("username"),
-					rs.getLong("stamp_cnt"),
-					rs.getLong("coupon_cnt")
+					rs.getLong("stamp_count"),
+					rs.getLong("coupon_count")
 				);
 				memberInfos.add(memberInfo);
 			}
