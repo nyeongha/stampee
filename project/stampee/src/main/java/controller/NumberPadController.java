@@ -7,19 +7,17 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
-import service.UserService;
-import view.PopupView;
+import service.MemberService;
 
 public class NumberPadController {
-	private final UserService userService;
+	private final MemberService memberService;
 	private StringBuilder inputBuilder = new StringBuilder();
-	private final PopupView popupView = new PopupView();
 
 	@FXML private TextField inputField;
 
 	public NumberPadController() {
 		MemberRepository memberRepository = new MemberRepository();
-		userService = new UserService(memberRepository);
+		memberService = new MemberService(memberRepository);
 	}
 
 	@FXML
@@ -41,7 +39,6 @@ public class NumberPadController {
 		inputField.getScene().getWindow().hide();
 	}
 
-	// FMXL 파일에 정의된 Textfield' 객체를 메서드를 통해 접근하기 위해
 	public TextField getInputField() {
 		return inputField;
 	}

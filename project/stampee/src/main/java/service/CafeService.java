@@ -25,11 +25,8 @@ public class CafeService {
 			cafeRepository.cafeSignUp(cafe, menu1, menu2);
 			log.info("Successfully signed up cafe: {}", cafe.getEmail());
 			return true; // 성공적으로 회원가입 완료
-		} catch (IllegalArgumentException e) {
-			log.error("Failed to sign up cafe due to invalid arguments: {}", cafe.getEmail(), e);
-			return false; // 회원가입 실패
 		} catch (Exception e) {
-			log.error("Failed to sign up cafe due to unexpected error: {}", cafe.getEmail(), e);
+			log.error("Failed to sign up cafe due to invalid arguments: {}", cafe.getEmail(), e);
 			return false; // 회원가입 실패
 		}
 	}
@@ -41,6 +38,7 @@ public class CafeService {
 			//엔티티를 DTO로 변환
 			LoggedCafeDto loggedCafeDto = new LoggedCafeDto();
 			loggedCafeDto.setEmail(cafe.getEmail());
+			loggedCafeDto.setCafeId(cafe.getCafeId());
 			loggedCafeDto.setName(cafe.getName());
 			loggedCafeDto.setPassword(cafe.getPassword());
 			loggedCafeDto.setAddress(cafe.getAddress());

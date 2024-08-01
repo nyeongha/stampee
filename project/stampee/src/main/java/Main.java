@@ -10,19 +10,19 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-	// @Override
-	// public void start(Stage primaryStage) {
-	// 	try {
-	// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
-	// 		VBox root = loader.load();
-	// 		Scene scene = new Scene(root);
-	// 		primaryStage.setScene(scene);
-	// 		primaryStage.setTitle("Coupon Management");
-	// 		primaryStage.show();
-	// 	} catch(Exception e) {
-	// 		e.printStackTrace();
-	// 	}
-	// }
+
+
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/CafeLoginPage.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	public void start(Stage primaryStage) throws Exception {
@@ -42,12 +42,11 @@ public class Main extends Application {
 
 	}
 
-
+	//
 	// @Override
 	// public void start(Stage primaryStage) throws Exception{
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
 	// 	Parent root = loader.load();
-	// 	primaryStage.setTitle("Stamp Keypad");
 	// 	Scene scene = new Scene(root, 600, 800);
 	// 	primaryStage.setScene(scene);
 	// 	primaryStage.show();

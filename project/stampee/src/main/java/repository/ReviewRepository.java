@@ -140,7 +140,9 @@ public class ReviewRepository {
 			"WHERE m.member_id = ? "
 			+ "ORDER BY r.create_time";
 
+
 		return whileStatement(sql,memberId);
+
 	}
 
 	public float cafeAvgOfRating(long cafeId) {
@@ -169,7 +171,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 	}
 
@@ -197,6 +199,7 @@ public class ReviewRepository {
 
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
+
 			pstmt.setLong(1, id);
 
 			rs = pstmt.executeQuery();
@@ -232,7 +235,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, rs);
+			close(conn, pstmt, null);
 		}
 		return reviews;
 	}

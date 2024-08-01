@@ -1,53 +1,49 @@
 package controller;
 
 import java.io.IOException;
-import java.util.Objects;
 
-import domain.Cafe;
-import javafx.event.ActionEvent;
+import domain.Member;
+import javafx.event.ActionEvent; // JavaFX 이벤트 임포트
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import service.CafeService;
-import repository.CafeRepository;
+import repository.MemberRepository;
+import service.MemberService;
 
-public class CafeSignupController {
+public class MemberSignupController {
+
 	@FXML private TextField emailField;
 	@FXML private TextField nameField;
-	@FXML private TextField addressField;
 	@FXML private TextField passwordField;
 	@FXML private TextField contactField;
-	@FXML private TextField menuField1;
-	@FXML private TextField menuField2;
+	@FXML private Button signUpButton;
 
-	private final CafeService cafeService;
+	private final MemberService memberService;
 
-	public CafeSignupController() {
-		this.cafeService = new CafeService(new CafeRepository());
+	public MemberSignupController() {
+		MemberRepository memberRepository = new MemberRepository();
+		memberService = new MemberService(memberRepository);
 	}
 
 	@FXML
-	private void handleSignUp(ActionEvent event) {
+	public void handleSignUp(ActionEvent event) {
 		String email = emailField.getText();
 		String name = nameField.getText();
-		String address = addressField.getText();
 		String password = passwordField.getText();
 		String contact = contactField.getText();
-		String menu1 = menuField1.getText();
-		String menu2 = menuField2.getText();
 
-		if (email.isEmpty() || name.isEmpty() || address.isEmpty() || password.isEmpty() || contact.isEmpty() || menu1.isEmpty() || menu2.isEmpty()) {
+		if (email.isEmpty() || name.isEmpty() || password.isEmpty() || contact.isEmpty()) {
 			showAlert("Error", "모든 필드를 입력해주세요.");
 			return;
 		}
 
-		Cafe cafe = new Cafe(-1, name, address, password, email, contact);
-
-		boolean success = cafeService.cafeSignUp(cafe, menu1, menu2);
+		Member member = new Member(-1, name, password, email, contact);
+		boolean success = memberService.memberSignUp(member);
 
 		if (success) {
 			showAlert("Success", "회원가입이 성공적으로 완료되었습니다!");
@@ -60,8 +56,11 @@ public class CafeSignupController {
 
 	private void navigateToLoginPage(ActionEvent event) {
 		try {
-			Parent loginPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/CafeLoginPage.fxml")));
+			System.out.println("여기까지 왁다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~````````````````````");
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/MemberLoginPage.fxml"));
+			System.out.println("화면까지호출");
+			// loader.setControllerFactory(param -> new MemberSignupController());
+			Parent loginPage = loader.load();
 			Scene loginScene = new Scene(loginPage);
 			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();
 			appStage.setScene(loginScene);
@@ -71,21 +70,18 @@ public class CafeSignupController {
 		}
 	}
 
-	private void clearFields() {
-		emailField.clear();
-		nameField.clear();
-		addressField.clear();
-		passwordField.clear();
-		contactField.clear();
-		menuField1.clear();
-		menuField2.clear();
-	}
-
 	private void showAlert(String title, String message) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
 		alert.setContentText(message);
 		alert.showAndWait();
+	}
+
+	private void clearFields() {
+		emailField.clear();
+		nameField.clear();
+		passwordField.clear();
+		contactField.clear();
 	}
 }

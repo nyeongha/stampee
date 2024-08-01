@@ -12,7 +12,6 @@ public class CafeSession {
 	private final LoggedCafeDto loggedCafeDto;
 	private static final Logger LOGGER = Logger.getLogger(CafeSession.class.getName());
 
-
 	public CafeSession(LoggedCafeDto loggedCafeDto) {
 		this.loggedCafeDto = loggedCafeDto;
 	}
