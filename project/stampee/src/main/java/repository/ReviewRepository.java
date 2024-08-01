@@ -24,48 +24,7 @@ public class ReviewRepository {
 			"JOIN member m ON r.member_id = m.member_id " +
 			"JOIN cafe c ON c.cafe_id = r.cafe_id "
 			+ "ORDER BY r.create_time";
-
-		List<Review> reviews = new ArrayList<>();
-
-		try (
-			Connection conn = getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);
-			ResultSet rs = pstmt.executeQuery()) {
-
-			while (rs.next()) {
-
-				Member member = Member.createMember(
-					rs.getLong("member_id"),
-					rs.getString("username"),
-					rs.getString("member_password"),
-					rs.getString("member_email"),
-					rs.getString("phone_number")
-				);
-
-				Cafe cafe = new Cafe(
-					rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getString("address"),
-					rs.getString("cafe_password"),
-					rs.getString("cafe_email"),
-					rs.getString("contact")
-				);
-
-				Review review = new Review(
-					rs.getLong("review_id"),
-					rs.getInt("rating"),
-					rs.getString("contents"),
-					rs.getDate("create_time"),
-					member,
-					cafe
-				);
-				reviews.add(review);
-			}
-		} catch (SQLException e) {
-			throw new RuntimeException("Database error", e);
-		}
-
-		return reviews;
+		return whileStatement(sql,1000_000L);
 	}
 
 	public void insertReview(Review review) {        //리뷰 생성,서비스 반영,테스트 완
@@ -130,7 +89,6 @@ public class ReviewRepository {
 
 	public List<Review> findReviewsByMemberId(long memberId) {        //멤버별 리뷰 조회,서비스 반영,테스트 완
 
-
 		String sql = "SELECT r.review_id, r.rating, r.contents, r.create_time, m.username, " +
 			"m.member_id, m.password AS member_password, m.email AS member_email, m.phone_number, " +
 			"c.cafe_id, c.name, c.address, c.password AS cafe_password, c.email AS cafe_email, c.contact " +
@@ -139,7 +97,6 @@ public class ReviewRepository {
 			"JOIN cafe c ON c.cafe_id = r.cafe_id " +
 			"WHERE m.member_id = ? "
 			+ "ORDER BY r.create_time";
-
 
 		return whileStatement(sql,memberId);
 
@@ -171,7 +128,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -200,7 +157,9 @@ public class ReviewRepository {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setLong(1, id);
+			if (id!=1000_000L){		//findAllReviews를 제외
+				pstmt.setLong(1, id);
+			}
 
 			rs = pstmt.executeQuery();
 
@@ -235,7 +194,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 		return reviews;
 	}

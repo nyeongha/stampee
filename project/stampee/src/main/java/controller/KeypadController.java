@@ -6,6 +6,7 @@ import static java.lang.Integer.*;
 import static javafx.scene.control.Alert.AlertType.*;
 import static util.SceneNavigator.*;
 
+import dto.response.LoggedCafeDto;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
@@ -18,6 +19,7 @@ import repository.MemberRepository;
 import repository.StampRepository;
 import service.MailService;
 import service.StampService;
+import session.CafeSession;
 import view.PopupView;
 
 import java.sql.*;
@@ -84,8 +86,8 @@ public class KeypadController {
 			return;
 		}
 		try {
-			// LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
-			stampService.saveStamp(1l, formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
+			LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
+			stampService.saveStamp(cafe.getCafeId(), formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
 			popupView.showSuccessPopup("스탬프 적립 성공");
 		} catch (IllegalArgumentException | SQLException e) {
 			popupView.showFailPopup(e.getMessage());

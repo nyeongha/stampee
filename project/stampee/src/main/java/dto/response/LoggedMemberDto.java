@@ -1,10 +1,14 @@
 package dto.response;
 
+import domain.Member;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
 @Setter
 @Getter
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 public class LoggedMemberDto {
 	private long memberId;
 	private String password;
@@ -12,19 +16,8 @@ public class LoggedMemberDto {
 	private String phoneNumber;
 	private String username;
 
-	public LoggedMemberDto(long memberId, String password, String email, String phoneNumber, String username) {
-		this.memberId = memberId;
-		this.password = password;
-		this.email = email;
-		this.phoneNumber = phoneNumber;
-		this.username = username;
-	}
-
-	public LoggedMemberDto() {
-
-	}
-
-	public String getUsername() {
-		return username;
+	public static LoggedMemberDto createLoggedMemberDto(Member member){
+		return new LoggedMemberDto(member.getMemberId(), member.getPassword(), member.getEmail(),
+			member.getPhoneNumber(), member.getUserName());
 	}
 }

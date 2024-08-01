@@ -64,7 +64,7 @@ public class StampRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 	}
 
