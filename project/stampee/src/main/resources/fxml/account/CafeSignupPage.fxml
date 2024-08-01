@@ -50,7 +50,7 @@
                                 <Insets bottom="10.0" />
                             </VBox.margin>
                         </Text>
-                        <TextField fx:id="passwordField" prefWidth="520.0" promptText="비밀번호를 입력하세요" styleClass="text-field" />
+                        <PasswordField fx:id="passwordField" prefWidth="520.0" promptText="비밀번호를 입력하세요" styleClass="text-field" />
                     </children>
                 </VBox>
                 <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">

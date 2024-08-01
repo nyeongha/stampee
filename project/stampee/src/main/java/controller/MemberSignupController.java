@@ -16,10 +16,10 @@ import service.MemberService;
 
 public class MemberSignupController {
 
+	@FXML private TextField userNameField;
+	@FXML private TextField phoneNumberField;
 	@FXML private TextField emailField;
-	@FXML private TextField nameField;
 	@FXML private TextField passwordField;
-	@FXML private TextField contactField;
 
 	private final MemberService memberService;
 
@@ -31,16 +31,16 @@ public class MemberSignupController {
 	@FXML
 	public void handleSignUp(ActionEvent event) {
 		String email = emailField.getText();
-		String name = nameField.getText();
+		String userName = userNameField.getText();
 		String password = passwordField.getText();
-		String contact = contactField.getText();
+		String phoneNumber = phoneNumberField.getText();
 
-		if (email.isEmpty() || name.isEmpty() || password.isEmpty() || contact.isEmpty()) {
+		if (email.isEmpty() || userName.isEmpty() || password.isEmpty() || phoneNumber.isEmpty()) {
 			showAlert("Error", "모든 필드를 입력해주세요.");
 			return;
 		}
 
-		Member member = new Member(-1, name, password, email, contact);
+		Member member = new Member(-1, userName, password, email, phoneNumber);
 		boolean success = memberService.memberSignUp(member);
 
 		if (success) {
@@ -75,8 +75,8 @@ public class MemberSignupController {
 
 	private void clearFields() {
 		emailField.clear();
-		nameField.clear();
+		userNameField.clear();
 		passwordField.clear();
-		contactField.clear();
+		phoneNumberField.clear();
 	}
 }
