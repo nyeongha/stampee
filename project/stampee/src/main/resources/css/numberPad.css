@@ -25,7 +25,7 @@
 }
 
 .number-pad-button:hover {
-    -fx-background-color: #FF69B4; /* Darker green */
+    -fx-background-color: #FF69B4;
 }
 
 .number-pad-button:pressed {

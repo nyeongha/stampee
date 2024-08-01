@@ -5,12 +5,12 @@
 
 .root {
     -fx-font-family: 'Jua';
-    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #e0e0e0);
+    -fx-background-color: linear-gradient(to bottom, #f0f0f0, #FFF0F5);
     -fx-padding: 20;
 }
 
 .title-background {
-    -fx-background-color: #C8761A;
+    -fx-background-color: #FFB6C1;
     -fx-background-radius: 10;
     -fx-padding: 10 20;
 }
@@ -60,8 +60,8 @@
 }
 
 .submit-button {
-    -fx-background-color: linear-gradient(to bottom, #99ff99, #80ff80);
-    -fx-text-fill: #333;
+    -fx-background-color: linear-gradient(to bottom, #ff9999, #ff8080);
+    -fx-text-fill: white;
 }
 
 .keypad-grid {
@@ -84,14 +84,14 @@
     -fx-font-size: 18px;
     -fx-min-width: 120px;
     -fx-min-height: 45px;
-    -fx-background-color: #4CAF50;
+    -fx-background-color: #FF69B4;
     -fx-text-fill: white;
     -fx-background-radius: 22.5;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 3, 0, 0, 1);
 }
 
 .toggle-button:hover {
-    -fx-background-color: #45a049;
+    -fx-background-color: #FF69B4;
     -fx-cursor: hand;
 }
 
@@ -99,11 +99,11 @@
     -fx-font-size: 14px;
     -fx-min-width: 100px;
     -fx-min-height: 30px;
-    -fx-background-color: #C8761A;
+    -fx-background-color: #FFB6C1;
     -fx-text-fill: white;
     -fx-background-radius: 5;
 }
 
 .action-button:hover {
-    -fx-background-color: #45a049;
+    -fx-background-color: #FF69B4;
 }
