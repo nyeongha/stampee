@@ -18,11 +18,19 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import repository.CafeRepository;
-
 public class CafeMainPageController implements Initializable {
 
 	@FXML
 	private HBox cafeMembersHbox;
+
+	@FXML
+	private Text numberOfMembers;
+
+	@FXML
+	private Text cafeName;
+
+	@FXML
+	private Text cafeAddress;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -31,8 +39,17 @@ public class CafeMainPageController implements Initializable {
 		LoggedCafeDto loggedCafeDto = instance.getLoggedCafeDto();
 
 		CafeRepository cafeRepository = new CafeRepository();
+
 		List<CafeMemberInfoDto> memberInfos = cafeRepository.findCafeMemberInfoById(loggedCafeDto.getCafeId());
 
+		renderCafeMemberCards(memberInfos);
+
+		numberOfMembers.setText(String.valueOf(memberInfos.size()));
+		cafeName.setText(loggedCafeDto.getName());
+		cafeAddress.setText(loggedCafeDto.getAddress());
+	}
+
+	public void renderCafeMemberCards(List<CafeMemberInfoDto> memberInfos){
 		for (CafeMemberInfoDto memberInfo : memberInfos){
 			VBox memberVBox = new VBox(10);
 			memberVBox.setStyle("-fx-border-color: black; -fx-border-width: 1; -fx-background-color: white;");
@@ -68,4 +85,5 @@ public class CafeMainPageController implements Initializable {
 			cafeMembersHbox.getChildren().add(memberVBox);
 		}
 	}
+
 }
