@@ -7,7 +7,7 @@ import java.util.List;
 
 import javax.mail.MessagingException;
 
-import dto.ExpiredCouponDto;
+import dto.response.ExpiredCouponDto;
 import dto.response.MyCouponDto;
 import repository.CouponRepository;
 
