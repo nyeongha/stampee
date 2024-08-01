@@ -21,13 +21,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import repository.ReviewRepository;
 import service.ReviewService;
-import session.MemberSession;
 
 public class ReviewController {
 	private static final String REVIEW_LABEL_STYLE = "-fx-padding: 10px;";
 	private static final double SPACING = 10;
 	private static final String BLOCK_CONTAINER_STYLE = "-fx-padding: 10px; -fx-border-color: #FFB6C1; -fx-border-width: 1px;";
-	private static final Logger log = LoggerFactory.getLogger(ReviewController.class);
+
 	@FXML private ScrollPane scrollPane;
 	@FXML private FlowPane reviewFlowPane;
 
@@ -80,26 +79,21 @@ public class ReviewController {
 	}
 
 	public void handleDeleteReview(Review review) {
-
-
 		boolean confirm = showConfirmDialog("리뷰 삭제", "정말로 이 리뷰를 삭제하시겠습니까?");
 		if (!confirm) {
 			return;
 		}
 
 		try {
-			boolean deleted = reviewService.deleteReview(review.getReviewId(),1L);
+			boolean deleted = reviewService.deleteReview(review.getReviewId(), currentId);
 			if (deleted) {
 				refreshReviews();
 				showAlert("삭제 성공", "리뷰가 성공적으로 삭제되었습니다.");
-				log.info("Review deleted: reviewId={}, memberId={}", review.getReviewId(),1L);
 			} else {
 				showAlert("삭제 실패", "리뷰를 삭제할 수 없습니다. 자신의 리뷰인지 확인해주세요.");
-				log.warn("Review deletion failed: reviewId={}, memberId={}", review.getReviewId(), review.getReviewId(),1L);
 			}
 		} catch (Exception e) {
 			showAlert("오류 발생", "리뷰 삭제 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
-			log.error("Error occurred while deleting review: reviewId={}, memberId={}", review.getReviewId(),review.getReviewId(),1L, e);
 		}
 	}
 
@@ -127,7 +121,6 @@ public class ReviewController {
 
 	private boolean showConfirmDialog(String title, String content) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-
 
 		alert.setTitle(title);
 		alert.setHeaderText(null);

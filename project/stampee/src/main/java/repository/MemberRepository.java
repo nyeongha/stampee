@@ -9,12 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
 import domain.Member;
-import dto.response.CafeMemberInfoDto;
-import dto.response.MemberInfoDto;
 
 public class MemberRepository {
 	public void memberSignUp(Member member) {
@@ -63,14 +59,8 @@ public class MemberRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					// 성공적으로 인증된 경우, Entity에 정보 저장
-					Member member = new Member();
-					member.setEmail(email);
-					member.setMemberId(rs.getLong("member_id"));
-					member.setPassword(storedPassword); // 데이터베이스 필드에 따라 수정
-					member.setUserName(rs.getString("username")); // 데이터베이스 필드에 따라 수정
-					member.setPhoneNumber(rs.getString("phone_number")); // 데이터베이스 필드에 따라 수정
-					return member;
+					return new Member(rs.getLong("member_id"), rs.getString("username"), email, storedPassword,
+						rs.getString("phone_number"));
 				}
 			}
 		} catch (SQLException | NoSuchAlgorithmException e) {
@@ -163,51 +153,5 @@ public class MemberRepository {
 		} finally {
 			close(conn, pstmt,null);
 		}
-	}
-
-	public List<MemberInfoDto> findMemberInfoById(long memberId) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "select c.cafe_id, c.name, a.coupon_count, s.count as stamp_count "
-			+ "from (select cafe_id, count(*) as coupon_count "
-			+ "    from coupon "
-			+ "    where member_id = ?  "
-			+ "    group by cafe_id) a join cafe c "
-			+ "on a.cafe_id = c.cafe_id "
-			+ "join stamp s "
-			+ "on a.cafe_id = s.cafe_id "
-			+ "and s.member_id = ? ";
-
-
-
-		List<MemberInfoDto> memberInfos = new ArrayList<>();
-
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, memberId);
-			pstmt.setLong(2, memberId);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				MemberInfoDto memberInfo = MemberInfoDto.createMemberDto(
-					rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getLong("coupon_count"),
-					rs.getLong("stamp_count")
-				);
-				memberInfos.add(memberInfo);
-			}
-			return memberInfos;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			// log.info("db error", e);
-			throw new RuntimeException();
-		} finally {
-			close(conn, pstmt, rs);
-		}
-
 	}
 }

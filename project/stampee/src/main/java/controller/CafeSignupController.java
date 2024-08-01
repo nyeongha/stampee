@@ -1,5 +1,7 @@
 package controller;
 
+import static util.Popup.*;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -9,7 +11,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import service.CafeService;
@@ -41,7 +42,7 @@ public class CafeSignupController {
 		String menu2 = menuField2.getText();
 
 		if (email.isEmpty() || name.isEmpty() || address.isEmpty() || password.isEmpty() || contact.isEmpty() || menu1.isEmpty() || menu2.isEmpty()) {
-			showAlert("Error", "모든 필드를 입력해주세요.");
+			showFailPopup("모든 필드를 입력해주세요.");
 			return;
 		}
 
@@ -50,11 +51,11 @@ public class CafeSignupController {
 		boolean success = cafeService.cafeSignUp(cafe, menu1, menu2);
 
 		if (success) {
-			showAlert("Success", "회원가입이 성공적으로 완료되었습니다!");
+			showSuccessPopup("회원가입이 성공");
 			clearFields();
 			navigateToLoginPage(event);
 		} else {
-			showAlert("Error", "회원가입에 실패했습니다. 다시 시도해주세요.");
+			showFailPopup("회원가입에 실패했습니다.\n 다시 시도해주세요.");
 		}
 	}
 
@@ -67,7 +68,7 @@ public class CafeSignupController {
 			appStage.setScene(loginScene);
 			appStage.show();
 		} catch (IOException e) {
-			showAlert("Error", "로그인 페이지로 이동하는 동안 오류가 발생했습니다.");
+			showFailPopup("오류가 발생했습니다.");
 		}
 	}
 
@@ -79,13 +80,5 @@ public class CafeSignupController {
 		contactField.clear();
 		menuField1.clear();
 		menuField2.clear();
-	}
-
-	private void showAlert(String title, String message) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
 	}
 }

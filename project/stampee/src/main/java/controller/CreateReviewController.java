@@ -1,43 +1,33 @@
 package controller;
 
+import static util.Popup.*;
+
 import java.sql.Date;
 import java.time.LocalDateTime;
 
 import domain.Cafe;
 import domain.Member;
-import domain.Review;
-import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
-import lombok.RequiredArgsConstructor;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
-import session.MemberSession;
 import validation.ReviewValidationResult;
 
 public class CreateReviewController {
-	@FXML
-	private ComboBox<Float> rating;
+	@FXML private ComboBox<Float> rating;
+	@FXML private TextArea reviewContents;
+	@FXML private Button submitReviewButton;
+	@FXML private AnchorPane reviewPane;
 
-	@FXML
-	private TextArea reviewContents;
-
-	@FXML
-	private Button submitReviewButton;
-
-	@FXML
-	private AnchorPane reviewPane;
-	private ReviewService reviewService;
-	private MemberRepository memberRepository;
-	private CafeRepository cafeRepository;
-	private ReviewRepository reviewRepository;
+	private final ReviewService reviewService;
+	private final MemberRepository memberRepository;
+	private final CafeRepository cafeRepository;
+	private final ReviewRepository reviewRepository;
 
 	// 멤버 세션 객체
 	private Member loggedInMember = null;
@@ -72,7 +62,7 @@ public class CreateReviewController {
 		// 유효성 검사
 		ReviewValidationResult validationResult = validateReview(selectedRating, contents);
 		if (validationResult != ReviewValidationResult.VALID) {
-			showAlert("Error", validationResult.getMessage());
+			showFailPopup(validationResult.getMessage());
 			return;
 		}
 
@@ -93,25 +83,13 @@ public class CreateReviewController {
 		if (selectedRating == null) {
 			return ReviewValidationResult.NO_RATING;
 		}
-
 		if (contents.trim().isEmpty()) {
 			return ReviewValidationResult.EMPTY_CONTENTS;
 		}
-
 		if (loggedInMember == null || selectedCafe == null) {
 			return ReviewValidationResult.INVALID_MEMBER_OR_CAFE;
 		}
-
 		return ReviewValidationResult.VALID;
-	}
-
-	private void showAlert(String title, String message) {
-		// 오류 메시지를 표시하는 간단한 알림창
-		Alert alert = new Alert(Alert.AlertType.ERROR);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
 	}
 }
 
