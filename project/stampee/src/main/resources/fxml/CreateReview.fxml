@@ -4,19 +4,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateReviewController" stylesheets="/css/createReview.css">
+<AnchorPane prefHeight="222.0" prefWidth="550.0" stylesheets="/css/createReview.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CreateReviewController">
    <children>
-       <Button fx:id="toggleReviewButton" layoutX="112.0" layoutY="20.0" mnemonicParsing="false" text="리뷰 작성하기" onAction="#handleToggleReview" styleClass="toggle-review-button"/>
-       <AnchorPane fx:id="reviewPane" layoutX="0.0" layoutY="60.0" prefHeight="300.0" prefWidth="600.0" visible="false">
+<!--       <Button fx:id="toggleReviewButton" layoutX="112.0" layoutY="20.0" mnemonicParsing="false" text="리뷰 작성하기" onAction="#handleToggleReview" styleClass="toggle-review-button"/>-->
+<!--       <ToggleButton fx:id="toggleButton" text="Toggle Me" />-->
+       <Text layoutX="14.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="toggle-review-button" text="리뷰 작성란" />
+               <TextArea fx:id="reviewContents" layoutX="14.0" layoutY="77.0" prefHeight="109.0" prefWidth="502.0" style="-fx-background-color: #FFB6C1;" />
+               <ComboBox fx:id="rating" layoutX="14.0" layoutY="44.0" prefWidth="150.0" promptText="별점" styleClass="toggle-review-button" />
+               <Button fx:id="submitReviewButton" layoutX="448.0" layoutY="197.0" mnemonicParsing="false" styleClass="toggle-review-button" text="리뷰 작성" />
 
-               <Text layoutX="112.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="리뷰 작성란"  styleClass="toggle-review-button"/>
-               <TextArea fx:id="reviewContents" layoutX="112.0" layoutY="145.0" prefHeight="109.0" prefWidth="360.0" styleClass="toggle-review-button"/>
-               <ComboBox fx:id="rating" layoutX="112.0" layoutY="114.0" prefWidth="150.0" promptText="별점" styleClass="toggle-review-button"/>
-               <Button fx:id="submitReviewButton" layoutX="404.0" layoutY="270.0" mnemonicParsing="false" text="리뷰 작성" styleClass="toggle-review-button"/>
-
-       </AnchorPane>
    </children>
 </AnchorPane>
-
-
-

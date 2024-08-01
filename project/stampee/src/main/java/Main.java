@@ -1,8 +1,10 @@
+import controller.CreateReviewController;
 import controller.StampController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -49,7 +51,7 @@ public class Main extends Application {
 
 			// Initialize data if necessary
 			StampController controller = loader.getController();
-			controller.initData(38, 1L);  // Example memberId and cafeId, replace with actual values
+			controller.initData(10, 10);  // Example memberId and cafeId, replace with actual values
 
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
@@ -59,6 +61,21 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 	}
+	// @Override
+	// public void start(Stage primaryStage) throws Exception {
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
+	// 	Parent root = loader.load();
+	//
+	// 	// CreateReviewController의 인스턴스 가져오기
+	// 	CreateReviewController controller = loader.getController();
+	//
+	// 	// initData 메서드를 호출하여 memberId와 cafeId 초기화
+	// 	controller.initData(9L, 2L); // 예시로 memberId 9와 cafeId 2 사용
+	//
+	// 	primaryStage.setTitle("Review Application");
+	// 	primaryStage.setScene(new Scene(root));
+	// 	primaryStage.show();
+	// }
 
 	public static void main(String[] args) {
 		launch(args);
