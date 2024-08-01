@@ -177,6 +177,7 @@ public class MemberRepository {
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt,null);
+
 		}
 	}
 }
