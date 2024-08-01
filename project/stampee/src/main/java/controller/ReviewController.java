@@ -1,11 +1,8 @@
-package controller;// package controller;
+package controller;
 import static domain.ReviewType.*;
 
 import java.util.List;
 import java.util.Optional;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import domain.Review;
 import domain.ReviewType;
@@ -27,7 +24,7 @@ public class ReviewController {
 	private static final String REVIEW_LABEL_STYLE = "-fx-padding: 10px;";
 	private static final double SPACING = 10;
 	private static final String BLOCK_CONTAINER_STYLE = "-fx-padding: 10px; -fx-border-color: #FFB6C1; -fx-border-width: 1px;";
-	private static final Logger log = LoggerFactory.getLogger(ReviewController.class);
+
 	@FXML private ScrollPane scrollPane;
 	@FXML private FlowPane reviewFlowPane;
 
@@ -92,14 +89,11 @@ public class ReviewController {
 			if (deleted) {
 				refreshReviews();
 				showAlert("삭제 성공", "리뷰가 성공적으로 삭제되었습니다.");
-				log.info("Review deleted: reviewId={}, memberId={}", review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId());
 			} else {
 				showAlert("삭제 실패", "리뷰를 삭제할 수 없습니다. 자신의 리뷰인지 확인해주세요.");
-				log.warn("Review deletion failed: reviewId={}, memberId={}", review.getReviewId(), review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId());
 			}
 		} catch (Exception e) {
 			showAlert("오류 발생", "리뷰 삭제 중 오류가 발생했습니다. 나중에 다시 시도해주세요.");
-			log.error("Error occurred while deleting review: reviewId={}, memberId={}", review.getReviewId(),review.getReviewId(),MemberSession.getInstance().getLoggedMemberDto().getMemberId(), e);
 		}
 	}
 

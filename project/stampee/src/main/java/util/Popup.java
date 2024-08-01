@@ -1,4 +1,4 @@
-package view;
+package util;
 
 import java.io.IOException;
 
@@ -9,11 +9,10 @@ import javafx.scene.control.Label;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class PopupView {
-
-	public void showSuccessPopup(String message) {
+public class Popup {
+	public static void showSuccessPopup(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ShareComplete.fxml"));
+			FXMLLoader loader = new FXMLLoader(Popup.class.getResource("/fxml/ShareComplete.fxml"));
 			Parent root = loader.load();
 
 			Label messageLabel = (Label) root.lookup("#messageLabel");
@@ -28,9 +27,9 @@ public class PopupView {
 		}
 	}
 
-	public void showFailPopup(String message) {
+	public static void showFailPopup(String message) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/shareFailed.fxml"));
+			FXMLLoader loader = new FXMLLoader(Popup.class.getResource("/fxml/shareFailed.fxml"));
 			Parent root = loader.load();
 
 			Label messageLabel = (Label) root.lookup("#messageLabel");

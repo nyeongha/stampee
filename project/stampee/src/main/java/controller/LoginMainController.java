@@ -52,5 +52,4 @@ public class LoginMainController {
 			e.printStackTrace();
 		}
 	}
-
 }

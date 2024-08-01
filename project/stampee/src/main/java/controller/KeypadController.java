@@ -3,14 +3,13 @@ package controller;
 
 import static formatter.PhoneNumberFormatter.*;
 import static java.lang.Integer.*;
-import static javafx.scene.control.Alert.AlertType.*;
+import static util.Popup.*;
 import static util.SceneNavigator.*;
 
 import dto.response.LoggedCafeDto;
 import javafx.event.ActionEvent;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import java.io.IOException;
@@ -20,7 +19,6 @@ import repository.StampRepository;
 import service.MailService;
 import service.StampService;
 import session.CafeSession;
-import view.PopupView;
 
 import java.sql.*;
 
@@ -31,7 +29,6 @@ public class KeypadController {
 	private boolean isPhoneNumberInput = true;
 	private StringBuilder stampCount = new StringBuilder();
 	private StringBuilder phoneNumber = new StringBuilder();
-	private final PopupView popupView = new PopupView();
 	private final StampService stampService;
 
 	public KeypadController() {
@@ -82,15 +79,15 @@ public class KeypadController {
 	@FXML
 	private void handleSubmitClick() {
 		if (phoneNumber.length() == 0 || stampCount.length() == 0) {
-			popupView.showFailPopup("전화번호와 스탬프 개수를 모두 입력해주세요.");
+			showFailPopup("전화번호와 스탬프 개수를 모두 입력해주세요.");
 			return;
 		}
 		try {
 			LoggedCafeDto cafe = CafeSession.getInstance().getLoggedCafeDto();
 			stampService.saveStamp(cafe.getCafeId(), formatPhoneNumber(phoneNumber.toString()), parseInt(stampCount.toString()));
-			popupView.showSuccessPopup("스탬프 적립 성공");
+			showSuccessPopup("스탬프 적립 성공");
 		} catch (IllegalArgumentException | SQLException e) {
-			popupView.showFailPopup(e.getMessage());
+			showFailPopup(e.getMessage());
 		}
 
 		phoneNumber.setLength(0);
@@ -104,16 +101,8 @@ public class KeypadController {
 			getInstance().navigateTo("/fxml/CouponPage.fxml", phoneNumberField);
 		} catch (IOException e) {
 			e.printStackTrace();
-			failGoToHome("화면 전환 중 오류가 발생했습니다.");
+			showFailPopup("화면 전환 중 오류가 발생했습니다.");
 		}
-	}
-
-	private void failGoToHome(String message) {
-		Alert alert = new Alert(ERROR);
-		alert.setTitle("오류");
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
 	}
 
 	private void updateDisplayFields() {

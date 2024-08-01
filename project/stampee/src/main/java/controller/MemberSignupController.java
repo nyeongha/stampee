@@ -1,14 +1,15 @@
 package controller;
 
+import static util.Popup.*;
+
 import java.io.IOException;
 
 import domain.Member;
-import javafx.event.ActionEvent; // JavaFX 이벤트 임포트
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
@@ -36,7 +37,7 @@ public class MemberSignupController {
 		String contact = contactField.getText();
 
 		if (email.isEmpty() || name.isEmpty() || password.isEmpty() || contact.isEmpty()) {
-			showAlert("Error", "모든 필드를 입력해주세요.");
+			showFailPopup("모든 필드를 입력해주세요.");
 			return;
 		}
 
@@ -44,11 +45,11 @@ public class MemberSignupController {
 		boolean success = memberService.memberSignUp(member);
 
 		if (success) {
-			showAlert("Success", "회원가입이 성공적으로 완료되었습니다!");
+			showSuccessPopup("회원가입이 성공");
 			clearFields();
 			navigateToLoginPage(event);
 		} else {
-			showAlert("Error", "회원가입에 실패했습니다. 다시 시도해주세요.");
+			showFailPopup("회원가입에 실패");
 		}
 	}
 
@@ -61,16 +62,8 @@ public class MemberSignupController {
 			appStage.setScene(loginScene);
 			appStage.show();
 		} catch (IOException e) {
-			showAlert("Error", "로그인 페이지로 이동하는 동안 오류가 발생했습니다.");
+			showFailPopup("로그인 페이지로 이동하는 동안 오류가 발생했습니다.");
 		}
-	}
-
-	private void showAlert(String title, String message) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
 	}
 
 	private void clearFields() {

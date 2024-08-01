@@ -1,31 +1,27 @@
 package controller;
 
 import static domain.ReviewType.*;
-import static util.SceneNavigator.*;
 
 import java.io.IOException;
-
-import domain.Cafe;
 import domain.ReviewType;
 import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import session.CafeSession;
 import javafx.stage.Stage;
 import session.MemberSession;
+import util.Popup;
+import util.SceneNavigator;
 
 public class HeaderController {
 	private static final long ALL_MEMBER = 0L;
 
-	@FXML
-	public Label logoutLabel;
-	@FXML
-	public Label loginLabel;
+	@FXML public Label logoutLabel;
+	@FXML public Label loginLabel;
 
 	@FXML
 	public void handleMyReview(MouseEvent event) {
@@ -40,12 +36,12 @@ public class HeaderController {
 
 	@FXML
 	public void handleMyCoupon(MouseEvent event) {
-		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
+		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
 	@FXML
 	public void handleLogo(MouseEvent event) {
-		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
+		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {
@@ -66,7 +62,7 @@ public class HeaderController {
 	}
 	@FXML
 	public void handleLogin(MouseEvent mouseEvent) {
-		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+		SceneNavigator.getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
 	}
 
 	@FXML
@@ -77,9 +73,9 @@ public class HeaderController {
 		}else if(MemberSession.getInstance() !=null){
 			MemberSession.clearSession();
 		}
-		showAlert(Alert.AlertType.INFORMATION, "Logout", "로그아웃 되었습니다.");
 
-		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+		Popup.showSuccessPopup("로그아웃 되었습니다.");
+		SceneNavigator.getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
 	}
 
 	private void updateHeaderVisibility() {
@@ -88,15 +84,4 @@ public class HeaderController {
 			logoutLabel.setVisible(false);
 		}
 	}
-
-	// 알림 창을 보여주는 메서드
-	private void showAlert(Alert.AlertType alertType, String title, String message) {
-		Alert alert = new Alert(alertType);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
-	}
-
-
 }

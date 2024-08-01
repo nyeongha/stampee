@@ -5,6 +5,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import repository.CafeRepository;
 import service.CafeService;
+import util.Popup;
 
 public class SignupController {
 	@FXML private TextField nameField;
@@ -32,17 +33,10 @@ public class SignupController {
 		String contact = contactField.getText();
 
 		if (!password.equals(confirmPassword)) {
-			showAlert("Error", "Passwords do not match.");
+			Popup.showFailPopup("Passwords do not match.");
 		}
 	}
 
-	private void showAlert(String title, String message) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
-	}
 
 	private void clearFields() {
 		nameField.clear();
