@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 
 <?import javafx.scene.image.Image?>
-<ScrollPane prefWidth="650.0" prefHeight="800.0" styleClass="main-container"
+<ScrollPane prefWidth="600.0" prefHeight="800.0" styleClass="main-container"
             stylesheets="/css/modern-style.css"
             xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.StampController">

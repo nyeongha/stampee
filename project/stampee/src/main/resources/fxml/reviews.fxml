@@ -6,7 +6,7 @@
 <?import javafx.geometry.Insets?>
 <?import java.net.URL?>
 
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController">
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReviewController" prefWidth="600" prefHeight="800" minWidth="600" minHeight="800">
     <stylesheets>
         <URL value="@/css/modern-style.css"/>
         <URL value="@/css/common.css"/>

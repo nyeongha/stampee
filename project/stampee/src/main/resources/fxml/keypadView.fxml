@@ -3,8 +3,6 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import java.net.URL?>
-
 <VBox alignment="CENTER" spacing="20" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="controller.KeypadController"
       stylesheets="/css/keypadView.css">

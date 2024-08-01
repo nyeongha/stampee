@@ -29,9 +29,9 @@
 }
 
 .stamp-grid {
-    -fx-background-color: #f8f8f8;
+    -fx-background-color:#FFF0F5;
     -fx-padding: 5;
-    -fx-alignment: center-left;
+    -fx-alignment: center;
 }
 
 .share-button {
