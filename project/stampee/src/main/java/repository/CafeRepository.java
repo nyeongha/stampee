@@ -19,8 +19,10 @@ import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
+import dto.response.CafeMemberInfoDto;
 import dto.response.LoggedCafeDto;
 import dto.response.LoggedCafeDto;
+import dto.response.LoggedMemberDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -128,7 +130,7 @@ public class CafeRepository {
 		return null;
 	}
 
-	public List<Member> findCafeMembersById(int cafeId) {
+	public List<Member> findCafeMembersById(long cafeId) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -144,7 +146,7 @@ public class CafeRepository {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cafeId);
+			pstmt.setLong(1, cafeId);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -158,6 +160,48 @@ public class CafeRepository {
 				members.add(member);
 			}
 			return members;
+		} catch (SQLException e) {
+			log.info("db error", e);
+			throw new RuntimeException();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
+	public List<CafeMemberInfoDto> findCafeMemberInfoById(long cafeId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select m.member_id as member_id "
+				   + "            ,m.username "
+				   + "            ,nvl(s.count,0) as stamp_cnt "
+				   + "            ,nvl(c.count,0) as coupon_cnt "
+				   + "        from member m "
+				   + "        left outer join stamp s "
+				   + "          on m.member_id = s.member_id "
+				   + "        left join coupon c "
+				   + "          on s.cafe_id = c.cafe_id "
+				   + "			where s.cafe_id = ? ";
+
+		List<CafeMemberInfoDto> memberInfos = new ArrayList<>();
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, cafeId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				CafeMemberInfoDto memberInfo = CafeMemberInfoDto.createCafeMemberDto(
+					rs.getLong("member_id"),
+					rs.getString("username"),
+					rs.getLong("stamp_cnt"),
+					rs.getLong("coupon_cnt")
+				);
+				memberInfos.add(memberInfo);
+			}
+			return memberInfos;
 		} catch (SQLException e) {
 			log.info("db error", e);
 			throw new RuntimeException();
