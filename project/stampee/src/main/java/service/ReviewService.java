@@ -6,16 +6,12 @@ import java.util.List;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
+import lombok.RequiredArgsConstructor;
 import repository.ReviewRepository;
 
+@RequiredArgsConstructor
 public class ReviewService {
-
-	private static ReviewRepository reviewRepository;
-
-
-	public ReviewService(ReviewRepository reviewRepository){
-		this.reviewRepository=reviewRepository;
-	}
+	private final ReviewRepository reviewRepository;
 
 	public void deleteReview(long reviewId, long memberId) {
 		reviewRepository.deleteReviewByReviewId(reviewId, memberId);
