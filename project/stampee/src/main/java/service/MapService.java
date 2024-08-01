@@ -15,8 +15,6 @@ public class MapService {
 	@FXML private WebView webView;
 	@FXML private Label storeNameLabel;
 	@FXML private Label addressLabel;
-	@FXML private Label phoneLabel;
-	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
 	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();
@@ -28,7 +26,7 @@ public class MapService {
 		Float[] coords = findGeoPoint(location);
 		if (coords != null) {
 			loadMap(coords[0], coords[1], location);
-			updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
+			// updateStoreInfo("카페 어쩌고", location, "010-1234-2222", "매일 9:00 - 22:00");
 		}
 	}
 
@@ -36,6 +34,7 @@ public class MapService {
 		GeoApiContext context = new GeoApiContext.Builder()
 			.apiKey(API_KEY)
 			.build();
+
 		try {
 			GeocodingResult[] results = GeocodingApi.geocode(context, location).await();
 			if (results.length > 0) {
@@ -60,7 +59,7 @@ public class MapService {
 				"    <script src=\"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js\"></script>" +
 				"    <style>" +
 				"        html, body { height: 100%; width: 100%; margin: 0; padding: 0; }" +
-				"#map { height: 200px; width: 71%; margin: 0; padding: 0; }" +
+				"#map { height: 200px; width: 100%; margin: 0; padding: 0; }" +
 				"    </style>" +
 				"</head>" +
 				"<body>" +
@@ -80,10 +79,8 @@ public class MapService {
 		webEngine.loadContent(mapContent);
 	}
 
-	private void updateStoreInfo(String name, String address, String phone, String hours) {
+	private void updateStoreInfo(String name, String address) {
 		storeNameLabel.setText(name);
 		addressLabel.setText(address);
-		phoneLabel.setText(phone);
-		hoursLabel.setText(hours);
 	}
 }
