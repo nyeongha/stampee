@@ -6,20 +6,25 @@ import java.time.LocalDateTime;
 import domain.Cafe;
 import domain.Member;
 import domain.Review;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import repository.CafeRepository;
 import repository.MemberRepository;
 import repository.ReviewRepository;
 import service.ReviewService;
+import session.MemberSession;
 
 public class CreateReviewController {
 	@FXML private ComboBox<Float> rating;
+
 	@FXML private TextArea reviewContents;
+
 	@FXML private Button submitReviewButton;
 
 	@FXML
@@ -29,9 +34,11 @@ public class CreateReviewController {
 	private final CafeRepository cafeRepository;
 	private final ReviewRepository reviewRepository;
 
+
+
 	// 멤버 세션 객체
-	private Member loggedInMember = null;
-	private Cafe selectedCafe = null; // 리뷰할 카페 객체
+	private Member loggedInMember=null;
+	private Cafe selectedCafe=null; // 리뷰할 카페 객체
 
 	public CreateReviewController(){
 		memberRepository = new MemberRepository();
@@ -39,7 +46,6 @@ public class CreateReviewController {
 		reviewRepository = new ReviewRepository();
 		reviewService = new ReviewService(reviewRepository);
 	}
-
 	@FXML
 	public void initialize() {
 		// 실수 값을 ComboBox에 추가
@@ -99,4 +105,12 @@ public class CreateReviewController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
+	@FXML
+	private void handleToggleReview() {
+		boolean isVisible = reviewPane.isVisible();
+		reviewPane.setVisible(!isVisible);
+	}
+
+
+
 }

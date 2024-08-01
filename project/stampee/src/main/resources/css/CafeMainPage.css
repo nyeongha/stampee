@@ -1,11 +1,14 @@
 @font-face {
     font-family: 'Jua';
-    src: url('/font/Jua-Regular.ttf');
+    src: url('font/Jua-Regular.ttf');
 }
 
 .root {
-    -fx-font-family: 'Jua';
     -fx-background-color: white; /* 연한 핑크 배경 */
+}
+
+.root *{
+    -fx-font-family: 'Jua';
 }
 
 .header {
@@ -40,8 +43,7 @@
 
 .all-member-tag {
     -fx-font-style: Jua;
-    -fx-background-color: gray;
-    -fx-background-radius: 10;
+    -fx-background-color: #F1F3F5;
 
 }
 
@@ -58,10 +60,12 @@
 
 .cafe-address-text {
     -fx-font-size: 15;
-    -fx-text-fill: #666;
+    -fx-text-fill: gray;
 }
 
-
+.member-scrollpane {
+    -fx-background-color: #F1F3F5
+}
 
 
 

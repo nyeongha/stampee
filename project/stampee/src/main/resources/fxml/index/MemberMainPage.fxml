@@ -6,7 +6,7 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="TOP_CENTER" styleClass="root" stylesheets="@../../css/CafeMainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeMainPageController">
+<VBox alignment="TOP_CENTER" styleClass="root" stylesheets="@../../css/CafeMainPage.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberMainPageController">
    <children>
       <fx:include source="../reusables/Header.fxml" />
       <VBox styleClass="wrapper">
@@ -62,7 +62,7 @@
                   <Insets />
                </VBox.margin>
                <content>
-                  <HBox fx:id="cafeMembersHbox" spacing="20.0">
+                  <HBox fx:id="MembersHbox" spacing="20.0">
             </HBox>
                </content>
             </ScrollPane>

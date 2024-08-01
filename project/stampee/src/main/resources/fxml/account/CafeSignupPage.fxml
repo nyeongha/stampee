@@ -12,7 +12,7 @@
         <fx:include source="../reusables/Header.fxml"/>
         <VBox alignment="TOP_CENTER" fillWidth="false" styleClass="body">
             <children>
-                <fx:include source="../reusables/LogoArea.fxml" />
+                <fx:include source="../reusables/footer.fxml" />
                 <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이메일" styleClass="label">
