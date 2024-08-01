@@ -11,7 +11,7 @@
         <URL value="@/css/modern-style.css"/>
         <URL value="@/css/common.css"/>
     </stylesheets>
-    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="ALWAYS" vbarPolicy="NEVER">
+    <ScrollPane fx:id="scrollPane" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" vbarPolicy="NEVER">
         <FlowPane fx:id="reviewFlowPane" orientation="HORIZONTAL" hgap="10" vgap="10">
             <padding>
                 <Insets top="10" right="10" bottom="10" left="10"/>
