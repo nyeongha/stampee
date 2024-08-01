@@ -24,22 +24,34 @@ public class Main extends Application {
 	// 	}
 	// }
 
-
-	public void start(Stage primaryStage) throws Exception {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-		Parent root = loader.load();
-
-		StampController controller = loader.getController();
-
-		controller.initData(38L, 1l); // 예시로 memberId 1을 사용
-
-		primaryStage.setTitle("Stamp Viewer");
-		primaryStage.setScene(new Scene(root));
-
-		primaryStage.setTitle("Coupon Application");
-		primaryStage.show();
-
+	@Override
+	public void start(Stage primaryStage) {
+		try {
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/LoginPage.fxml"));
+			Scene scene = new Scene(root);
+			primaryStage.setScene(scene);
+			primaryStage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
+
+
+	// public void start(Stage primaryStage) throws Exception {
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+	// 	Parent root = loader.load();
+	//
+	// 	StampController controller = loader.getController();
+	//
+	// 	controller.initData(38L, 1l); // 예시로 memberId 1을 사용
+	//
+	// 	primaryStage.setTitle("Stamp Viewer");
+	// 	primaryStage.setScene(new Scene(root));
+	//
+	// 	primaryStage.setTitle("Coupon Application");
+	// 	primaryStage.show();
+	//
+	// }
 
 	//
 	// @Override

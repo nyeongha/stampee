@@ -49,7 +49,7 @@
 }
 
 .stamp.empty {
-    -fx-image: url('/image/java_logo.png');
+    -fx-image: url('/image/github_logo_rec.png');
 }
 
 #mapView {
