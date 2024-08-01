@@ -15,7 +15,7 @@
 
 .number-pad-button {
     -fx-font-size: 16px;
-    -fx-background-color: #C8761A;
+    -fx-background-color: #FFB6C1;
     -fx-border: none;
     -fx-color: white;
     -fx-padding: 10px 20px;
@@ -25,9 +25,9 @@
 }
 
 .number-pad-button:hover {
-    -fx-background-color: #45a049; /* Darker green */
+    -fx-background-color: #FF69B4; /* Darker green */
 }
 
 .number-pad-button:pressed {
-    -fx-background-color: #3e8e41;
+    -fx-background-color: #FF69B4;
 }
