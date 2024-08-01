@@ -113,5 +113,5 @@ public class CreateReviewController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
-
 }
+

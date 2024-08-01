@@ -45,7 +45,7 @@ public class HeaderController {
 
 	@FXML
 	public void handleLogo(MouseEvent event) {
-		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
+		getInstance().navigateTo("/fxml/index/MemberMain.fxml", event);
 	}
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {
@@ -97,6 +97,5 @@ public class HeaderController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
-
 
 }
