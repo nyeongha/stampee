@@ -161,7 +161,6 @@ public class MemberRepository {
 	public void deleteUser(String phoneNum) throws SQLException {
 		String sql = "delete from member "
 			+ "where phone_number = ?";
-
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
@@ -177,6 +176,7 @@ public class MemberRepository {
 			throw new RuntimeException(e);
 		} finally {
 			close(conn, pstmt,null);
+
 		}
 	}
 }

@@ -26,7 +26,6 @@ public class CouponRepository {
 			+ "			where member_id = ?"
 			+ "			group by cafe_id) a join cafe c "
 			+ "on a.cafe_id = c.cafe_id";
-
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;

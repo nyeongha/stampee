@@ -263,7 +263,6 @@ public class CafeRepository {
 					rs.getString("email"),
 					rs.getString("contact")
 				);
-
 			}
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
