@@ -47,7 +47,7 @@ public class MemberLoginController {
 
 		if (loggedMemberDto != null) {
 			// 세션에 사용자 정보를 저장
-			MemberSession.getInstance(loggedMemberDto);
+			MemberSession instance = MemberSession.getInstance(loggedMemberDto);
 
 			showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
 			// 로그인 성공 시, 대시보드로 이동

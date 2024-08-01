@@ -43,6 +43,9 @@ public class Main extends Application {
 	//
 	// 	StampController controller = loader.getController();
 	//
+
+	// 	controller.initData(1L,10L); // 예시로 memberId 1을 사용
+	//
 	// 	controller.initData(38L, 1l); // 예시로 memberId 1을 사용
 	//
 	// 	primaryStage.setTitle("Stamp Viewer");

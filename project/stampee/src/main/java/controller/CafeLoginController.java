@@ -47,7 +47,7 @@ public class CafeLoginController {
 
 			if (loggedCafeDto != null) {
 				// 세션에 사용자 정보를 저장
-				CafeSession.getInstance(loggedCafeDto);
+				CafeSession instance = CafeSession.getInstance(loggedCafeDto);
 
 				showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
 
