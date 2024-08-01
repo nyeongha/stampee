@@ -6,7 +6,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
 
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.layout.AnchorPane?>
 <ScrollPane prefWidth="600.0" prefHeight="800.0" styleClass="main-container"
             stylesheets="/css/modern-style.css"
             xmlns="http://javafx.com/javafx/22" xmlns:fx="http://javafx.com/fxml/1"
@@ -14,10 +22,20 @@
     <content>
         <VBox spacing="10">
             <fx:include source="/templates/reusables/Header.fxml" />
-
             <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
-                <Label fx:id="cafeName" styleClass="cafe-name"
-                       style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FF69B4; -fx-effect: dropshadow(gaussian, #FFC0CB, 2, 0, 0, 1);"/>
+                <HBox spacing="10.0">
+                    <children>
+                        <Label fx:id="cafeName" styleClass="cafe-name"
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FF69B4; -fx-effect: dropshadow(gaussian, #FFC0CB, 2, 0, 0, 1);"/>
+                        <ImageView fx:id="starImage" fitHeight="24.0" fitWidth="24.0">
+                            <image>
+                                <Image url="/image/star.png"/>
+                            </image>
+                        </ImageView>
+                        <Label fx:id="cafeRating" styleClass="cafe-rating"
+                               style="-fx-font-size: 20px; -fx-text-fill: #000000;"/>
+                    </children>
+                </HBox>
 
                 <Label fx:id="cafeAddress" styleClass="cafe-address"
                        style="-fx-font-size: 16px; -fx-text-fill: #8B4513;  -fx-padding: 5 10; -fx-background-radius: 10;"/>
@@ -51,6 +69,9 @@
                         <ImageView fx:id="stamp10" preserveRatio="true" styleClass="stamp"/>
                     </HBox>
                 </VBox>
+
+                <AnchorPane fx:id="createReviewContainer">
+                </AnchorPane>
 
                 <ScrollPane fx:id="reviewContainer" prefHeight="295.0" prefWidth="560.0" style="-fx-background-color: #F5F5DC;"/>
                 <Pane fx:id="mapContainer" prefHeight="200.0" prefWidth="570.0"/>

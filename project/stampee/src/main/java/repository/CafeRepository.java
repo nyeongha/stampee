@@ -12,15 +12,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.swing.text.html.parser.Entity;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
-import dto.response.LoggedCafeDto;
-import dto.response.LoggedCafeDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -227,4 +223,41 @@ public class CafeRepository {
 		}
 		return cafe;
 	}
+
+	public Cafe findCafeById(long id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select * "
+			+ "from cafe "
+			+ "where cafe_id=?";
+
+		Cafe cafe = null;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, id);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				cafe = new Cafe(
+					rs.getLong("cafe_id"),
+					rs.getString("name"),
+					rs.getString("address"),
+					rs.getString("password"),
+					rs.getString("email"),
+					rs.getString("contact")
+				);
+
+			}
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt, rs);
+		}
+		return cafe;
+	}
+
+
 }

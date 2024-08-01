@@ -5,7 +5,6 @@ import static domain.ReviewType.*;
 import java.io.IOException;
 import java.util.Objects;
 
-import domain.Cafe;
 import domain.ReviewType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import session.CafeSession;
 import javafx.stage.Stage;
@@ -24,7 +24,7 @@ public class HeaderController {
 	@FXML
 	public void handleMyReview(MouseEvent event) {
 		// LoggedMemberDto member = LoginSession.getInstance().getLoggedMemberDto();
-		navigateTo("/fxml/reviews.fxml", event, MEMBER, 2L);
+		navigateTo("/fxml/reviews.fxml", event, MEMBER, 1L);
 	}
 
 	@FXML
@@ -37,12 +37,24 @@ public class HeaderController {
 		navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
+	@FXML
+	public void handleLogo(MouseEvent event) {
+		navigateTo("/fxml/CouponPage.fxml", event);
+	}
+
 	private void navigateTo(String fxmlPath, MouseEvent event) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
 			Parent root = loader.load();
+			Stage stage;
 
-			Stage stage = (Stage)((Label)event.getSource()).getScene().getWindow();
+			if (event.getSource() instanceof Label) {
+				stage = (Stage) ((Label) event.getSource()).getScene().getWindow();
+			} else if (event.getSource() instanceof ImageView) {
+				stage = (Stage) ((ImageView) event.getSource()).getScene().getWindow();
+			} else {
+				throw new IllegalArgumentException("Unsupported event source");
+			}
 
 			Scene scene = new Scene(root);
 			stage.setScene(scene);
@@ -51,6 +63,7 @@ public class HeaderController {
 			e.printStackTrace();
 		}
 	}
+
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {
 		try {

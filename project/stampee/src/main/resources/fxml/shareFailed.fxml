@@ -4,10 +4,10 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.ShareFailController"
+<StackPane xmlns:fx="http://javafx.com/fxml" fx:controller="controller.NumberPadController"
            styleClass="root" prefWidth="250" prefHeight="200" stylesheets="/css/shareComplete.css">
     <VBox alignment="CENTER" spacing="20">
-        <Label text="공유에 실패했습니다. &#10;번호를 확인해주세요" styleClass="success-message"/>
+        <Label fx:id="messageLabel" styleClass="success-message"/>
         <Button text="확인" onAction="#handleClose" styleClass="confirm-button"/>
     </VBox>
 </StackPane>

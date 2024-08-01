@@ -2,7 +2,6 @@ package controller;
 
 import session.CafeSession;
 import dto.response.LoggedCafeDto;
-import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,8 +25,6 @@ public class CafeLoginController {
 	@FXML private TextField passwordField;
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
-
-
 
 	@FXML
 	public void initialize() {
