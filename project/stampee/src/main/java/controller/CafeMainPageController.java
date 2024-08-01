@@ -1,7 +1,11 @@
 package controller;
 
 import dto.response.CafeMemberInfoDto;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 import session.CafeSession;
 import dto.response.LoggedCafeDto;
 import javafx.fxml.FXML;
@@ -15,6 +19,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -75,6 +80,23 @@ public class CafeMainPageController implements Initializable {
 
 			memberVBox.getChildren().addAll(nameText, avatarInfoHBox);
 			cafeMembersFlowPane.getChildren().add(memberVBox);
+		}
+	}
+
+	@FXML
+	private void goToKeypadView() {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
+			Parent keypadView = loader.load();
+
+			Stage stage = (Stage) cafeName.getScene().getWindow();
+
+			Scene keypadScene = new Scene(keypadView);
+
+			stage.setScene(keypadScene);
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
 	}
 }

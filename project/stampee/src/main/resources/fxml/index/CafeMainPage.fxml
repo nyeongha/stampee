@@ -19,6 +19,10 @@
                </children>
             </VBox>
 
+            <StackPane VBox.vgrow="ALWAYS">
+               <Button text="적립하기" onAction="#goToKeypadView" styleClass="accumulate-button"/>
+            </StackPane>
+
             <HBox alignment="CENTER_LEFT" spacing="10">
                <Text text="CUSTOMERS" styleClass="section-title"/>
                <HBox styleClass="member-count" alignment="CENTER_LEFT">
