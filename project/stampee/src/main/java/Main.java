@@ -11,28 +11,12 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-	// @Override
-	// public void start(Stage primaryStage) {
-	// 	try {
-	// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
-	// 		VBox root = loader.load();
-	// 		Scene scene = new Scene(root);
-	// 		primaryStage.setScene(scene);
-	// 		primaryStage.setTitle("Coupon Management");
-	// 		primaryStage.show();
-	// 	} catch(Exception e) {
-	// 		e.printStackTrace();
-	// 	}
-	// }
-
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/CafeLoginPage.fxml"));
-
-			Scene scene = new Scene(root);
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/MemberLoginPage.fxml"));
+			Scene scene = new Scene(root, 600,800);
 			primaryStage.setScene(scene);
 			primaryStage.show();
 		} catch (Exception e) {
@@ -47,10 +31,8 @@ public class Main extends Application {
 	//
 	// 	StampController controller = loader.getController();
 	//
-
 	// 	controller.initData(1L,10L); // 예시로 memberId 1을 사용
 	//
-	// 	controller.initData(38L, 1l); // 예시로 memberId 1을 사용
 	//
 	// 	primaryStage.setTitle("Stamp Viewer");
 	// 	primaryStage.setScene(new Scene(root));
@@ -61,23 +43,6 @@ public class Main extends Application {
 	// }
 
 	//
-	// public void start(Stage primaryStage) throws Exception {
-	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
-	// 	Parent root = loader.load();
-	//
-	// 	StampController controller = loader.getController();
-	// 	controller.initData(1L,10L); // 예시로 memberId 1을 사용
-	//
-	//
-	//
-	// 	primaryStage.setTitle("Stamp Viewer");
-	// 	primaryStage.setScene(new Scene(root));
-	//
-	// 	primaryStage.setTitle("Coupon Application");
-	// 	primaryStage.show();
-	//
-	// }
-
 	// @Override
 	// public void start(Stage primaryStage) throws Exception{
 	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
