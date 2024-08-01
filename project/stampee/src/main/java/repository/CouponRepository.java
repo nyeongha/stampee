@@ -49,7 +49,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -78,7 +78,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -109,7 +109,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -141,7 +141,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 
@@ -159,7 +159,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt);
+			close(conn, pstmt,null);
 		}
 	}
 }
