@@ -2,7 +2,6 @@ package controller;
 
 import session.CafeSession;
 import dto.response.LoggedCafeDto;
-import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
