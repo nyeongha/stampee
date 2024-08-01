@@ -9,7 +9,7 @@ import javafx.scene.layout.VBox;
 
 public class ReviewView {
 	private static final double SPACING = 10;
-	private static final String BLOCK_CONTAINER_STYLE = "-fx-padding: 10px; -fx-border-color: black; -fx-border-width: 1px;";
+	private static final String BLOCK_CONTAINER_STYLE = "-fx-padding: 10px; -fx-border-color: #FFB6C1; -fx-border-width: 1px;";
 	private static final String REVIEW_LABEL_STYLE = "-fx-padding: 10px;";
 
 	public FlowPane createReviewContainer(List<Review> reviews) {
