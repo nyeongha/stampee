@@ -4,6 +4,8 @@ import static domain.ReviewType.*;
 import static util.SceneNavigator.*;
 
 import java.io.IOException;
+
+import domain.Cafe;
 import domain.ReviewType;
 import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
@@ -22,6 +24,8 @@ public class HeaderController {
 
 	@FXML
 	public Label logoutLabel;
+	@FXML
+	public Label loginLabel;
 
 	@FXML
 	public void handleMyReview(MouseEvent event) {
@@ -60,13 +64,22 @@ public class HeaderController {
 			e.printStackTrace();
 		}
 	}
+	@FXML
+	public void handleLogin(MouseEvent mouseEvent) {
+		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+	}
 
 	@FXML
 	public void handleLogout(MouseEvent mouseEvent) {
+
+		if(CafeSession.getInstance() !=null){
+			CafeSession.clearSession();
+		}else if(MemberSession.getInstance() !=null){
+			MemberSession.clearSession();
+		}
 		showAlert(Alert.AlertType.INFORMATION, "Logout", "로그아웃 되었습니다.");
-		CafeSession.clearSession();			// 1. CafeSession 값 비워주기
-		getInstance().navigateTo("/templates/account/LoginPage.fxml", mouseEvent);			//2. 버튼 클릭 시 LoginPage.fxml로 이동
-		updateHeaderVisibility();			//3. header의 배너에서 logout 라벨 안 보이게 하기
+
+		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
 	}
 
 	private void updateHeaderVisibility() {
@@ -84,4 +97,6 @@ public class HeaderController {
 		alert.setContentText(message);
 		alert.showAndWait();
 	}
+
+
 }

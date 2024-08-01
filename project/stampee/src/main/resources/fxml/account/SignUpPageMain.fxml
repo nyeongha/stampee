@@ -7,17 +7,17 @@
 <VBox fx:id="signuppagemain" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="600.0" styleClass="main-container" stylesheets="@../../css/signupPageMain.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.SignupMainController">
    <children>
       <fx:include source="../reusables/Header.fxml" />
-      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="499.0" prefWidth="949.0" styleClass="body">
+      <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="600.0" styleClass="body">
          <children>
             <fx:include source="../reusables/LogoArea.fxml" />
-            <HBox alignment="CENTER" prefHeight="198.0" prefWidth="800.0">
+            <HBox alignment="CENTER" prefHeight="198.0" prefWidth="600.0">
                <children>
-                  <Button fx:id="memberSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="Member Sign Up">
+                  <Button fx:id="memberSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth=".0" text="Member Sign Up">
                      <HBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="cafeSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="100.0" prefWidth="300.0" text="Cafe Sign up">
+                  <Button fx:id="cafeSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="70.0" prefWidth="200.0" text="Cafe Sign up">
                      <HBox.margin>
                         <Insets left="50.0" right="50.0" />
                      </HBox.margin>

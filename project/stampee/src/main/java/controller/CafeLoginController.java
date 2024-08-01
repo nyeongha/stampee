@@ -79,7 +79,7 @@ public class CafeLoginController {
 	private void loadIndexPage() {
 		try {
 			Parent indexPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
+				Objects.requireNonNull(getClass().getResource("/fxml/index/CafeMainPage.fxml")));
 			Scene scene = new Scene(indexPage);
 			Stage stage = (Stage) loginButton.getScene().getWindow();
 			stage.setScene(scene);
