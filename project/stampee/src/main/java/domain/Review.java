@@ -2,6 +2,11 @@ package domain;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@Getter
+@AllArgsConstructor
 public class Review {
 	private long reviewId;
 	private float rating;
@@ -9,15 +14,6 @@ public class Review {
 	private Date createTime;
 	private Member author;
 	private Cafe cafe;
-
-	public Review(long reviewId, float rating, String contents, Date createTime, Member author, Cafe cafe) {
-		this.reviewId = reviewId;
-		this.rating = rating;
-		this.contents = contents;
-		this.createTime = createTime;
-		this.cafe = cafe;
-		this.author = author;
-	}
 
 	public Review(float rating, String contents, Date createTime, Member author, Cafe cafe) {
 		this.rating = rating;
@@ -31,30 +27,6 @@ public class Review {
 		this.reviewId = reviewId;
 		this.rating = rating;
 		this.contents = contents;
-	}
-
-	public long getId() {
-		return reviewId;
-	}
-
-	public float getRating() {
-		return rating;
-	}
-
-	public String getContents() {
-		return contents;
-	}
-
-	public Date getCreateTime() {
-		return createTime;
-	}
-
-	public Member getMember() {
-		return author;
-	}
-
-	public Cafe getCafe() {
-		return cafe;
 	}
 
 	@Override

@@ -3,14 +3,12 @@ package service;
 import static exception.ErrorMessage.*;
 
 import domain.Member;
+import lombok.RequiredArgsConstructor;
 import repository.MemberRepository;
 
+@RequiredArgsConstructor
 public class UserService {
 	private final MemberRepository memberRepository;
-
-	public UserService(MemberRepository memberRepository) {
-		this.memberRepository = memberRepository;
-	}
 
 	public Member findMemberById(long memberId){
 		Member findMember = memberRepository.findUserById(memberId);

@@ -1,5 +1,8 @@
 package formatter;
 
+import lombok.Getter;
+
+@Getter
 public enum MailMessageFormatter {
 	SEND_STAMP_MESSAGE("스탬프 %d개가 %s님에게 공유 되었습니다."),
 	RECEIVE_STAMP_MESSAGE("%s님으로 부터 %d개를 공유 받았습니다."),
@@ -11,9 +14,5 @@ public enum MailMessageFormatter {
 
 	MailMessageFormatter(String message) {
 		this.message = message;
-	}
-
-	public String getMessage() {
-		return message;
 	}
 }

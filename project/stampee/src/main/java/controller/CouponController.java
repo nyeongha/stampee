@@ -14,6 +14,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import lombok.RequiredArgsConstructor;
 import repository.CouponRepository;
 import repository.MemberRepository;
 import repository.StampRepository;

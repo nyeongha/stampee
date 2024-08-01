@@ -30,7 +30,7 @@ public class ReviewView {
 
 		VBox blockContainer = new VBox(5, reviewLabel);
 		blockContainer.setStyle(BLOCK_CONTAINER_STYLE);
-		blockContainer.setPrefWidth(550); // 너비를 설정하여 수평으로 나열되게 함
+		blockContainer.setPrefWidth(545); // 너비를 설정하여 수평으로 나열되게 함
 
 		return blockContainer;
 	}

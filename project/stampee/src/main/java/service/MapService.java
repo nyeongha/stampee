@@ -8,15 +8,10 @@ import com.google.maps.model.LatLng;
 import javafx.fxml.FXML;
 import javafx.scene.web.WebView;
 import javafx.scene.web.WebEngine;
-import javafx.scene.control.Label;
 import util.GoogleAPIConfigLoader;
 
 public class MapService {
 	@FXML private WebView webView;
-	@FXML private Label storeNameLabel;
-	@FXML private Label addressLabel;
-	@FXML private Label phoneLabel;
-	@FXML private Label hoursLabel;
 
 	private WebEngine webEngine;
 	private static final String API_KEY = GoogleAPIConfigLoader.getApiKey();
@@ -24,7 +19,6 @@ public class MapService {
 	@FXML
 	public void initialize() {
 		webEngine = webView.getEngine();
-
 	}
 
 	private static Float[] findGeoPoint(String location) {
@@ -55,7 +49,7 @@ public class MapService {
 				"    <script src=\"https://unpkg.com/leaflet@1.7.1/dist/leaflet.js\"></script>" +
 				"    <style>" +
 				"        html, body { height: 100%; width: 100%; margin: 0; padding: 0; }" +
-				"#map { height: 200px; width: 71%; margin: 0; padding: 0; }" +
+				"#map { height: 200px; width: 100%; margin: 0; padding: 0; }" +
 				"    </style>" +
 				"</head>" +
 				"<body>" +
@@ -75,16 +69,10 @@ public class MapService {
 		webEngine.loadContent(mapContent);
 	}
 
-	private void updateStoreInfo(String name, String address) {
-		storeNameLabel.setText(name);
-		addressLabel.setText(address);
-	}
-
 	public void initializeMap(String name, String address) {
 		Float[] coords = findGeoPoint(address);
 		if (coords != null) {
 			loadMap(coords[0], coords[1], address, name);
-			updateStoreInfo(name, address);
 		}
 	}
 }

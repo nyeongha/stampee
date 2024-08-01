@@ -17,6 +17,7 @@ import org.slf4j.LoggerFactory;
 
 import domain.Cafe;
 import domain.Member;
+import dto.response.CafeMemberInfoDto;
 
 public class CafeRepository {
 	private static final Logger log = LoggerFactory.getLogger(CafeRepository.class);
@@ -104,14 +105,11 @@ public class CafeRepository {
 			if (rs.next()) {
 				String storedPassword = rs.getString("password");
 				if (verifyPassword(password, storedPassword)) {
-					// 성공적으로 인증된 경우, Entity에 정보 저장
-					Cafe cafe = new Cafe();
-					cafe.setEmail(email);
-					cafe.setPassword(storedPassword);
-					cafe.setAddress(rs.getString("address")); // 데이터베이스 필드에 따라 수정
-					cafe.setName(rs.getString("name")); // 데이터베이스 필드에 따라 수정
-					cafe.setContact(rs.getString("contact")); // 데이터베이스 필드에 따라 수정
-					return cafe;
+					return new Cafe(rs.getLong("cafe_id"),
+						rs.getString("name"),
+						rs.getString("address"),
+						rs.getString("password"),
+						email, rs.getString("contact"));
 				}
 			} else {
 				System.out.println("email not found : " + email);
@@ -124,7 +122,7 @@ public class CafeRepository {
 		return null;
 	}
 
-	public List<Member> findCafeMembersById(int cafeId) {
+	public List<Member> findCafeMembersById(long cafeId) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -140,7 +138,7 @@ public class CafeRepository {
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, cafeId);
+			pstmt.setLong(1, cafeId);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -154,6 +152,48 @@ public class CafeRepository {
 				members.add(member);
 			}
 			return members;
+		} catch (SQLException e) {
+			log.info("db error", e);
+			throw new RuntimeException();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+	}
+
+	public List<CafeMemberInfoDto> findCafeMemberInfoById(long cafeId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select m.member_id as member_id "
+				   + "            ,m.username "
+				   + "            ,nvl(s.count,0) as stamp_cnt "
+				   + "            ,nvl(c.count,0) as coupon_cnt "
+				   + "        from member m "
+				   + "        left outer join stamp s "
+				   + "          on m.member_id = s.member_id "
+				   + "        left join coupon c "
+				   + "          on s.cafe_id = c.cafe_id "
+				   + "			where s.cafe_id = ? ";
+
+		List<CafeMemberInfoDto> memberInfos = new ArrayList<>();
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, cafeId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				CafeMemberInfoDto memberInfo = CafeMemberInfoDto.createCafeMemberDto(
+					rs.getLong("member_id"),
+					rs.getString("username"),
+					rs.getLong("stamp_cnt"),
+					rs.getLong("coupon_cnt")
+				);
+				memberInfos.add(memberInfo);
+			}
+			return memberInfos;
 		} catch (SQLException e) {
 			log.info("db error", e);
 			throw new RuntimeException();

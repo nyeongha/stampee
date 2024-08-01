@@ -1,10 +1,7 @@
-@font-face {
-    font-family: 'Jua';
-    src: url('/font/Jua-Regular.ttf');
-}
-
-.root {
-    -fx-font-family: 'Jua';
+.main-container {
+    -fx-background-color: white;
+    -fx-spacing: 10;
+    -fx-padding: 0 20 0 20;
 }
 
 .header {
@@ -39,21 +36,26 @@
 }
 
 .stamp {
-    -fx-fit-width: 60px;
-    -fx-fit-height: 60px;
+    -fx-fit-width: 50px;
+    -fx-fit-height: 50px;
     -fx-preserve-ratio: true;
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
     -fx-background-position: center;
 }
 
-
 .stamp.filled {
     -fx-image: url('/image/github_logo.png');
 }
 
 .stamp.empty {
-    -fx-image: url('/image/github_logo_rec.png');
+    -fx-image: url('/image/java_logo.png');
+}
+
+#mapView {
+    -fx-pref-height: 300;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1;
 }
 
 .info-container {
@@ -64,35 +66,6 @@
 .info-container Label {
     -fx-font-size: 14;
 }
-
-#mapView {
-    -fx-pref-height: 300;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1;
-}
-
-.footer {
-    -fx-padding: 10;
-    -fx-background-color: white;
-    -fx-border-color: #e0e0e0;
-    -fx-border-width: 1 0 0 0;
-    -fx-alignment: center;
-}
-
-.footer-content {
-    -fx-alignment: center;
-}
-
-.footer-logo {
-    -fx-image: url('/image/stampee_logo.png');
-}
-
-.footer-title {
-    -fx-font-size: 18;
-    -fx-font-weight: bold;
-}
-
-.footer-subtitle {
-    -fx-font-size: 12;
-    -fx-text-fill: #888;
+#dfdf {
+    -fx-background-color: #FFEBD4;
 }

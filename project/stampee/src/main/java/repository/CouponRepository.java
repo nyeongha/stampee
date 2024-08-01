@@ -144,4 +144,22 @@ public class CouponRepository {
 			close(conn, pstmt, rs);
 		}
 	}
+
+	public void deleteExpiredCoupons(LocalDate localDate) {
+		String sql = "delete from coupon where endtime <= ?";
+
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setDate(1, Date.valueOf(localDate));
+			pstmt.executeUpdate();
+		} catch (SQLException e) {
+			throw new RuntimeException(e);
+		} finally {
+			close(conn, pstmt, null);
+		}
+	}
 }
