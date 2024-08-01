@@ -28,6 +28,7 @@ import service.MailService;
 import service.MapService;
 import service.ReviewService;
 import service.StampService;
+import session.MemberSession;
 
 public class StampController implements Initializable {
 	private final CouponService couponService;
@@ -91,10 +92,10 @@ public class StampController implements Initializable {
 		cafeRating.setText(ratingAvg + "");
 
 		setSignatureMenu(cafeId);
-		setReviewContainerCafeId(cafeId);
+		setReviewContainerByCafeId(cafeId);
 
 		mapService.initializeMap(myStamp.getCafeName(), myStamp.getCafeAddr());
-		setCreateReviewContainer(memberId,cafeId);
+		setCreateReviewContainer(cafeId);
 	}
 
 	private void setSignatureMenu(long cafeId) {
@@ -126,13 +127,14 @@ public class StampController implements Initializable {
 		}
 	}
 
-	private void setReviewContainerCafeId(long cafeId) {
+	private void setReviewContainerByCafeId(long cafeId) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
 			Pane reviewPane = loader.load();
 
 			ReviewController controller = loader.getController();
 			controller.init(cafeId, CAFE);
+
 
 			reviewContainer.setContent(reviewPane);
 		} catch (IOException e) {
@@ -141,12 +143,12 @@ public class StampController implements Initializable {
 	}
 
 
-	private void setCreateReviewContainer(long memberId,long cafeId){
+	private void setCreateReviewContainer(long cafeId){
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
 		try {
 			AnchorPane createReview = loader.load(); // 루트 노드가 VBox인 경우
 			CreateReviewController controller = loader.getController();
-			controller.initData(memberId, cafeId);
+			controller.initData(MemberSession.getInstance().getLoggedMemberDto().getMemberId(),cafeId);
 			createReviewContainer.getChildren().setAll(createReview);
 		} catch (IOException e) {
 			throw new RuntimeException("Error loading FXML file for CreateReview: " + e.getMessage(), e);
