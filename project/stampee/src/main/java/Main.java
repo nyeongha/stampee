@@ -10,12 +10,24 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application {
-
+	// @Override
+	// public void start(Stage primaryStage) {
+	// 	try {
+	// 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+	// 		VBox root = loader.load();
+	// 		Scene scene = new Scene(root);
+	// 		primaryStage.setScene(scene);
+	// 		primaryStage.setTitle("Coupon Management");
+	// 		primaryStage.show();
+	// 	} catch(Exception e) {
+	// 		e.printStackTrace();
+	// 	}
+	// }
 
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/CafeLoginPage.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/SignUpPageMain.fxml"));
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
 			primaryStage.show();
@@ -31,8 +43,10 @@ public class Main extends Application {
 	//
 	// 	StampController controller = loader.getController();
 	//
+
 	// 	controller.initData(1L,10L); // 예시로 memberId 1을 사용
 	//
+	// 	controller.initData(38L, 1l); // 예시로 memberId 1을 사용
 	//
 	// 	primaryStage.setTitle("Stamp Viewer");
 	// 	primaryStage.setScene(new Scene(root));
