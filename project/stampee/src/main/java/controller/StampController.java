@@ -7,7 +7,6 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import domain.ReviewType;
 import dto.response.MyStampDto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -98,7 +97,7 @@ public class StampController implements Initializable {
 
 	private void setStampImage(int count) {
 		Image filledStamp = new Image(getClass().getResourceAsStream("/image/github_logo.png"));
-		Image emptyStamp = new Image(getClass().getResourceAsStream("/image/test3.png"));
+		Image emptyStamp = new Image(getClass().getResourceAsStream("/image/github_logo_rec.png"));
 
 		ImageView[] stamps = {stamp1, stamp2, stamp3, stamp4, stamp5, stamp6, stamp7, stamp8, stamp9, stamp10};
 
