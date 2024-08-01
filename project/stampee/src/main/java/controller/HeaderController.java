@@ -44,7 +44,6 @@ public class HeaderController {
 		getInstance().navigateTo("/fxml/CouponPage.fxml", event);
 	}
 
-
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
