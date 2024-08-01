@@ -205,7 +205,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import repository.ReviewRepository;
@@ -233,9 +232,6 @@ public class ReviewController {
 			throw new IllegalStateException("scrollPane is not injected by FXML loader");
 		}
 	}
-
-	@FXML
-	private ToggleButton toggleButton;
 
 	public ReviewController() {
 		ReviewRepository reviewRepository = new ReviewRepository();

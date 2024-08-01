@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
@@ -21,7 +20,6 @@ public class MemberSignupController {
 	@FXML private TextField nameField;
 	@FXML private TextField passwordField;
 	@FXML private TextField contactField;
-	@FXML private Button signUpButton;
 
 	private final MemberService memberService;
 
@@ -56,10 +54,7 @@ public class MemberSignupController {
 
 	private void navigateToLoginPage(ActionEvent event) {
 		try {
-			System.out.println("여기까지 왁다~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~````````````````````");
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/MemberLoginPage.fxml"));
-			System.out.println("화면까지호출");
-			// loader.setControllerFactory(param -> new MemberSignupController());
 			Parent loginPage = loader.load();
 			Scene loginScene = new Scene(loginPage);
 			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

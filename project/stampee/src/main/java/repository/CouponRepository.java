@@ -22,10 +22,11 @@ public class CouponRepository {
 	public List<MyCouponDto> findCouponByMemberId(long memberId) {
 		String sql = "select c.cafe_id, c.name, c.address, a.count "
 			+ " from (select cafe_id, count(*) as count "
-			+ "			from coupon"
+			+ "			from coupon "
 			+ "			where member_id = ?"
 			+ "			group by cafe_id) a join cafe c "
 			+ "on a.cafe_id = c.cafe_id";
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -48,7 +49,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt,null);
+			close(conn, pstmt,rs);
 		}
 	}
 
@@ -77,7 +78,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt,null);
+			close(conn, pstmt,rs);
 		}
 	}
 
@@ -108,7 +109,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt,null);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -140,7 +141,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt,null);
+			close(conn, pstmt,rs);
 		}
 	}
 

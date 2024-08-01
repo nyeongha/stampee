@@ -1,10 +1,8 @@
 package controller;
 
 import java.io.IOException;
-import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 
-import dto.response.LoggedCafeDto;
 import dto.response.LoggedMemberDto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,22 +13,17 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-import repository.CafeRepository;
 import repository.MemberRepository;
-import service.CafeService;
 import service.MemberService;
-import session.CafeSession;
 import session.MemberSession;
 
 public class MemberLoginController {
 	private final MemberService memberService = new MemberService(new MemberRepository());
 
-	@FXML
-	public TextField emailField;
+	@FXML public TextField emailField;
 	@FXML private TextField passwordField;
 	@FXML private Button loginButton;
 	@FXML private Button signUpButton;
-
 
 
 	@FXML
@@ -38,8 +31,6 @@ public class MemberLoginController {
 		loginButton.setOnAction(this::handleLoginButtonAction);
 		signUpButton.setOnAction(this::handleSignUpButtonAction);
 	}
-
-
 
 	@FXML
 	private void handleLoginButtonAction(ActionEvent event) {
@@ -56,11 +47,7 @@ public class MemberLoginController {
 
 		if (loggedMemberDto != null) {
 			// 세션에 사용자 정보를 저장
-			MemberSession instance = MemberSession.getInstance(loggedMemberDto);
-			System.out.println("instance + ======================" + instance.getLoggedMemberDto().getEmail());
-
-			// 세션 검증 및 출력
-			verifySession();
+			MemberSession.getInstance(loggedMemberDto);
 
 			showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
 			// 로그인 성공 시, 대시보드로 이동
@@ -70,22 +57,7 @@ public class MemberLoginController {
 		}
 	}
 
-
-	// 세션 검증 메서드
-	private void verifySession() {
-		try {
-			MemberSession instance = MemberSession.getInstance();
-			LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
-			System.out.println("Email: " + loggedMemberDto.getEmail());
-			System.out.println("Username: " + loggedMemberDto.getUsername());
-			// 필요한 다른 정보도 출력
-		} catch (IllegalArgumentException e) {
-			System.out.println(e.getMessage());
-		}
-	}
-
 	// 알림 창을 보여주는 메서드
-
 	private void showAlert(Alert.AlertType information, String title, String message) {
 		Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -106,7 +78,7 @@ public class MemberLoginController {
 			Parent indexPage = FXMLLoader.load(
 				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
 			Scene scene = new Scene(indexPage);
-			Stage stage = (Stage) loginButton.getScene().getWindow();
+			Stage stage = (Stage)loginButton.getScene().getWindow();
 			stage.setScene(scene);
 			stage.show();
 		} catch (IOException e) {

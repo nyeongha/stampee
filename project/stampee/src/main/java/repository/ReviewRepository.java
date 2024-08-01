@@ -64,7 +64,6 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException("Database error", e);
 		}
-
 		return reviews;
 	}
 
@@ -181,10 +180,9 @@ public class ReviewRepository {
 			}
 
 		} catch (SQLException e) {
-			System.err.println("SQL Exception: " + e.getMessage());
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 
 		return reviews;
@@ -216,7 +214,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 	}
 
@@ -273,7 +271,7 @@ public class ReviewRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt, null);
+			close(conn, pstmt, rs);
 		}
 		return reviews;
 	}
