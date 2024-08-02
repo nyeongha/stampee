@@ -10,7 +10,7 @@
    <children>
       <VBox styleClass="main-container" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <fx:include source="/fxml/reusables/Header.fxml" />
+            <fx:include source="/fxml/reusables/CafeHeader.fxml" />
 
             <VBox styleClass="info-container">
                <children>
@@ -18,10 +18,6 @@
                   <Text fx:id="cafeAddress" styleClass="cafe-address"/>
                </children>
             </VBox>
-
-            <StackPane VBox.vgrow="ALWAYS">
-               <Button text="적립하기" onAction="#goToKeypadView" styleClass="accumulate-button"/>
-            </StackPane>
 
             <HBox alignment="CENTER_LEFT" spacing="10">
                <Text text="CUSTOMERS" styleClass="section-title"/>
