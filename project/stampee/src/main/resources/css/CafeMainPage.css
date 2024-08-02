@@ -15,8 +15,8 @@
 }
 
 .info-container {
-    -fx-padding: 20;
-    -fx-spacing: 10;
+    -fx-padding: 25;
+    -fx-spacing: 15;
     -fx-background-color: #FFE4E1;
     -fx-background-radius: 15;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
@@ -54,6 +54,15 @@ HBox {
     -fx-fill: black;
 }
 
+.customers-section {
+    -fx-padding: 15 0;
+    -fx-background-color: #FFF0F5;
+    -fx-background-radius: 10;
+    -fx-border-color: #FFE4E1;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+}
+
 .customer-scroll-pane {
     -fx-background-color: transparent;
 }
@@ -79,6 +88,22 @@ HBox {
 
 .customer-card Text {
     -fx-fill: black;
+}
+
+.section-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-fill: black;
+}
+
+.member-count {
+    -fx-spacing: 8;
+    -fx-alignment: center-left;
+}
+
+.member-count Text {
+    -fx-fill: black;
+    -fx-font-size: 18px;
 }
 
 .footer {
