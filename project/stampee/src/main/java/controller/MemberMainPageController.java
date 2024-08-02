@@ -1,7 +1,13 @@
 package controller;
 
 import dto.response.MemberInfoDto;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 import session.MemberSession;
 import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
@@ -14,6 +20,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -91,9 +98,48 @@ public class MemberMainPageController implements Initializable {
 			avatarInfoHBox.getChildren().addAll(imageView, infoVBox);
 
 			memberVBox.getChildren().addAll(nameText, avatarInfoHBox);
+
+			// 클릭 이벤트 추가
+			memberVBox.setOnMouseClicked(event -> navigateToStampPage(memberInfo.getCafeId()));
+
+			// 호버 효과 추가
+			memberVBox.setOnMouseEntered(e -> memberVBox.setStyle("-fx-cursor: hand; -fx-background-color: #f0f0f0;"));
+			memberVBox.setOnMouseExited(e -> memberVBox.setStyle(""));
+
 			MembersFlowPane.getChildren().add(memberVBox);
+
 		}
 		totalStamps.setText(String.valueOf(stamp_sum));
 		totalCoupons.setText(String.valueOf(coupon_sum));
+	}
+
+	private void navigateToStampPage(long cafeId) {
+		try {
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/stamp.fxml"));
+			Parent root = loader.load();
+
+			// StampController 초기화
+			StampController controller = loader.getController();
+			long memberId = MemberSession.getInstance().getLoggedMemberDto().getMemberId();
+			controller.initData(memberId, cafeId);
+
+			Scene scene = new Scene(root);
+			Stage stage = (Stage) MembersFlowPane.getScene().getWindow();
+			stage.setScene(scene);
+			stage.setTitle("Stamp Management");
+			stage.show();
+		} catch (Exception e) {
+			e.printStackTrace();
+			// 에러 처리 (예: 알림 대화상자 표시)
+			showAlert("오류", "스탬프 페이지로 이동 중 오류가 발생했습니다.");
+		}
+	}
+
+	private void showAlert(String title, String content) {
+		Alert alert = new Alert(Alert.AlertType.ERROR);
+		alert.setTitle(title);
+		alert.setHeaderText(null);
+		alert.setContentText(content);
+		alert.showAndWait();
 	}
 }

@@ -12,14 +12,18 @@
          <children>
             <fx:include source="/fxml/reusables/CafeHeader.fxml" />
 
+
             <VBox styleClass="info-container">
                <children>
                   <Text fx:id="cafeName" styleClass="cafe-name"/>
                   <Text fx:id="cafeAddress" styleClass="cafe-address"/>
                </children>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
             </VBox>
 
-            <HBox alignment="CENTER_LEFT" spacing="10">
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="customers-section">
                <Text text="CUSTOMERS" styleClass="section-title"/>
                <HBox styleClass="member-count" alignment="CENTER_LEFT">
                   <children>
@@ -28,6 +32,9 @@
                      <Text text="명"/>
                   </children>
                </HBox>
+               <VBox.margin>
+                  <Insets bottom="5.0" />
+               </VBox.margin>
             </HBox>
 
             <AnchorPane VBox.vgrow="ALWAYS">
