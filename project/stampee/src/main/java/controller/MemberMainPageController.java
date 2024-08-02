@@ -1,8 +1,5 @@
 package controller;
 
-import static config.ConnectionClose.*;
-import static config.DBConnectionUtil.*;
-
 import dto.response.MemberInfoDto;
 import javafx.scene.layout.FlowPane;
 import session.MemberSession;
@@ -14,16 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import repository.MemberRepository;
@@ -43,13 +34,11 @@ public class MemberMainPageController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-
 		MemberSession instance = MemberSession.getInstance();
-
 		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
 
-		MemberRepository memberRepository = new MemberRepository();
 
+		MemberRepository memberRepository = new MemberRepository();
 		List<MemberInfoDto> memberInfos = memberRepository.findMemberInfoById(loggedMemberDto.getMemberId());
 
 		renderMemberCards(memberInfos);
@@ -61,16 +50,13 @@ public class MemberMainPageController implements Initializable {
 		System.out.println(loggedMemberDto.getEmail());
 		System.out.println(loggedMemberDto.getMemberId());
 
-
 		for (MemberInfoDto memberInfo : memberInfos) {
 			System.out.println(memberInfo.getCafeId());
 			System.out.println(memberInfo.getCafeName());
 			System.out.println(memberInfo.getCouponCount());
 			System.out.println(memberInfo.getStampCount());
 		}
-
-
-		}
+	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
 		Long stamp_sum = 0L;
@@ -114,5 +100,4 @@ public class MemberMainPageController implements Initializable {
 		totalStamps.setText(String.valueOf(stamp_sum));
 		totalCoupons.setText(String.valueOf(coupon_sum));
 	}
-
 }
