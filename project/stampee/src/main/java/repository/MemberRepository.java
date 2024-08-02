@@ -52,14 +52,14 @@ public class MemberRepository {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 
-		String sql = "SELECT c.cafe_id, c.name, COALESCE(a.coupon_count, 0) AS coupon_count, s.count AS stamp_count " +
-			"FROM (SELECT cafe_id, COUNT(*) AS coupon_count " +
-			"      FROM coupon " +
-			"      WHERE member_id = ? " +
-			"      GROUP BY cafe_id) a " +
-			"RIGHT JOIN cafe c ON a.cafe_id = c.cafe_id " +
-			"JOIN stamp s ON c.cafe_id = s.cafe_id " +
-			"WHERE s.member_id = ?";
+		String sql = "select c.cafe_id, c.name, COALESCE(a.coupon_count, 0) AS coupon_count, s.count AS stamp_count " +
+			"from (select cafe_id, COUNT(*) AS coupon_count " +
+			"      from coupon " +
+			"      where member_id = ? " +
+			"      group by cafe_id) a " +
+			"right join cafe c ON a.cafe_id = c.cafe_id " +
+			"join stamp s ON c.cafe_id = s.cafe_id " +
+			"where s.member_id = ?";
 
 		List<MemberInfoDto> memberInfos = new ArrayList<>();
 
