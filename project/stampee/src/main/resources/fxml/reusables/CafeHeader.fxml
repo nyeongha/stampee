@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox id="Header" styleClass="header" xmlns="http://javafx.com/javafx/8" stylesheets="@../../css/header.css" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeHeaderController">
+    <children>
+        <ImageView fitHeight="40" fitWidth="40" styleClass="logo" onMouseClicked="#handleLogo">
+            <image>
+                <Image url="/image/stampee_logo.png"/>
+            </image>
+        </ImageView>
+        <HBox spacing="20" styleClass="menu-items">
+            <children>
+                <Label fx:id="loginLabel" text="Login" onMouseClicked="#handleLogin" styleClass="menu-label"/>
+                <Label fx:id="logoutLabel" text="Logout" onMouseClicked="#handleLogout" styleClass="menu-label"/>
+                <Button text="적립하기" onAction="#goToKeypadView" styleClass="accumulate-button"/>
+                <Region HBox.hgrow="ALWAYS"/>
+            </children>
+        </HBox>
+    </children>
+</HBox>
