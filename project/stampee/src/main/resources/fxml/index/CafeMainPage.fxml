@@ -24,7 +24,7 @@
             </VBox>
 
             <HBox alignment="CENTER_LEFT" spacing="10" styleClass="customers-section">
-               <Text text="CUSTOMERS" styleClass="section-title"/>
+               <Text text="  CUSTOMERS" styleClass="section-title"/>
                <HBox styleClass="member-count" alignment="CENTER_LEFT">
                   <children>
                      <Text text="전체 회원수: "/>

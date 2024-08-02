@@ -26,7 +26,7 @@
                 <HBox spacing="10.0">
                     <children>
                         <Label fx:id="cafeName" styleClass="cafe-name"
-                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #FF69B4; -fx-effect: dropshadow(gaussian, #FFC0CB, 2, 0, 0, 1);"/>
+                               style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #000000; -fx-effect: dropshadow(gaussian, #FFC0CB, 2, 0, 0, 1);"/>
                         <ImageView fx:id="starImage" fitHeight="24.0" fitWidth="24.0">
                             <image>
                                 <Image url="/image/star.png"/>
@@ -40,11 +40,11 @@
                 <Label fx:id="cafeAddress" styleClass="cafe-address"
                        style="-fx-font-size: 16px; -fx-text-fill: #000000;  -fx-padding: 5 10; -fx-background-radius: 10;"/>
 
-                <HBox alignment="CENTER" style="-fx-background-color: #FFB6C1; -fx-background-radius: 15; -fx-padding: 10;">
+                <HBox alignment="CENTER" style="-fx-background-color: #FFE4E1; -fx-background-radius: 15; -fx-padding: 10;">
                     <Label fx:id="couponCount" style="-fx-font-size: 18px; -fx-text-fill: #000000; -fx-font-weight: bold;"/>
                 </HBox>
 
-                <Label text="시그니쳐 메뉴" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FF69B4;"/>
+                <Label text="시그니쳐 메뉴" style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #000000;"/>
 
                 <VBox spacing="10" style="-fx-background-color: #FFF0F5; -fx-padding: 15; -fx-background-radius: 15; -fx-border-color: #FFB6C1; -fx-border-width: 2; -fx-border-radius: 15;">
                     <Label fx:id="signature1" styleClass="signature-menu"
@@ -53,7 +53,7 @@
                            style="-fx-font-size: 16px; -fx-text-fill: #000000; -fx-padding: 5 10; -fx-background-radius: 10;"/>
                 </VBox>
 
-                <VBox spacing="10" style="-fx-background-color: #FFB6C1; -fx-padding: 15; -fx-background-radius: 15;">
+                <VBox spacing="10" style="-fx-background-color: #FFE4E1; -fx-padding: 15; -fx-background-radius: 15;">
                     <HBox spacing="10" alignment="CENTER">
                         <ImageView fx:id="stamp1"  preserveRatio="true" styleClass="stamp"/>
                         <ImageView fx:id="stamp2"  preserveRatio="true" styleClass="stamp"/>
