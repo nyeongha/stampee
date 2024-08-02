@@ -70,7 +70,7 @@ public class MemberMainPageController implements Initializable {
 		}
 
 
-		}
+	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
 		Long stamp_sum = 0L;
