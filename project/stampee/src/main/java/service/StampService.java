@@ -40,10 +40,10 @@ public class StampService {
 			throw new IllegalArgumentException(NOT_FOUND_MEMBER.getErrorMessage());
 		}
 		if (stampRepository.updateStamp(cafeId, fromMember.getMemberId(), toMember.getMemberId(), count)) {	//성공한 경우
-			mailService.sendMail(toMember.getEmail(),format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
+			mailService.sendMail(fromMember.getEmail(),format(SEND_STAMP_MESSAGE.getMessage(), count, toMember.getUserName()), SHARE_STAMP_TITLE.getMessage());
 			mailService.sendMail(toMember.getEmail(), format(RECEIVE_STAMP_MESSAGE.getMessage(), fromMember.getUserName(), count), SHARE_STAMP_TITLE.getMessage());
 		} else {	//실패 한 경우
-			mailService.sendMail(toMember.getEmail(), FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
+			mailService.sendMail(fromMember.getEmail(), FAIL_SEND_STAMP_MESSAGE.getMessage(), SHARE_STAMP_TITLE.getMessage());
 			throw new IllegalArgumentException("스탬프 공유 실패");
 		}
 	}
