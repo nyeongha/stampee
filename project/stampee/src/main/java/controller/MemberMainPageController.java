@@ -42,10 +42,10 @@ public class MemberMainPageController implements Initializable {
 		renderMemberCards(memberInfos);
 		memberName.setText(loggedMemberDto.getUsername());
 
-		// 출력영역
-		System.out.println(loggedMemberDto.getUsername());
-		System.out.println(loggedMemberDto.getEmail());
-		System.out.println(loggedMemberDto.getMemberId());
+		// // 출력영역
+		// System.out.println(loggedMemberDto.getUsername());
+		// System.out.println(loggedMemberDto.getEmail());
+		// System.out.println(loggedMemberDto.getMemberId());
 
 		for (MemberInfoDto memberInfo : memberInfos) {
 			System.out.println(memberInfo.getCafeId());
