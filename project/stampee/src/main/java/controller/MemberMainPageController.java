@@ -45,10 +45,10 @@ public class MemberMainPageController implements Initializable {
 
 		memberName.setText(loggedMemberDto.getUsername());
 
-		// 출력영역
-		System.out.println(loggedMemberDto.getUsername());
-		System.out.println(loggedMemberDto.getEmail());
-		System.out.println(loggedMemberDto.getMemberId());
+		// // 출력영역
+		// System.out.println(loggedMemberDto.getUsername());
+		// System.out.println(loggedMemberDto.getEmail());
+		// System.out.println(loggedMemberDto.getMemberId());
 
 		for (MemberInfoDto memberInfo : memberInfos) {
 			System.out.println(memberInfo.getCafeId());
@@ -59,6 +59,7 @@ public class MemberMainPageController implements Initializable {
 	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
+
 		Long stamp_sum = 0L;
 		Long coupon_sum = 0L;
 		for (MemberInfoDto memberInfo : memberInfos){
