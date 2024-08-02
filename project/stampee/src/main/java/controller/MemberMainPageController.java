@@ -37,12 +37,9 @@ public class MemberMainPageController implements Initializable {
 		MemberSession instance = MemberSession.getInstance();
 		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
 
-
 		MemberRepository memberRepository = new MemberRepository();
 		List<MemberInfoDto> memberInfos = memberRepository.findMemberInfoById(loggedMemberDto.getMemberId());
-
 		renderMemberCards(memberInfos);
-
 		memberName.setText(loggedMemberDto.getUsername());
 
 		// 출력영역
@@ -59,6 +56,7 @@ public class MemberMainPageController implements Initializable {
 	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
+
 		Long stamp_sum = 0L;
 		Long coupon_sum = 0L;
 		for (MemberInfoDto memberInfo : memberInfos){
