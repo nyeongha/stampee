@@ -1,5 +1,7 @@
 package controller;
 
+import static util.Popup.*;
+
 import java.io.IOException;
 import java.util.Objects;
 
@@ -12,10 +14,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.stage.Popup;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.MemberService;
 import session.MemberSession;
+import util.SceneNavigator;
 
 public class MemberLoginController {
 	private final MemberService memberService = new MemberService(new MemberRepository());
@@ -37,8 +41,8 @@ public class MemberLoginController {
 		String email = emailField.getText();
 		String password = passwordField.getText();
 
-		if (email.isEmpty() ||  password.isEmpty() ) {
-			showAlert(Alert.AlertType.INFORMATION, "Error", "모든 필드를 입력해주세요.");
+		if (email.isEmpty() || password.isEmpty()) {
+			showFailPopup("모든 필드를 입력해주세요.");
 			return;
 		}
 
@@ -49,21 +53,12 @@ public class MemberLoginController {
 			// 세션에 사용자 정보를 저장
 			MemberSession instance = MemberSession.getInstance(loggedMemberDto);
 
-			showAlert(Alert.AlertType.INFORMATION, "Success", "로그인이 성공적으로 되었습니다.");
+			showSuccessPopup("로그인이 성공적으로 되었습니다.");
 			// 로그인 성공 시, 대시보드로 이동
 			loadIndexPage();
 		} else {
-			showAlert(Alert.AlertType.INFORMATION, "Error", "로그인이 실패했습니다. 이메일 또는 비밀번호를 확인하세요.");
+			showFailPopup("로그인이 실패했습니다. \n이메일 또는 비밀번호를 확인하세요.");
 		}
-	}
-
-	// 알림 창을 보여주는 메서드
-	private void showAlert(Alert.AlertType information, String title, String message) {
-		Alert alert = new Alert(Alert.AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(null);
-		alert.setContentText(message);
-		alert.showAndWait();
 	}
 
 	// 회원가입 버튼 클릭 시 처리 메서드
@@ -75,12 +70,7 @@ public class MemberLoginController {
 	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
 	private void loadIndexPage() {
 		try {
-			Parent indexPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
-			Scene scene = new Scene(indexPage);
-			Stage stage = (Stage)loginButton.getScene().getWindow();
-			stage.setScene(scene);
-			stage.show();
+			SceneNavigator.getInstance().navigateTo("/fxml/index/MemberMainPage.fxml", loginButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

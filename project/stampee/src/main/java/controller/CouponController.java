@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import javax.mail.MessagingException;
 
 import domain.Member;
+import dto.response.LoggedMemberDto;
 import dto.response.MyCouponDto;
 import formatter.PhoneNumberFormatter;
 import javafx.fxml.FXML;
@@ -23,6 +24,7 @@ import service.CouponService;
 import service.MailService;
 import service.StampService;
 import service.MemberService;
+import session.MemberSession;
 import view.CouponView;
 
 public class CouponController implements Initializable {
@@ -47,9 +49,8 @@ public class CouponController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-		// LoggedMemberDto loggedMemberDto = LoginSession.getInstance().getLoggedMemberDto();
-		// long memberId = loggedMemberDto.getMemberId();
-		long memberId = 1l;
+		LoggedMemberDto loggedMemberDto = MemberSession.getInstance().getLoggedMemberDto();
+		long memberId = loggedMemberDto.getMemberId();
 
 		List<MyCouponDto> myCoupons = couponService.getMyCoupon(memberId);
 		for (MyCouponDto myCoupon : myCoupons) {

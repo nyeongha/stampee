@@ -2,6 +2,7 @@ package controller;
 
 import dto.response.MemberInfoDto;
 import javafx.scene.layout.FlowPane;
+import repository.CafeRepository;
 import session.MemberSession;
 import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
@@ -35,15 +36,10 @@ public class MemberMainPageController implements Initializable {
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
-
 		MemberSession instance = MemberSession.getInstance();
-
 		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
-
-		MemberRepository cafeRepository = new MemberRepository();
-
-		List<MemberInfoDto> memberInfos = cafeRepository.findMemberInfoById(loggedMemberDto.getMemberId());
-
+		MemberRepository memberRepository = new MemberRepository();
+		List<MemberInfoDto> memberInfos = memberRepository.findMemberInfoById(loggedMemberDto.getMemberId());
 		renderMemberCards(memberInfos);
 
 		memberName.setText(loggedMemberDto.getUsername());
@@ -53,16 +49,13 @@ public class MemberMainPageController implements Initializable {
 		System.out.println(loggedMemberDto.getEmail());
 		System.out.println(loggedMemberDto.getMemberId());
 
-
 		for (MemberInfoDto memberInfo : memberInfos) {
 			System.out.println(memberInfo.getCafeId());
 			System.out.println(memberInfo.getCafeName());
 			System.out.println(memberInfo.getCouponCount());
 			System.out.println(memberInfo.getStampCount());
 		}
-
-
-		}
+	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
 		Long stamp_sum = 0L;
@@ -106,5 +99,4 @@ public class MemberMainPageController implements Initializable {
 		totalStamps.setText(String.valueOf(stamp_sum));
 		totalCoupons.setText(String.valueOf(coupon_sum));
 	}
-
 }
