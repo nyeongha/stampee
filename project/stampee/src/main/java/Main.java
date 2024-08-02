@@ -1,15 +1,10 @@
 import javax.mail.MessagingException;
 
-import controller.CreateReviewController;
-import controller.StampController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import repository.CouponRepository;
 import service.CouponService;
@@ -22,7 +17,7 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/LoginPageMain.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/loginPageMain.fxml"));
 
 			Scene scene = new Scene(root, 600, 800);
 
@@ -58,14 +53,14 @@ public class Main extends Application {
 	//
 	// @Override
 	// public void start(Stage primaryStage) throws Exception{
-	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/KeypadView.fxml"));
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/keypadView.fxml"));
 	// 	Parent root = loader.load();
 	// 	Scene scene = new Scene(root, 600, 800);
 	// 	primaryStage.setScene(scene);
 	// 	primaryStage.show();
 	// }
 	// public void start(Stage primaryStage) throws Exception {
-	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CouponPage.fxml"));
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/couponPage.fxml"));
 	// 	Parent root = loader.load();
 	//
 	// 	CouponController controller = loader.getController();
@@ -99,7 +94,7 @@ public class Main extends Application {
 
 	// @Override
 	// public void start(Stage primaryStage) throws Exception {
-	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/CreateReview.fxml"));
+	// 	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/createReview.fxml"));
 	// 	Parent root = loader.load();
 	//
 	// 	// CreateReviewController의 인스턴스 가져오기

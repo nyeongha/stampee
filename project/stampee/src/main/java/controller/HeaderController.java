@@ -36,11 +36,11 @@ public class HeaderController {
 
 	@FXML
 	public void handleMyCoupon(MouseEvent event) throws IOException {
-		SceneNavigator.getInstance().navigateTo("/fxml/CouponPage.fxml", event);
+		SceneNavigator.getInstance().navigateTo("/fxml/couponPage.fxml", event);
 	}
 
 	public void handleLogo(MouseEvent event) throws IOException {
-		SceneNavigator.getInstance().navigateTo("/fxml/index/MemberMainPage.fxml", event);
+		SceneNavigator.getInstance().navigateTo("/fxml/index/memberMainPage.fxml", event);
 	}
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {
@@ -61,7 +61,7 @@ public class HeaderController {
 	}
 	@FXML
 	public void handleLogin(MouseEvent mouseEvent) throws IOException {
-		SceneNavigator.getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+		SceneNavigator.getInstance().navigateTo("/fxml/account/loginPageMain.fxml", mouseEvent);
 	}
 
 	@FXML
@@ -75,6 +75,6 @@ public class HeaderController {
 		}
 
 		Popup.showSuccessPopup("로그아웃 되었습니다.");
-		SceneNavigator.getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+		SceneNavigator.getInstance().navigateTo("/fxml/account/loginPageMain.fxml", mouseEvent);
 	}
 }

@@ -12,10 +12,10 @@
     <children>
         <VBox fx:id="loginPageMain" alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" styleClass="main-container" stylesheets="@../../css/loginPageMain.css">
             <children>
-                <fx:include source="../reusables/Header.fxml" />
+                <fx:include source="../reusables/header.fxml" />
                 <VBox alignment="TOP_CENTER" VBox.vgrow="ALWAYS" styleClass="body">
                     <children>
-                        <fx:include source="../reusables/LogoArea.fxml" VBox.vgrow="ALWAYS" />
+                        <fx:include source="../reusables/logoArea.fxml" VBox.vgrow="ALWAYS" />
                         <VBox alignment="CENTER" VBox.vgrow="ALWAYS">
                             <children>
                                 <Button fx:id="memberLoginButton" maxWidth="200.0" minHeight="60.0" mnemonicParsing="false" text="Member Login">

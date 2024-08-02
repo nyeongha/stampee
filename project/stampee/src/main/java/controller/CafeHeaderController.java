@@ -16,12 +16,12 @@ public class CafeHeaderController {
 
 	@FXML
 	public void handleLogo(MouseEvent event) throws IOException {
-		getInstance().navigateTo("/fxml/index/MemberMainPage.fxml", event);
+		getInstance().navigateTo("/fxml/index/memberMainPage.fxml", event);
 	}
 
 	@FXML
 	public void handleLogin(MouseEvent mouseEvent) throws IOException {
-		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+		getInstance().navigateTo("/fxml/account/loginPageMain.fxml", mouseEvent);
 	}
 
 	@FXML
@@ -33,7 +33,7 @@ public class CafeHeaderController {
 			MemberSession.clearSession();
 		}
 		showSuccessPopup("로그아웃 되었습니다.");
-		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
+		getInstance().navigateTo("/fxml/account/loginPageMain.fxml", mouseEvent);
 	}
 
 	@FXML

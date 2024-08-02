@@ -6,7 +6,7 @@
 
 <VBox fx:id="rootContainer" prefHeight="800" prefWidth="600" styleClass="main-container" stylesheets="@../../css/loginPage.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.CafeLoginController">
     <children>
-        <fx:include source="../reusables/Header.fxml" />
+        <fx:include source="../reusables/header.fxml" />
         <ScrollPane fitToWidth="true" fitToHeight="true" VBox.vgrow="ALWAYS" styleClass="transparent-scroll-pane">
             <content>
                 <VBox alignment="CENTER" spacing="40">
@@ -14,7 +14,7 @@
                         <Insets top="50" bottom="50" left="50" right="50" />
                     </padding>
                     <children>
-                        <fx:include source="../reusables/LogoArea.fxml" />
+                        <fx:include source="../reusables/logoArea.fxml" />
                         <VBox alignment="CENTER" spacing="30" maxWidth="500">
                             <children>
                                 <VBox spacing="15">

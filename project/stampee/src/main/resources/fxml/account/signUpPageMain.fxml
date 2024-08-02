@@ -6,10 +6,10 @@
 
 <VBox fx:id="signuppagemain" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="600.0" styleClass="main-container" stylesheets="@../../css/signupPageMain.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="controller.SignupMainController">
    <children>
-      <fx:include source="../reusables/Header.fxml" />
+      <fx:include source="../reusables/header.fxml" />
       <VBox alignment="TOP_CENTER" fillWidth="false" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="600.0" styleClass="body">
          <children>
-            <fx:include source="../reusables/LogoArea.fxml" />
+            <fx:include source="../reusables/logoArea.fxml" />
             <VBox alignment="CENTER" prefHeight="198.0" prefWidth="600.0">
                <children>
                   <Button fx:id="memberSignUpButton" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="60.0" prefWidth="200.0" text="Member Sign Up">

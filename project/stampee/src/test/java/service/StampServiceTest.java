@@ -35,7 +35,7 @@ class StampServiceTest {
 		when(memberRepository.findUserByPhoneNum(unknown)).thenReturn(null);
 
 		//when //then
-		Assertions.assertThatThrownBy(() -> stampService.saveStamp(cafe.getId(), unknown, 3))
+		Assertions.assertThatThrownBy(() -> stampService.saveStamp(cafe.getCafeId(), unknown, 3))
 			.isInstanceOf(IllegalArgumentException.class)
 			.hasMessage("해당 전화번호로 가입된 회원이 존재하지 않습니다.");
 	}
@@ -50,8 +50,8 @@ class StampServiceTest {
 
 		//when
 		when(memberRepository.findUserByPhoneNum("010-1234-8636")).thenReturn(toMember);
-		when(stampRepository.updateStamp(cafe.getId(), fromMember.getId(), 39L, 3)).thenReturn(true);
-		stampService.shareStamp(fromMember, cafe.getId(), "010-1234-8636", 3);
+		when(stampRepository.updateStamp(cafe.getCafeId(), fromMember.getMemberId(), 39L, 3)).thenReturn(true);
+		stampService.shareStamp(fromMember, cafe.getCafeId(), "010-1234-8636", 3);
 
 		//then
 		verify(mailService, times(2)).sendMail(anyString(), anyString(), anyString());
@@ -67,8 +67,8 @@ class StampServiceTest {
 
 		//when
 		when(memberRepository.findUserByPhoneNum("010-1234-8636")).thenReturn(toMember);
-		when(stampRepository.updateStamp(cafe.getId(), fromMember.getId(), 39L, 3)).thenReturn(false);
-		Assertions.assertThatThrownBy(() -> stampService.shareStamp(fromMember, cafe.getId(), "010-1234-8636", 3))
+		when(stampRepository.updateStamp(cafe.getCafeId(), fromMember.getMemberId(), 39L, 3)).thenReturn(false);
+		Assertions.assertThatThrownBy(() -> stampService.shareStamp(fromMember, cafe.getCafeId(), "010-1234-8636", 3))
 			.isInstanceOf(IllegalArgumentException.class)
 				.hasMessage("스탬프 공유 실패");
 

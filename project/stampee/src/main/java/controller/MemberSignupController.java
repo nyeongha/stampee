@@ -57,7 +57,7 @@ public class MemberSignupController {
 
 	private void navigateToLoginPage(ActionEvent event) {
 		try {
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/MemberLoginPage.fxml"));
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/account/memberLoginPage.fxml"));
 			Parent loginPage = loader.load();
 			Scene loginScene = new Scene(loginPage);
 			Stage appStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();

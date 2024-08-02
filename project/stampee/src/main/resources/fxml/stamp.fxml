@@ -21,7 +21,7 @@
             fx:controller="controller.StampController">
     <content>
         <VBox spacing="10">
-            <fx:include source="/fxml/reusables/Header.fxml" />
+            <fx:include source="/fxml/reusables/header.fxml" />
             <VBox spacing="15" style="-fx-padding: 20; -fx-background-color: #FFF0F5;">
                 <HBox spacing="10.0">
                     <children>
