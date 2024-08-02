@@ -40,7 +40,7 @@ public class HeaderController {
 	}
 
 	public void handleLogo(MouseEvent event) throws IOException {
-		SceneNavigator.getInstance().navigateTo("/fxml/index/MemberMain.fxml", event);
+		SceneNavigator.getInstance().navigateTo("/fxml/index/MemberMainPage.fxml", event);
 	}
 
 	private void navigateTo(String fxmlPath, MouseEvent event, ReviewType reviewType, long id) {

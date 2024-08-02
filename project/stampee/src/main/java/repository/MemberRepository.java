@@ -47,6 +47,50 @@ public class MemberRepository {
 		}
 	}
 
+	public List<MemberInfoDto> findMemberInfoById(long memberId) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		String sql = "select c.cafe_id, c.name, a.coupon_count, s.count as stamp_count "
+			+ "from (select cafe_id, count(*) as coupon_count "
+			+ "    from coupon "
+			+ "    where member_id = ?  "
+			+ "    group by cafe_id) a join cafe c "
+			+ "on a.cafe_id = c.cafe_id "
+			+ "join stamp s "
+			+ "on a.cafe_id = s.cafe_id "
+			+ "and s.member_id = ? ";
+
+		List<MemberInfoDto> memberInfos = new ArrayList<>();
+
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, memberId);
+			pstmt.setLong(2, memberId);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				MemberInfoDto memberInfo = MemberInfoDto.createMemberDto(
+					rs.getLong("cafe_id"),
+					rs.getString("name"),
+					rs.getLong("coupon_count"),
+					rs.getLong("stamp_count")
+				);
+				memberInfos.add(memberInfo);
+			}
+			return memberInfos;
+		} catch (SQLException e) {
+			e.printStackTrace();
+			// log.info("db error", e);
+			throw new RuntimeException();
+		} finally {
+			close(conn, pstmt, rs);
+		}
+
+	}
+
 	public Member login(String email, String password) {
 		String sql = "select * from member where email = ?";
 		Connection conn = null;
@@ -156,51 +200,5 @@ public class MemberRepository {
 		} finally {
 			close(conn, pstmt,null);
 		}
-	}
-
-	public List<MemberInfoDto> findMemberInfoById(long memberId) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		String sql = "select c.cafe_id, c.name, a.coupon_count, s.count as stamp_count "
-			+ "from (select cafe_id, count(*) as coupon_count "
-			+ "    from coupon "
-			+ "    where member_id = ?  "
-			+ "    group by cafe_id) a join cafe c "
-			+ "on a.cafe_id = c.cafe_id "
-			+ "join stamp s "
-			+ "on a.cafe_id = s.cafe_id "
-			+ "and s.member_id = ? ";
-
-
-
-		List<MemberInfoDto> memberInfos = new ArrayList<>();
-
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setLong(1, memberId);
-			pstmt.setLong(2, memberId);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				MemberInfoDto memberInfo = MemberInfoDto.createMemberDto(
-					rs.getLong("cafe_id"),
-					rs.getString("name"),
-					rs.getLong("coupon_count"),
-					rs.getLong("stamp_count")
-				);
-				memberInfos.add(memberInfo);
-			}
-			return memberInfos;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			// log.info("db error", e);
-			throw new RuntimeException();
-		} finally {
-			close(conn, pstmt, rs);
-		}
-
 	}
 }

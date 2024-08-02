@@ -61,6 +61,7 @@ public class CouponView {
 		ImageView couponIcon = createImageView("/image/gift-card.png", 40, 40);
 		Label couponLabel = new Label("보유 쿠폰: " + couponCount);
 		Label expiringLabel = new Label("만료 예정: " + expiredCount);
+		expiringLabel.setStyle("-fx-text-fill: #FF69B4;");
 		couponBox.getChildren().addAll(couponIcon, couponLabel, expiringLabel);
 		return couponBox;
 	}

@@ -1,11 +1,7 @@
 package util;
 
-import static util.Popup.*;
 
 import java.io.IOException;
-import java.util.Objects;
-
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -32,7 +28,7 @@ public class SceneNavigator {
 		Parent root = loader.load();
 		Stage stage = getStageFromEvent(event);
 
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root, 600, 800);
 		stage.setScene(scene);
 		stage.show();
 	}
@@ -40,7 +36,7 @@ public class SceneNavigator {
 	public void navigateTo(String fxmlPath, Control control) throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
 		Parent root = loader.load();
-		Scene scene = new Scene(root);
+		Scene scene = new Scene(root, 600, 800);
 		Stage stage = (Stage)control.getScene().getWindow();
 		stage.setScene(scene);
 		stage.show();
