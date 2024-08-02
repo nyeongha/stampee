@@ -1,3 +1,5 @@
+import javax.mail.MessagingException;
+
 import controller.CreateReviewController;
 import controller.StampController;
 import javafx.application.Application;
@@ -8,6 +10,10 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import repository.CouponRepository;
+import service.CouponService;
+import service.MailService;
+import service.Scheduler;
 
 public class Main extends Application {
 
@@ -102,7 +108,19 @@ public class Main extends Application {
 	// 	primaryStage.show();
 	// }
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws MessagingException {
+		CouponRepository couponRepository = new CouponRepository();
+		MailService mailService = new MailService();
+
+		CouponService couponService = new CouponService(couponRepository, mailService);
+		Scheduler scheduler = new Scheduler();
+		scheduler.execute(() -> {
+			try {
+				couponService.expiredCoupon();
+			} catch (MessagingException e) {
+				throw new RuntimeException(e);
+			}
+		});
 		launch(args);
 	}
 }

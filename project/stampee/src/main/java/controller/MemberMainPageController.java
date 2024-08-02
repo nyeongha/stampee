@@ -64,8 +64,6 @@ public class MemberMainPageController implements Initializable {
 			coupon_sum += memberInfo.getCouponCount();
 			VBox memberVBox = new VBox(10);
 			memberVBox.getStyleClass().add("customer-card");
-			memberVBox.setPrefWidth(150);  // 카드의 너비 설정
-			memberVBox.setMaxWidth(150);   // 최대 너비 제한
 			memberVBox.setPadding(new Insets(15));
 
 			Text nameText = new Text(memberInfo.getCafeName());
