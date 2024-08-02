@@ -17,7 +17,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="이메일" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <TextField fx:id="emailField" prefWidth="520.0" promptText="이메일을 입력하세요" styleClass="text-field" />
@@ -27,7 +27,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="카페명" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <TextField fx:id="nameField" prefWidth="520.0" promptText="카페명을 입력하세요" styleClass="text-field" />
@@ -37,7 +37,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="카페주소" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <TextField fx:id="addressField" prefWidth="520.0" promptText="카페 주소를 입력하세요" styleClass="text-field" />
@@ -47,7 +47,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="비밀번호" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <PasswordField fx:id="passwordField" prefWidth="520.0" promptText="비밀번호를 입력하세요" styleClass="text-field" />
@@ -57,7 +57,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전화번호" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <TextField fx:id="contactField" prefWidth="520.0" promptText="전화번호를 입력하세요" styleClass="text-field" />
@@ -67,7 +67,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시그니처 메뉴1" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <TextField fx:id="menuField1" prefWidth="520.0" promptText="시그니처 메뉴를 입력하세요" styleClass="text-field" />
@@ -77,7 +77,7 @@
                     <children>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="시그니처 메뉴2" styleClass="label">
                             <VBox.margin>
-                                <Insets bottom="10.0" />
+                                <Insets bottom="5.0" />
                             </VBox.margin>
                         </Text>
                         <TextField fx:id="menuField2" prefWidth="520.0" promptText="시그니처 메뉴를 입력하세요" styleClass="text-field" />

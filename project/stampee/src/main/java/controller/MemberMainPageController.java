@@ -1,11 +1,7 @@
 package controller;
 
-import static config.ConnectionClose.*;
-import static config.DBConnectionUtil.*;
-
 import dto.response.MemberInfoDto;
 import javafx.scene.layout.FlowPane;
-import repository.CafeRepository;
 import session.MemberSession;
 import dto.response.LoggedMemberDto;
 import javafx.fxml.FXML;
@@ -15,16 +11,10 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import repository.MemberRepository;
