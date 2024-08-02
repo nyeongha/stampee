@@ -28,17 +28,17 @@ public class CafeHeaderController {
 
 
 	@FXML
-	public void handleLogo(MouseEvent event) {
-		getInstance().navigateTo("/fxml/index/MemberMain.fxml", event);
+	public void handleLogo(MouseEvent event) throws IOException {
+		getInstance().navigateTo("/fxml/index/MemberMainPage.fxml", event);
 	}
 
 	@FXML
-	public void handleLogin(MouseEvent mouseEvent) {
+	public void handleLogin(MouseEvent mouseEvent) throws IOException {
 		getInstance().navigateTo("/fxml/account/LoginPageMain.fxml", mouseEvent);
 	}
 
 	@FXML
-	public void handleLogout(MouseEvent mouseEvent) {
+	public void handleLogout(MouseEvent mouseEvent) throws IOException {
 
 		if(CafeSession.getInstance() !=null){
 			CafeSession.clearSession();
