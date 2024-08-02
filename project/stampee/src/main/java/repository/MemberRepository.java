@@ -15,13 +15,14 @@ import domain.Member;
 public class MemberRepository {
 	public void memberSignUp(Member member) {
 		String insertMemberSql = "insert into member(member_id, username, email, password, phone_number) " +
-			"values(MEMBER_SEQ.NEXTVAL, ?, ?, ?, ?)";
+			"values(MEMBER_SEQ.NEXTVAL,?,?,?,?)";
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 
 		try {
 			conn = getConnection();
+			conn.setAutoCommit(false);
 
 			//멤버 회원 정보 삽입
 			pstmt = conn.prepareStatement(insertMemberSql);
@@ -30,6 +31,7 @@ public class MemberRepository {
 			pstmt.setString(3, hashPassword(member.getPassword()));
 			pstmt.setString(4, member.getPhoneNumber());
 			pstmt.executeUpdate();
+
 			conn.commit();
 		} catch (SQLException | NoSuchAlgorithmException e) {
 			try {

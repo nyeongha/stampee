@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MemberMainPageController" stylesheets="@/css/CafeMainPage.css">
+   <children>
+      <VBox styleClass="main-container" AnchorPane.bottomAnchor="110.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <fx:include source="/fxml/reusables/Header.fxml" />
+
+            <HBox styleClass="info-container">
+               <children>
+                     <Text fx:id="memberName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
+                     <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+               <Text text="카페별 스탬프와 쿠폰" styleClass="section-title"/>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 스탬프 수">
+                  </Text>
+                  <Text fx:id="totalStamps" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 쿠폰 수">
+                  </Text>
+                  <Text fx:id="totalCoupons" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                  </Text>
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
+                  </Text>
+            </HBox>
+            <AnchorPane VBox.vgrow="ALWAYS">
+               <ScrollPane fitToWidth="true" fitToHeight="true" styleClass="customer-scroll-pane"
+                           AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0"
+                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <content>
+                     <FlowPane fx:id="MembersFlowPane" hgap="20" vgap="20"/>
+                  </content>
+               </ScrollPane>
+            </AnchorPane>
+         </children>
+      </VBox>
+      <fx:include source="/fxml/reusables/footer.fxml" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"/>
+   </children>
+</AnchorPane>
