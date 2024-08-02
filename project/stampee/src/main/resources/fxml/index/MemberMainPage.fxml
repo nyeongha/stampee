@@ -19,7 +19,7 @@
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10">
-               <Text text="카페별 스탬프와 쿠폰" styleClass="section-title"/>
+               <Text text="My Stampee" styleClass="section-title"/>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 스탬프 수">
                   </Text>
                   <Text fx:id="totalStamps" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
