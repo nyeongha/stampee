@@ -14,8 +14,8 @@
 
             <HBox styleClass="info-container">
                <children>
-                     <Text fx:id="memberName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
-                     <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
+                  <Text fx:id="memberName" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="cafe name" />
+                  <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
                </children>
             </HBox>
             <HBox alignment="CENTER_LEFT" spacing="10">
