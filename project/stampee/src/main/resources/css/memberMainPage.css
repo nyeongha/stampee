@@ -1,0 +1,78 @@
+@font-face {
+    font-family: 'Jua';
+    src: url('/font/Jua-Regular.ttf');
+}
+
+.root {
+    -fx-font-family: 'Jua';
+    -fx-background-color: #FFF0F5;
+}
+
+.main-container {
+    -fx-background-color: #FFF0F5;
+    -fx-spacing: 15;
+    -fx-padding: 20;
+}
+
+.info-container {
+    -fx-padding: 20;
+    -fx-spacing: 10;
+    -fx-background-color: #FFE4E1;
+    -fx-background-radius: 15;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+}
+
+.member-name {
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-fill: black;
+}
+
+.stamp-coupon-info {
+    -fx-spacing: 5;
+    -fx-alignment: center-left;
+}
+
+.stamp-coupon-info Text {
+    -fx-fill: black;
+    -fx-font-size: 16px;
+}
+
+.section-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-fill: black;
+}
+
+.cafe-scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.cafe-scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+
+#MembersFlowPane {
+    -fx-background-color: transparent;
+    -fx-padding: 20;
+}
+
+.cafe-card {
+    -fx-background-color: white;
+    -fx-padding: 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);
+    -fx-pref-width: 170px;
+    -fx-max-width: 170px;
+}
+
+.cafe-name {
+    -fx-font-weight: bold;
+    -fx-fill: black;
+    -fx-font-size: 18px;
+}
+
+.cafe-card Text {
+    -fx-fill: black;
+}

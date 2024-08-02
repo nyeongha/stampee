@@ -37,12 +37,9 @@ public class MemberMainPageController implements Initializable {
 		MemberSession instance = MemberSession.getInstance();
 		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
 
-
 		MemberRepository memberRepository = new MemberRepository();
 		List<MemberInfoDto> memberInfos = memberRepository.findMemberInfoById(loggedMemberDto.getMemberId());
-
 		renderMemberCards(memberInfos);
-
 		memberName.setText(loggedMemberDto.getUsername());
 
 		// // 출력영역
