@@ -147,7 +147,6 @@ public class CafeRepository {
 				);
 				memberInfos.add(memberInfo);
 			}
-			System.out.println(memberInfos.size() + "===========================================================");
 			return memberInfos;
 		} catch (SQLException e) {
 			throw new RuntimeException();

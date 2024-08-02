@@ -20,7 +20,7 @@ public class CafeSession {
 
 	public static synchronized CafeSession getInstance() {
 		if (instance == null) {
-			throw new IllegalArgumentException(USER_NOT_LOGGED_IN.getErrorMessage());
+			return null;
 		}
 		return instance;
 	}
