@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -21,11 +22,15 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/CafeLoginPage.fxml"));
+			Parent root = FXMLLoader.load(getClass().getResource("/fxml/account/LoginPageMain.fxml"));
 
 			Scene scene = new Scene(root, 600, 800);
 
 			primaryStage.setScene(scene);
+
+			Image icon = new Image(getClass().getResourceAsStream("/image/github_logo.png"));
+			primaryStage.getIcons().add(icon);
+
 			primaryStage.show();
 		} catch (Exception e) {
 			e.printStackTrace();

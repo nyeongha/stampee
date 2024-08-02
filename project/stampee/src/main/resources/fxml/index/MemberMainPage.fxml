@@ -18,19 +18,19 @@
                   <Text fx:id="nim" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cafe-name" text="님" />
                </children>
             </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="10">
-               <Text text="My Stampee" styleClass="section-title"/>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 스탬프 수">
+            <HBox alignment="CENTER_LEFT" spacing="10" styleClass="customers-section">
+               <Text text="  My Stampee" styleClass="section-title"/>
+                  <Text strokeType="OUTSIDE" text="전체 스탬프 수">
                   </Text>
                   <Text fx:id="totalStamps" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
+                  <Text strokeType="OUTSIDE" text="개">
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="전체 쿠폰 수">
+                  <Text strokeType="OUTSIDE" text="전체 쿠폰 수">
                   </Text>
-                  <Text fx:id="totalCoupons" strokeType="OUTSIDE" strokeWidth="0.0" text="X">
+                  <Text fx:id="totalCoupons" strokeType="OUTSIDE" text="X">
                   </Text>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="개">
+                  <Text strokeType="OUTSIDE"  text="개">
                   </Text>
             </HBox>
             <AnchorPane VBox.vgrow="ALWAYS">

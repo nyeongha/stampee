@@ -4,10 +4,6 @@ import static exception.ErrorMessage.*;
 import static util.PasswordUtil.*;
 
 import java.security.NoSuchAlgorithmException;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import domain.Member;
 import dto.response.LoggedMemberDto;
 import lombok.RequiredArgsConstructor;

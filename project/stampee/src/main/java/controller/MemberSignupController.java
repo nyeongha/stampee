@@ -14,7 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.MemberService;
-import util.SceneNavigator;
 
 public class MemberSignupController {
 
