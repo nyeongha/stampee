@@ -1,5 +1,8 @@
 package controller;
 
+import static config.ConnectionClose.*;
+import static config.DBConnectionUtil.*;
+
 import dto.response.MemberInfoDto;
 import javafx.scene.layout.FlowPane;
 import repository.CafeRepository;
@@ -17,6 +20,11 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import repository.MemberRepository;
@@ -38,8 +46,11 @@ public class MemberMainPageController implements Initializable {
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		MemberSession instance = MemberSession.getInstance();
 		LoggedMemberDto loggedMemberDto = instance.getLoggedMemberDto();
+
+
 		MemberRepository memberRepository = new MemberRepository();
 		List<MemberInfoDto> memberInfos = memberRepository.findMemberInfoById(loggedMemberDto.getMemberId());
+
 		renderMemberCards(memberInfos);
 
 		memberName.setText(loggedMemberDto.getUsername());

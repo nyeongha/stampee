@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import domain.Member;
-import dto.response.CafeMemberInfoDto;
 import dto.response.MemberInfoDto;
 
 public class MemberRepository {
