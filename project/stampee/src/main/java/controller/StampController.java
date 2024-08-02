@@ -60,12 +60,12 @@ public class StampController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
 		try {
-			FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("/fxml/MapOutput.fxml"));
+			FXMLLoader mapLoader = new FXMLLoader(getClass().getResource("/fxml/mapOutput.fxml"));
 			Pane mapPane = mapLoader.load();
 			mapContainer.getChildren().add(mapPane);
 			mapService = mapLoader.getController();
 
-			AnchorPane CreateReview=FXMLLoader.load(getClass().getResource("/fxml/CreateReview.fxml"));
+			AnchorPane CreateReview=FXMLLoader.load(getClass().getResource("/fxml/createReview.fxml"));
 			createReviewContainer.getChildren().add(CreateReview);
 
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/reviewListView.fxml"));
@@ -129,7 +129,7 @@ public class StampController implements Initializable {
 	}
 
 	private void initCreateReviewContainer(long memberId, long cafeId) {
-		CreateReviewController controller = loadController("/fxml/CreateReview.fxml");
+		CreateReviewController controller = loadController("/fxml/createReview.fxml");
 		controller.initData(memberId, cafeId);
 	}
 
@@ -137,7 +137,7 @@ public class StampController implements Initializable {
 		try {
 			FXMLLoader loader = new FXMLLoader(getClass().getResource(path));
 			Pane pane = loader.load();
-			if (path.contains("CreateReview")) {
+			if (path.contains("createReview")) {
 				createReviewContainer.getChildren().setAll(pane);
 			} else if (path.contains("reviewListView")) {
 				reviewContainer.setContent(pane);

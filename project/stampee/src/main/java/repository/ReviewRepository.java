@@ -3,7 +3,6 @@ package repository;
 import static config.DBConnectionUtil.*;
 import static config.ConnectionClose.*;
 
-import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

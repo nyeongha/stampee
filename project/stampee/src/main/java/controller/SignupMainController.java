@@ -22,7 +22,7 @@ public class SignupMainController {
 	@FXML
 	private void handleUserSignUpButtonAction(ActionEvent actionEvent) {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/account/MemberSignupPage.fxml", memberSignUpButton);
+			SceneNavigator.getInstance().navigateTo("/fxml/account/memberSignupPage.fxml", memberSignUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -31,7 +31,7 @@ public class SignupMainController {
 	@FXML
 	private void handleCafeSignUpButtonAction(ActionEvent event) {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/account/CafeSignupPage.fxml", cafeSignUpButton);
+			SceneNavigator.getInstance().navigateTo("/fxml/account/cafeSignupPage.fxml", cafeSignUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

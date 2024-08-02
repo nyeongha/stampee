@@ -6,7 +6,6 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import session.MemberSession;
 import dto.response.LoggedMemberDto;
@@ -20,24 +19,19 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 import repository.MemberRepository;
 public class MemberMainPageController implements Initializable {
 
-	@FXML
-	private FlowPane MembersFlowPane;
+	@FXML private FlowPane MembersFlowPane;
 
-	@FXML
-	private Text memberName;
+	@FXML private Text memberName;
 
-	@FXML
-	private Text totalStamps;
+	@FXML private Text totalStamps;
 
-	@FXML
-	private Text totalCoupons;
+	@FXML private Text totalCoupons;
 
 	@Override
 	public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -48,22 +42,9 @@ public class MemberMainPageController implements Initializable {
 		List<MemberInfoDto> memberInfos = memberRepository.findMemberInfoById(loggedMemberDto.getMemberId());
 		renderMemberCards(memberInfos);
 		memberName.setText(loggedMemberDto.getUsername());
-
-		// // 출력영역
-		// System.out.println(loggedMemberDto.getUsername());
-		// System.out.println(loggedMemberDto.getEmail());
-		// System.out.println(loggedMemberDto.getMemberId());
-
-		for (MemberInfoDto memberInfo : memberInfos) {
-			System.out.println(memberInfo.getCafeId());
-			System.out.println(memberInfo.getCafeName());
-			System.out.println(memberInfo.getCouponCount());
-			System.out.println(memberInfo.getStampCount());
-		}
 	}
 
 	public void renderMemberCards(List<MemberInfoDto> memberInfos){
-
 		Long stamp_sum = 0L;
 		Long coupon_sum = 0L;
 		for (MemberInfoDto memberInfo : memberInfos){

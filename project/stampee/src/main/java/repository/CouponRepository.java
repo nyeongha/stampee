@@ -141,7 +141,7 @@ public class CouponRepository {
 		} catch (SQLException e) {
 			throw new RuntimeException(e);
 		} finally {
-			close(conn, pstmt,rs);
+			close(conn, pstmt, rs);
 		}
 	}
 

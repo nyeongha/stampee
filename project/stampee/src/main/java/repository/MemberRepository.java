@@ -74,8 +74,8 @@ public class MemberRepository {
 				MemberInfoDto memberInfo = MemberInfoDto.createMemberDto(
 					rs.getLong("cafe_id"),
 					rs.getString("name"),
-					rs.getLong("coupon_count"),
-					rs.getLong("stamp_count")
+					rs.getLong("stamp_count"),
+					rs.getLong("coupon_count")
 				);
 				memberInfos.add(memberInfo);
 			}

@@ -62,7 +62,7 @@ public class CafeLoginController {
 	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
 	private void loadIndexPage() {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/index/CafeMainPage.fxml", signUpButton);
+			SceneNavigator.getInstance().navigateTo("/fxml/index/cafeMainPage.fxml", signUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -71,7 +71,7 @@ public class CafeLoginController {
 	// 회원가입 페이지 로드 메서드
 	private void loadSignUpPage() {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/account/SignUpPageMain.fxml", signUpButton);
+			SceneNavigator.getInstance().navigateTo("/fxml/account/signUpPageMain.fxml", signUpButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

@@ -1,6 +1,5 @@
 package session;
 
-import static exception.ErrorMessage.*;
 import dto.response.LoggedCafeDto;
 
 public class CafeSession {

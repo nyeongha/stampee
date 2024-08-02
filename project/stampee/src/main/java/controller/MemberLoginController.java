@@ -11,10 +11,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Popup;
 import javafx.stage.Stage;
 import repository.MemberRepository;
 import service.MemberService;
@@ -70,7 +68,7 @@ public class MemberLoginController {
 	// 메인 페이지 로드 메서드 (인증된 사용자의 경우)
 	private void loadIndexPage() {
 		try {
-			SceneNavigator.getInstance().navigateTo("/fxml/index/MemberMainPage.fxml", loginButton);
+			SceneNavigator.getInstance().navigateTo("/fxml/index/memberMainPage.fxml", loginButton);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -80,7 +78,7 @@ public class MemberLoginController {
 	private void loadSignUpPage() {
 		try {
 			Parent signUpPage = FXMLLoader.load(
-				Objects.requireNonNull(getClass().getResource("/fxml/account/SignUpPageMain.fxml")));
+				Objects.requireNonNull(getClass().getResource("/fxml/account/signUpPageMain.fxml")));
 			Scene scene = new Scene(signUpPage);
 			Stage stage = (Stage) signUpButton.getScene().getWindow();
 			stage.setScene(scene);

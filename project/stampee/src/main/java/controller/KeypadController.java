@@ -116,7 +116,7 @@ public class KeypadController {
 
 	private void goToCafeMainPage() {
 		try {
-			getInstance().navigateTo("/fxml/index/CafeMainPage.fxml", phoneNumberField);
+			getInstance().navigateTo("/fxml/index/cafeMainPage.fxml", phoneNumberField);
 		} catch (IOException e) {
 			e.printStackTrace();
 			showFailPopup("화면 전환 중 오류가 발생했습니다.");

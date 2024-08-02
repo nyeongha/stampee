@@ -9,8 +9,8 @@
             stylesheets="@../../css/cafeSignupMain.css" xmlns="http://javafx.com/javafx/8"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CafeSignupController">
     <VBox fx:id="dfdf" alignment="TOP_CENTER" styleClass="main-container">
-        <fx:include source="../reusables/Header.fxml"/>
-        <fx:include source="../reusables/LogoArea.fxml" />
+        <fx:include source="../reusables/header.fxml"/>
+        <fx:include source="../reusables/logoArea.fxml" />
         <VBox alignment="TOP_CENTER" fillWidth="false" styleClass="body">
             <children>
                 <VBox alignment="CENTER_LEFT" nodeOrientation="LEFT_TO_RIGHT" styleClass="vbox-margin">
